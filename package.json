@@ -21,11 +21,14 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "rollup -c && rimraf compiled",
+    "build": "browserify src/index.js --standalone heat-libs -o compiled/bundle.js && rollup -c && rimraf compiled",
     "start": "rollup -c -w",
     "rollup": "rollup -c"
   },
   "devDependencies": {
+    "browserify": "^16.2.2",
+    "lodash.camelcase": "^4.3.0",
+    "replace-in-file": "^3.4.0",
     "rimraf": "^2.6.1",
     "rollup": "^0.50.1",
     "rollup-plugin-alias": "^1.4.0",
@@ -35,22 +38,13 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-uglify": "^2.0.1",
-    "uglify-es": "^3.3.10",
-    "replace-in-file": "^3.4.0",
-    "lodash.camelcase": "^4.3.0"
+    "uglify-es": "^3.3.10"
   },
   "dependencies": {
-    "big.js": "^3.2.0",
     "bip39": "^2.5.0",
     "bitcore-lib": "^0.15.0",
-    "buffer": "^5.1.0",
-    "bytebuffer": "^5.0.1",
-    "crypto-browserify": "^3.12.0",
     "eth-lightwallet": "^3.0.1",
-    "long": "^3.2.0",
-    "node-fetch": "^1.7.3",
-    "unorm": "^1.4.1",
-    "ws": "^3.3.3"
+    "web3": "0.20.6"
   },
   "optionalDependencies": {
     "bufferutil": "^3.0.2",

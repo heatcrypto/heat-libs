@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <script src="../dist/heat-libs.umd.js"></script>
+    <script type="text/javascript">
+      function works(id, value) {
+        document.getElementById(id).textContent = id + '=' + value
+      }
+
+      // Test bitcore
+      function testBitcore() {
+        var itworks
+        try {          
+          var bitcore = window.heatlibs.bitcore
+          var wif = 'Kxr9tQED9H44gCmp6HAdmemAzU3n84H3dGkuWTKvE23JgHMW8gct';
+          var address = new bitcore.PrivateKey(wif).toAddress();          
+          itworks = true
+        }
+        catch (e) {
+          itworks = false
+        }
+        works('bitcore-works',itworks)
+      }
+
+      // Test bip39
+      function testBip39() {
+        var itworks
+        try {          
+          var bip39 = window.heatlibs.bip39
+          var mnemonic = bip39.generateMnemonic()
+          bip39.mnemonicToSeedHex(mnemonic)
+          bip39.mnemonicToSeed(mnemonic)
+          bip39.validateMnemonic(mnemonic)
+          itworks = true
+        }
+        catch (e) {
+          itworks = false
+        }
+        works('bip39-works',itworks)
+      }
+
+      // Test eth-lightwallet
+      function testEthLightWallet() {
+        var itworks
+        try {          
+          var lightwallet = window.heatlibs.lightwallet
+          var seed = lightwallet.keystore.generateRandomSeed();
+          itworks = lightwallet.keystore.isSeedValid(seed)
+        }
+        catch (e) {
+          console.log(e)
+          itworks = false
+        }
+        works('eth-lightwallet-works',itworks)
+      }
+
+      // Test web3
+      function testWeb3() {
+        var itworks
+        try {          
+          var Web3 = window.heatlibs.Web3
+          var w = new Web3()
+          itworks = !!w
+        }
+        catch (e) {
+          console.log(e)
+          itworks = false
+        }
+        works('web3-works',itworks)
+      }      
+    </script>
+  </head>
+  <body>
+    <h1>Hello heat-libs</h1>
+    <div id="bitcore-works"></div>
+    <div id="bip39-works"></div>
+    <div id="eth-lightwallet-works"></div>
+    <div id="web3-works"></div>
+  </body>
+  <script>
+    testBitcore()
+    testBip39()
+    testEthLightWallet()
+    testWeb3()
+  </script>
+</html>

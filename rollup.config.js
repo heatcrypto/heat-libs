@@ -31,27 +31,17 @@ export default [
     ]
   },
   { // heat-libs.umd.js | Browser UMD module
-    input: `src/index.js`,
+    input: `compiled/bundle.js`,
     plugins: [
-      alias({
-        'ws': path.resolve(__dirname, 'src/ws.browser.js'),
-        'bytebuffer': path.resolve(__dirname, 'node_modules/bytebuffer/dist/bytebuffer.js'),
-        'node-fetch': path.resolve(__dirname, 'src/node-fetch.browser.js'),
-        './random-bytes': path.resolve(__dirname, 'src/random-bytes.browser.js'),
-        'crypto': path.resolve(__dirname, 'node_modules/crypto-browserify/index.js'),
-        'inherits': path.resolve(__dirname, 'src/node-inherits-browser.js'),
-        'util': path.resolve(__dirname, 'src/node-util.browser.js'),
-        'buffer': path.resolve(__dirname, 'node_modules/buffer/index.js'),
-      }),
-      json(),
+      json(),            
       resolve({
         browser: true,
         preferBuiltins: false
-      }),
+      }),      
       commonjs({
-        ignoreGlobal: true
-      }),
-      globals(),
+        ignoreGlobal: false,
+      }),      
+      globals(),      
       sourceMaps()      
     ],
     output: [
@@ -60,27 +50,17 @@ export default [
     external: ['utf-8-validate','bufferutil']
   },
   { // heat-libs.umd.min.js | Minified Browser UMD module
-    input: `src/index.js`,
+    input: `compiled/bundle.js`,
     plugins: [
-      alias({
-        'ws': path.resolve(__dirname, 'src/ws.browser.js'),
-        'bytebuffer': path.resolve(__dirname, 'node_modules/bytebuffer/dist/bytebuffer.js'),
-        'node-fetch': path.resolve(__dirname, 'src/node-fetch.browser.js'),
-        './random-bytes': path.resolve(__dirname, 'src/random-bytes.browser.js'),
-        'crypto': path.resolve(__dirname, 'node_modules/crypto-browserify/index.js'),
-        'inherits': path.resolve(__dirname, 'src/node-inherits-browser.js'),
-        'util': path.resolve(__dirname, 'src/node-util.browser.js'),
-        'buffer': path.resolve(__dirname, 'node_modules/buffer/index.js'),
-      }),
-      json(),
+      json(),            
       resolve({
         browser: true,
         preferBuiltins: false
-      }),
+      }),      
       commonjs({
-        ignoreGlobal: true
-      }),
-      globals(),
+        ignoreGlobal: false,
+      }),      
+      globals(),      
       sourceMaps(),
       uglify({}, minify)
     ],
