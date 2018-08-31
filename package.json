@@ -42,9 +42,11 @@
   },
   "dependencies": {
     "bip39": "^2.5.0",
-    "bitcore-lib": "^0.15.0",
+    "bitcore-lib": "^0.13.14",
     "eth-lightwallet": "^3.0.1",
-    "web3": "0.20.6"
+    "web3": "0.20.6",
+    "bitcore-explorers": "^1.0.1",
+    "hooked-web3-provider": "^1.0.0"
   },
   "optionalDependencies": {
     "bufferutil": "^3.0.2",
