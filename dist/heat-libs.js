@@ -6,7 +6,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var buffer = _interopDefault(require('buffer'));
 var assert = _interopDefault(require('assert'));
-var crypto = _interopDefault(require('crypto'));
+var require$$0 = _interopDefault(require('crypto'));
 var util = _interopDefault(require('util'));
 var Url = _interopDefault(require('url'));
 var stream = _interopDefault(require('stream'));
@@ -20,13 +20,15 @@ var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 
 
 
 
-
+function unwrapExports (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
 
-var _args = [["bitcore-lib@0.15.0","/home/dirk/git/heat-libs"]];
+var _args = [["bitcore-lib@0.15.0","/home/rails/repositories/heat/temp/heat-libs"]];
 var _from = "bitcore-lib@0.15.0";
 var _id = "bitcore-lib@0.15.0";
 var _inBundle = false;
@@ -37,7 +39,7 @@ var _requested = {"type":"version","registry":true,"raw":"bitcore-lib@0.15.0","n
 var _requiredBy = ["/","/bitcore-mnemonic","/eth-lightwallet"];
 var _resolved = "https://registry.npmjs.org/bitcore-lib/-/bitcore-lib-0.15.0.tgz";
 var _spec = "0.15.0";
-var _where = "/home/dirk/git/heat-libs";
+var _where = "/home/rails/repositories/heat/temp/heat-libs";
 var author = {"name":"BitPay","email":"dev@bitpay.com"};
 var browser = {"request":"browser-request"};
 var bugs = {"url":"https://github.com/bitpay/bitcore-lib/issues"};
@@ -21378,7 +21380,7 @@ module.exports.NULL_HASH = module.exports.fill(new Buffer(32), 0);
 module.exports.EMPTY_BUFFER = new Buffer(0);
 });
 
-var _args$1 = [["elliptic@6.4.0","/home/dirk/git/heat-libs"]];
+var _args$1 = [["elliptic@6.4.0","/home/rails/repositories/heat/temp/heat-libs"]];
 var _from$1 = "elliptic@6.4.0";
 var _id$1 = "elliptic@6.4.0";
 var _inBundle$1 = false;
@@ -21389,7 +21391,7 @@ var _requested$1 = {"type":"version","registry":true,"raw":"elliptic@6.4.0","nam
 var _requiredBy$1 = ["/bitcore-lib"];
 var _resolved$1 = "https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz";
 var _spec$1 = "6.4.0";
-var _where$1 = "/home/dirk/git/heat-libs";
+var _where$1 = "/home/rails/repositories/heat/temp/heat-libs";
 var author$1 = {"name":"Fedor Indutny","email":"fedor@indutny.com"};
 var bugs$1 = {"url":"https://github.com/indutny/elliptic/issues"};
 var dependencies$1 = {"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"};
@@ -21713,12 +21715,12 @@ if (typeof self === 'object') {
 } else {
   // Node.js or Web worker with no crypto support
   try {
-    var crypto$1 = crypto;
-    if (typeof crypto$1.randomBytes !== 'function')
+    var crypto = require$$0;
+    if (typeof crypto.randomBytes !== 'function')
       throw new Error('Not supported');
 
     Rand.prototype._rand = function _rand(n) {
-      return crypto$1.randomBytes(n);
+      return crypto.randomBytes(n);
     };
   } catch (e) {
   }
@@ -26840,14 +26842,14 @@ EDDSA.prototype.isPoint = function isPoint(val) {
   return val instanceof this.pointClass;
 };
 
-var require$$0$5 = ( _package$3 && _package$2 ) || _package$3;
+var require$$0$6 = ( _package$3 && _package$2 ) || _package$3;
 
 var elliptic_1 = createCommonjsModule(function (module, exports) {
 'use strict';
 
 var elliptic = exports;
 
-elliptic.version = require$$0$5.version;
+elliptic.version = require$$0$6.version;
 elliptic.utils = utils_1;
 elliptic.rand = brorand;
 elliptic.curve = curve_1;
@@ -27334,14 +27336,14 @@ var Hash = module.exports;
 
 Hash.sha1 = function(buf) {
   preconditions.checkArgument(buffer_1.isBuffer(buf));
-  return crypto.createHash('sha1').update(buf).digest();
+  return require$$0.createHash('sha1').update(buf).digest();
 };
 
 Hash.sha1.blocksize = 512;
 
 Hash.sha256 = function(buf) {
   preconditions.checkArgument(buffer_1.isBuffer(buf));
-  return crypto.createHash('sha256').update(buf).digest();
+  return require$$0.createHash('sha256').update(buf).digest();
 };
 
 Hash.sha256.blocksize = 512;
@@ -27353,7 +27355,7 @@ Hash.sha256sha256 = function(buf) {
 
 Hash.ripemd160 = function(buf) {
   preconditions.checkArgument(buffer_1.isBuffer(buf));
-  return crypto.createHash('ripemd160').update(buf).digest();
+  return require$$0.createHash('ripemd160').update(buf).digest();
 };
 
 Hash.sha256ripemd160 = function(buf) {
@@ -27363,7 +27365,7 @@ Hash.sha256ripemd160 = function(buf) {
 
 Hash.sha512 = function(buf) {
   preconditions.checkArgument(buffer_1.isBuffer(buf));
-  return crypto.createHash('sha512').update(buf).digest();
+  return require$$0.createHash('sha512').update(buf).digest();
 };
 
 Hash.sha512.blocksize = 1024;
@@ -34277,8 +34279,8 @@ Random.getRandomBuffer = function(size) {
 };
 
 Random.getRandomBufferNode = function(size) {
-  var crypto$$2 = crypto;
-  return crypto$$2.randomBytes(size);
+  var crypto = require$$0;
+  return crypto.randomBytes(size);
 };
 
 Random.getRandomBufferBrowser = function(size) {
@@ -34286,14 +34288,14 @@ Random.getRandomBufferBrowser = function(size) {
     throw new Error('window.crypto not available');
 
   if (window.crypto && window.crypto.getRandomValues)
-    var crypto$$2 = window.crypto;
+    var crypto = window.crypto;
   else if (window.msCrypto && window.msCrypto.getRandomValues) //internet explorer
-    var crypto$$2 = window.msCrypto;
+    var crypto = window.msCrypto;
   else
     throw new Error('window.crypto.getRandomValues not available');
 
   var bbuf = new Uint8Array(size);
-  crypto$$2.getRandomValues(bbuf);
+  crypto.getRandomValues(bbuf);
   var buf = new Buffer(bbuf);
 
   return buf;
@@ -37755,7 +37757,7 @@ URI.prototype.inspect = function() {
 
 var uri = URI;
 
-var require$$0$11 = ( _package$1 && _package ) || _package$1;
+var require$$0$12 = ( _package$1 && _package ) || _package$1;
 
 var bitcoreLib = createCommonjsModule(function (module) {
 'use strict';
@@ -37763,7 +37765,7 @@ var bitcoreLib = createCommonjsModule(function (module) {
 var bitcore = module.exports;
 
 // module information
-bitcore.version = 'v' + require$$0$11.version;
+bitcore.version = 'v' + require$$0$12.version;
 bitcore.versionGuard = function(version) {
   if (version !== undefined) {
     var message = 'More than one instance of bitcore-lib found. ' +
@@ -39209,9 +39211,9 @@ var lib = function (secp256k1) {
   }
 };
 
-var createHash = crypto.createHash;
+var createHash = require$$0.createHash;
 
-var _args$2 = [["elliptic@6.4.0","/home/dirk/git/heat-libs"]];
+var _args$2 = [["elliptic@6.4.0","/home/rails/repositories/heat/temp/heat-libs"]];
 var _from$2 = "elliptic@6.4.0";
 var _id$2 = "elliptic@6.4.0";
 var _inBundle$2 = false;
@@ -39222,7 +39224,7 @@ var _requested$2 = {"type":"version","registry":true,"raw":"elliptic@6.4.0","nam
 var _requiredBy$2 = ["/secp256k1"];
 var _resolved$2 = "https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz";
 var _spec$2 = "6.4.0";
-var _where$2 = "/home/dirk/git/heat-libs";
+var _where$2 = "/home/rails/repositories/heat/temp/heat-libs";
 var author$2 = {"name":"Fedor Indutny","email":"fedor@indutny.com"};
 var bugs$2 = {"url":"https://github.com/indutny/elliptic/issues"};
 var dependencies$2 = {"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"};
@@ -43128,14 +43130,14 @@ EDDSA$1.prototype.isPoint = function isPoint(val) {
   return val instanceof this.pointClass;
 };
 
-var require$$0$17 = ( _package$5 && _package$4 ) || _package$5;
+var require$$0$18 = ( _package$5 && _package$4 ) || _package$5;
 
 var elliptic_1$3 = createCommonjsModule(function (module, exports) {
 'use strict';
 
 var elliptic = exports;
 
-elliptic.version = require$$0$17.version;
+elliptic.version = require$$0$18.version;
 elliptic.utils = utils_1$4;
 elliptic.rand = brorand;
 elliptic.curve = curve_1$2;
@@ -45140,7 +45142,7 @@ var bignumber = createCommonjsModule(function (module) {
     */
 
 
-    var BigNumber, crypto$$2, parseNumeric,
+    var BigNumber, crypto, parseNumeric,
         isNumeric = /^-?(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i,
         mathceil = Math.ceil,
         mathfloor = Math.floor,
@@ -45569,8 +45571,8 @@ var bignumber = createCommonjsModule(function (module) {
             if ( has( p = 'CRYPTO' ) ) {
 
                 if ( v === !!v || v === 1 || v === 0 ) {
-                    CRYPTO = !!( v && crypto$$2 && typeof crypto$$2 == 'object' );
-                    if ( v && !CRYPTO && ERRORS ) raise( 2, 'crypto unavailable', crypto$$2 );
+                    CRYPTO = !!( v && crypto && typeof crypto == 'object' );
+                    if ( v && !CRYPTO && ERRORS ) raise( 2, 'crypto unavailable', crypto );
                 } else if (ERRORS) {
                     raise( 2, p + notBool, v );
                 }
@@ -45660,9 +45662,9 @@ var bignumber = createCommonjsModule(function (module) {
                 if (CRYPTO) {
 
                     // Browsers supporting crypto.getRandomValues.
-                    if ( crypto$$2 && crypto$$2.getRandomValues ) {
+                    if ( crypto && crypto.getRandomValues ) {
 
-                        a = crypto$$2.getRandomValues( new Uint32Array( k *= 2 ) );
+                        a = crypto.getRandomValues( new Uint32Array( k *= 2 ) );
 
                         for ( ; i < k; ) {
 
@@ -45679,7 +45681,7 @@ var bignumber = createCommonjsModule(function (module) {
                             // Probability that v >= 9e15, is
                             // 7199254740992 / 9007199254740992 ~= 0.0008, i.e. 1 in 1251
                             if ( v >= 9e15 ) {
-                                b = crypto$$2.getRandomValues( new Uint32Array(2) );
+                                b = crypto.getRandomValues( new Uint32Array(2) );
                                 a[i] = b[0];
                                 a[i + 1] = b[1];
                             } else {
@@ -45693,10 +45695,10 @@ var bignumber = createCommonjsModule(function (module) {
                         i = k / 2;
 
                     // Node.js supporting crypto.randomBytes.
-                    } else if ( crypto$$2 && crypto$$2.randomBytes ) {
+                    } else if ( crypto && crypto.randomBytes ) {
 
                         // buffer
-                        a = crypto$$2.randomBytes( k *= 7 );
+                        a = crypto.randomBytes( k *= 7 );
 
                         for ( ; i < k; ) {
 
@@ -45709,7 +45711,7 @@ var bignumber = createCommonjsModule(function (module) {
                                   ( a[i + 4] << 16 ) + ( a[i + 5] << 8 ) + a[i + 6];
 
                             if ( v >= 9e15 ) {
-                                crypto$$2.randomBytes(7).copy( a, i );
+                                crypto.randomBytes(7).copy( a, i );
                             } else {
 
                                 // 0 <= (v % 1e14) <= 99999999999999
@@ -45719,7 +45721,7 @@ var bignumber = createCommonjsModule(function (module) {
                         }
                         i = k / 7;
                     } else if (ERRORS) {
-                        raise( 14, 'crypto unavailable', crypto$$2 );
+                        raise( 14, 'crypto unavailable', crypto );
                     }
                 }
 
@@ -47802,7 +47804,7 @@ var bignumber = createCommonjsModule(function (module) {
     // Node and other environments that support module.exports.
     } else if ( 'object' != 'undefined' && module.exports ) {
         module.exports = BigNumber;
-        if ( !crypto$$2 ) try { crypto$$2 = crypto; } catch (e) {}
+        if ( !crypto ) try { crypto = require$$0; } catch (e) {}
 
     // Browser.
     } else {
@@ -58852,28 +58854,28 @@ nacl.setPRNG = function(fn) {
 (function() {
   // Initialize PRNG if environment provides CSPRNG.
   // If not, methods calling randombytes will throw.
-  var crypto$$2;
+  var crypto;
   if (typeof window !== 'undefined') {
     // Browser.
     if (window.crypto && window.crypto.getRandomValues) {
-      crypto$$2 = window.crypto; // Standard
+      crypto = window.crypto; // Standard
     } else if (window.msCrypto && window.msCrypto.getRandomValues) {
-      crypto$$2 = window.msCrypto; // Internet Explorer 11+
+      crypto = window.msCrypto; // Internet Explorer 11+
     }
-    if (crypto$$2) {
+    if (crypto) {
       nacl.setPRNG(function(x, n) {
         var i, v = new Uint8Array(n);
-        crypto$$2.getRandomValues(v);
+        crypto.getRandomValues(v);
         for (i = 0; i < n; i++) x[i] = v[i];
         cleanup(v);
       });
     }
   } else if (typeof require !== 'undefined') {
     // Node.js.
-    crypto$$2 = crypto;
-    if (crypto$$2) {
+    crypto = require$$0;
+    if (crypto) {
       nacl.setPRNG(function(x, n) {
-        var i, v = crypto$$2.randomBytes(n);
+        var i, v = crypto.randomBytes(n);
         for (i = 0; i < n; i++) x[i] = v[i];
         cleanup(v);
       });
@@ -59128,7 +59130,7 @@ var signing = {
 	concatSig: concatSig_1
 };
 
-var _args$3 = [["elliptic@3.1.0","/home/dirk/git/heat-libs"]];
+var _args$3 = [["elliptic@3.1.0","/home/rails/repositories/heat/temp/heat-libs"]];
 var _from$3 = "elliptic@3.1.0";
 var _id$3 = "elliptic@3.1.0";
 var _inBundle$3 = false;
@@ -59139,7 +59141,7 @@ var _requested$3 = {"type":"version","registry":true,"raw":"elliptic@3.1.0","nam
 var _requiredBy$3 = ["/eth-lightwallet"];
 var _resolved$3 = "http://registry.npmjs.org/elliptic/-/elliptic-3.1.0.tgz";
 var _spec$3 = "3.1.0";
-var _where$3 = "/home/dirk/git/heat-libs";
+var _where$3 = "/home/rails/repositories/heat/temp/heat-libs";
 var author$3 = {"name":"Fedor Indutny","email":"fedor@indutny.com"};
 var bugs$3 = {"url":"https://github.com/indutny/elliptic/issues"};
 var dependencies$3 = {"bn.js":"^2.0.3","brorand":"^1.0.1","hash.js":"^1.0.0","inherits":"^2.0.1"};
@@ -64941,14 +64943,14 @@ EC$4.prototype.getKeyRecoveryParam = function(e, signature, Q, enc) {
   throw new Error('Unable to find valid recovery factor');
 };
 
-var require$$0$24 = ( _package$7 && _package$6 ) || _package$7;
+var require$$0$25 = ( _package$7 && _package$6 ) || _package$7;
 
 var elliptic_1$5 = createCommonjsModule(function (module, exports) {
 'use strict';
 
 var elliptic = exports;
 
-elliptic.version = require$$0$24.version;
+elliptic.version = require$$0$25.version;
 elliptic.utils = utils_1$7;
 elliptic.rand = brorand;
 elliptic.hmacDRBG = hmacDrbg$2;
@@ -65446,12 +65448,12 @@ function pbkdf2$2(key, salt, iterations, dkLen) {
     block1[salt.length + 2] = (i >> 8  & 0xff);
     block1[salt.length + 3] = (i >> 0  & 0xff);
 
-    U = crypto.createHmac('sha512', key).update(block1).digest();
+    U = require$$0.createHmac('sha512', key).update(block1).digest();
 
     U.copy(T, 0, 0, hLen);
 
     for (var j = 1; j < iterations; j++) {
-      U = crypto.createHmac('sha512', key).update(U).digest();
+      U = require$$0.createHmac('sha512', key).update(U).digest();
 
       for (var k = 0; k < hLen; k++) {
         T[k] ^= U[k];
@@ -67004,7 +67006,7 @@ var precondition = function (password, salt, iterations, keylen) {
   }
 };
 
-var createHmac = crypto.createHmac;
+var createHmac = require$$0.createHmac;
 
 var defaultEncoding;
 /* istanbul ignore next */
@@ -67177,17 +67179,17 @@ function nativePBKDF2 (password, salt, iterations, keylen, digest, callback) {
   }
   if (typeof callback !== 'function') throw new Error('No callback provided to pbkdf2')
 
-  return crypto.pbkdf2(password, salt, iterations, keylen, digest, callback)
+  return require$$0.pbkdf2(password, salt, iterations, keylen, digest, callback)
 }
 
 function nativePBKDF2Sync (password, salt, iterations, keylen, digest) {
   precondition(password, salt, iterations, keylen);
   digest = digest || 'sha1';
-  return crypto.pbkdf2Sync(password, salt, iterations, keylen, digest)
+  return require$$0.pbkdf2Sync(password, salt, iterations, keylen, digest)
 }
 
 /* istanbul ignore next */
-if (!crypto.pbkdf2Sync || crypto.pbkdf2Sync.toString().indexOf('keylen, digest') === -1) {
+if (!require$$0.pbkdf2Sync || require$$0.pbkdf2Sync.toString().indexOf('keylen, digest') === -1) {
   exports.pbkdf2Sync = sync;
   exports.pbkdf2 = async;
 
@@ -67198,7 +67200,7 @@ if (!crypto.pbkdf2Sync || crypto.pbkdf2Sync.toString().indexOf('keylen, digest')
 }
 });
 
-var randombytes = crypto.randomBytes;
+var randombytes = require$$0.randomBytes;
 
 var chinese_simplified = [
   "的",
@@ -83833,7 +83835,7 @@ var bignumber$2 = createCommonjsModule(function (module) {
     */
 
 
-    var BigNumber, crypto$$2, parseNumeric,
+    var BigNumber, crypto, parseNumeric,
         isNumeric = /^-?(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i,
         mathceil = Math.ceil,
         mathfloor = Math.floor,
@@ -84262,8 +84264,8 @@ var bignumber$2 = createCommonjsModule(function (module) {
             if ( has( p = 'CRYPTO' ) ) {
 
                 if ( v === !!v || v === 1 || v === 0 ) {
-                    CRYPTO = !!( v && crypto$$2 && typeof crypto$$2 == 'object' );
-                    if ( v && !CRYPTO && ERRORS ) raise( 2, 'crypto unavailable', crypto$$2 );
+                    CRYPTO = !!( v && crypto && typeof crypto == 'object' );
+                    if ( v && !CRYPTO && ERRORS ) raise( 2, 'crypto unavailable', crypto );
                 } else if (ERRORS) {
                     raise( 2, p + notBool, v );
                 }
@@ -84353,9 +84355,9 @@ var bignumber$2 = createCommonjsModule(function (module) {
                 if (CRYPTO) {
 
                     // Browsers supporting crypto.getRandomValues.
-                    if ( crypto$$2 && crypto$$2.getRandomValues ) {
+                    if ( crypto && crypto.getRandomValues ) {
 
-                        a = crypto$$2.getRandomValues( new Uint32Array( k *= 2 ) );
+                        a = crypto.getRandomValues( new Uint32Array( k *= 2 ) );
 
                         for ( ; i < k; ) {
 
@@ -84372,7 +84374,7 @@ var bignumber$2 = createCommonjsModule(function (module) {
                             // Probability that v >= 9e15, is
                             // 7199254740992 / 9007199254740992 ~= 0.0008, i.e. 1 in 1251
                             if ( v >= 9e15 ) {
-                                b = crypto$$2.getRandomValues( new Uint32Array(2) );
+                                b = crypto.getRandomValues( new Uint32Array(2) );
                                 a[i] = b[0];
                                 a[i + 1] = b[1];
                             } else {
@@ -84386,10 +84388,10 @@ var bignumber$2 = createCommonjsModule(function (module) {
                         i = k / 2;
 
                     // Node.js supporting crypto.randomBytes.
-                    } else if ( crypto$$2 && crypto$$2.randomBytes ) {
+                    } else if ( crypto && crypto.randomBytes ) {
 
                         // buffer
-                        a = crypto$$2.randomBytes( k *= 7 );
+                        a = crypto.randomBytes( k *= 7 );
 
                         for ( ; i < k; ) {
 
@@ -84402,7 +84404,7 @@ var bignumber$2 = createCommonjsModule(function (module) {
                                   ( a[i + 4] << 16 ) + ( a[i + 5] << 8 ) + a[i + 6];
 
                             if ( v >= 9e15 ) {
-                                crypto$$2.randomBytes(7).copy( a, i );
+                                crypto.randomBytes(7).copy( a, i );
                             } else {
 
                                 // 0 <= (v % 1e14) <= 99999999999999
@@ -84412,7 +84414,7 @@ var bignumber$2 = createCommonjsModule(function (module) {
                         }
                         i = k / 7;
                     } else if (ERRORS) {
-                        raise( 14, 'crypto unavailable', crypto$$2 );
+                        raise( 14, 'crypto unavailable', crypto );
                     }
                 }
 
@@ -86496,7 +86498,7 @@ var bignumber$2 = createCommonjsModule(function (module) {
     // Node and other environments that support module.exports.
     } else if ( 'object' != 'undefined' && module.exports ) {
         module.exports = BigNumber;
-        if ( !crypto$$2 ) try { crypto$$2 = crypto; } catch (e) {}
+        if ( !crypto ) try { crypto = require$$0; } catch (e) {}
 
     // Browser.
     } else {
@@ -93500,13 +93502,6953 @@ var factory = function factory(Web3) {
 }
 });
 
+var BigInteger = createCommonjsModule(function (module) {
+var bigInt = (function (undefined) {
+    "use strict";
+
+    var BASE = 1e7,
+        LOG_BASE = 7,
+        MAX_INT = 9007199254740992,
+        MAX_INT_ARR = smallToArray(MAX_INT),
+        LOG_MAX_INT = Math.log(MAX_INT);
+
+    function Integer(v, radix) {
+        if (typeof v === "undefined") return Integer[0];
+        if (typeof radix !== "undefined") return +radix === 10 ? parseValue(v) : parseBase(v, radix);
+        return parseValue(v);
+    }
+
+    function BigInteger(value, sign) {
+        this.value = value;
+        this.sign = sign;
+        this.isSmall = false;
+    }
+    BigInteger.prototype = Object.create(Integer.prototype);
+
+    function SmallInteger(value) {
+        this.value = value;
+        this.sign = value < 0;
+        this.isSmall = true;
+    }
+    SmallInteger.prototype = Object.create(Integer.prototype);
+
+    function isPrecise(n) {
+        return -MAX_INT < n && n < MAX_INT;
+    }
+
+    function smallToArray(n) { // For performance reasons doesn't reference BASE, need to change this function if BASE changes
+        if (n < 1e7)
+            return [n];
+        if (n < 1e14)
+            return [n % 1e7, Math.floor(n / 1e7)];
+        return [n % 1e7, Math.floor(n / 1e7) % 1e7, Math.floor(n / 1e14)];
+    }
+
+    function arrayToSmall(arr) { // If BASE changes this function may need to change
+        trim(arr);
+        var length = arr.length;
+        if (length < 4 && compareAbs(arr, MAX_INT_ARR) < 0) {
+            switch (length) {
+                case 0: return 0;
+                case 1: return arr[0];
+                case 2: return arr[0] + arr[1] * BASE;
+                default: return arr[0] + (arr[1] + arr[2] * BASE) * BASE;
+            }
+        }
+        return arr;
+    }
+
+    function trim(v) {
+        var i = v.length;
+        while (v[--i] === 0);
+        v.length = i + 1;
+    }
+
+    function createArray(length) { // function shamelessly stolen from Yaffle's library https://github.com/Yaffle/BigInteger
+        var x = new Array(length);
+        var i = -1;
+        while (++i < length) {
+            x[i] = 0;
+        }
+        return x;
+    }
+
+    function truncate(n) {
+        if (n > 0) return Math.floor(n);
+        return Math.ceil(n);
+    }
+
+    function add(a, b) { // assumes a and b are arrays with a.length >= b.length
+        var l_a = a.length,
+            l_b = b.length,
+            r = new Array(l_a),
+            carry = 0,
+            base = BASE,
+            sum, i;
+        for (i = 0; i < l_b; i++) {
+            sum = a[i] + b[i] + carry;
+            carry = sum >= base ? 1 : 0;
+            r[i] = sum - carry * base;
+        }
+        while (i < l_a) {
+            sum = a[i] + carry;
+            carry = sum === base ? 1 : 0;
+            r[i++] = sum - carry * base;
+        }
+        if (carry > 0) r.push(carry);
+        return r;
+    }
+
+    function addAny(a, b) {
+        if (a.length >= b.length) return add(a, b);
+        return add(b, a);
+    }
+
+    function addSmall(a, carry) { // assumes a is array, carry is number with 0 <= carry < MAX_INT
+        var l = a.length,
+            r = new Array(l),
+            base = BASE,
+            sum, i;
+        for (i = 0; i < l; i++) {
+            sum = a[i] - base + carry;
+            carry = Math.floor(sum / base);
+            r[i] = sum - carry * base;
+            carry += 1;
+        }
+        while (carry > 0) {
+            r[i++] = carry % base;
+            carry = Math.floor(carry / base);
+        }
+        return r;
+    }
+
+    BigInteger.prototype.add = function (v) {
+        var n = parseValue(v);
+        if (this.sign !== n.sign) {
+            return this.subtract(n.negate());
+        }
+        var a = this.value, b = n.value;
+        if (n.isSmall) {
+            return new BigInteger(addSmall(a, Math.abs(b)), this.sign);
+        }
+        return new BigInteger(addAny(a, b), this.sign);
+    };
+    BigInteger.prototype.plus = BigInteger.prototype.add;
+
+    SmallInteger.prototype.add = function (v) {
+        var n = parseValue(v);
+        var a = this.value;
+        if (a < 0 !== n.sign) {
+            return this.subtract(n.negate());
+        }
+        var b = n.value;
+        if (n.isSmall) {
+            if (isPrecise(a + b)) return new SmallInteger(a + b);
+            b = smallToArray(Math.abs(b));
+        }
+        return new BigInteger(addSmall(b, Math.abs(a)), a < 0);
+    };
+    SmallInteger.prototype.plus = SmallInteger.prototype.add;
+
+    function subtract(a, b) { // assumes a and b are arrays with a >= b
+        var a_l = a.length,
+            b_l = b.length,
+            r = new Array(a_l),
+            borrow = 0,
+            base = BASE,
+            i, difference;
+        for (i = 0; i < b_l; i++) {
+            difference = a[i] - borrow - b[i];
+            if (difference < 0) {
+                difference += base;
+                borrow = 1;
+            } else borrow = 0;
+            r[i] = difference;
+        }
+        for (i = b_l; i < a_l; i++) {
+            difference = a[i] - borrow;
+            if (difference < 0) difference += base;
+            else {
+                r[i++] = difference;
+                break;
+            }
+            r[i] = difference;
+        }
+        for (; i < a_l; i++) {
+            r[i] = a[i];
+        }
+        trim(r);
+        return r;
+    }
+
+    function subtractAny(a, b, sign) {
+        var value;
+        if (compareAbs(a, b) >= 0) {
+            value = subtract(a, b);
+        } else {
+            value = subtract(b, a);
+            sign = !sign;
+        }
+        value = arrayToSmall(value);
+        if (typeof value === "number") {
+            if (sign) value = -value;
+            return new SmallInteger(value);
+        }
+        return new BigInteger(value, sign);
+    }
+
+    function subtractSmall(a, b, sign) { // assumes a is array, b is number with 0 <= b < MAX_INT
+        var l = a.length,
+            r = new Array(l),
+            carry = -b,
+            base = BASE,
+            i, difference;
+        for (i = 0; i < l; i++) {
+            difference = a[i] + carry;
+            carry = Math.floor(difference / base);
+            difference %= base;
+            r[i] = difference < 0 ? difference + base : difference;
+        }
+        r = arrayToSmall(r);
+        if (typeof r === "number") {
+            if (sign) r = -r;
+            return new SmallInteger(r);
+        } return new BigInteger(r, sign);
+    }
+
+    BigInteger.prototype.subtract = function (v) {
+        var n = parseValue(v);
+        if (this.sign !== n.sign) {
+            return this.add(n.negate());
+        }
+        var a = this.value, b = n.value;
+        if (n.isSmall)
+            return subtractSmall(a, Math.abs(b), this.sign);
+        return subtractAny(a, b, this.sign);
+    };
+    BigInteger.prototype.minus = BigInteger.prototype.subtract;
+
+    SmallInteger.prototype.subtract = function (v) {
+        var n = parseValue(v);
+        var a = this.value;
+        if (a < 0 !== n.sign) {
+            return this.add(n.negate());
+        }
+        var b = n.value;
+        if (n.isSmall) {
+            return new SmallInteger(a - b);
+        }
+        return subtractSmall(b, Math.abs(a), a >= 0);
+    };
+    SmallInteger.prototype.minus = SmallInteger.prototype.subtract;
+
+    BigInteger.prototype.negate = function () {
+        return new BigInteger(this.value, !this.sign);
+    };
+    SmallInteger.prototype.negate = function () {
+        var sign = this.sign;
+        var small = new SmallInteger(-this.value);
+        small.sign = !sign;
+        return small;
+    };
+
+    BigInteger.prototype.abs = function () {
+        return new BigInteger(this.value, false);
+    };
+    SmallInteger.prototype.abs = function () {
+        return new SmallInteger(Math.abs(this.value));
+    };
+
+    function multiplyLong(a, b) {
+        var a_l = a.length,
+            b_l = b.length,
+            l = a_l + b_l,
+            r = createArray(l),
+            base = BASE,
+            product, carry, i, a_i, b_j;
+        for (i = 0; i < a_l; ++i) {
+            a_i = a[i];
+            for (var j = 0; j < b_l; ++j) {
+                b_j = b[j];
+                product = a_i * b_j + r[i + j];
+                carry = Math.floor(product / base);
+                r[i + j] = product - carry * base;
+                r[i + j + 1] += carry;
+            }
+        }
+        trim(r);
+        return r;
+    }
+
+    function multiplySmall(a, b) { // assumes a is array, b is number with |b| < BASE
+        var l = a.length,
+            r = new Array(l),
+            base = BASE,
+            carry = 0,
+            product, i;
+        for (i = 0; i < l; i++) {
+            product = a[i] * b + carry;
+            carry = Math.floor(product / base);
+            r[i] = product - carry * base;
+        }
+        while (carry > 0) {
+            r[i++] = carry % base;
+            carry = Math.floor(carry / base);
+        }
+        return r;
+    }
+
+    function shiftLeft(x, n) {
+        var r = [];
+        while (n-- > 0) r.push(0);
+        return r.concat(x);
+    }
+
+    function multiplyKaratsuba(x, y) {
+        var n = Math.max(x.length, y.length);
+
+        if (n <= 30) return multiplyLong(x, y);
+        n = Math.ceil(n / 2);
+
+        var b = x.slice(n),
+            a = x.slice(0, n),
+            d = y.slice(n),
+            c = y.slice(0, n);
+
+        var ac = multiplyKaratsuba(a, c),
+            bd = multiplyKaratsuba(b, d),
+            abcd = multiplyKaratsuba(addAny(a, b), addAny(c, d));
+
+        var product = addAny(addAny(ac, shiftLeft(subtract(subtract(abcd, ac), bd), n)), shiftLeft(bd, 2 * n));
+        trim(product);
+        return product;
+    }
+
+    // The following function is derived from a surface fit of a graph plotting the performance difference
+    // between long multiplication and karatsuba multiplication versus the lengths of the two arrays.
+    function useKaratsuba(l1, l2) {
+        return -0.012 * l1 - 0.012 * l2 + 0.000015 * l1 * l2 > 0;
+    }
+
+    BigInteger.prototype.multiply = function (v) {
+        var n = parseValue(v),
+            a = this.value, b = n.value,
+            sign = this.sign !== n.sign,
+            abs;
+        if (n.isSmall) {
+            if (b === 0) return Integer[0];
+            if (b === 1) return this;
+            if (b === -1) return this.negate();
+            abs = Math.abs(b);
+            if (abs < BASE) {
+                return new BigInteger(multiplySmall(a, abs), sign);
+            }
+            b = smallToArray(abs);
+        }
+        if (useKaratsuba(a.length, b.length)) // Karatsuba is only faster for certain array sizes
+            return new BigInteger(multiplyKaratsuba(a, b), sign);
+        return new BigInteger(multiplyLong(a, b), sign);
+    };
+
+    BigInteger.prototype.times = BigInteger.prototype.multiply;
+
+    function multiplySmallAndArray(a, b, sign) { // a >= 0
+        if (a < BASE) {
+            return new BigInteger(multiplySmall(b, a), sign);
+        }
+        return new BigInteger(multiplyLong(b, smallToArray(a)), sign);
+    }
+    SmallInteger.prototype._multiplyBySmall = function (a) {
+        if (isPrecise(a.value * this.value)) {
+            return new SmallInteger(a.value * this.value);
+        }
+        return multiplySmallAndArray(Math.abs(a.value), smallToArray(Math.abs(this.value)), this.sign !== a.sign);
+    };
+    BigInteger.prototype._multiplyBySmall = function (a) {
+        if (a.value === 0) return Integer[0];
+        if (a.value === 1) return this;
+        if (a.value === -1) return this.negate();
+        return multiplySmallAndArray(Math.abs(a.value), this.value, this.sign !== a.sign);
+    };
+    SmallInteger.prototype.multiply = function (v) {
+        return parseValue(v)._multiplyBySmall(this);
+    };
+    SmallInteger.prototype.times = SmallInteger.prototype.multiply;
+
+    function square(a) {
+        //console.assert(2 * BASE * BASE < MAX_INT);
+        var l = a.length,
+            r = createArray(l + l),
+            base = BASE,
+            product, carry, i, a_i, a_j;
+        for (i = 0; i < l; i++) {
+            a_i = a[i];
+            carry = 0 - a_i * a_i;
+            for (var j = i; j < l; j++) {
+                a_j = a[j];
+                product = 2 * (a_i * a_j) + r[i + j] + carry;
+                carry = Math.floor(product / base);
+                r[i + j] = product - carry * base;
+            }
+            r[i + l] = carry;
+        }
+        trim(r);
+        return r;
+    }
+
+    BigInteger.prototype.square = function () {
+        return new BigInteger(square(this.value), false);
+    };
+
+    SmallInteger.prototype.square = function () {
+        var value = this.value * this.value;
+        if (isPrecise(value)) return new SmallInteger(value);
+        return new BigInteger(square(smallToArray(Math.abs(this.value))), false);
+    };
+
+    function divMod1(a, b) { // Left over from previous version. Performs faster than divMod2 on smaller input sizes.
+        var a_l = a.length,
+            b_l = b.length,
+            base = BASE,
+            result = createArray(b.length),
+            divisorMostSignificantDigit = b[b_l - 1],
+            // normalization
+            lambda = Math.ceil(base / (2 * divisorMostSignificantDigit)),
+            remainder = multiplySmall(a, lambda),
+            divisor = multiplySmall(b, lambda),
+            quotientDigit, shift, carry, borrow, i, l, q;
+        if (remainder.length <= a_l) remainder.push(0);
+        divisor.push(0);
+        divisorMostSignificantDigit = divisor[b_l - 1];
+        for (shift = a_l - b_l; shift >= 0; shift--) {
+            quotientDigit = base - 1;
+            if (remainder[shift + b_l] !== divisorMostSignificantDigit) {
+                quotientDigit = Math.floor((remainder[shift + b_l] * base + remainder[shift + b_l - 1]) / divisorMostSignificantDigit);
+            }
+            // quotientDigit <= base - 1
+            carry = 0;
+            borrow = 0;
+            l = divisor.length;
+            for (i = 0; i < l; i++) {
+                carry += quotientDigit * divisor[i];
+                q = Math.floor(carry / base);
+                borrow += remainder[shift + i] - (carry - q * base);
+                carry = q;
+                if (borrow < 0) {
+                    remainder[shift + i] = borrow + base;
+                    borrow = -1;
+                } else {
+                    remainder[shift + i] = borrow;
+                    borrow = 0;
+                }
+            }
+            while (borrow !== 0) {
+                quotientDigit -= 1;
+                carry = 0;
+                for (i = 0; i < l; i++) {
+                    carry += remainder[shift + i] - base + divisor[i];
+                    if (carry < 0) {
+                        remainder[shift + i] = carry + base;
+                        carry = 0;
+                    } else {
+                        remainder[shift + i] = carry;
+                        carry = 1;
+                    }
+                }
+                borrow += carry;
+            }
+            result[shift] = quotientDigit;
+        }
+        // denormalization
+        remainder = divModSmall(remainder, lambda)[0];
+        return [arrayToSmall(result), arrayToSmall(remainder)];
+    }
+
+    function divMod2(a, b) { // Implementation idea shamelessly stolen from Silent Matt's library http://silentmatt.com/biginteger/
+        // Performs faster than divMod1 on larger input sizes.
+        var a_l = a.length,
+            b_l = b.length,
+            result = [],
+            part = [],
+            base = BASE,
+            guess, xlen, highx, highy, check;
+        while (a_l) {
+            part.unshift(a[--a_l]);
+            trim(part);
+            if (compareAbs(part, b) < 0) {
+                result.push(0);
+                continue;
+            }
+            xlen = part.length;
+            highx = part[xlen - 1] * base + part[xlen - 2];
+            highy = b[b_l - 1] * base + b[b_l - 2];
+            if (xlen > b_l) {
+                highx = (highx + 1) * base;
+            }
+            guess = Math.ceil(highx / highy);
+            do {
+                check = multiplySmall(b, guess);
+                if (compareAbs(check, part) <= 0) break;
+                guess--;
+            } while (guess);
+            result.push(guess);
+            part = subtract(part, check);
+        }
+        result.reverse();
+        return [arrayToSmall(result), arrayToSmall(part)];
+    }
+
+    function divModSmall(value, lambda) {
+        var length = value.length,
+            quotient = createArray(length),
+            base = BASE,
+            i, q, remainder, divisor;
+        remainder = 0;
+        for (i = length - 1; i >= 0; --i) {
+            divisor = remainder * base + value[i];
+            q = truncate(divisor / lambda);
+            remainder = divisor - q * lambda;
+            quotient[i] = q | 0;
+        }
+        return [quotient, remainder | 0];
+    }
+
+    function divModAny(self, v) {
+        var value, n = parseValue(v);
+        var a = self.value, b = n.value;
+        var quotient;
+        if (b === 0) throw new Error("Cannot divide by zero");
+        if (self.isSmall) {
+            if (n.isSmall) {
+                return [new SmallInteger(truncate(a / b)), new SmallInteger(a % b)];
+            }
+            return [Integer[0], self];
+        }
+        if (n.isSmall) {
+            if (b === 1) return [self, Integer[0]];
+            if (b == -1) return [self.negate(), Integer[0]];
+            var abs = Math.abs(b);
+            if (abs < BASE) {
+                value = divModSmall(a, abs);
+                quotient = arrayToSmall(value[0]);
+                var remainder = value[1];
+                if (self.sign) remainder = -remainder;
+                if (typeof quotient === "number") {
+                    if (self.sign !== n.sign) quotient = -quotient;
+                    return [new SmallInteger(quotient), new SmallInteger(remainder)];
+                }
+                return [new BigInteger(quotient, self.sign !== n.sign), new SmallInteger(remainder)];
+            }
+            b = smallToArray(abs);
+        }
+        var comparison = compareAbs(a, b);
+        if (comparison === -1) return [Integer[0], self];
+        if (comparison === 0) return [Integer[self.sign === n.sign ? 1 : -1], Integer[0]];
+
+        // divMod1 is faster on smaller input sizes
+        if (a.length + b.length <= 200)
+            value = divMod1(a, b);
+        else value = divMod2(a, b);
+
+        quotient = value[0];
+        var qSign = self.sign !== n.sign,
+            mod = value[1],
+            mSign = self.sign;
+        if (typeof quotient === "number") {
+            if (qSign) quotient = -quotient;
+            quotient = new SmallInteger(quotient);
+        } else quotient = new BigInteger(quotient, qSign);
+        if (typeof mod === "number") {
+            if (mSign) mod = -mod;
+            mod = new SmallInteger(mod);
+        } else mod = new BigInteger(mod, mSign);
+        return [quotient, mod];
+    }
+
+    BigInteger.prototype.divmod = function (v) {
+        var result = divModAny(this, v);
+        return {
+            quotient: result[0],
+            remainder: result[1]
+        };
+    };
+    SmallInteger.prototype.divmod = BigInteger.prototype.divmod;
+
+    BigInteger.prototype.divide = function (v) {
+        return divModAny(this, v)[0];
+    };
+    SmallInteger.prototype.over = SmallInteger.prototype.divide = BigInteger.prototype.over = BigInteger.prototype.divide;
+
+    BigInteger.prototype.mod = function (v) {
+        return divModAny(this, v)[1];
+    };
+    SmallInteger.prototype.remainder = SmallInteger.prototype.mod = BigInteger.prototype.remainder = BigInteger.prototype.mod;
+
+    BigInteger.prototype.pow = function (v) {
+        var n = parseValue(v),
+            a = this.value,
+            b = n.value,
+            value, x, y;
+        if (b === 0) return Integer[1];
+        if (a === 0) return Integer[0];
+        if (a === 1) return Integer[1];
+        if (a === -1) return n.isEven() ? Integer[1] : Integer[-1];
+        if (n.sign) {
+            return Integer[0];
+        }
+        if (!n.isSmall) throw new Error("The exponent " + n.toString() + " is too large.");
+        if (this.isSmall) {
+            if (isPrecise(value = Math.pow(a, b)))
+                return new SmallInteger(truncate(value));
+        }
+        x = this;
+        y = Integer[1];
+        while (true) {
+            if (b & 1 === 1) {
+                y = y.times(x);
+                --b;
+            }
+            if (b === 0) break;
+            b /= 2;
+            x = x.square();
+        }
+        return y;
+    };
+    SmallInteger.prototype.pow = BigInteger.prototype.pow;
+
+    BigInteger.prototype.modPow = function (exp, mod) {
+        exp = parseValue(exp);
+        mod = parseValue(mod);
+        if (mod.isZero()) throw new Error("Cannot take modPow with modulus 0");
+        var r = Integer[1],
+            base = this.mod(mod);
+        while (exp.isPositive()) {
+            if (base.isZero()) return Integer[0];
+            if (exp.isOdd()) r = r.multiply(base).mod(mod);
+            exp = exp.divide(2);
+            base = base.square().mod(mod);
+        }
+        return r;
+    };
+    SmallInteger.prototype.modPow = BigInteger.prototype.modPow;
+
+    function compareAbs(a, b) {
+        if (a.length !== b.length) {
+            return a.length > b.length ? 1 : -1;
+        }
+        for (var i = a.length - 1; i >= 0; i--) {
+            if (a[i] !== b[i]) return a[i] > b[i] ? 1 : -1;
+        }
+        return 0;
+    }
+
+    BigInteger.prototype.compareAbs = function (v) {
+        var n = parseValue(v),
+            a = this.value,
+            b = n.value;
+        if (n.isSmall) return 1;
+        return compareAbs(a, b);
+    };
+    SmallInteger.prototype.compareAbs = function (v) {
+        var n = parseValue(v),
+            a = Math.abs(this.value),
+            b = n.value;
+        if (n.isSmall) {
+            b = Math.abs(b);
+            return a === b ? 0 : a > b ? 1 : -1;
+        }
+        return -1;
+    };
+
+    BigInteger.prototype.compare = function (v) {
+        // See discussion about comparison with Infinity:
+        // https://github.com/peterolson/BigInteger.js/issues/61
+        if (v === Infinity) {
+            return -1;
+        }
+        if (v === -Infinity) {
+            return 1;
+        }
+
+        var n = parseValue(v),
+            a = this.value,
+            b = n.value;
+        if (this.sign !== n.sign) {
+            return n.sign ? 1 : -1;
+        }
+        if (n.isSmall) {
+            return this.sign ? -1 : 1;
+        }
+        return compareAbs(a, b) * (this.sign ? -1 : 1);
+    };
+    BigInteger.prototype.compareTo = BigInteger.prototype.compare;
+
+    SmallInteger.prototype.compare = function (v) {
+        if (v === Infinity) {
+            return -1;
+        }
+        if (v === -Infinity) {
+            return 1;
+        }
+
+        var n = parseValue(v),
+            a = this.value,
+            b = n.value;
+        if (n.isSmall) {
+            return a == b ? 0 : a > b ? 1 : -1;
+        }
+        if (a < 0 !== n.sign) {
+            return a < 0 ? -1 : 1;
+        }
+        return a < 0 ? 1 : -1;
+    };
+    SmallInteger.prototype.compareTo = SmallInteger.prototype.compare;
+
+    BigInteger.prototype.equals = function (v) {
+        return this.compare(v) === 0;
+    };
+    SmallInteger.prototype.eq = SmallInteger.prototype.equals = BigInteger.prototype.eq = BigInteger.prototype.equals;
+
+    BigInteger.prototype.notEquals = function (v) {
+        return this.compare(v) !== 0;
+    };
+    SmallInteger.prototype.neq = SmallInteger.prototype.notEquals = BigInteger.prototype.neq = BigInteger.prototype.notEquals;
+
+    BigInteger.prototype.greater = function (v) {
+        return this.compare(v) > 0;
+    };
+    SmallInteger.prototype.gt = SmallInteger.prototype.greater = BigInteger.prototype.gt = BigInteger.prototype.greater;
+
+    BigInteger.prototype.lesser = function (v) {
+        return this.compare(v) < 0;
+    };
+    SmallInteger.prototype.lt = SmallInteger.prototype.lesser = BigInteger.prototype.lt = BigInteger.prototype.lesser;
+
+    BigInteger.prototype.greaterOrEquals = function (v) {
+        return this.compare(v) >= 0;
+    };
+    SmallInteger.prototype.geq = SmallInteger.prototype.greaterOrEquals = BigInteger.prototype.geq = BigInteger.prototype.greaterOrEquals;
+
+    BigInteger.prototype.lesserOrEquals = function (v) {
+        return this.compare(v) <= 0;
+    };
+    SmallInteger.prototype.leq = SmallInteger.prototype.lesserOrEquals = BigInteger.prototype.leq = BigInteger.prototype.lesserOrEquals;
+
+    BigInteger.prototype.isEven = function () {
+        return (this.value[0] & 1) === 0;
+    };
+    SmallInteger.prototype.isEven = function () {
+        return (this.value & 1) === 0;
+    };
+
+    BigInteger.prototype.isOdd = function () {
+        return (this.value[0] & 1) === 1;
+    };
+    SmallInteger.prototype.isOdd = function () {
+        return (this.value & 1) === 1;
+    };
+
+    BigInteger.prototype.isPositive = function () {
+        return !this.sign;
+    };
+    SmallInteger.prototype.isPositive = function () {
+        return this.value > 0;
+    };
+
+    BigInteger.prototype.isNegative = function () {
+        return this.sign;
+    };
+    SmallInteger.prototype.isNegative = function () {
+        return this.value < 0;
+    };
+
+    BigInteger.prototype.isUnit = function () {
+        return false;
+    };
+    SmallInteger.prototype.isUnit = function () {
+        return Math.abs(this.value) === 1;
+    };
+
+    BigInteger.prototype.isZero = function () {
+        return false;
+    };
+    SmallInteger.prototype.isZero = function () {
+        return this.value === 0;
+    };
+    BigInteger.prototype.isDivisibleBy = function (v) {
+        var n = parseValue(v);
+        var value = n.value;
+        if (value === 0) return false;
+        if (value === 1) return true;
+        if (value === 2) return this.isEven();
+        return this.mod(n).equals(Integer[0]);
+    };
+    SmallInteger.prototype.isDivisibleBy = BigInteger.prototype.isDivisibleBy;
+
+    function isBasicPrime(v) {
+        var n = v.abs();
+        if (n.isUnit()) return false;
+        if (n.equals(2) || n.equals(3) || n.equals(5)) return true;
+        if (n.isEven() || n.isDivisibleBy(3) || n.isDivisibleBy(5)) return false;
+        if (n.lesser(49)) return true;
+        // we don't know if it's prime: let the other functions figure it out
+    }
+    
+    function millerRabinTest(n, a) {
+        var nPrev = n.prev(),
+            b = nPrev,
+            r = 0,
+            d, t, i, x;
+        while (b.isEven()) b = b.divide(2), r++;
+        next : for (i = 0; i < a.length; i++) {
+            if (n.lesser(a[i])) continue;
+            x = bigInt(a[i]).modPow(b, n);
+            if (x.equals(Integer[1]) || x.equals(nPrev)) continue;
+            for (d = r - 1; d != 0; d--) {
+                x = x.square().mod(n);
+                if (x.isUnit()) return false;    
+                if (x.equals(nPrev)) continue next;
+            }
+            return false;
+        }
+        return true;
+    }
+    
+// Set "strict" to true to force GRH-supported lower bound of 2*log(N)^2
+    BigInteger.prototype.isPrime = function (strict) {
+        var isPrime = isBasicPrime(this);
+        if (isPrime !== undefined) return isPrime;
+        var n = this.abs();
+        var bits = n.bitLength();
+        if(bits <= 64)
+            return millerRabinTest(n, [2, 325, 9375, 28178, 450775, 9780504, 1795265022]);
+        var logN = Math.log(2) * bits;
+        var t = Math.ceil((strict === true) ? (2 * Math.pow(logN, 2)) : logN);
+        for (var a = [], i = 0; i < t; i++) {
+            a.push(bigInt(i + 2));
+        }
+        return millerRabinTest(n, a);
+    };
+    SmallInteger.prototype.isPrime = BigInteger.prototype.isPrime;
+
+    BigInteger.prototype.isProbablePrime = function (iterations) {
+        var isPrime = isBasicPrime(this);
+        if (isPrime !== undefined) return isPrime;
+        var n = this.abs();
+        var t = iterations === undefined ? 5 : iterations;
+        for (var a = [], i = 0; i < t; i++) {
+            a.push(bigInt.randBetween(2, n.minus(2)));
+        }
+        return millerRabinTest(n, a);
+    };
+    SmallInteger.prototype.isProbablePrime = BigInteger.prototype.isProbablePrime;
+
+    BigInteger.prototype.modInv = function (n) {
+        var t = bigInt.zero, newT = bigInt.one, r = parseValue(n), newR = this.abs(), q, lastT, lastR;
+        while (!newR.equals(bigInt.zero)) {
+            q = r.divide(newR);
+            lastT = t;
+            lastR = r;
+            t = newT;
+            r = newR;
+            newT = lastT.subtract(q.multiply(newT));
+            newR = lastR.subtract(q.multiply(newR));
+        }
+        if (!r.equals(1)) throw new Error(this.toString() + " and " + n.toString() + " are not co-prime");
+        if (t.compare(0) === -1) {
+            t = t.add(n);
+        }
+        if (this.isNegative()) {
+            return t.negate();
+        }
+        return t;
+    };
+
+    SmallInteger.prototype.modInv = BigInteger.prototype.modInv;
+
+    BigInteger.prototype.next = function () {
+        var value = this.value;
+        if (this.sign) {
+            return subtractSmall(value, 1, this.sign);
+        }
+        return new BigInteger(addSmall(value, 1), this.sign);
+    };
+    SmallInteger.prototype.next = function () {
+        var value = this.value;
+        if (value + 1 < MAX_INT) return new SmallInteger(value + 1);
+        return new BigInteger(MAX_INT_ARR, false);
+    };
+
+    BigInteger.prototype.prev = function () {
+        var value = this.value;
+        if (this.sign) {
+            return new BigInteger(addSmall(value, 1), true);
+        }
+        return subtractSmall(value, 1, this.sign);
+    };
+    SmallInteger.prototype.prev = function () {
+        var value = this.value;
+        if (value - 1 > -MAX_INT) return new SmallInteger(value - 1);
+        return new BigInteger(MAX_INT_ARR, true);
+    };
+
+    var powersOfTwo = [1];
+    while (2 * powersOfTwo[powersOfTwo.length - 1] <= BASE) powersOfTwo.push(2 * powersOfTwo[powersOfTwo.length - 1]);
+    var powers2Length = powersOfTwo.length, highestPower2 = powersOfTwo[powers2Length - 1];
+
+    function shift_isSmall(n) {
+        return ((typeof n === "number" || typeof n === "string") && +Math.abs(n) <= BASE) ||
+            (n instanceof BigInteger && n.value.length <= 1);
+    }
+
+    BigInteger.prototype.shiftLeft = function (n) {
+        if (!shift_isSmall(n)) {
+            throw new Error(String(n) + " is too large for shifting.");
+        }
+        n = +n;
+        if (n < 0) return this.shiftRight(-n);
+        var result = this;
+        if (result.isZero()) return result;
+        while (n >= powers2Length) {
+            result = result.multiply(highestPower2);
+            n -= powers2Length - 1;
+        }
+        return result.multiply(powersOfTwo[n]);
+    };
+    SmallInteger.prototype.shiftLeft = BigInteger.prototype.shiftLeft;
+
+    BigInteger.prototype.shiftRight = function (n) {
+        var remQuo;
+        if (!shift_isSmall(n)) {
+            throw new Error(String(n) + " is too large for shifting.");
+        }
+        n = +n;
+        if (n < 0) return this.shiftLeft(-n);
+        var result = this;
+        while (n >= powers2Length) {
+            if (result.isZero() || (result.isNegative() && result.isUnit())) return result;
+            remQuo = divModAny(result, highestPower2);
+            result = remQuo[1].isNegative() ? remQuo[0].prev() : remQuo[0];
+            n -= powers2Length - 1;
+        }
+        remQuo = divModAny(result, powersOfTwo[n]);
+        return remQuo[1].isNegative() ? remQuo[0].prev() : remQuo[0];
+    };
+    SmallInteger.prototype.shiftRight = BigInteger.prototype.shiftRight;
+
+    function bitwise(x, y, fn) {
+        y = parseValue(y);
+        var xSign = x.isNegative(), ySign = y.isNegative();
+        var xRem = xSign ? x.not() : x,
+            yRem = ySign ? y.not() : y;
+        var xDigit = 0, yDigit = 0;
+        var xDivMod = null, yDivMod = null;
+        var result = [];
+        while (!xRem.isZero() || !yRem.isZero()) {
+            xDivMod = divModAny(xRem, highestPower2);
+            xDigit = xDivMod[1].toJSNumber();
+            if (xSign) {
+                xDigit = highestPower2 - 1 - xDigit; // two's complement for negative numbers
+            }
+
+            yDivMod = divModAny(yRem, highestPower2);
+            yDigit = yDivMod[1].toJSNumber();
+            if (ySign) {
+                yDigit = highestPower2 - 1 - yDigit; // two's complement for negative numbers
+            }
+
+            xRem = xDivMod[0];
+            yRem = yDivMod[0];
+            result.push(fn(xDigit, yDigit));
+        }
+        var sum = fn(xSign ? 1 : 0, ySign ? 1 : 0) !== 0 ? bigInt(-1) : bigInt(0);
+        for (var i = result.length - 1; i >= 0; i -= 1) {
+            sum = sum.multiply(highestPower2).add(bigInt(result[i]));
+        }
+        return sum;
+    }
+
+    BigInteger.prototype.not = function () {
+        return this.negate().prev();
+    };
+    SmallInteger.prototype.not = BigInteger.prototype.not;
+
+    BigInteger.prototype.and = function (n) {
+        return bitwise(this, n, function (a, b) { return a & b; });
+    };
+    SmallInteger.prototype.and = BigInteger.prototype.and;
+
+    BigInteger.prototype.or = function (n) {
+        return bitwise(this, n, function (a, b) { return a | b; });
+    };
+    SmallInteger.prototype.or = BigInteger.prototype.or;
+
+    BigInteger.prototype.xor = function (n) {
+        return bitwise(this, n, function (a, b) { return a ^ b; });
+    };
+    SmallInteger.prototype.xor = BigInteger.prototype.xor;
+
+    var LOBMASK_I = 1 << 30, LOBMASK_BI = (BASE & -BASE) * (BASE & -BASE) | LOBMASK_I;
+    function roughLOB(n) { // get lowestOneBit (rough)
+        // SmallInteger: return Min(lowestOneBit(n), 1 << 30)
+        // BigInteger: return Min(lowestOneBit(n), 1 << 14) [BASE=1e7]
+        var v = n.value, x = typeof v === "number" ? v | LOBMASK_I : v[0] + v[1] * BASE | LOBMASK_BI;
+        return x & -x;
+    }
+
+    function integerLogarithm(value, base) {
+        if (base.compareTo(value) <= 0) {
+            var tmp = integerLogarithm(value, base.square(base));
+            var p = tmp.p;
+            var e = tmp.e;
+            var t = p.multiply(base);
+            return t.compareTo(value) <= 0 ? { p: t, e: e * 2 + 1 } : { p: p, e: e * 2 };
+        }
+        return { p: bigInt(1), e: 0 };
+    }
+
+    BigInteger.prototype.bitLength = function () {
+        var n = this;
+        if (n.compareTo(bigInt(0)) < 0) {
+            n = n.negate().subtract(bigInt(1));
+        }
+        if (n.compareTo(bigInt(0)) === 0) {
+            return bigInt(0);
+        }
+        return bigInt(integerLogarithm(n, bigInt(2)).e).add(bigInt(1));
+    };
+    SmallInteger.prototype.bitLength = BigInteger.prototype.bitLength;
+
+    function max(a, b) {
+        a = parseValue(a);
+        b = parseValue(b);
+        return a.greater(b) ? a : b;
+    }
+    function min(a, b) {
+        a = parseValue(a);
+        b = parseValue(b);
+        return a.lesser(b) ? a : b;
+    }
+    function gcd(a, b) {
+        a = parseValue(a).abs();
+        b = parseValue(b).abs();
+        if (a.equals(b)) return a;
+        if (a.isZero()) return b;
+        if (b.isZero()) return a;
+        var c = Integer[1], d, t;
+        while (a.isEven() && b.isEven()) {
+            d = Math.min(roughLOB(a), roughLOB(b));
+            a = a.divide(d);
+            b = b.divide(d);
+            c = c.multiply(d);
+        }
+        while (a.isEven()) {
+            a = a.divide(roughLOB(a));
+        }
+        do {
+            while (b.isEven()) {
+                b = b.divide(roughLOB(b));
+            }
+            if (a.greater(b)) {
+                t = b; b = a; a = t;
+            }
+            b = b.subtract(a);
+        } while (!b.isZero());
+        return c.isUnit() ? a : a.multiply(c);
+    }
+    function lcm(a, b) {
+        a = parseValue(a).abs();
+        b = parseValue(b).abs();
+        return a.divide(gcd(a, b)).multiply(b);
+    }
+    function randBetween(a, b) {
+        a = parseValue(a);
+        b = parseValue(b);
+        var low = min(a, b), high = max(a, b);
+        var range = high.subtract(low).add(1);
+        if (range.isSmall) return low.add(Math.floor(Math.random() * range));
+        var length = range.value.length - 1;
+        var result = [], restricted = true;
+        for (var i = length; i >= 0; i--) {
+            var top = restricted ? range.value[i] : BASE;
+            var digit = truncate(Math.random() * top);
+            result.unshift(digit);
+            if (digit < top) restricted = false;
+        }
+        result = arrayToSmall(result);
+        return low.add(typeof result === "number" ? new SmallInteger(result) : new BigInteger(result, false));
+    }
+    var parseBase = function (text, base) {
+        var length = text.length;
+        var i;
+        var absBase = Math.abs(base);
+        for (var i = 0; i < length; i++) {
+            var c = text[i].toLowerCase();
+            if (c === "-") continue;
+            if (/[a-z0-9]/.test(c)) {
+                if (/[0-9]/.test(c) && +c >= absBase) {
+                    if (c === "1" && absBase === 1) continue;
+                    throw new Error(c + " is not a valid digit in base " + base + ".");
+                } else if (c.charCodeAt(0) - 87 >= absBase) {
+                    throw new Error(c + " is not a valid digit in base " + base + ".");
+                }
+            }
+        }
+        if (2 <= base && base <= 36) {
+            if (length <= LOG_MAX_INT / Math.log(base)) {
+                var result = parseInt(text, base);
+                if (isNaN(result)) {
+                    throw new Error(c + " is not a valid digit in base " + base + ".");
+                }
+                return new SmallInteger(parseInt(text, base));
+            }
+        }
+        base = parseValue(base);
+        var digits = [];
+        var isNegative = text[0] === "-";
+        for (i = isNegative ? 1 : 0; i < text.length; i++) {
+            var c = text[i].toLowerCase(),
+                charCode = c.charCodeAt(0);
+            if (48 <= charCode && charCode <= 57) digits.push(parseValue(c));
+            else if (97 <= charCode && charCode <= 122) digits.push(parseValue(c.charCodeAt(0) - 87));
+            else if (c === "<") {
+                var start = i;
+                do { i++; } while (text[i] !== ">");
+                digits.push(parseValue(text.slice(start + 1, i)));
+            }
+            else throw new Error(c + " is not a valid character");
+        }
+        return parseBaseFromArray(digits, base, isNegative);
+    };
+
+    function parseBaseFromArray(digits, base, isNegative) {
+        var val = Integer[0], pow = Integer[1], i;
+        for (i = digits.length - 1; i >= 0; i--) {
+            val = val.add(digits[i].times(pow));
+            pow = pow.times(base);
+        }
+        return isNegative ? val.negate() : val;
+    }
+
+    function stringify(digit) {
+        if (digit <= 35) {
+            return "0123456789abcdefghijklmnopqrstuvwxyz".charAt(digit);
+        }
+        return "<" + digit + ">";
+    }
+
+    function toBase(n, base) {
+        base = bigInt(base);
+        if (base.isZero()) {
+            if (n.isZero()) return { value: [0], isNegative: false };
+            throw new Error("Cannot convert nonzero numbers to base 0.");
+        }
+        if (base.equals(-1)) {
+            if (n.isZero()) return { value: [0], isNegative: false };
+            if (n.isNegative())
+                return {
+                    value: [].concat.apply([], Array.apply(null, Array(-n))
+                        .map(Array.prototype.valueOf, [1, 0])
+                    ),
+                    isNegative: false
+                };
+
+            var arr = Array.apply(null, Array(+n - 1))
+                .map(Array.prototype.valueOf, [0, 1]);
+            arr.unshift([1]);
+            return {
+                value: [].concat.apply([], arr),
+                isNegative: false
+            };
+        }
+
+        var neg = false;
+        if (n.isNegative() && base.isPositive()) {
+            neg = true;
+            n = n.abs();
+        }
+        if (base.equals(1)) {
+            if (n.isZero()) return { value: [0], isNegative: false };
+
+            return {
+                value: Array.apply(null, Array(+n))
+                    .map(Number.prototype.valueOf, 1),
+                isNegative: neg
+            };
+        }
+        var out = [];
+        var left = n, divmod;
+        while (left.isNegative() || left.compareAbs(base) >= 0) {
+            divmod = left.divmod(base);
+            left = divmod.quotient;
+            var digit = divmod.remainder;
+            if (digit.isNegative()) {
+                digit = base.minus(digit).abs();
+                left = left.next();
+            }
+            out.push(digit.toJSNumber());
+        }
+        out.push(left.toJSNumber());
+        return { value: out.reverse(), isNegative: neg };
+    }
+
+    function toBaseString(n, base) {
+        var arr = toBase(n, base);
+        return (arr.isNegative ? "-" : "") + arr.value.map(stringify).join('');
+    }
+
+    BigInteger.prototype.toArray = function (radix) {
+        return toBase(this, radix);
+    };
+
+    SmallInteger.prototype.toArray = function (radix) {
+        return toBase(this, radix);
+    };
+
+    BigInteger.prototype.toString = function (radix) {
+        if (radix === undefined) radix = 10;
+        if (radix !== 10) return toBaseString(this, radix);
+        var v = this.value, l = v.length, str = String(v[--l]), zeros = "0000000", digit;
+        while (--l >= 0) {
+            digit = String(v[l]);
+            str += zeros.slice(digit.length) + digit;
+        }
+        var sign = this.sign ? "-" : "";
+        return sign + str;
+    };
+
+    SmallInteger.prototype.toString = function (radix) {
+        if (radix === undefined) radix = 10;
+        if (radix != 10) return toBaseString(this, radix);
+        return String(this.value);
+    };
+    BigInteger.prototype.toJSON = SmallInteger.prototype.toJSON = function () { return this.toString(); };
+
+    BigInteger.prototype.valueOf = function () {
+        return parseInt(this.toString(), 10);
+    };
+    BigInteger.prototype.toJSNumber = BigInteger.prototype.valueOf;
+
+    SmallInteger.prototype.valueOf = function () {
+        return this.value;
+    };
+    SmallInteger.prototype.toJSNumber = SmallInteger.prototype.valueOf;
+
+    function parseStringValue(v) {
+        if (isPrecise(+v)) {
+            var x = +v;
+            if (x === truncate(x))
+                return new SmallInteger(x);
+            throw new Error("Invalid integer: " + v);
+        }
+        var sign = v[0] === "-";
+        if (sign) v = v.slice(1);
+        var split = v.split(/e/i);
+        if (split.length > 2) throw new Error("Invalid integer: " + split.join("e"));
+        if (split.length === 2) {
+            var exp = split[1];
+            if (exp[0] === "+") exp = exp.slice(1);
+            exp = +exp;
+            if (exp !== truncate(exp) || !isPrecise(exp)) throw new Error("Invalid integer: " + exp + " is not a valid exponent.");
+            var text = split[0];
+            var decimalPlace = text.indexOf(".");
+            if (decimalPlace >= 0) {
+                exp -= text.length - decimalPlace - 1;
+                text = text.slice(0, decimalPlace) + text.slice(decimalPlace + 1);
+            }
+            if (exp < 0) throw new Error("Cannot include negative exponent part for integers");
+            text += (new Array(exp + 1)).join("0");
+            v = text;
+        }
+        var isValid = /^([0-9][0-9]*)$/.test(v);
+        if (!isValid) throw new Error("Invalid integer: " + v);
+        var r = [], max = v.length, l = LOG_BASE, min = max - l;
+        while (max > 0) {
+            r.push(+v.slice(min, max));
+            min -= l;
+            if (min < 0) min = 0;
+            max -= l;
+        }
+        trim(r);
+        return new BigInteger(r, sign);
+    }
+
+    function parseNumberValue(v) {
+        if (isPrecise(v)) {
+            if (v !== truncate(v)) throw new Error(v + " is not an integer.");
+            return new SmallInteger(v);
+        }
+        return parseStringValue(v.toString());
+    }
+
+    function parseValue(v) {
+        if (typeof v === "number") {
+            return parseNumberValue(v);
+        }
+        if (typeof v === "string") {
+            return parseStringValue(v);
+        }
+        return v;
+    }
+    // Pre-define numbers in range [-999,999]
+    for (var i = 0; i < 1000; i++) {
+        Integer[i] = new SmallInteger(i);
+        if (i > 0) Integer[-i] = new SmallInteger(-i);
+    }
+    // Backwards compatibility
+    Integer.one = Integer[1];
+    Integer.zero = Integer[0];
+    Integer.minusOne = Integer[-1];
+    Integer.max = max;
+    Integer.min = min;
+    Integer.gcd = gcd;
+    Integer.lcm = lcm;
+    Integer.isInstance = function (x) { return x instanceof BigInteger || x instanceof SmallInteger; };
+    Integer.randBetween = randBetween;
+
+    Integer.fromArray = function (digits, base, isNegative) {
+        return parseBaseFromArray(digits.map(parseValue), parseValue(base || 10), isNegative);
+    };
+
+    return Integer;
+})();
+
+// Node.js check
+if ('object' !== "undefined" && module.hasOwnProperty("exports")) {
+    module.exports = bigInt;
+}
+
+//amd check
+if (typeof undefined === "function" && undefined.amd) {
+    undefined("big-integer", [], function () {
+        return bigInt;
+    });
+}
+});
+
+var BigInteger_1 = createCommonjsModule(function (module, exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// Copyright (c) 2005  Tom Wu
+// All Rights Reserved.
+// See "LICENSE" for details.
+
+// Basic JavaScript BN library - subset useful for RSA encryption.
+
+// Bits per digit
+var dbits;
+
+// JavaScript engine analysis
+var canary = 0xdeadbeefcafe;
+var j_lm = (canary & 0xffffff) == 0xefcafe;
+
+// (public) Constructor
+function BigInteger(a, b, c) {
+  if (a != null) if ("number" == typeof a) this.fromNumber(a, b, c);else if (b == null && "string" != typeof a) this.fromString(a, 256);else this.fromString(a, b);
+}
+
+// return new, unset BigInteger
+function nbi() {
+  return new BigInteger(null);
+}
+
+// am: Compute w_j += (x*this_i), propagate carries,
+// c is initial carry, returns final carry.
+// c < 3*dvalue, x < 2*dvalue, this_i < dvalue
+// We need to select the fastest one that works in this environment.
+
+// am1: use a single mult and divide to get the high bits,
+// max digit bits should be 26 because
+// max internal value = 2*dvalue^2-2*dvalue (< 2^53)
+function am1(i, x, w, j, c, n) {
+  while (--n >= 0) {
+    var v = x * this[i++] + w[j] + c;
+    c = Math.floor(v / 0x4000000);
+    w[j++] = v & 0x3ffffff;
+  }
+  return c;
+}
+// am2 avoids a big mult-and-extract completely.
+// Max digit bits should be <= 30 because we do bitwise ops
+// on values up to 2*hdvalue^2-hdvalue-1 (< 2^31)
+function am2(i, x, w, j, c, n) {
+  var xl = x & 0x7fff,
+      xh = x >> 15;
+  while (--n >= 0) {
+    var l = this[i] & 0x7fff;
+    var h = this[i++] >> 15;
+    var m = xh * l + h * xl;
+    l = xl * l + ((m & 0x7fff) << 15) + w[j] + (c & 0x3fffffff);
+    c = (l >>> 30) + (m >>> 15) + xh * h + (c >>> 30);
+    w[j++] = l & 0x3fffffff;
+  }
+  return c;
+}
+// Alternately, set max digit bits to 28 since some
+// browsers slow down when dealing with 32-bit numbers.
+function am3(i, x, w, j, c, n) {
+  var xl = x & 0x3fff,
+      xh = x >> 14;
+  while (--n >= 0) {
+    var l = this[i] & 0x3fff;
+    var h = this[i++] >> 14;
+    var m = xh * l + h * xl;
+    l = xl * l + ((m & 0x3fff) << 14) + w[j] + c;
+    c = (l >> 28) + (m >> 14) + xh * h;
+    w[j++] = l & 0xfffffff;
+  }
+  return c;
+}
+if (j_lm && typeof navigator !== 'undefined' && navigator.appName == "Microsoft Internet Explorer") {
+  BigInteger.prototype.am = am2;
+  dbits = 30;
+} else if (j_lm && typeof navigator !== 'undefined' && navigator.appName != "Netscape") {
+  BigInteger.prototype.am = am1;
+  dbits = 26;
+} else {
+  // Mozilla/Netscape seems to prefer am3
+  BigInteger.prototype.am = am3;
+  dbits = 28;
+}
+
+BigInteger.prototype.DB = dbits;
+BigInteger.prototype.DM = (1 << dbits) - 1;
+BigInteger.prototype.DV = 1 << dbits;
+
+var BI_FP = 52;
+BigInteger.prototype.FV = Math.pow(2, BI_FP);
+BigInteger.prototype.F1 = BI_FP - dbits;
+BigInteger.prototype.F2 = 2 * dbits - BI_FP;
+
+// Digit conversions
+var BI_RM = "0123456789abcdefghijklmnopqrstuvwxyz";
+var BI_RC = new Array();
+var rr, vv;
+rr = "0".charCodeAt(0);
+for (vv = 0; vv <= 9; ++vv) {
+  BI_RC[rr++] = vv;
+}rr = "a".charCodeAt(0);
+for (vv = 10; vv < 36; ++vv) {
+  BI_RC[rr++] = vv;
+}rr = "A".charCodeAt(0);
+for (vv = 10; vv < 36; ++vv) {
+  BI_RC[rr++] = vv;
+}function int2char(n) {
+  return BI_RM.charAt(n);
+}
+function intAt(s, i) {
+  var c = BI_RC[s.charCodeAt(i)];
+  return c == null ? -1 : c;
+}
+
+// (protected) copy this to r
+function bnpCopyTo(r) {
+  for (var i = this.t - 1; i >= 0; --i) {
+    r[i] = this[i];
+  }r.t = this.t;
+  r.s = this.s;
+}
+
+// (protected) set from integer value x, -DV <= x < DV
+function bnpFromInt(x) {
+  this.t = 1;
+  this.s = x < 0 ? -1 : 0;
+  if (x > 0) this[0] = x;else if (x < -1) this[0] = x + this.DV;else this.t = 0;
+}
+
+// return bigint initialized to value
+function nbv(i) {
+  var r = nbi();r.fromInt(i);return r;
+}
+
+// (protected) set from string and radix
+function bnpFromString(s, b) {
+  var k;
+  if (b == 16) k = 4;else if (b == 8) k = 3;else if (b == 256) k = 8; // byte array
+  else if (b == 2) k = 1;else if (b == 32) k = 5;else if (b == 4) k = 2;else {
+      this.fromRadix(s, b);return;
+    }
+  this.t = 0;
+  this.s = 0;
+  var i = s.length,
+      mi = false,
+      sh = 0;
+  while (--i >= 0) {
+    var x = k == 8 ? s[i] & 0xff : intAt(s, i);
+    if (x < 0) {
+      if (s.charAt(i) == "-") mi = true;
+      continue;
+    }
+    mi = false;
+    if (sh == 0) this[this.t++] = x;else if (sh + k > this.DB) {
+      this[this.t - 1] |= (x & (1 << this.DB - sh) - 1) << sh;
+      this[this.t++] = x >> this.DB - sh;
+    } else this[this.t - 1] |= x << sh;
+    sh += k;
+    if (sh >= this.DB) sh -= this.DB;
+  }
+  if (k == 8 && (s[0] & 0x80) != 0) {
+    this.s = -1;
+    if (sh > 0) this[this.t - 1] |= (1 << this.DB - sh) - 1 << sh;
+  }
+  this.clamp();
+  if (mi) BigInteger.ZERO.subTo(this, this);
+}
+
+// (protected) clamp off excess high words
+function bnpClamp() {
+  var c = this.s & this.DM;
+  while (this.t > 0 && this[this.t - 1] == c) {
+    --this.t;
+  }
+}
+
+// (public) return string representation in given radix
+function bnToString(b) {
+  if (this.s < 0) return "-" + this.negate().toString(b);
+  var k;
+  if (b == 16) k = 4;else if (b == 8) k = 3;else if (b == 2) k = 1;else if (b == 32) k = 5;else if (b == 4) k = 2;else return this.toRadix(b);
+  var km = (1 << k) - 1,
+      d,
+      m = false,
+      r = "",
+      i = this.t;
+  var p = this.DB - i * this.DB % k;
+  if (i-- > 0) {
+    if (p < this.DB && (d = this[i] >> p) > 0) {
+      m = true;r = int2char(d);
+    }
+    while (i >= 0) {
+      if (p < k) {
+        d = (this[i] & (1 << p) - 1) << k - p;
+        d |= this[--i] >> (p += this.DB - k);
+      } else {
+        d = this[i] >> (p -= k) & km;
+        if (p <= 0) {
+          p += this.DB;--i;
+        }
+      }
+      if (d > 0) m = true;
+      if (m) r += int2char(d);
+    }
+  }
+  return m ? r : "0";
+}
+
+// (public) -this
+function bnNegate() {
+  var r = nbi();BigInteger.ZERO.subTo(this, r);return r;
+}
+
+// (public) |this|
+function bnAbs() {
+  return this.s < 0 ? this.negate() : this;
+}
+
+// (public) return + if this > a, - if this < a, 0 if equal
+function bnCompareTo(a) {
+  var r = this.s - a.s;
+  if (r != 0) return r;
+  var i = this.t;
+  r = i - a.t;
+  if (r != 0) return this.s < 0 ? -r : r;
+  while (--i >= 0) {
+    if ((r = this[i] - a[i]) != 0) return r;
+  }return 0;
+}
+
+// returns bit length of the integer x
+function nbits(x) {
+  var r = 1,
+      t;
+  if ((t = x >>> 16) != 0) {
+    x = t;r += 16;
+  }
+  if ((t = x >> 8) != 0) {
+    x = t;r += 8;
+  }
+  if ((t = x >> 4) != 0) {
+    x = t;r += 4;
+  }
+  if ((t = x >> 2) != 0) {
+    x = t;r += 2;
+  }
+  if ((t = x >> 1) != 0) {
+    x = t;r += 1;
+  }
+  return r;
+}
+
+// (public) return the number of bits in "this"
+function bnBitLength() {
+  if (this.t <= 0) return 0;
+  return this.DB * (this.t - 1) + nbits(this[this.t - 1] ^ this.s & this.DM);
+}
+
+// (protected) r = this << n*DB
+function bnpDLShiftTo(n, r) {
+  var i;
+  for (i = this.t - 1; i >= 0; --i) {
+    r[i + n] = this[i];
+  }for (i = n - 1; i >= 0; --i) {
+    r[i] = 0;
+  }r.t = this.t + n;
+  r.s = this.s;
+}
+
+// (protected) r = this >> n*DB
+function bnpDRShiftTo(n, r) {
+  for (var i = n; i < this.t; ++i) {
+    r[i - n] = this[i];
+  }r.t = Math.max(this.t - n, 0);
+  r.s = this.s;
+}
+
+// (protected) r = this << n
+function bnpLShiftTo(n, r) {
+  var bs = n % this.DB;
+  var cbs = this.DB - bs;
+  var bm = (1 << cbs) - 1;
+  var ds = Math.floor(n / this.DB),
+      c = this.s << bs & this.DM,
+      i;
+  for (i = this.t - 1; i >= 0; --i) {
+    r[i + ds + 1] = this[i] >> cbs | c;
+    c = (this[i] & bm) << bs;
+  }
+  for (i = ds - 1; i >= 0; --i) {
+    r[i] = 0;
+  }r[ds] = c;
+  r.t = this.t + ds + 1;
+  r.s = this.s;
+  r.clamp();
+}
+
+// (protected) r = this >> n
+function bnpRShiftTo(n, r) {
+  r.s = this.s;
+  var ds = Math.floor(n / this.DB);
+  if (ds >= this.t) {
+    r.t = 0;return;
+  }
+  var bs = n % this.DB;
+  var cbs = this.DB - bs;
+  var bm = (1 << bs) - 1;
+  r[0] = this[ds] >> bs;
+  for (var i = ds + 1; i < this.t; ++i) {
+    r[i - ds - 1] |= (this[i] & bm) << cbs;
+    r[i - ds] = this[i] >> bs;
+  }
+  if (bs > 0) r[this.t - ds - 1] |= (this.s & bm) << cbs;
+  r.t = this.t - ds;
+  r.clamp();
+}
+
+// (protected) r = this - a
+function bnpSubTo(a, r) {
+  var i = 0,
+      c = 0,
+      m = Math.min(a.t, this.t);
+  while (i < m) {
+    c += this[i] - a[i];
+    r[i++] = c & this.DM;
+    c >>= this.DB;
+  }
+  if (a.t < this.t) {
+    c -= a.s;
+    while (i < this.t) {
+      c += this[i];
+      r[i++] = c & this.DM;
+      c >>= this.DB;
+    }
+    c += this.s;
+  } else {
+    c += this.s;
+    while (i < a.t) {
+      c -= a[i];
+      r[i++] = c & this.DM;
+      c >>= this.DB;
+    }
+    c -= a.s;
+  }
+  r.s = c < 0 ? -1 : 0;
+  if (c < -1) r[i++] = this.DV + c;else if (c > 0) r[i++] = c;
+  r.t = i;
+  r.clamp();
+}
+
+// (protected) r = this * a, r != this,a (HAC 14.12)
+// "this" should be the larger one if appropriate.
+function bnpMultiplyTo(a, r) {
+  var x = this.abs(),
+      y = a.abs();
+  var i = x.t;
+  r.t = i + y.t;
+  while (--i >= 0) {
+    r[i] = 0;
+  }for (i = 0; i < y.t; ++i) {
+    r[i + x.t] = x.am(0, y[i], r, i, 0, x.t);
+  }r.s = 0;
+  r.clamp();
+  if (this.s != a.s) BigInteger.ZERO.subTo(r, r);
+}
+
+// (protected) r = this^2, r != this (HAC 14.16)
+function bnpSquareTo(r) {
+  var x = this.abs();
+  var i = r.t = 2 * x.t;
+  while (--i >= 0) {
+    r[i] = 0;
+  }for (i = 0; i < x.t - 1; ++i) {
+    var c = x.am(i, x[i], r, 2 * i, 0, 1);
+    if ((r[i + x.t] += x.am(i + 1, 2 * x[i], r, 2 * i + 1, c, x.t - i - 1)) >= x.DV) {
+      r[i + x.t] -= x.DV;
+      r[i + x.t + 1] = 1;
+    }
+  }
+  if (r.t > 0) r[r.t - 1] += x.am(i, x[i], r, 2 * i, 0, 1);
+  r.s = 0;
+  r.clamp();
+}
+
+// (protected) divide this by m, quotient and remainder to q, r (HAC 14.20)
+// r != q, this != m.  q or r may be null.
+function bnpDivRemTo(m, q, r) {
+  var pm = m.abs();
+  if (pm.t <= 0) return;
+  var pt = this.abs();
+  if (pt.t < pm.t) {
+    if (q != null) q.fromInt(0);
+    if (r != null) this.copyTo(r);
+    return;
+  }
+  if (r == null) r = nbi();
+  var y = nbi(),
+      ts = this.s,
+      ms = m.s;
+  var nsh = this.DB - nbits(pm[pm.t - 1]); // normalize modulus
+  if (nsh > 0) {
+    pm.lShiftTo(nsh, y);pt.lShiftTo(nsh, r);
+  } else {
+    pm.copyTo(y);pt.copyTo(r);
+  }
+  var ys = y.t;
+  var y0 = y[ys - 1];
+  if (y0 == 0) return;
+  var yt = y0 * (1 << this.F1) + (ys > 1 ? y[ys - 2] >> this.F2 : 0);
+  var d1 = this.FV / yt,
+      d2 = (1 << this.F1) / yt,
+      e = 1 << this.F2;
+  var i = r.t,
+      j = i - ys,
+      t = q == null ? nbi() : q;
+  y.dlShiftTo(j, t);
+  if (r.compareTo(t) >= 0) {
+    r[r.t++] = 1;
+    r.subTo(t, r);
+  }
+  BigInteger.ONE.dlShiftTo(ys, t);
+  t.subTo(y, y); // "negative" y so we can replace sub with am later
+  while (y.t < ys) {
+    y[y.t++] = 0;
+  }while (--j >= 0) {
+    // Estimate quotient digit
+    var qd = r[--i] == y0 ? this.DM : Math.floor(r[i] * d1 + (r[i - 1] + e) * d2);
+    if ((r[i] += y.am(0, qd, r, j, 0, ys)) < qd) {
+      // Try it out
+      y.dlShiftTo(j, t);
+      r.subTo(t, r);
+      while (r[i] < --qd) {
+        r.subTo(t, r);
+      }
+    }
+  }
+  if (q != null) {
+    r.drShiftTo(ys, q);
+    if (ts != ms) BigInteger.ZERO.subTo(q, q);
+  }
+  r.t = ys;
+  r.clamp();
+  if (nsh > 0) r.rShiftTo(nsh, r); // Denormalize remainder
+  if (ts < 0) BigInteger.ZERO.subTo(r, r);
+}
+
+// (public) this mod a
+function bnMod(a) {
+  var r = nbi();
+  this.abs().divRemTo(a, null, r);
+  if (this.s < 0 && r.compareTo(BigInteger.ZERO) > 0) a.subTo(r, r);
+  return r;
+}
+
+// Modular reduction using "classic" algorithm
+function Classic(m) {
+  this.m = m;
+}
+function cConvert(x) {
+  if (x.s < 0 || x.compareTo(this.m) >= 0) return x.mod(this.m);else return x;
+}
+function cRevert(x) {
+  return x;
+}
+function cReduce(x) {
+  x.divRemTo(this.m, null, x);
+}
+function cMulTo(x, y, r) {
+  x.multiplyTo(y, r);this.reduce(r);
+}
+function cSqrTo(x, r) {
+  x.squareTo(r);this.reduce(r);
+}
+
+Classic.prototype.convert = cConvert;
+Classic.prototype.revert = cRevert;
+Classic.prototype.reduce = cReduce;
+Classic.prototype.mulTo = cMulTo;
+Classic.prototype.sqrTo = cSqrTo;
+
+// (protected) return "-1/this % 2^DB"; useful for Mont. reduction
+// justification:
+//         xy == 1 (mod m)
+//         xy =  1+km
+//   xy(2-xy) = (1+km)(1-km)
+// x[y(2-xy)] = 1-k^2m^2
+// x[y(2-xy)] == 1 (mod m^2)
+// if y is 1/x mod m, then y(2-xy) is 1/x mod m^2
+// should reduce x and y(2-xy) by m^2 at each step to keep size bounded.
+// JS multiply "overflows" differently from C/C++, so care is needed here.
+function bnpInvDigit() {
+  if (this.t < 1) return 0;
+  var x = this[0];
+  if ((x & 1) == 0) return 0;
+  var y = x & 3; // y == 1/x mod 2^2
+  y = y * (2 - (x & 0xf) * y) & 0xf; // y == 1/x mod 2^4
+  y = y * (2 - (x & 0xff) * y) & 0xff; // y == 1/x mod 2^8
+  y = y * (2 - ((x & 0xffff) * y & 0xffff)) & 0xffff; // y == 1/x mod 2^16
+  // last step - calculate inverse mod DV directly;
+  // assumes 16 < DB <= 32 and assumes ability to handle 48-bit ints
+  y = y * (2 - x * y % this.DV) % this.DV; // y == 1/x mod 2^dbits
+  // we really want the negative inverse, and -DV < y < DV
+  return y > 0 ? this.DV - y : -y;
+}
+
+// Montgomery reduction
+function Montgomery(m) {
+  this.m = m;
+  this.mp = m.invDigit();
+  this.mpl = this.mp & 0x7fff;
+  this.mph = this.mp >> 15;
+  this.um = (1 << m.DB - 15) - 1;
+  this.mt2 = 2 * m.t;
+}
+
+// xR mod m
+function montConvert(x) {
+  var r = nbi();
+  x.abs().dlShiftTo(this.m.t, r);
+  r.divRemTo(this.m, null, r);
+  if (x.s < 0 && r.compareTo(BigInteger.ZERO) > 0) this.m.subTo(r, r);
+  return r;
+}
+
+// x/R mod m
+function montRevert(x) {
+  var r = nbi();
+  x.copyTo(r);
+  this.reduce(r);
+  return r;
+}
+
+// x = x/R mod m (HAC 14.32)
+function montReduce(x) {
+  while (x.t <= this.mt2) {
+    // pad x so am has enough room later
+    x[x.t++] = 0;
+  }for (var i = 0; i < this.m.t; ++i) {
+    // faster way of calculating u0 = x[i]*mp mod DV
+    var j = x[i] & 0x7fff;
+    var u0 = j * this.mpl + ((j * this.mph + (x[i] >> 15) * this.mpl & this.um) << 15) & x.DM;
+    // use am to combine the multiply-shift-add into one call
+    j = i + this.m.t;
+    x[j] += this.m.am(0, u0, x, i, 0, this.m.t);
+    // propagate carry
+    while (x[j] >= x.DV) {
+      x[j] -= x.DV;x[++j]++;
+    }
+  }
+  x.clamp();
+  x.drShiftTo(this.m.t, x);
+  if (x.compareTo(this.m) >= 0) x.subTo(this.m, x);
+}
+
+// r = "x^2/R mod m"; x != r
+function montSqrTo(x, r) {
+  x.squareTo(r);this.reduce(r);
+}
+
+// r = "xy/R mod m"; x,y != r
+function montMulTo(x, y, r) {
+  x.multiplyTo(y, r);this.reduce(r);
+}
+
+Montgomery.prototype.convert = montConvert;
+Montgomery.prototype.revert = montRevert;
+Montgomery.prototype.reduce = montReduce;
+Montgomery.prototype.mulTo = montMulTo;
+Montgomery.prototype.sqrTo = montSqrTo;
+
+// (protected) true iff this is even
+function bnpIsEven() {
+  return (this.t > 0 ? this[0] & 1 : this.s) == 0;
+}
+
+// (protected) this^e, e < 2^32, doing sqr and mul with "r" (HAC 14.79)
+function bnpExp(e, z) {
+  if (e > 0xffffffff || e < 1) return BigInteger.ONE;
+  var r = nbi(),
+      r2 = nbi(),
+      g = z.convert(this),
+      i = nbits(e) - 1;
+  g.copyTo(r);
+  while (--i >= 0) {
+    z.sqrTo(r, r2);
+    if ((e & 1 << i) > 0) z.mulTo(r2, g, r);else {
+      var t = r;r = r2;r2 = t;
+    }
+  }
+  return z.revert(r);
+}
+
+// (public) this^e % m, 0 <= e < 2^32
+function bnModPowInt(e, m) {
+  var z;
+  if (e < 256 || m.isEven()) z = new Classic(m);else z = new Montgomery(m);
+  return this.exp(e, z);
+}
+
+// protected
+BigInteger.prototype.copyTo = bnpCopyTo;
+BigInteger.prototype.fromInt = bnpFromInt;
+BigInteger.prototype.fromString = bnpFromString;
+BigInteger.prototype.clamp = bnpClamp;
+BigInteger.prototype.dlShiftTo = bnpDLShiftTo;
+BigInteger.prototype.drShiftTo = bnpDRShiftTo;
+BigInteger.prototype.lShiftTo = bnpLShiftTo;
+BigInteger.prototype.rShiftTo = bnpRShiftTo;
+BigInteger.prototype.subTo = bnpSubTo;
+BigInteger.prototype.multiplyTo = bnpMultiplyTo;
+BigInteger.prototype.squareTo = bnpSquareTo;
+BigInteger.prototype.divRemTo = bnpDivRemTo;
+BigInteger.prototype.invDigit = bnpInvDigit;
+BigInteger.prototype.isEven = bnpIsEven;
+BigInteger.prototype.exp = bnpExp;
+
+// public
+BigInteger.prototype.toString = bnToString;
+BigInteger.prototype.negate = bnNegate;
+BigInteger.prototype.abs = bnAbs;
+BigInteger.prototype.compareTo = bnCompareTo;
+BigInteger.prototype.bitLength = bnBitLength;
+BigInteger.prototype.mod = bnMod;
+BigInteger.prototype.modPowInt = bnModPowInt;
+
+// "constants"
+BigInteger.ZERO = nbv(0);
+BigInteger.ONE = nbv(1);
+
+// Copyright (c) 2005-2009  Tom Wu
+// All Rights Reserved.
+// See "LICENSE" for details.
+
+// Extended JavaScript BN functions, required for RSA private ops.
+
+// Version 1.1: new BigInteger("0", 10) returns "proper" zero
+// Version 1.2: square() API, isProbablePrime fix
+
+// (public)
+function bnClone() {
+  var r = nbi();this.copyTo(r);return r;
+}
+
+// (public) return value as integer
+function bnIntValue() {
+  if (this.s < 0) {
+    if (this.t == 1) return this[0] - this.DV;else if (this.t == 0) return -1;
+  } else if (this.t == 1) return this[0];else if (this.t == 0) return 0;
+  // assumes 16 < DB < 32
+  return (this[1] & (1 << 32 - this.DB) - 1) << this.DB | this[0];
+}
+
+// (public) return value as byte
+function bnByteValue() {
+  return this.t == 0 ? this.s : this[0] << 24 >> 24;
+}
+
+// (public) return value as short (assumes DB>=16)
+function bnShortValue() {
+  return this.t == 0 ? this.s : this[0] << 16 >> 16;
+}
+
+// (protected) return x s.t. r^x < DV
+function bnpChunkSize(r) {
+  return Math.floor(Math.LN2 * this.DB / Math.log(r));
+}
+
+// (public) 0 if this == 0, 1 if this > 0
+function bnSigNum() {
+  if (this.s < 0) return -1;else if (this.t <= 0 || this.t == 1 && this[0] <= 0) return 0;else return 1;
+}
+
+// (protected) convert to radix string
+function bnpToRadix(b) {
+  if (b == null) b = 10;
+  if (this.signum() == 0 || b < 2 || b > 36) return "0";
+  var cs = this.chunkSize(b);
+  var a = Math.pow(b, cs);
+  var d = nbv(a),
+      y = nbi(),
+      z = nbi(),
+      r = "";
+  this.divRemTo(d, y, z);
+  while (y.signum() > 0) {
+    r = (a + z.intValue()).toString(b).substr(1) + r;
+    y.divRemTo(d, y, z);
+  }
+  return z.intValue().toString(b) + r;
+}
+
+// (protected) convert from radix string
+function bnpFromRadix(s, b) {
+  this.fromInt(0);
+  if (b == null) b = 10;
+  var cs = this.chunkSize(b);
+  var d = Math.pow(b, cs),
+      mi = false,
+      j = 0,
+      w = 0;
+  for (var i = 0; i < s.length; ++i) {
+    var x = intAt(s, i);
+    if (x < 0) {
+      if (s.charAt(i) == "-" && this.signum() == 0) mi = true;
+      continue;
+    }
+    w = b * w + x;
+    if (++j >= cs) {
+      this.dMultiply(d);
+      this.dAddOffset(w, 0);
+      j = 0;
+      w = 0;
+    }
+  }
+  if (j > 0) {
+    this.dMultiply(Math.pow(b, j));
+    this.dAddOffset(w, 0);
+  }
+  if (mi) BigInteger.ZERO.subTo(this, this);
+}
+
+// (protected) alternate constructor
+function bnpFromNumber(a, b, c) {
+  if ("number" == typeof b) {
+    // new BigInteger(int,int,RNG)
+    if (a < 2) this.fromInt(1);else {
+      this.fromNumber(a, c);
+      if (!this.testBit(a - 1)) // force MSB set
+        this.bitwiseTo(BigInteger.ONE.shiftLeft(a - 1), op_or, this);
+      if (this.isEven()) this.dAddOffset(1, 0); // force odd
+      while (!this.isProbablePrime(b)) {
+        this.dAddOffset(2, 0);
+        if (this.bitLength() > a) this.subTo(BigInteger.ONE.shiftLeft(a - 1), this);
+      }
+    }
+  } else {
+    // new BigInteger(int,RNG)
+    var x = new Array(),
+        t = a & 7;
+    x.length = (a >> 3) + 1;
+    b.nextBytes(x);
+    if (t > 0) x[0] &= (1 << t) - 1;else x[0] = 0;
+    this.fromString(x, 256);
+  }
+}
+
+// (public) convert to bigendian byte array
+function bnToByteArray() {
+  var i = this.t,
+      r = new Array();
+  r[0] = this.s;
+  var p = this.DB - i * this.DB % 8,
+      d,
+      k = 0;
+  if (i-- > 0) {
+    if (p < this.DB && (d = this[i] >> p) != (this.s & this.DM) >> p) r[k++] = d | this.s << this.DB - p;
+    while (i >= 0) {
+      if (p < 8) {
+        d = (this[i] & (1 << p) - 1) << 8 - p;
+        d |= this[--i] >> (p += this.DB - 8);
+      } else {
+        d = this[i] >> (p -= 8) & 0xff;
+        if (p <= 0) {
+          p += this.DB;--i;
+        }
+      }
+      if ((d & 0x80) != 0) d |= -256;
+      if (k == 0 && (this.s & 0x80) != (d & 0x80)) ++k;
+      if (k > 0 || d != this.s) r[k++] = d;
+    }
+  }
+  return r;
+}
+
+function bnEquals(a) {
+  return this.compareTo(a) == 0;
+}
+function bnMin(a) {
+  return this.compareTo(a) < 0 ? this : a;
+}
+function bnMax(a) {
+  return this.compareTo(a) > 0 ? this : a;
+}
+
+// (protected) r = this op a (bitwise)
+function bnpBitwiseTo(a, op, r) {
+  var i,
+      f,
+      m = Math.min(a.t, this.t);
+  for (i = 0; i < m; ++i) {
+    r[i] = op(this[i], a[i]);
+  }if (a.t < this.t) {
+    f = a.s & this.DM;
+    for (i = m; i < this.t; ++i) {
+      r[i] = op(this[i], f);
+    }r.t = this.t;
+  } else {
+    f = this.s & this.DM;
+    for (i = m; i < a.t; ++i) {
+      r[i] = op(f, a[i]);
+    }r.t = a.t;
+  }
+  r.s = op(this.s, a.s);
+  r.clamp();
+}
+
+// (public) this & a
+function op_and(x, y) {
+  return x & y;
+}
+function bnAnd(a) {
+  var r = nbi();this.bitwiseTo(a, op_and, r);return r;
+}
+
+// (public) this | a
+function op_or(x, y) {
+  return x | y;
+}
+function bnOr(a) {
+  var r = nbi();this.bitwiseTo(a, op_or, r);return r;
+}
+
+// (public) this ^ a
+function op_xor(x, y) {
+  return x ^ y;
+}
+function bnXor(a) {
+  var r = nbi();this.bitwiseTo(a, op_xor, r);return r;
+}
+
+// (public) this & ~a
+function op_andnot(x, y) {
+  return x & ~y;
+}
+function bnAndNot(a) {
+  var r = nbi();this.bitwiseTo(a, op_andnot, r);return r;
+}
+
+// (public) ~this
+function bnNot() {
+  var r = nbi();
+  for (var i = 0; i < this.t; ++i) {
+    r[i] = this.DM & ~this[i];
+  }r.t = this.t;
+  r.s = ~this.s;
+  return r;
+}
+
+// (public) this << n
+function bnShiftLeft(n) {
+  var r = nbi();
+  if (n < 0) this.rShiftTo(-n, r);else this.lShiftTo(n, r);
+  return r;
+}
+
+// (public) this >> n
+function bnShiftRight(n) {
+  var r = nbi();
+  if (n < 0) this.lShiftTo(-n, r);else this.rShiftTo(n, r);
+  return r;
+}
+
+// return index of lowest 1-bit in x, x < 2^31
+function lbit(x) {
+  if (x == 0) return -1;
+  var r = 0;
+  if ((x & 0xffff) == 0) {
+    x >>= 16;r += 16;
+  }
+  if ((x & 0xff) == 0) {
+    x >>= 8;r += 8;
+  }
+  if ((x & 0xf) == 0) {
+    x >>= 4;r += 4;
+  }
+  if ((x & 3) == 0) {
+    x >>= 2;r += 2;
+  }
+  if ((x & 1) == 0) ++r;
+  return r;
+}
+
+// (public) returns index of lowest 1-bit (or -1 if none)
+function bnGetLowestSetBit() {
+  for (var i = 0; i < this.t; ++i) {
+    if (this[i] != 0) return i * this.DB + lbit(this[i]);
+  }if (this.s < 0) return this.t * this.DB;
+  return -1;
+}
+
+// return number of 1 bits in x
+function cbit(x) {
+  var r = 0;
+  while (x != 0) {
+    x &= x - 1;++r;
+  }
+  return r;
+}
+
+// (public) return number of set bits
+function bnBitCount() {
+  var r = 0,
+      x = this.s & this.DM;
+  for (var i = 0; i < this.t; ++i) {
+    r += cbit(this[i] ^ x);
+  }return r;
+}
+
+// (public) true iff nth bit is set
+function bnTestBit(n) {
+  var j = Math.floor(n / this.DB);
+  if (j >= this.t) return this.s != 0;
+  return (this[j] & 1 << n % this.DB) != 0;
+}
+
+// (protected) this op (1<<n)
+function bnpChangeBit(n, op) {
+  var r = BigInteger.ONE.shiftLeft(n);
+  this.bitwiseTo(r, op, r);
+  return r;
+}
+
+// (public) this | (1<<n)
+function bnSetBit(n) {
+  return this.changeBit(n, op_or);
+}
+
+// (public) this & ~(1<<n)
+function bnClearBit(n) {
+  return this.changeBit(n, op_andnot);
+}
+
+// (public) this ^ (1<<n)
+function bnFlipBit(n) {
+  return this.changeBit(n, op_xor);
+}
+
+// (protected) r = this + a
+function bnpAddTo(a, r) {
+  var i = 0,
+      c = 0,
+      m = Math.min(a.t, this.t);
+  while (i < m) {
+    c += this[i] + a[i];
+    r[i++] = c & this.DM;
+    c >>= this.DB;
+  }
+  if (a.t < this.t) {
+    c += a.s;
+    while (i < this.t) {
+      c += this[i];
+      r[i++] = c & this.DM;
+      c >>= this.DB;
+    }
+    c += this.s;
+  } else {
+    c += this.s;
+    while (i < a.t) {
+      c += a[i];
+      r[i++] = c & this.DM;
+      c >>= this.DB;
+    }
+    c += a.s;
+  }
+  r.s = c < 0 ? -1 : 0;
+  if (c > 0) r[i++] = c;else if (c < -1) r[i++] = this.DV + c;
+  r.t = i;
+  r.clamp();
+}
+
+// (public) this + a
+function bnAdd(a) {
+  var r = nbi();this.addTo(a, r);return r;
+}
+
+// (public) this - a
+function bnSubtract(a) {
+  var r = nbi();this.subTo(a, r);return r;
+}
+
+// (public) this * a
+function bnMultiply(a) {
+  var r = nbi();this.multiplyTo(a, r);return r;
+}
+
+// (public) this^2
+function bnSquare() {
+  var r = nbi();this.squareTo(r);return r;
+}
+
+// (public) this / a
+function bnDivide(a) {
+  var r = nbi();this.divRemTo(a, r, null);return r;
+}
+
+// (public) this % a
+function bnRemainder(a) {
+  var r = nbi();this.divRemTo(a, null, r);return r;
+}
+
+// (public) [this/a,this%a]
+function bnDivideAndRemainder(a) {
+  var q = nbi(),
+      r = nbi();
+  this.divRemTo(a, q, r);
+  return new Array(q, r);
+}
+
+// (protected) this *= n, this >= 0, 1 < n < DV
+function bnpDMultiply(n) {
+  this[this.t] = this.am(0, n - 1, this, 0, 0, this.t);
+  ++this.t;
+  this.clamp();
+}
+
+// (protected) this += n << w words, this >= 0
+function bnpDAddOffset(n, w) {
+  if (n == 0) return;
+  while (this.t <= w) {
+    this[this.t++] = 0;
+  }this[w] += n;
+  while (this[w] >= this.DV) {
+    this[w] -= this.DV;
+    if (++w >= this.t) this[this.t++] = 0;
+    ++this[w];
+  }
+}
+
+// A "null" reducer
+function NullExp() {}
+function nNop(x) {
+  return x;
+}
+function nMulTo(x, y, r) {
+  x.multiplyTo(y, r);
+}
+function nSqrTo(x, r) {
+  x.squareTo(r);
+}
+
+NullExp.prototype.convert = nNop;
+NullExp.prototype.revert = nNop;
+NullExp.prototype.mulTo = nMulTo;
+NullExp.prototype.sqrTo = nSqrTo;
+
+// (public) this^e
+function bnPow(e) {
+  return this.exp(e, new NullExp());
+}
+
+// (protected) r = lower n words of "this * a", a.t <= n
+// "this" should be the larger one if appropriate.
+function bnpMultiplyLowerTo(a, n, r) {
+  var i = Math.min(this.t + a.t, n);
+  r.s = 0; // assumes a,this >= 0
+  r.t = i;
+  while (i > 0) {
+    r[--i] = 0;
+  }var j;
+  for (j = r.t - this.t; i < j; ++i) {
+    r[i + this.t] = this.am(0, a[i], r, i, 0, this.t);
+  }for (j = Math.min(a.t, n); i < j; ++i) {
+    this.am(0, a[i], r, i, 0, n - i);
+  }r.clamp();
+}
+
+// (protected) r = "this * a" without lower n words, n > 0
+// "this" should be the larger one if appropriate.
+function bnpMultiplyUpperTo(a, n, r) {
+  --n;
+  var i = r.t = this.t + a.t - n;
+  r.s = 0; // assumes a,this >= 0
+  while (--i >= 0) {
+    r[i] = 0;
+  }for (i = Math.max(n - this.t, 0); i < a.t; ++i) {
+    r[this.t + i - n] = this.am(n - i, a[i], r, 0, 0, this.t + i - n);
+  }r.clamp();
+  r.drShiftTo(1, r);
+}
+
+// Barrett modular reduction
+function Barrett(m) {
+  // setup Barrett
+  this.r2 = nbi();
+  this.q3 = nbi();
+  BigInteger.ONE.dlShiftTo(2 * m.t, this.r2);
+  this.mu = this.r2.divide(m);
+  this.m = m;
+}
+
+function barrettConvert(x) {
+  if (x.s < 0 || x.t > 2 * this.m.t) return x.mod(this.m);else if (x.compareTo(this.m) < 0) return x;else {
+    var r = nbi();x.copyTo(r);this.reduce(r);return r;
+  }
+}
+
+function barrettRevert(x) {
+  return x;
+}
+
+// x = x mod m (HAC 14.42)
+function barrettReduce(x) {
+  x.drShiftTo(this.m.t - 1, this.r2);
+  if (x.t > this.m.t + 1) {
+    x.t = this.m.t + 1;x.clamp();
+  }
+  this.mu.multiplyUpperTo(this.r2, this.m.t + 1, this.q3);
+  this.m.multiplyLowerTo(this.q3, this.m.t + 1, this.r2);
+  while (x.compareTo(this.r2) < 0) {
+    x.dAddOffset(1, this.m.t + 1);
+  }x.subTo(this.r2, x);
+  while (x.compareTo(this.m) >= 0) {
+    x.subTo(this.m, x);
+  }
+}
+
+// r = x^2 mod m; x != r
+function barrettSqrTo(x, r) {
+  x.squareTo(r);this.reduce(r);
+}
+
+// r = x*y mod m; x,y != r
+function barrettMulTo(x, y, r) {
+  x.multiplyTo(y, r);this.reduce(r);
+}
+
+Barrett.prototype.convert = barrettConvert;
+Barrett.prototype.revert = barrettRevert;
+Barrett.prototype.reduce = barrettReduce;
+Barrett.prototype.mulTo = barrettMulTo;
+Barrett.prototype.sqrTo = barrettSqrTo;
+
+// (public) this^e % m (HAC 14.85)
+function bnModPow(e, m) {
+  var i = e.bitLength(),
+      k,
+      r = nbv(1),
+      z;
+  if (i <= 0) return r;else if (i < 18) k = 1;else if (i < 48) k = 3;else if (i < 144) k = 4;else if (i < 768) k = 5;else k = 6;
+  if (i < 8) z = new Classic(m);else if (m.isEven()) z = new Barrett(m);else z = new Montgomery(m);
+
+  // precomputation
+  var g = new Array(),
+      n = 3,
+      k1 = k - 1,
+      km = (1 << k) - 1;
+  g[1] = z.convert(this);
+  if (k > 1) {
+    var g2 = nbi();
+    z.sqrTo(g[1], g2);
+    while (n <= km) {
+      g[n] = nbi();
+      z.mulTo(g2, g[n - 2], g[n]);
+      n += 2;
+    }
+  }
+
+  var j = e.t - 1,
+      w,
+      is1 = true,
+      r2 = nbi(),
+      t;
+  i = nbits(e[j]) - 1;
+  while (j >= 0) {
+    if (i >= k1) w = e[j] >> i - k1 & km;else {
+      w = (e[j] & (1 << i + 1) - 1) << k1 - i;
+      if (j > 0) w |= e[j - 1] >> this.DB + i - k1;
+    }
+
+    n = k;
+    while ((w & 1) == 0) {
+      w >>= 1;--n;
+    }
+    if ((i -= n) < 0) {
+      i += this.DB;--j;
+    }
+    if (is1) {
+      // ret == 1, don't bother squaring or multiplying it
+      g[w].copyTo(r);
+      is1 = false;
+    } else {
+      while (n > 1) {
+        z.sqrTo(r, r2);z.sqrTo(r2, r);n -= 2;
+      }
+      if (n > 0) z.sqrTo(r, r2);else {
+        t = r;r = r2;r2 = t;
+      }
+      z.mulTo(r2, g[w], r);
+    }
+
+    while (j >= 0 && (e[j] & 1 << i) == 0) {
+      z.sqrTo(r, r2);t = r;r = r2;r2 = t;
+      if (--i < 0) {
+        i = this.DB - 1;--j;
+      }
+    }
+  }
+  return z.revert(r);
+}
+
+// (public) gcd(this,a) (HAC 14.54)
+function bnGCD(a) {
+  var x = this.s < 0 ? this.negate() : this.clone();
+  var y = a.s < 0 ? a.negate() : a.clone();
+  if (x.compareTo(y) < 0) {
+    var t = x;x = y;y = t;
+  }
+  var i = x.getLowestSetBit(),
+      g = y.getLowestSetBit();
+  if (g < 0) return x;
+  if (i < g) g = i;
+  if (g > 0) {
+    x.rShiftTo(g, x);
+    y.rShiftTo(g, y);
+  }
+  while (x.signum() > 0) {
+    if ((i = x.getLowestSetBit()) > 0) x.rShiftTo(i, x);
+    if ((i = y.getLowestSetBit()) > 0) y.rShiftTo(i, y);
+    if (x.compareTo(y) >= 0) {
+      x.subTo(y, x);
+      x.rShiftTo(1, x);
+    } else {
+      y.subTo(x, y);
+      y.rShiftTo(1, y);
+    }
+  }
+  if (g > 0) y.lShiftTo(g, y);
+  return y;
+}
+
+// (protected) this % n, n < 2^26
+function bnpModInt(n) {
+  if (n <= 0) return 0;
+  var d = this.DV % n,
+      r = this.s < 0 ? n - 1 : 0;
+  if (this.t > 0) if (d == 0) r = this[0] % n;else for (var i = this.t - 1; i >= 0; --i) {
+    r = (d * r + this[i]) % n;
+  }return r;
+}
+
+// (public) 1/this % m (HAC 14.61)
+function bnModInverse(m) {
+  var ac = m.isEven();
+  if (this.isEven() && ac || m.signum() == 0) return BigInteger.ZERO;
+  var u = m.clone(),
+      v = this.clone();
+  var a = nbv(1),
+      b = nbv(0),
+      c = nbv(0),
+      d = nbv(1);
+  while (u.signum() != 0) {
+    while (u.isEven()) {
+      u.rShiftTo(1, u);
+      if (ac) {
+        if (!a.isEven() || !b.isEven()) {
+          a.addTo(this, a);b.subTo(m, b);
+        }
+        a.rShiftTo(1, a);
+      } else if (!b.isEven()) b.subTo(m, b);
+      b.rShiftTo(1, b);
+    }
+    while (v.isEven()) {
+      v.rShiftTo(1, v);
+      if (ac) {
+        if (!c.isEven() || !d.isEven()) {
+          c.addTo(this, c);d.subTo(m, d);
+        }
+        c.rShiftTo(1, c);
+      } else if (!d.isEven()) d.subTo(m, d);
+      d.rShiftTo(1, d);
+    }
+    if (u.compareTo(v) >= 0) {
+      u.subTo(v, u);
+      if (ac) a.subTo(c, a);
+      b.subTo(d, b);
+    } else {
+      v.subTo(u, v);
+      if (ac) c.subTo(a, c);
+      d.subTo(b, d);
+    }
+  }
+  if (v.compareTo(BigInteger.ONE) != 0) return BigInteger.ZERO;
+  if (d.compareTo(m) >= 0) return d.subtract(m);
+  if (d.signum() < 0) d.addTo(m, d);else return d;
+  if (d.signum() < 0) return d.add(m);else return d;
+}
+
+var lowprimes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809, 811, 821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887, 907, 911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997];
+var lplim = (1 << 26) / lowprimes[lowprimes.length - 1];
+
+// (public) test primality with certainty >= 1-.5^t
+function bnIsProbablePrime(t) {
+  var i,
+      x = this.abs();
+  if (x.t == 1 && x[0] <= lowprimes[lowprimes.length - 1]) {
+    for (i = 0; i < lowprimes.length; ++i) {
+      if (x[0] == lowprimes[i]) return true;
+    }return false;
+  }
+  if (x.isEven()) return false;
+  i = 1;
+  while (i < lowprimes.length) {
+    var m = lowprimes[i],
+        j = i + 1;
+    while (j < lowprimes.length && m < lplim) {
+      m *= lowprimes[j++];
+    }m = x.modInt(m);
+    while (i < j) {
+      if (m % lowprimes[i++] == 0) return false;
+    }
+  }
+  return x.millerRabin(t);
+}
+
+// (protected) true if probably prime (HAC 4.24, Miller-Rabin)
+function bnpMillerRabin(t) {
+  var n1 = this.subtract(BigInteger.ONE);
+  var k = n1.getLowestSetBit();
+  if (k <= 0) return false;
+  var r = n1.shiftRight(k);
+  t = t + 1 >> 1;
+  if (t > lowprimes.length) t = lowprimes.length;
+  var a = nbi();
+  for (var i = 0; i < t; ++i) {
+    //Pick bases at random, instead of starting at 2
+    a.fromInt(lowprimes[Math.floor(Math.random() * lowprimes.length)]);
+    var y = a.modPow(r, this);
+    if (y.compareTo(BigInteger.ONE) != 0 && y.compareTo(n1) != 0) {
+      var j = 1;
+      while (j++ < k && y.compareTo(n1) != 0) {
+        y = y.modPowInt(2, this);
+        if (y.compareTo(BigInteger.ONE) == 0) return false;
+      }
+      if (y.compareTo(n1) != 0) return false;
+    }
+  }
+  return true;
+}
+
+// protected
+BigInteger.prototype.chunkSize = bnpChunkSize;
+BigInteger.prototype.toRadix = bnpToRadix;
+BigInteger.prototype.fromRadix = bnpFromRadix;
+BigInteger.prototype.fromNumber = bnpFromNumber;
+BigInteger.prototype.bitwiseTo = bnpBitwiseTo;
+BigInteger.prototype.changeBit = bnpChangeBit;
+BigInteger.prototype.addTo = bnpAddTo;
+BigInteger.prototype.dMultiply = bnpDMultiply;
+BigInteger.prototype.dAddOffset = bnpDAddOffset;
+BigInteger.prototype.multiplyLowerTo = bnpMultiplyLowerTo;
+BigInteger.prototype.multiplyUpperTo = bnpMultiplyUpperTo;
+BigInteger.prototype.modInt = bnpModInt;
+BigInteger.prototype.millerRabin = bnpMillerRabin;
+
+// public
+BigInteger.prototype.clone = bnClone;
+BigInteger.prototype.intValue = bnIntValue;
+BigInteger.prototype.byteValue = bnByteValue;
+BigInteger.prototype.shortValue = bnShortValue;
+BigInteger.prototype.signum = bnSigNum;
+BigInteger.prototype.toByteArray = bnToByteArray;
+BigInteger.prototype.equals = bnEquals;
+BigInteger.prototype.min = bnMin;
+BigInteger.prototype.max = bnMax;
+BigInteger.prototype.and = bnAnd;
+BigInteger.prototype.or = bnOr;
+BigInteger.prototype.xor = bnXor;
+BigInteger.prototype.andNot = bnAndNot;
+BigInteger.prototype.not = bnNot;
+BigInteger.prototype.shiftLeft = bnShiftLeft;
+BigInteger.prototype.shiftRight = bnShiftRight;
+BigInteger.prototype.getLowestSetBit = bnGetLowestSetBit;
+BigInteger.prototype.bitCount = bnBitCount;
+BigInteger.prototype.testBit = bnTestBit;
+BigInteger.prototype.setBit = bnSetBit;
+BigInteger.prototype.clearBit = bnClearBit;
+BigInteger.prototype.flipBit = bnFlipBit;
+BigInteger.prototype.add = bnAdd;
+BigInteger.prototype.subtract = bnSubtract;
+BigInteger.prototype.multiply = bnMultiply;
+BigInteger.prototype.divide = bnDivide;
+BigInteger.prototype.remainder = bnRemainder;
+BigInteger.prototype.divideAndRemainder = bnDivideAndRemainder;
+BigInteger.prototype.modPow = bnModPow;
+BigInteger.prototype.modInverse = bnModInverse;
+BigInteger.prototype.pow = bnPow;
+BigInteger.prototype.gcd = bnGCD;
+BigInteger.prototype.isProbablePrime = bnIsProbablePrime;
+
+// JSBN-specific extension
+BigInteger.prototype.square = bnSquare;
+
+// BigInteger interfaces not implemented in jsbn:
+
+// BigInteger(int signum, byte[] magnitude)
+// double doubleValue()
+// float floatValue()
+// int hashCode()
+// long longValue()
+// static BigInteger valueOf(long val)
+
+exports.default = BigInteger;
+module.exports = exports["default"];
+});
+
+unwrapExports(BigInteger_1);
+
+var naclFast$2 = createCommonjsModule(function (module) {
+(function(nacl) {
+'use strict';
+
+// Ported in 2014 by Dmitry Chestnykh and Devi Mandiri.
+// Public domain.
+//
+// Implementation derived from TweetNaCl version 20140427.
+// See for details: http://tweetnacl.cr.yp.to/
+
+var gf = function(init) {
+  var i, r = new Float64Array(16);
+  if (init) for (i = 0; i < init.length; i++) r[i] = init[i];
+  return r;
+};
+
+//  Pluggable, initialized in high-level API below.
+var randombytes = function(/* x, n */) { throw new Error('no PRNG'); };
+
+var _0 = new Uint8Array(16);
+var _9 = new Uint8Array(32); _9[0] = 9;
+
+var gf0 = gf(),
+    gf1 = gf([1]),
+    _121665 = gf([0xdb41, 1]),
+    D = gf([0x78a3, 0x1359, 0x4dca, 0x75eb, 0xd8ab, 0x4141, 0x0a4d, 0x0070, 0xe898, 0x7779, 0x4079, 0x8cc7, 0xfe73, 0x2b6f, 0x6cee, 0x5203]),
+    D2 = gf([0xf159, 0x26b2, 0x9b94, 0xebd6, 0xb156, 0x8283, 0x149a, 0x00e0, 0xd130, 0xeef3, 0x80f2, 0x198e, 0xfce7, 0x56df, 0xd9dc, 0x2406]),
+    X = gf([0xd51a, 0x8f25, 0x2d60, 0xc956, 0xa7b2, 0x9525, 0xc760, 0x692c, 0xdc5c, 0xfdd6, 0xe231, 0xc0a4, 0x53fe, 0xcd6e, 0x36d3, 0x2169]),
+    Y = gf([0x6658, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666]),
+    I = gf([0xa0b0, 0x4a0e, 0x1b27, 0xc4ee, 0xe478, 0xad2f, 0x1806, 0x2f43, 0xd7a7, 0x3dfb, 0x0099, 0x2b4d, 0xdf0b, 0x4fc1, 0x2480, 0x2b83]);
+
+function ts64(x, i, h, l) {
+  x[i]   = (h >> 24) & 0xff;
+  x[i+1] = (h >> 16) & 0xff;
+  x[i+2] = (h >>  8) & 0xff;
+  x[i+3] = h & 0xff;
+  x[i+4] = (l >> 24)  & 0xff;
+  x[i+5] = (l >> 16)  & 0xff;
+  x[i+6] = (l >>  8)  & 0xff;
+  x[i+7] = l & 0xff;
+}
+
+function vn(x, xi, y, yi, n) {
+  var i,d = 0;
+  for (i = 0; i < n; i++) d |= x[xi+i]^y[yi+i];
+  return (1 & ((d - 1) >>> 8)) - 1;
+}
+
+function crypto_verify_16(x, xi, y, yi) {
+  return vn(x,xi,y,yi,16);
+}
+
+function crypto_verify_32(x, xi, y, yi) {
+  return vn(x,xi,y,yi,32);
+}
+
+function core_salsa20(o, p, k, c) {
+  var j0  = c[ 0] & 0xff | (c[ 1] & 0xff)<<8 | (c[ 2] & 0xff)<<16 | (c[ 3] & 0xff)<<24,
+      j1  = k[ 0] & 0xff | (k[ 1] & 0xff)<<8 | (k[ 2] & 0xff)<<16 | (k[ 3] & 0xff)<<24,
+      j2  = k[ 4] & 0xff | (k[ 5] & 0xff)<<8 | (k[ 6] & 0xff)<<16 | (k[ 7] & 0xff)<<24,
+      j3  = k[ 8] & 0xff | (k[ 9] & 0xff)<<8 | (k[10] & 0xff)<<16 | (k[11] & 0xff)<<24,
+      j4  = k[12] & 0xff | (k[13] & 0xff)<<8 | (k[14] & 0xff)<<16 | (k[15] & 0xff)<<24,
+      j5  = c[ 4] & 0xff | (c[ 5] & 0xff)<<8 | (c[ 6] & 0xff)<<16 | (c[ 7] & 0xff)<<24,
+      j6  = p[ 0] & 0xff | (p[ 1] & 0xff)<<8 | (p[ 2] & 0xff)<<16 | (p[ 3] & 0xff)<<24,
+      j7  = p[ 4] & 0xff | (p[ 5] & 0xff)<<8 | (p[ 6] & 0xff)<<16 | (p[ 7] & 0xff)<<24,
+      j8  = p[ 8] & 0xff | (p[ 9] & 0xff)<<8 | (p[10] & 0xff)<<16 | (p[11] & 0xff)<<24,
+      j9  = p[12] & 0xff | (p[13] & 0xff)<<8 | (p[14] & 0xff)<<16 | (p[15] & 0xff)<<24,
+      j10 = c[ 8] & 0xff | (c[ 9] & 0xff)<<8 | (c[10] & 0xff)<<16 | (c[11] & 0xff)<<24,
+      j11 = k[16] & 0xff | (k[17] & 0xff)<<8 | (k[18] & 0xff)<<16 | (k[19] & 0xff)<<24,
+      j12 = k[20] & 0xff | (k[21] & 0xff)<<8 | (k[22] & 0xff)<<16 | (k[23] & 0xff)<<24,
+      j13 = k[24] & 0xff | (k[25] & 0xff)<<8 | (k[26] & 0xff)<<16 | (k[27] & 0xff)<<24,
+      j14 = k[28] & 0xff | (k[29] & 0xff)<<8 | (k[30] & 0xff)<<16 | (k[31] & 0xff)<<24,
+      j15 = c[12] & 0xff | (c[13] & 0xff)<<8 | (c[14] & 0xff)<<16 | (c[15] & 0xff)<<24;
+
+  var x0 = j0, x1 = j1, x2 = j2, x3 = j3, x4 = j4, x5 = j5, x6 = j6, x7 = j7,
+      x8 = j8, x9 = j9, x10 = j10, x11 = j11, x12 = j12, x13 = j13, x14 = j14,
+      x15 = j15, u;
+
+  for (var i = 0; i < 20; i += 2) {
+    u = x0 + x12 | 0;
+    x4 ^= u<<7 | u>>>(32-7);
+    u = x4 + x0 | 0;
+    x8 ^= u<<9 | u>>>(32-9);
+    u = x8 + x4 | 0;
+    x12 ^= u<<13 | u>>>(32-13);
+    u = x12 + x8 | 0;
+    x0 ^= u<<18 | u>>>(32-18);
+
+    u = x5 + x1 | 0;
+    x9 ^= u<<7 | u>>>(32-7);
+    u = x9 + x5 | 0;
+    x13 ^= u<<9 | u>>>(32-9);
+    u = x13 + x9 | 0;
+    x1 ^= u<<13 | u>>>(32-13);
+    u = x1 + x13 | 0;
+    x5 ^= u<<18 | u>>>(32-18);
+
+    u = x10 + x6 | 0;
+    x14 ^= u<<7 | u>>>(32-7);
+    u = x14 + x10 | 0;
+    x2 ^= u<<9 | u>>>(32-9);
+    u = x2 + x14 | 0;
+    x6 ^= u<<13 | u>>>(32-13);
+    u = x6 + x2 | 0;
+    x10 ^= u<<18 | u>>>(32-18);
+
+    u = x15 + x11 | 0;
+    x3 ^= u<<7 | u>>>(32-7);
+    u = x3 + x15 | 0;
+    x7 ^= u<<9 | u>>>(32-9);
+    u = x7 + x3 | 0;
+    x11 ^= u<<13 | u>>>(32-13);
+    u = x11 + x7 | 0;
+    x15 ^= u<<18 | u>>>(32-18);
+
+    u = x0 + x3 | 0;
+    x1 ^= u<<7 | u>>>(32-7);
+    u = x1 + x0 | 0;
+    x2 ^= u<<9 | u>>>(32-9);
+    u = x2 + x1 | 0;
+    x3 ^= u<<13 | u>>>(32-13);
+    u = x3 + x2 | 0;
+    x0 ^= u<<18 | u>>>(32-18);
+
+    u = x5 + x4 | 0;
+    x6 ^= u<<7 | u>>>(32-7);
+    u = x6 + x5 | 0;
+    x7 ^= u<<9 | u>>>(32-9);
+    u = x7 + x6 | 0;
+    x4 ^= u<<13 | u>>>(32-13);
+    u = x4 + x7 | 0;
+    x5 ^= u<<18 | u>>>(32-18);
+
+    u = x10 + x9 | 0;
+    x11 ^= u<<7 | u>>>(32-7);
+    u = x11 + x10 | 0;
+    x8 ^= u<<9 | u>>>(32-9);
+    u = x8 + x11 | 0;
+    x9 ^= u<<13 | u>>>(32-13);
+    u = x9 + x8 | 0;
+    x10 ^= u<<18 | u>>>(32-18);
+
+    u = x15 + x14 | 0;
+    x12 ^= u<<7 | u>>>(32-7);
+    u = x12 + x15 | 0;
+    x13 ^= u<<9 | u>>>(32-9);
+    u = x13 + x12 | 0;
+    x14 ^= u<<13 | u>>>(32-13);
+    u = x14 + x13 | 0;
+    x15 ^= u<<18 | u>>>(32-18);
+  }
+   x0 =  x0 +  j0 | 0;
+   x1 =  x1 +  j1 | 0;
+   x2 =  x2 +  j2 | 0;
+   x3 =  x3 +  j3 | 0;
+   x4 =  x4 +  j4 | 0;
+   x5 =  x5 +  j5 | 0;
+   x6 =  x6 +  j6 | 0;
+   x7 =  x7 +  j7 | 0;
+   x8 =  x8 +  j8 | 0;
+   x9 =  x9 +  j9 | 0;
+  x10 = x10 + j10 | 0;
+  x11 = x11 + j11 | 0;
+  x12 = x12 + j12 | 0;
+  x13 = x13 + j13 | 0;
+  x14 = x14 + j14 | 0;
+  x15 = x15 + j15 | 0;
+
+  o[ 0] = x0 >>>  0 & 0xff;
+  o[ 1] = x0 >>>  8 & 0xff;
+  o[ 2] = x0 >>> 16 & 0xff;
+  o[ 3] = x0 >>> 24 & 0xff;
+
+  o[ 4] = x1 >>>  0 & 0xff;
+  o[ 5] = x1 >>>  8 & 0xff;
+  o[ 6] = x1 >>> 16 & 0xff;
+  o[ 7] = x1 >>> 24 & 0xff;
+
+  o[ 8] = x2 >>>  0 & 0xff;
+  o[ 9] = x2 >>>  8 & 0xff;
+  o[10] = x2 >>> 16 & 0xff;
+  o[11] = x2 >>> 24 & 0xff;
+
+  o[12] = x3 >>>  0 & 0xff;
+  o[13] = x3 >>>  8 & 0xff;
+  o[14] = x3 >>> 16 & 0xff;
+  o[15] = x3 >>> 24 & 0xff;
+
+  o[16] = x4 >>>  0 & 0xff;
+  o[17] = x4 >>>  8 & 0xff;
+  o[18] = x4 >>> 16 & 0xff;
+  o[19] = x4 >>> 24 & 0xff;
+
+  o[20] = x5 >>>  0 & 0xff;
+  o[21] = x5 >>>  8 & 0xff;
+  o[22] = x5 >>> 16 & 0xff;
+  o[23] = x5 >>> 24 & 0xff;
+
+  o[24] = x6 >>>  0 & 0xff;
+  o[25] = x6 >>>  8 & 0xff;
+  o[26] = x6 >>> 16 & 0xff;
+  o[27] = x6 >>> 24 & 0xff;
+
+  o[28] = x7 >>>  0 & 0xff;
+  o[29] = x7 >>>  8 & 0xff;
+  o[30] = x7 >>> 16 & 0xff;
+  o[31] = x7 >>> 24 & 0xff;
+
+  o[32] = x8 >>>  0 & 0xff;
+  o[33] = x8 >>>  8 & 0xff;
+  o[34] = x8 >>> 16 & 0xff;
+  o[35] = x8 >>> 24 & 0xff;
+
+  o[36] = x9 >>>  0 & 0xff;
+  o[37] = x9 >>>  8 & 0xff;
+  o[38] = x9 >>> 16 & 0xff;
+  o[39] = x9 >>> 24 & 0xff;
+
+  o[40] = x10 >>>  0 & 0xff;
+  o[41] = x10 >>>  8 & 0xff;
+  o[42] = x10 >>> 16 & 0xff;
+  o[43] = x10 >>> 24 & 0xff;
+
+  o[44] = x11 >>>  0 & 0xff;
+  o[45] = x11 >>>  8 & 0xff;
+  o[46] = x11 >>> 16 & 0xff;
+  o[47] = x11 >>> 24 & 0xff;
+
+  o[48] = x12 >>>  0 & 0xff;
+  o[49] = x12 >>>  8 & 0xff;
+  o[50] = x12 >>> 16 & 0xff;
+  o[51] = x12 >>> 24 & 0xff;
+
+  o[52] = x13 >>>  0 & 0xff;
+  o[53] = x13 >>>  8 & 0xff;
+  o[54] = x13 >>> 16 & 0xff;
+  o[55] = x13 >>> 24 & 0xff;
+
+  o[56] = x14 >>>  0 & 0xff;
+  o[57] = x14 >>>  8 & 0xff;
+  o[58] = x14 >>> 16 & 0xff;
+  o[59] = x14 >>> 24 & 0xff;
+
+  o[60] = x15 >>>  0 & 0xff;
+  o[61] = x15 >>>  8 & 0xff;
+  o[62] = x15 >>> 16 & 0xff;
+  o[63] = x15 >>> 24 & 0xff;
+}
+
+function core_hsalsa20(o,p,k,c) {
+  var j0  = c[ 0] & 0xff | (c[ 1] & 0xff)<<8 | (c[ 2] & 0xff)<<16 | (c[ 3] & 0xff)<<24,
+      j1  = k[ 0] & 0xff | (k[ 1] & 0xff)<<8 | (k[ 2] & 0xff)<<16 | (k[ 3] & 0xff)<<24,
+      j2  = k[ 4] & 0xff | (k[ 5] & 0xff)<<8 | (k[ 6] & 0xff)<<16 | (k[ 7] & 0xff)<<24,
+      j3  = k[ 8] & 0xff | (k[ 9] & 0xff)<<8 | (k[10] & 0xff)<<16 | (k[11] & 0xff)<<24,
+      j4  = k[12] & 0xff | (k[13] & 0xff)<<8 | (k[14] & 0xff)<<16 | (k[15] & 0xff)<<24,
+      j5  = c[ 4] & 0xff | (c[ 5] & 0xff)<<8 | (c[ 6] & 0xff)<<16 | (c[ 7] & 0xff)<<24,
+      j6  = p[ 0] & 0xff | (p[ 1] & 0xff)<<8 | (p[ 2] & 0xff)<<16 | (p[ 3] & 0xff)<<24,
+      j7  = p[ 4] & 0xff | (p[ 5] & 0xff)<<8 | (p[ 6] & 0xff)<<16 | (p[ 7] & 0xff)<<24,
+      j8  = p[ 8] & 0xff | (p[ 9] & 0xff)<<8 | (p[10] & 0xff)<<16 | (p[11] & 0xff)<<24,
+      j9  = p[12] & 0xff | (p[13] & 0xff)<<8 | (p[14] & 0xff)<<16 | (p[15] & 0xff)<<24,
+      j10 = c[ 8] & 0xff | (c[ 9] & 0xff)<<8 | (c[10] & 0xff)<<16 | (c[11] & 0xff)<<24,
+      j11 = k[16] & 0xff | (k[17] & 0xff)<<8 | (k[18] & 0xff)<<16 | (k[19] & 0xff)<<24,
+      j12 = k[20] & 0xff | (k[21] & 0xff)<<8 | (k[22] & 0xff)<<16 | (k[23] & 0xff)<<24,
+      j13 = k[24] & 0xff | (k[25] & 0xff)<<8 | (k[26] & 0xff)<<16 | (k[27] & 0xff)<<24,
+      j14 = k[28] & 0xff | (k[29] & 0xff)<<8 | (k[30] & 0xff)<<16 | (k[31] & 0xff)<<24,
+      j15 = c[12] & 0xff | (c[13] & 0xff)<<8 | (c[14] & 0xff)<<16 | (c[15] & 0xff)<<24;
+
+  var x0 = j0, x1 = j1, x2 = j2, x3 = j3, x4 = j4, x5 = j5, x6 = j6, x7 = j7,
+      x8 = j8, x9 = j9, x10 = j10, x11 = j11, x12 = j12, x13 = j13, x14 = j14,
+      x15 = j15, u;
+
+  for (var i = 0; i < 20; i += 2) {
+    u = x0 + x12 | 0;
+    x4 ^= u<<7 | u>>>(32-7);
+    u = x4 + x0 | 0;
+    x8 ^= u<<9 | u>>>(32-9);
+    u = x8 + x4 | 0;
+    x12 ^= u<<13 | u>>>(32-13);
+    u = x12 + x8 | 0;
+    x0 ^= u<<18 | u>>>(32-18);
+
+    u = x5 + x1 | 0;
+    x9 ^= u<<7 | u>>>(32-7);
+    u = x9 + x5 | 0;
+    x13 ^= u<<9 | u>>>(32-9);
+    u = x13 + x9 | 0;
+    x1 ^= u<<13 | u>>>(32-13);
+    u = x1 + x13 | 0;
+    x5 ^= u<<18 | u>>>(32-18);
+
+    u = x10 + x6 | 0;
+    x14 ^= u<<7 | u>>>(32-7);
+    u = x14 + x10 | 0;
+    x2 ^= u<<9 | u>>>(32-9);
+    u = x2 + x14 | 0;
+    x6 ^= u<<13 | u>>>(32-13);
+    u = x6 + x2 | 0;
+    x10 ^= u<<18 | u>>>(32-18);
+
+    u = x15 + x11 | 0;
+    x3 ^= u<<7 | u>>>(32-7);
+    u = x3 + x15 | 0;
+    x7 ^= u<<9 | u>>>(32-9);
+    u = x7 + x3 | 0;
+    x11 ^= u<<13 | u>>>(32-13);
+    u = x11 + x7 | 0;
+    x15 ^= u<<18 | u>>>(32-18);
+
+    u = x0 + x3 | 0;
+    x1 ^= u<<7 | u>>>(32-7);
+    u = x1 + x0 | 0;
+    x2 ^= u<<9 | u>>>(32-9);
+    u = x2 + x1 | 0;
+    x3 ^= u<<13 | u>>>(32-13);
+    u = x3 + x2 | 0;
+    x0 ^= u<<18 | u>>>(32-18);
+
+    u = x5 + x4 | 0;
+    x6 ^= u<<7 | u>>>(32-7);
+    u = x6 + x5 | 0;
+    x7 ^= u<<9 | u>>>(32-9);
+    u = x7 + x6 | 0;
+    x4 ^= u<<13 | u>>>(32-13);
+    u = x4 + x7 | 0;
+    x5 ^= u<<18 | u>>>(32-18);
+
+    u = x10 + x9 | 0;
+    x11 ^= u<<7 | u>>>(32-7);
+    u = x11 + x10 | 0;
+    x8 ^= u<<9 | u>>>(32-9);
+    u = x8 + x11 | 0;
+    x9 ^= u<<13 | u>>>(32-13);
+    u = x9 + x8 | 0;
+    x10 ^= u<<18 | u>>>(32-18);
+
+    u = x15 + x14 | 0;
+    x12 ^= u<<7 | u>>>(32-7);
+    u = x12 + x15 | 0;
+    x13 ^= u<<9 | u>>>(32-9);
+    u = x13 + x12 | 0;
+    x14 ^= u<<13 | u>>>(32-13);
+    u = x14 + x13 | 0;
+    x15 ^= u<<18 | u>>>(32-18);
+  }
+
+  o[ 0] = x0 >>>  0 & 0xff;
+  o[ 1] = x0 >>>  8 & 0xff;
+  o[ 2] = x0 >>> 16 & 0xff;
+  o[ 3] = x0 >>> 24 & 0xff;
+
+  o[ 4] = x5 >>>  0 & 0xff;
+  o[ 5] = x5 >>>  8 & 0xff;
+  o[ 6] = x5 >>> 16 & 0xff;
+  o[ 7] = x5 >>> 24 & 0xff;
+
+  o[ 8] = x10 >>>  0 & 0xff;
+  o[ 9] = x10 >>>  8 & 0xff;
+  o[10] = x10 >>> 16 & 0xff;
+  o[11] = x10 >>> 24 & 0xff;
+
+  o[12] = x15 >>>  0 & 0xff;
+  o[13] = x15 >>>  8 & 0xff;
+  o[14] = x15 >>> 16 & 0xff;
+  o[15] = x15 >>> 24 & 0xff;
+
+  o[16] = x6 >>>  0 & 0xff;
+  o[17] = x6 >>>  8 & 0xff;
+  o[18] = x6 >>> 16 & 0xff;
+  o[19] = x6 >>> 24 & 0xff;
+
+  o[20] = x7 >>>  0 & 0xff;
+  o[21] = x7 >>>  8 & 0xff;
+  o[22] = x7 >>> 16 & 0xff;
+  o[23] = x7 >>> 24 & 0xff;
+
+  o[24] = x8 >>>  0 & 0xff;
+  o[25] = x8 >>>  8 & 0xff;
+  o[26] = x8 >>> 16 & 0xff;
+  o[27] = x8 >>> 24 & 0xff;
+
+  o[28] = x9 >>>  0 & 0xff;
+  o[29] = x9 >>>  8 & 0xff;
+  o[30] = x9 >>> 16 & 0xff;
+  o[31] = x9 >>> 24 & 0xff;
+}
+
+function crypto_core_salsa20(out,inp,k,c) {
+  core_salsa20(out,inp,k,c);
+}
+
+function crypto_core_hsalsa20(out,inp,k,c) {
+  core_hsalsa20(out,inp,k,c);
+}
+
+var sigma = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 121, 116, 101, 32, 107]);
+            // "expand 32-byte k"
+
+function crypto_stream_salsa20_xor(c,cpos,m,mpos,b,n,k) {
+  var z = new Uint8Array(16), x = new Uint8Array(64);
+  var u, i;
+  for (i = 0; i < 16; i++) z[i] = 0;
+  for (i = 0; i < 8; i++) z[i] = n[i];
+  while (b >= 64) {
+    crypto_core_salsa20(x,z,k,sigma);
+    for (i = 0; i < 64; i++) c[cpos+i] = m[mpos+i] ^ x[i];
+    u = 1;
+    for (i = 8; i < 16; i++) {
+      u = u + (z[i] & 0xff) | 0;
+      z[i] = u & 0xff;
+      u >>>= 8;
+    }
+    b -= 64;
+    cpos += 64;
+    mpos += 64;
+  }
+  if (b > 0) {
+    crypto_core_salsa20(x,z,k,sigma);
+    for (i = 0; i < b; i++) c[cpos+i] = m[mpos+i] ^ x[i];
+  }
+  return 0;
+}
+
+function crypto_stream_salsa20(c,cpos,b,n,k) {
+  var z = new Uint8Array(16), x = new Uint8Array(64);
+  var u, i;
+  for (i = 0; i < 16; i++) z[i] = 0;
+  for (i = 0; i < 8; i++) z[i] = n[i];
+  while (b >= 64) {
+    crypto_core_salsa20(x,z,k,sigma);
+    for (i = 0; i < 64; i++) c[cpos+i] = x[i];
+    u = 1;
+    for (i = 8; i < 16; i++) {
+      u = u + (z[i] & 0xff) | 0;
+      z[i] = u & 0xff;
+      u >>>= 8;
+    }
+    b -= 64;
+    cpos += 64;
+  }
+  if (b > 0) {
+    crypto_core_salsa20(x,z,k,sigma);
+    for (i = 0; i < b; i++) c[cpos+i] = x[i];
+  }
+  return 0;
+}
+
+function crypto_stream(c,cpos,d,n,k) {
+  var s = new Uint8Array(32);
+  crypto_core_hsalsa20(s,n,k,sigma);
+  var sn = new Uint8Array(8);
+  for (var i = 0; i < 8; i++) sn[i] = n[i+16];
+  return crypto_stream_salsa20(c,cpos,d,sn,s);
+}
+
+function crypto_stream_xor(c,cpos,m,mpos,d,n,k) {
+  var s = new Uint8Array(32);
+  crypto_core_hsalsa20(s,n,k,sigma);
+  var sn = new Uint8Array(8);
+  for (var i = 0; i < 8; i++) sn[i] = n[i+16];
+  return crypto_stream_salsa20_xor(c,cpos,m,mpos,d,sn,s);
+}
+
+/*
+* Port of Andrew Moon's Poly1305-donna-16. Public domain.
+* https://github.com/floodyberry/poly1305-donna
+*/
+
+var poly1305 = function(key) {
+  this.buffer = new Uint8Array(16);
+  this.r = new Uint16Array(10);
+  this.h = new Uint16Array(10);
+  this.pad = new Uint16Array(8);
+  this.leftover = 0;
+  this.fin = 0;
+
+  var t0, t1, t2, t3, t4, t5, t6, t7;
+
+  t0 = key[ 0] & 0xff | (key[ 1] & 0xff) << 8; this.r[0] = ( t0                     ) & 0x1fff;
+  t1 = key[ 2] & 0xff | (key[ 3] & 0xff) << 8; this.r[1] = ((t0 >>> 13) | (t1 <<  3)) & 0x1fff;
+  t2 = key[ 4] & 0xff | (key[ 5] & 0xff) << 8; this.r[2] = ((t1 >>> 10) | (t2 <<  6)) & 0x1f03;
+  t3 = key[ 6] & 0xff | (key[ 7] & 0xff) << 8; this.r[3] = ((t2 >>>  7) | (t3 <<  9)) & 0x1fff;
+  t4 = key[ 8] & 0xff | (key[ 9] & 0xff) << 8; this.r[4] = ((t3 >>>  4) | (t4 << 12)) & 0x00ff;
+  this.r[5] = ((t4 >>>  1)) & 0x1ffe;
+  t5 = key[10] & 0xff | (key[11] & 0xff) << 8; this.r[6] = ((t4 >>> 14) | (t5 <<  2)) & 0x1fff;
+  t6 = key[12] & 0xff | (key[13] & 0xff) << 8; this.r[7] = ((t5 >>> 11) | (t6 <<  5)) & 0x1f81;
+  t7 = key[14] & 0xff | (key[15] & 0xff) << 8; this.r[8] = ((t6 >>>  8) | (t7 <<  8)) & 0x1fff;
+  this.r[9] = ((t7 >>>  5)) & 0x007f;
+
+  this.pad[0] = key[16] & 0xff | (key[17] & 0xff) << 8;
+  this.pad[1] = key[18] & 0xff | (key[19] & 0xff) << 8;
+  this.pad[2] = key[20] & 0xff | (key[21] & 0xff) << 8;
+  this.pad[3] = key[22] & 0xff | (key[23] & 0xff) << 8;
+  this.pad[4] = key[24] & 0xff | (key[25] & 0xff) << 8;
+  this.pad[5] = key[26] & 0xff | (key[27] & 0xff) << 8;
+  this.pad[6] = key[28] & 0xff | (key[29] & 0xff) << 8;
+  this.pad[7] = key[30] & 0xff | (key[31] & 0xff) << 8;
+};
+
+poly1305.prototype.blocks = function(m, mpos, bytes) {
+  var hibit = this.fin ? 0 : (1 << 11);
+  var t0, t1, t2, t3, t4, t5, t6, t7, c;
+  var d0, d1, d2, d3, d4, d5, d6, d7, d8, d9;
+
+  var h0 = this.h[0],
+      h1 = this.h[1],
+      h2 = this.h[2],
+      h3 = this.h[3],
+      h4 = this.h[4],
+      h5 = this.h[5],
+      h6 = this.h[6],
+      h7 = this.h[7],
+      h8 = this.h[8],
+      h9 = this.h[9];
+
+  var r0 = this.r[0],
+      r1 = this.r[1],
+      r2 = this.r[2],
+      r3 = this.r[3],
+      r4 = this.r[4],
+      r5 = this.r[5],
+      r6 = this.r[6],
+      r7 = this.r[7],
+      r8 = this.r[8],
+      r9 = this.r[9];
+
+  while (bytes >= 16) {
+    t0 = m[mpos+ 0] & 0xff | (m[mpos+ 1] & 0xff) << 8; h0 += ( t0                     ) & 0x1fff;
+    t1 = m[mpos+ 2] & 0xff | (m[mpos+ 3] & 0xff) << 8; h1 += ((t0 >>> 13) | (t1 <<  3)) & 0x1fff;
+    t2 = m[mpos+ 4] & 0xff | (m[mpos+ 5] & 0xff) << 8; h2 += ((t1 >>> 10) | (t2 <<  6)) & 0x1fff;
+    t3 = m[mpos+ 6] & 0xff | (m[mpos+ 7] & 0xff) << 8; h3 += ((t2 >>>  7) | (t3 <<  9)) & 0x1fff;
+    t4 = m[mpos+ 8] & 0xff | (m[mpos+ 9] & 0xff) << 8; h4 += ((t3 >>>  4) | (t4 << 12)) & 0x1fff;
+    h5 += ((t4 >>>  1)) & 0x1fff;
+    t5 = m[mpos+10] & 0xff | (m[mpos+11] & 0xff) << 8; h6 += ((t4 >>> 14) | (t5 <<  2)) & 0x1fff;
+    t6 = m[mpos+12] & 0xff | (m[mpos+13] & 0xff) << 8; h7 += ((t5 >>> 11) | (t6 <<  5)) & 0x1fff;
+    t7 = m[mpos+14] & 0xff | (m[mpos+15] & 0xff) << 8; h8 += ((t6 >>>  8) | (t7 <<  8)) & 0x1fff;
+    h9 += ((t7 >>> 5)) | hibit;
+
+    c = 0;
+
+    d0 = c;
+    d0 += h0 * r0;
+    d0 += h1 * (5 * r9);
+    d0 += h2 * (5 * r8);
+    d0 += h3 * (5 * r7);
+    d0 += h4 * (5 * r6);
+    c = (d0 >>> 13); d0 &= 0x1fff;
+    d0 += h5 * (5 * r5);
+    d0 += h6 * (5 * r4);
+    d0 += h7 * (5 * r3);
+    d0 += h8 * (5 * r2);
+    d0 += h9 * (5 * r1);
+    c += (d0 >>> 13); d0 &= 0x1fff;
+
+    d1 = c;
+    d1 += h0 * r1;
+    d1 += h1 * r0;
+    d1 += h2 * (5 * r9);
+    d1 += h3 * (5 * r8);
+    d1 += h4 * (5 * r7);
+    c = (d1 >>> 13); d1 &= 0x1fff;
+    d1 += h5 * (5 * r6);
+    d1 += h6 * (5 * r5);
+    d1 += h7 * (5 * r4);
+    d1 += h8 * (5 * r3);
+    d1 += h9 * (5 * r2);
+    c += (d1 >>> 13); d1 &= 0x1fff;
+
+    d2 = c;
+    d2 += h0 * r2;
+    d2 += h1 * r1;
+    d2 += h2 * r0;
+    d2 += h3 * (5 * r9);
+    d2 += h4 * (5 * r8);
+    c = (d2 >>> 13); d2 &= 0x1fff;
+    d2 += h5 * (5 * r7);
+    d2 += h6 * (5 * r6);
+    d2 += h7 * (5 * r5);
+    d2 += h8 * (5 * r4);
+    d2 += h9 * (5 * r3);
+    c += (d2 >>> 13); d2 &= 0x1fff;
+
+    d3 = c;
+    d3 += h0 * r3;
+    d3 += h1 * r2;
+    d3 += h2 * r1;
+    d3 += h3 * r0;
+    d3 += h4 * (5 * r9);
+    c = (d3 >>> 13); d3 &= 0x1fff;
+    d3 += h5 * (5 * r8);
+    d3 += h6 * (5 * r7);
+    d3 += h7 * (5 * r6);
+    d3 += h8 * (5 * r5);
+    d3 += h9 * (5 * r4);
+    c += (d3 >>> 13); d3 &= 0x1fff;
+
+    d4 = c;
+    d4 += h0 * r4;
+    d4 += h1 * r3;
+    d4 += h2 * r2;
+    d4 += h3 * r1;
+    d4 += h4 * r0;
+    c = (d4 >>> 13); d4 &= 0x1fff;
+    d4 += h5 * (5 * r9);
+    d4 += h6 * (5 * r8);
+    d4 += h7 * (5 * r7);
+    d4 += h8 * (5 * r6);
+    d4 += h9 * (5 * r5);
+    c += (d4 >>> 13); d4 &= 0x1fff;
+
+    d5 = c;
+    d5 += h0 * r5;
+    d5 += h1 * r4;
+    d5 += h2 * r3;
+    d5 += h3 * r2;
+    d5 += h4 * r1;
+    c = (d5 >>> 13); d5 &= 0x1fff;
+    d5 += h5 * r0;
+    d5 += h6 * (5 * r9);
+    d5 += h7 * (5 * r8);
+    d5 += h8 * (5 * r7);
+    d5 += h9 * (5 * r6);
+    c += (d5 >>> 13); d5 &= 0x1fff;
+
+    d6 = c;
+    d6 += h0 * r6;
+    d6 += h1 * r5;
+    d6 += h2 * r4;
+    d6 += h3 * r3;
+    d6 += h4 * r2;
+    c = (d6 >>> 13); d6 &= 0x1fff;
+    d6 += h5 * r1;
+    d6 += h6 * r0;
+    d6 += h7 * (5 * r9);
+    d6 += h8 * (5 * r8);
+    d6 += h9 * (5 * r7);
+    c += (d6 >>> 13); d6 &= 0x1fff;
+
+    d7 = c;
+    d7 += h0 * r7;
+    d7 += h1 * r6;
+    d7 += h2 * r5;
+    d7 += h3 * r4;
+    d7 += h4 * r3;
+    c = (d7 >>> 13); d7 &= 0x1fff;
+    d7 += h5 * r2;
+    d7 += h6 * r1;
+    d7 += h7 * r0;
+    d7 += h8 * (5 * r9);
+    d7 += h9 * (5 * r8);
+    c += (d7 >>> 13); d7 &= 0x1fff;
+
+    d8 = c;
+    d8 += h0 * r8;
+    d8 += h1 * r7;
+    d8 += h2 * r6;
+    d8 += h3 * r5;
+    d8 += h4 * r4;
+    c = (d8 >>> 13); d8 &= 0x1fff;
+    d8 += h5 * r3;
+    d8 += h6 * r2;
+    d8 += h7 * r1;
+    d8 += h8 * r0;
+    d8 += h9 * (5 * r9);
+    c += (d8 >>> 13); d8 &= 0x1fff;
+
+    d9 = c;
+    d9 += h0 * r9;
+    d9 += h1 * r8;
+    d9 += h2 * r7;
+    d9 += h3 * r6;
+    d9 += h4 * r5;
+    c = (d9 >>> 13); d9 &= 0x1fff;
+    d9 += h5 * r4;
+    d9 += h6 * r3;
+    d9 += h7 * r2;
+    d9 += h8 * r1;
+    d9 += h9 * r0;
+    c += (d9 >>> 13); d9 &= 0x1fff;
+
+    c = (((c << 2) + c)) | 0;
+    c = (c + d0) | 0;
+    d0 = c & 0x1fff;
+    c = (c >>> 13);
+    d1 += c;
+
+    h0 = d0;
+    h1 = d1;
+    h2 = d2;
+    h3 = d3;
+    h4 = d4;
+    h5 = d5;
+    h6 = d6;
+    h7 = d7;
+    h8 = d8;
+    h9 = d9;
+
+    mpos += 16;
+    bytes -= 16;
+  }
+  this.h[0] = h0;
+  this.h[1] = h1;
+  this.h[2] = h2;
+  this.h[3] = h3;
+  this.h[4] = h4;
+  this.h[5] = h5;
+  this.h[6] = h6;
+  this.h[7] = h7;
+  this.h[8] = h8;
+  this.h[9] = h9;
+};
+
+poly1305.prototype.finish = function(mac, macpos) {
+  var g = new Uint16Array(10);
+  var c, mask, f, i;
+
+  if (this.leftover) {
+    i = this.leftover;
+    this.buffer[i++] = 1;
+    for (; i < 16; i++) this.buffer[i] = 0;
+    this.fin = 1;
+    this.blocks(this.buffer, 0, 16);
+  }
+
+  c = this.h[1] >>> 13;
+  this.h[1] &= 0x1fff;
+  for (i = 2; i < 10; i++) {
+    this.h[i] += c;
+    c = this.h[i] >>> 13;
+    this.h[i] &= 0x1fff;
+  }
+  this.h[0] += (c * 5);
+  c = this.h[0] >>> 13;
+  this.h[0] &= 0x1fff;
+  this.h[1] += c;
+  c = this.h[1] >>> 13;
+  this.h[1] &= 0x1fff;
+  this.h[2] += c;
+
+  g[0] = this.h[0] + 5;
+  c = g[0] >>> 13;
+  g[0] &= 0x1fff;
+  for (i = 1; i < 10; i++) {
+    g[i] = this.h[i] + c;
+    c = g[i] >>> 13;
+    g[i] &= 0x1fff;
+  }
+  g[9] -= (1 << 13);
+
+  mask = (c ^ 1) - 1;
+  for (i = 0; i < 10; i++) g[i] &= mask;
+  mask = ~mask;
+  for (i = 0; i < 10; i++) this.h[i] = (this.h[i] & mask) | g[i];
+
+  this.h[0] = ((this.h[0]       ) | (this.h[1] << 13)                    ) & 0xffff;
+  this.h[1] = ((this.h[1] >>>  3) | (this.h[2] << 10)                    ) & 0xffff;
+  this.h[2] = ((this.h[2] >>>  6) | (this.h[3] <<  7)                    ) & 0xffff;
+  this.h[3] = ((this.h[3] >>>  9) | (this.h[4] <<  4)                    ) & 0xffff;
+  this.h[4] = ((this.h[4] >>> 12) | (this.h[5] <<  1) | (this.h[6] << 14)) & 0xffff;
+  this.h[5] = ((this.h[6] >>>  2) | (this.h[7] << 11)                    ) & 0xffff;
+  this.h[6] = ((this.h[7] >>>  5) | (this.h[8] <<  8)                    ) & 0xffff;
+  this.h[7] = ((this.h[8] >>>  8) | (this.h[9] <<  5)                    ) & 0xffff;
+
+  f = this.h[0] + this.pad[0];
+  this.h[0] = f & 0xffff;
+  for (i = 1; i < 8; i++) {
+    f = (((this.h[i] + this.pad[i]) | 0) + (f >>> 16)) | 0;
+    this.h[i] = f & 0xffff;
+  }
+
+  mac[macpos+ 0] = (this.h[0] >>> 0) & 0xff;
+  mac[macpos+ 1] = (this.h[0] >>> 8) & 0xff;
+  mac[macpos+ 2] = (this.h[1] >>> 0) & 0xff;
+  mac[macpos+ 3] = (this.h[1] >>> 8) & 0xff;
+  mac[macpos+ 4] = (this.h[2] >>> 0) & 0xff;
+  mac[macpos+ 5] = (this.h[2] >>> 8) & 0xff;
+  mac[macpos+ 6] = (this.h[3] >>> 0) & 0xff;
+  mac[macpos+ 7] = (this.h[3] >>> 8) & 0xff;
+  mac[macpos+ 8] = (this.h[4] >>> 0) & 0xff;
+  mac[macpos+ 9] = (this.h[4] >>> 8) & 0xff;
+  mac[macpos+10] = (this.h[5] >>> 0) & 0xff;
+  mac[macpos+11] = (this.h[5] >>> 8) & 0xff;
+  mac[macpos+12] = (this.h[6] >>> 0) & 0xff;
+  mac[macpos+13] = (this.h[6] >>> 8) & 0xff;
+  mac[macpos+14] = (this.h[7] >>> 0) & 0xff;
+  mac[macpos+15] = (this.h[7] >>> 8) & 0xff;
+};
+
+poly1305.prototype.update = function(m, mpos, bytes) {
+  var i, want;
+
+  if (this.leftover) {
+    want = (16 - this.leftover);
+    if (want > bytes)
+      want = bytes;
+    for (i = 0; i < want; i++)
+      this.buffer[this.leftover + i] = m[mpos+i];
+    bytes -= want;
+    mpos += want;
+    this.leftover += want;
+    if (this.leftover < 16)
+      return;
+    this.blocks(this.buffer, 0, 16);
+    this.leftover = 0;
+  }
+
+  if (bytes >= 16) {
+    want = bytes - (bytes % 16);
+    this.blocks(m, mpos, want);
+    mpos += want;
+    bytes -= want;
+  }
+
+  if (bytes) {
+    for (i = 0; i < bytes; i++)
+      this.buffer[this.leftover + i] = m[mpos+i];
+    this.leftover += bytes;
+  }
+};
+
+function crypto_onetimeauth(out, outpos, m, mpos, n, k) {
+  var s = new poly1305(k);
+  s.update(m, mpos, n);
+  s.finish(out, outpos);
+  return 0;
+}
+
+function crypto_onetimeauth_verify(h, hpos, m, mpos, n, k) {
+  var x = new Uint8Array(16);
+  crypto_onetimeauth(x,0,m,mpos,n,k);
+  return crypto_verify_16(h,hpos,x,0);
+}
+
+function crypto_secretbox(c,m,d,n,k) {
+  var i;
+  if (d < 32) return -1;
+  crypto_stream_xor(c,0,m,0,d,n,k);
+  crypto_onetimeauth(c, 16, c, 32, d - 32, c);
+  for (i = 0; i < 16; i++) c[i] = 0;
+  return 0;
+}
+
+function crypto_secretbox_open(m,c,d,n,k) {
+  var i;
+  var x = new Uint8Array(32);
+  if (d < 32) return -1;
+  crypto_stream(x,0,32,n,k);
+  if (crypto_onetimeauth_verify(c, 16,c, 32,d - 32,x) !== 0) return -1;
+  crypto_stream_xor(m,0,c,0,d,n,k);
+  for (i = 0; i < 32; i++) m[i] = 0;
+  return 0;
+}
+
+function set25519(r, a) {
+  var i;
+  for (i = 0; i < 16; i++) r[i] = a[i]|0;
+}
+
+function car25519(o) {
+  var i, v, c = 1;
+  for (i = 0; i < 16; i++) {
+    v = o[i] + c + 65535;
+    c = Math.floor(v / 65536);
+    o[i] = v - c * 65536;
+  }
+  o[0] += c-1 + 37 * (c-1);
+}
+
+function sel25519(p, q, b) {
+  var t, c = ~(b-1);
+  for (var i = 0; i < 16; i++) {
+    t = c & (p[i] ^ q[i]);
+    p[i] ^= t;
+    q[i] ^= t;
+  }
+}
+
+function pack25519(o, n) {
+  var i, j, b;
+  var m = gf(), t = gf();
+  for (i = 0; i < 16; i++) t[i] = n[i];
+  car25519(t);
+  car25519(t);
+  car25519(t);
+  for (j = 0; j < 2; j++) {
+    m[0] = t[0] - 0xffed;
+    for (i = 1; i < 15; i++) {
+      m[i] = t[i] - 0xffff - ((m[i-1]>>16) & 1);
+      m[i-1] &= 0xffff;
+    }
+    m[15] = t[15] - 0x7fff - ((m[14]>>16) & 1);
+    b = (m[15]>>16) & 1;
+    m[14] &= 0xffff;
+    sel25519(t, m, 1-b);
+  }
+  for (i = 0; i < 16; i++) {
+    o[2*i] = t[i] & 0xff;
+    o[2*i+1] = t[i]>>8;
+  }
+}
+
+function neq25519(a, b) {
+  var c = new Uint8Array(32), d = new Uint8Array(32);
+  pack25519(c, a);
+  pack25519(d, b);
+  return crypto_verify_32(c, 0, d, 0);
+}
+
+function par25519(a) {
+  var d = new Uint8Array(32);
+  pack25519(d, a);
+  return d[0] & 1;
+}
+
+function unpack25519(o, n) {
+  var i;
+  for (i = 0; i < 16; i++) o[i] = n[2*i] + (n[2*i+1] << 8);
+  o[15] &= 0x7fff;
+}
+
+function A(o, a, b) {
+  for (var i = 0; i < 16; i++) o[i] = a[i] + b[i];
+}
+
+function Z(o, a, b) {
+  for (var i = 0; i < 16; i++) o[i] = a[i] - b[i];
+}
+
+function M(o, a, b) {
+  var v, c,
+     t0 = 0,  t1 = 0,  t2 = 0,  t3 = 0,  t4 = 0,  t5 = 0,  t6 = 0,  t7 = 0,
+     t8 = 0,  t9 = 0, t10 = 0, t11 = 0, t12 = 0, t13 = 0, t14 = 0, t15 = 0,
+    t16 = 0, t17 = 0, t18 = 0, t19 = 0, t20 = 0, t21 = 0, t22 = 0, t23 = 0,
+    t24 = 0, t25 = 0, t26 = 0, t27 = 0, t28 = 0, t29 = 0, t30 = 0,
+    b0 = b[0],
+    b1 = b[1],
+    b2 = b[2],
+    b3 = b[3],
+    b4 = b[4],
+    b5 = b[5],
+    b6 = b[6],
+    b7 = b[7],
+    b8 = b[8],
+    b9 = b[9],
+    b10 = b[10],
+    b11 = b[11],
+    b12 = b[12],
+    b13 = b[13],
+    b14 = b[14],
+    b15 = b[15];
+
+  v = a[0];
+  t0 += v * b0;
+  t1 += v * b1;
+  t2 += v * b2;
+  t3 += v * b3;
+  t4 += v * b4;
+  t5 += v * b5;
+  t6 += v * b6;
+  t7 += v * b7;
+  t8 += v * b8;
+  t9 += v * b9;
+  t10 += v * b10;
+  t11 += v * b11;
+  t12 += v * b12;
+  t13 += v * b13;
+  t14 += v * b14;
+  t15 += v * b15;
+  v = a[1];
+  t1 += v * b0;
+  t2 += v * b1;
+  t3 += v * b2;
+  t4 += v * b3;
+  t5 += v * b4;
+  t6 += v * b5;
+  t7 += v * b6;
+  t8 += v * b7;
+  t9 += v * b8;
+  t10 += v * b9;
+  t11 += v * b10;
+  t12 += v * b11;
+  t13 += v * b12;
+  t14 += v * b13;
+  t15 += v * b14;
+  t16 += v * b15;
+  v = a[2];
+  t2 += v * b0;
+  t3 += v * b1;
+  t4 += v * b2;
+  t5 += v * b3;
+  t6 += v * b4;
+  t7 += v * b5;
+  t8 += v * b6;
+  t9 += v * b7;
+  t10 += v * b8;
+  t11 += v * b9;
+  t12 += v * b10;
+  t13 += v * b11;
+  t14 += v * b12;
+  t15 += v * b13;
+  t16 += v * b14;
+  t17 += v * b15;
+  v = a[3];
+  t3 += v * b0;
+  t4 += v * b1;
+  t5 += v * b2;
+  t6 += v * b3;
+  t7 += v * b4;
+  t8 += v * b5;
+  t9 += v * b6;
+  t10 += v * b7;
+  t11 += v * b8;
+  t12 += v * b9;
+  t13 += v * b10;
+  t14 += v * b11;
+  t15 += v * b12;
+  t16 += v * b13;
+  t17 += v * b14;
+  t18 += v * b15;
+  v = a[4];
+  t4 += v * b0;
+  t5 += v * b1;
+  t6 += v * b2;
+  t7 += v * b3;
+  t8 += v * b4;
+  t9 += v * b5;
+  t10 += v * b6;
+  t11 += v * b7;
+  t12 += v * b8;
+  t13 += v * b9;
+  t14 += v * b10;
+  t15 += v * b11;
+  t16 += v * b12;
+  t17 += v * b13;
+  t18 += v * b14;
+  t19 += v * b15;
+  v = a[5];
+  t5 += v * b0;
+  t6 += v * b1;
+  t7 += v * b2;
+  t8 += v * b3;
+  t9 += v * b4;
+  t10 += v * b5;
+  t11 += v * b6;
+  t12 += v * b7;
+  t13 += v * b8;
+  t14 += v * b9;
+  t15 += v * b10;
+  t16 += v * b11;
+  t17 += v * b12;
+  t18 += v * b13;
+  t19 += v * b14;
+  t20 += v * b15;
+  v = a[6];
+  t6 += v * b0;
+  t7 += v * b1;
+  t8 += v * b2;
+  t9 += v * b3;
+  t10 += v * b4;
+  t11 += v * b5;
+  t12 += v * b6;
+  t13 += v * b7;
+  t14 += v * b8;
+  t15 += v * b9;
+  t16 += v * b10;
+  t17 += v * b11;
+  t18 += v * b12;
+  t19 += v * b13;
+  t20 += v * b14;
+  t21 += v * b15;
+  v = a[7];
+  t7 += v * b0;
+  t8 += v * b1;
+  t9 += v * b2;
+  t10 += v * b3;
+  t11 += v * b4;
+  t12 += v * b5;
+  t13 += v * b6;
+  t14 += v * b7;
+  t15 += v * b8;
+  t16 += v * b9;
+  t17 += v * b10;
+  t18 += v * b11;
+  t19 += v * b12;
+  t20 += v * b13;
+  t21 += v * b14;
+  t22 += v * b15;
+  v = a[8];
+  t8 += v * b0;
+  t9 += v * b1;
+  t10 += v * b2;
+  t11 += v * b3;
+  t12 += v * b4;
+  t13 += v * b5;
+  t14 += v * b6;
+  t15 += v * b7;
+  t16 += v * b8;
+  t17 += v * b9;
+  t18 += v * b10;
+  t19 += v * b11;
+  t20 += v * b12;
+  t21 += v * b13;
+  t22 += v * b14;
+  t23 += v * b15;
+  v = a[9];
+  t9 += v * b0;
+  t10 += v * b1;
+  t11 += v * b2;
+  t12 += v * b3;
+  t13 += v * b4;
+  t14 += v * b5;
+  t15 += v * b6;
+  t16 += v * b7;
+  t17 += v * b8;
+  t18 += v * b9;
+  t19 += v * b10;
+  t20 += v * b11;
+  t21 += v * b12;
+  t22 += v * b13;
+  t23 += v * b14;
+  t24 += v * b15;
+  v = a[10];
+  t10 += v * b0;
+  t11 += v * b1;
+  t12 += v * b2;
+  t13 += v * b3;
+  t14 += v * b4;
+  t15 += v * b5;
+  t16 += v * b6;
+  t17 += v * b7;
+  t18 += v * b8;
+  t19 += v * b9;
+  t20 += v * b10;
+  t21 += v * b11;
+  t22 += v * b12;
+  t23 += v * b13;
+  t24 += v * b14;
+  t25 += v * b15;
+  v = a[11];
+  t11 += v * b0;
+  t12 += v * b1;
+  t13 += v * b2;
+  t14 += v * b3;
+  t15 += v * b4;
+  t16 += v * b5;
+  t17 += v * b6;
+  t18 += v * b7;
+  t19 += v * b8;
+  t20 += v * b9;
+  t21 += v * b10;
+  t22 += v * b11;
+  t23 += v * b12;
+  t24 += v * b13;
+  t25 += v * b14;
+  t26 += v * b15;
+  v = a[12];
+  t12 += v * b0;
+  t13 += v * b1;
+  t14 += v * b2;
+  t15 += v * b3;
+  t16 += v * b4;
+  t17 += v * b5;
+  t18 += v * b6;
+  t19 += v * b7;
+  t20 += v * b8;
+  t21 += v * b9;
+  t22 += v * b10;
+  t23 += v * b11;
+  t24 += v * b12;
+  t25 += v * b13;
+  t26 += v * b14;
+  t27 += v * b15;
+  v = a[13];
+  t13 += v * b0;
+  t14 += v * b1;
+  t15 += v * b2;
+  t16 += v * b3;
+  t17 += v * b4;
+  t18 += v * b5;
+  t19 += v * b6;
+  t20 += v * b7;
+  t21 += v * b8;
+  t22 += v * b9;
+  t23 += v * b10;
+  t24 += v * b11;
+  t25 += v * b12;
+  t26 += v * b13;
+  t27 += v * b14;
+  t28 += v * b15;
+  v = a[14];
+  t14 += v * b0;
+  t15 += v * b1;
+  t16 += v * b2;
+  t17 += v * b3;
+  t18 += v * b4;
+  t19 += v * b5;
+  t20 += v * b6;
+  t21 += v * b7;
+  t22 += v * b8;
+  t23 += v * b9;
+  t24 += v * b10;
+  t25 += v * b11;
+  t26 += v * b12;
+  t27 += v * b13;
+  t28 += v * b14;
+  t29 += v * b15;
+  v = a[15];
+  t15 += v * b0;
+  t16 += v * b1;
+  t17 += v * b2;
+  t18 += v * b3;
+  t19 += v * b4;
+  t20 += v * b5;
+  t21 += v * b6;
+  t22 += v * b7;
+  t23 += v * b8;
+  t24 += v * b9;
+  t25 += v * b10;
+  t26 += v * b11;
+  t27 += v * b12;
+  t28 += v * b13;
+  t29 += v * b14;
+  t30 += v * b15;
+
+  t0  += 38 * t16;
+  t1  += 38 * t17;
+  t2  += 38 * t18;
+  t3  += 38 * t19;
+  t4  += 38 * t20;
+  t5  += 38 * t21;
+  t6  += 38 * t22;
+  t7  += 38 * t23;
+  t8  += 38 * t24;
+  t9  += 38 * t25;
+  t10 += 38 * t26;
+  t11 += 38 * t27;
+  t12 += 38 * t28;
+  t13 += 38 * t29;
+  t14 += 38 * t30;
+  // t15 left as is
+
+  // first car
+  c = 1;
+  v =  t0 + c + 65535; c = Math.floor(v / 65536);  t0 = v - c * 65536;
+  v =  t1 + c + 65535; c = Math.floor(v / 65536);  t1 = v - c * 65536;
+  v =  t2 + c + 65535; c = Math.floor(v / 65536);  t2 = v - c * 65536;
+  v =  t3 + c + 65535; c = Math.floor(v / 65536);  t3 = v - c * 65536;
+  v =  t4 + c + 65535; c = Math.floor(v / 65536);  t4 = v - c * 65536;
+  v =  t5 + c + 65535; c = Math.floor(v / 65536);  t5 = v - c * 65536;
+  v =  t6 + c + 65535; c = Math.floor(v / 65536);  t6 = v - c * 65536;
+  v =  t7 + c + 65535; c = Math.floor(v / 65536);  t7 = v - c * 65536;
+  v =  t8 + c + 65535; c = Math.floor(v / 65536);  t8 = v - c * 65536;
+  v =  t9 + c + 65535; c = Math.floor(v / 65536);  t9 = v - c * 65536;
+  v = t10 + c + 65535; c = Math.floor(v / 65536); t10 = v - c * 65536;
+  v = t11 + c + 65535; c = Math.floor(v / 65536); t11 = v - c * 65536;
+  v = t12 + c + 65535; c = Math.floor(v / 65536); t12 = v - c * 65536;
+  v = t13 + c + 65535; c = Math.floor(v / 65536); t13 = v - c * 65536;
+  v = t14 + c + 65535; c = Math.floor(v / 65536); t14 = v - c * 65536;
+  v = t15 + c + 65535; c = Math.floor(v / 65536); t15 = v - c * 65536;
+  t0 += c-1 + 37 * (c-1);
+
+  // second car
+  c = 1;
+  v =  t0 + c + 65535; c = Math.floor(v / 65536);  t0 = v - c * 65536;
+  v =  t1 + c + 65535; c = Math.floor(v / 65536);  t1 = v - c * 65536;
+  v =  t2 + c + 65535; c = Math.floor(v / 65536);  t2 = v - c * 65536;
+  v =  t3 + c + 65535; c = Math.floor(v / 65536);  t3 = v - c * 65536;
+  v =  t4 + c + 65535; c = Math.floor(v / 65536);  t4 = v - c * 65536;
+  v =  t5 + c + 65535; c = Math.floor(v / 65536);  t5 = v - c * 65536;
+  v =  t6 + c + 65535; c = Math.floor(v / 65536);  t6 = v - c * 65536;
+  v =  t7 + c + 65535; c = Math.floor(v / 65536);  t7 = v - c * 65536;
+  v =  t8 + c + 65535; c = Math.floor(v / 65536);  t8 = v - c * 65536;
+  v =  t9 + c + 65535; c = Math.floor(v / 65536);  t9 = v - c * 65536;
+  v = t10 + c + 65535; c = Math.floor(v / 65536); t10 = v - c * 65536;
+  v = t11 + c + 65535; c = Math.floor(v / 65536); t11 = v - c * 65536;
+  v = t12 + c + 65535; c = Math.floor(v / 65536); t12 = v - c * 65536;
+  v = t13 + c + 65535; c = Math.floor(v / 65536); t13 = v - c * 65536;
+  v = t14 + c + 65535; c = Math.floor(v / 65536); t14 = v - c * 65536;
+  v = t15 + c + 65535; c = Math.floor(v / 65536); t15 = v - c * 65536;
+  t0 += c-1 + 37 * (c-1);
+
+  o[ 0] = t0;
+  o[ 1] = t1;
+  o[ 2] = t2;
+  o[ 3] = t3;
+  o[ 4] = t4;
+  o[ 5] = t5;
+  o[ 6] = t6;
+  o[ 7] = t7;
+  o[ 8] = t8;
+  o[ 9] = t9;
+  o[10] = t10;
+  o[11] = t11;
+  o[12] = t12;
+  o[13] = t13;
+  o[14] = t14;
+  o[15] = t15;
+}
+
+function S(o, a) {
+  M(o, a, a);
+}
+
+function inv25519(o, i) {
+  var c = gf();
+  var a;
+  for (a = 0; a < 16; a++) c[a] = i[a];
+  for (a = 253; a >= 0; a--) {
+    S(c, c);
+    if(a !== 2 && a !== 4) M(c, c, i);
+  }
+  for (a = 0; a < 16; a++) o[a] = c[a];
+}
+
+function pow2523(o, i) {
+  var c = gf();
+  var a;
+  for (a = 0; a < 16; a++) c[a] = i[a];
+  for (a = 250; a >= 0; a--) {
+      S(c, c);
+      if(a !== 1) M(c, c, i);
+  }
+  for (a = 0; a < 16; a++) o[a] = c[a];
+}
+
+function crypto_scalarmult(q, n, p) {
+  var z = new Uint8Array(32);
+  var x = new Float64Array(80), r, i;
+  var a = gf(), b = gf(), c = gf(),
+      d = gf(), e = gf(), f = gf();
+  for (i = 0; i < 31; i++) z[i] = n[i];
+  z[31]=(n[31]&127)|64;
+  z[0]&=248;
+  unpack25519(x,p);
+  for (i = 0; i < 16; i++) {
+    b[i]=x[i];
+    d[i]=a[i]=c[i]=0;
+  }
+  a[0]=d[0]=1;
+  for (i=254; i>=0; --i) {
+    r=(z[i>>>3]>>>(i&7))&1;
+    sel25519(a,b,r);
+    sel25519(c,d,r);
+    A(e,a,c);
+    Z(a,a,c);
+    A(c,b,d);
+    Z(b,b,d);
+    S(d,e);
+    S(f,a);
+    M(a,c,a);
+    M(c,b,e);
+    A(e,a,c);
+    Z(a,a,c);
+    S(b,a);
+    Z(c,d,f);
+    M(a,c,_121665);
+    A(a,a,d);
+    M(c,c,a);
+    M(a,d,f);
+    M(d,b,x);
+    S(b,e);
+    sel25519(a,b,r);
+    sel25519(c,d,r);
+  }
+  for (i = 0; i < 16; i++) {
+    x[i+16]=a[i];
+    x[i+32]=c[i];
+    x[i+48]=b[i];
+    x[i+64]=d[i];
+  }
+  var x32 = x.subarray(32);
+  var x16 = x.subarray(16);
+  inv25519(x32,x32);
+  M(x16,x16,x32);
+  pack25519(q,x16);
+  return 0;
+}
+
+function crypto_scalarmult_base(q, n) {
+  return crypto_scalarmult(q, n, _9);
+}
+
+function crypto_box_keypair(y, x) {
+  randombytes(x, 32);
+  return crypto_scalarmult_base(y, x);
+}
+
+function crypto_box_beforenm(k, y, x) {
+  var s = new Uint8Array(32);
+  crypto_scalarmult(s, x, y);
+  return crypto_core_hsalsa20(k, _0, s, sigma);
+}
+
+var crypto_box_afternm = crypto_secretbox;
+var crypto_box_open_afternm = crypto_secretbox_open;
+
+function crypto_box(c, m, d, n, y, x) {
+  var k = new Uint8Array(32);
+  crypto_box_beforenm(k, y, x);
+  return crypto_box_afternm(c, m, d, n, k);
+}
+
+function crypto_box_open(m, c, d, n, y, x) {
+  var k = new Uint8Array(32);
+  crypto_box_beforenm(k, y, x);
+  return crypto_box_open_afternm(m, c, d, n, k);
+}
+
+var K = [
+  0x428a2f98, 0xd728ae22, 0x71374491, 0x23ef65cd,
+  0xb5c0fbcf, 0xec4d3b2f, 0xe9b5dba5, 0x8189dbbc,
+  0x3956c25b, 0xf348b538, 0x59f111f1, 0xb605d019,
+  0x923f82a4, 0xaf194f9b, 0xab1c5ed5, 0xda6d8118,
+  0xd807aa98, 0xa3030242, 0x12835b01, 0x45706fbe,
+  0x243185be, 0x4ee4b28c, 0x550c7dc3, 0xd5ffb4e2,
+  0x72be5d74, 0xf27b896f, 0x80deb1fe, 0x3b1696b1,
+  0x9bdc06a7, 0x25c71235, 0xc19bf174, 0xcf692694,
+  0xe49b69c1, 0x9ef14ad2, 0xefbe4786, 0x384f25e3,
+  0x0fc19dc6, 0x8b8cd5b5, 0x240ca1cc, 0x77ac9c65,
+  0x2de92c6f, 0x592b0275, 0x4a7484aa, 0x6ea6e483,
+  0x5cb0a9dc, 0xbd41fbd4, 0x76f988da, 0x831153b5,
+  0x983e5152, 0xee66dfab, 0xa831c66d, 0x2db43210,
+  0xb00327c8, 0x98fb213f, 0xbf597fc7, 0xbeef0ee4,
+  0xc6e00bf3, 0x3da88fc2, 0xd5a79147, 0x930aa725,
+  0x06ca6351, 0xe003826f, 0x14292967, 0x0a0e6e70,
+  0x27b70a85, 0x46d22ffc, 0x2e1b2138, 0x5c26c926,
+  0x4d2c6dfc, 0x5ac42aed, 0x53380d13, 0x9d95b3df,
+  0x650a7354, 0x8baf63de, 0x766a0abb, 0x3c77b2a8,
+  0x81c2c92e, 0x47edaee6, 0x92722c85, 0x1482353b,
+  0xa2bfe8a1, 0x4cf10364, 0xa81a664b, 0xbc423001,
+  0xc24b8b70, 0xd0f89791, 0xc76c51a3, 0x0654be30,
+  0xd192e819, 0xd6ef5218, 0xd6990624, 0x5565a910,
+  0xf40e3585, 0x5771202a, 0x106aa070, 0x32bbd1b8,
+  0x19a4c116, 0xb8d2d0c8, 0x1e376c08, 0x5141ab53,
+  0x2748774c, 0xdf8eeb99, 0x34b0bcb5, 0xe19b48a8,
+  0x391c0cb3, 0xc5c95a63, 0x4ed8aa4a, 0xe3418acb,
+  0x5b9cca4f, 0x7763e373, 0x682e6ff3, 0xd6b2b8a3,
+  0x748f82ee, 0x5defb2fc, 0x78a5636f, 0x43172f60,
+  0x84c87814, 0xa1f0ab72, 0x8cc70208, 0x1a6439ec,
+  0x90befffa, 0x23631e28, 0xa4506ceb, 0xde82bde9,
+  0xbef9a3f7, 0xb2c67915, 0xc67178f2, 0xe372532b,
+  0xca273ece, 0xea26619c, 0xd186b8c7, 0x21c0c207,
+  0xeada7dd6, 0xcde0eb1e, 0xf57d4f7f, 0xee6ed178,
+  0x06f067aa, 0x72176fba, 0x0a637dc5, 0xa2c898a6,
+  0x113f9804, 0xbef90dae, 0x1b710b35, 0x131c471b,
+  0x28db77f5, 0x23047d84, 0x32caab7b, 0x40c72493,
+  0x3c9ebe0a, 0x15c9bebc, 0x431d67c4, 0x9c100d4c,
+  0x4cc5d4be, 0xcb3e42b6, 0x597f299c, 0xfc657e2a,
+  0x5fcb6fab, 0x3ad6faec, 0x6c44198c, 0x4a475817
+];
+
+function crypto_hashblocks_hl(hh, hl, m, n) {
+  var wh = new Int32Array(16), wl = new Int32Array(16),
+      bh0, bh1, bh2, bh3, bh4, bh5, bh6, bh7,
+      bl0, bl1, bl2, bl3, bl4, bl5, bl6, bl7,
+      th, tl, i, j, h, l, a, b, c, d;
+
+  var ah0 = hh[0],
+      ah1 = hh[1],
+      ah2 = hh[2],
+      ah3 = hh[3],
+      ah4 = hh[4],
+      ah5 = hh[5],
+      ah6 = hh[6],
+      ah7 = hh[7],
+
+      al0 = hl[0],
+      al1 = hl[1],
+      al2 = hl[2],
+      al3 = hl[3],
+      al4 = hl[4],
+      al5 = hl[5],
+      al6 = hl[6],
+      al7 = hl[7];
+
+  var pos = 0;
+  while (n >= 128) {
+    for (i = 0; i < 16; i++) {
+      j = 8 * i + pos;
+      wh[i] = (m[j+0] << 24) | (m[j+1] << 16) | (m[j+2] << 8) | m[j+3];
+      wl[i] = (m[j+4] << 24) | (m[j+5] << 16) | (m[j+6] << 8) | m[j+7];
+    }
+    for (i = 0; i < 80; i++) {
+      bh0 = ah0;
+      bh1 = ah1;
+      bh2 = ah2;
+      bh3 = ah3;
+      bh4 = ah4;
+      bh5 = ah5;
+      bh6 = ah6;
+      bh7 = ah7;
+
+      bl0 = al0;
+      bl1 = al1;
+      bl2 = al2;
+      bl3 = al3;
+      bl4 = al4;
+      bl5 = al5;
+      bl6 = al6;
+      bl7 = al7;
+
+      // add
+      h = ah7;
+      l = al7;
+
+      a = l & 0xffff; b = l >>> 16;
+      c = h & 0xffff; d = h >>> 16;
+
+      // Sigma1
+      h = ((ah4 >>> 14) | (al4 << (32-14))) ^ ((ah4 >>> 18) | (al4 << (32-18))) ^ ((al4 >>> (41-32)) | (ah4 << (32-(41-32))));
+      l = ((al4 >>> 14) | (ah4 << (32-14))) ^ ((al4 >>> 18) | (ah4 << (32-18))) ^ ((ah4 >>> (41-32)) | (al4 << (32-(41-32))));
+
+      a += l & 0xffff; b += l >>> 16;
+      c += h & 0xffff; d += h >>> 16;
+
+      // Ch
+      h = (ah4 & ah5) ^ (~ah4 & ah6);
+      l = (al4 & al5) ^ (~al4 & al6);
+
+      a += l & 0xffff; b += l >>> 16;
+      c += h & 0xffff; d += h >>> 16;
+
+      // K
+      h = K[i*2];
+      l = K[i*2+1];
+
+      a += l & 0xffff; b += l >>> 16;
+      c += h & 0xffff; d += h >>> 16;
+
+      // w
+      h = wh[i%16];
+      l = wl[i%16];
+
+      a += l & 0xffff; b += l >>> 16;
+      c += h & 0xffff; d += h >>> 16;
+
+      b += a >>> 16;
+      c += b >>> 16;
+      d += c >>> 16;
+
+      th = c & 0xffff | d << 16;
+      tl = a & 0xffff | b << 16;
+
+      // add
+      h = th;
+      l = tl;
+
+      a = l & 0xffff; b = l >>> 16;
+      c = h & 0xffff; d = h >>> 16;
+
+      // Sigma0
+      h = ((ah0 >>> 28) | (al0 << (32-28))) ^ ((al0 >>> (34-32)) | (ah0 << (32-(34-32)))) ^ ((al0 >>> (39-32)) | (ah0 << (32-(39-32))));
+      l = ((al0 >>> 28) | (ah0 << (32-28))) ^ ((ah0 >>> (34-32)) | (al0 << (32-(34-32)))) ^ ((ah0 >>> (39-32)) | (al0 << (32-(39-32))));
+
+      a += l & 0xffff; b += l >>> 16;
+      c += h & 0xffff; d += h >>> 16;
+
+      // Maj
+      h = (ah0 & ah1) ^ (ah0 & ah2) ^ (ah1 & ah2);
+      l = (al0 & al1) ^ (al0 & al2) ^ (al1 & al2);
+
+      a += l & 0xffff; b += l >>> 16;
+      c += h & 0xffff; d += h >>> 16;
+
+      b += a >>> 16;
+      c += b >>> 16;
+      d += c >>> 16;
+
+      bh7 = (c & 0xffff) | (d << 16);
+      bl7 = (a & 0xffff) | (b << 16);
+
+      // add
+      h = bh3;
+      l = bl3;
+
+      a = l & 0xffff; b = l >>> 16;
+      c = h & 0xffff; d = h >>> 16;
+
+      h = th;
+      l = tl;
+
+      a += l & 0xffff; b += l >>> 16;
+      c += h & 0xffff; d += h >>> 16;
+
+      b += a >>> 16;
+      c += b >>> 16;
+      d += c >>> 16;
+
+      bh3 = (c & 0xffff) | (d << 16);
+      bl3 = (a & 0xffff) | (b << 16);
+
+      ah1 = bh0;
+      ah2 = bh1;
+      ah3 = bh2;
+      ah4 = bh3;
+      ah5 = bh4;
+      ah6 = bh5;
+      ah7 = bh6;
+      ah0 = bh7;
+
+      al1 = bl0;
+      al2 = bl1;
+      al3 = bl2;
+      al4 = bl3;
+      al5 = bl4;
+      al6 = bl5;
+      al7 = bl6;
+      al0 = bl7;
+
+      if (i%16 === 15) {
+        for (j = 0; j < 16; j++) {
+          // add
+          h = wh[j];
+          l = wl[j];
+
+          a = l & 0xffff; b = l >>> 16;
+          c = h & 0xffff; d = h >>> 16;
+
+          h = wh[(j+9)%16];
+          l = wl[(j+9)%16];
+
+          a += l & 0xffff; b += l >>> 16;
+          c += h & 0xffff; d += h >>> 16;
+
+          // sigma0
+          th = wh[(j+1)%16];
+          tl = wl[(j+1)%16];
+          h = ((th >>> 1) | (tl << (32-1))) ^ ((th >>> 8) | (tl << (32-8))) ^ (th >>> 7);
+          l = ((tl >>> 1) | (th << (32-1))) ^ ((tl >>> 8) | (th << (32-8))) ^ ((tl >>> 7) | (th << (32-7)));
+
+          a += l & 0xffff; b += l >>> 16;
+          c += h & 0xffff; d += h >>> 16;
+
+          // sigma1
+          th = wh[(j+14)%16];
+          tl = wl[(j+14)%16];
+          h = ((th >>> 19) | (tl << (32-19))) ^ ((tl >>> (61-32)) | (th << (32-(61-32)))) ^ (th >>> 6);
+          l = ((tl >>> 19) | (th << (32-19))) ^ ((th >>> (61-32)) | (tl << (32-(61-32)))) ^ ((tl >>> 6) | (th << (32-6)));
+
+          a += l & 0xffff; b += l >>> 16;
+          c += h & 0xffff; d += h >>> 16;
+
+          b += a >>> 16;
+          c += b >>> 16;
+          d += c >>> 16;
+
+          wh[j] = (c & 0xffff) | (d << 16);
+          wl[j] = (a & 0xffff) | (b << 16);
+        }
+      }
+    }
+
+    // add
+    h = ah0;
+    l = al0;
+
+    a = l & 0xffff; b = l >>> 16;
+    c = h & 0xffff; d = h >>> 16;
+
+    h = hh[0];
+    l = hl[0];
+
+    a += l & 0xffff; b += l >>> 16;
+    c += h & 0xffff; d += h >>> 16;
+
+    b += a >>> 16;
+    c += b >>> 16;
+    d += c >>> 16;
+
+    hh[0] = ah0 = (c & 0xffff) | (d << 16);
+    hl[0] = al0 = (a & 0xffff) | (b << 16);
+
+    h = ah1;
+    l = al1;
+
+    a = l & 0xffff; b = l >>> 16;
+    c = h & 0xffff; d = h >>> 16;
+
+    h = hh[1];
+    l = hl[1];
+
+    a += l & 0xffff; b += l >>> 16;
+    c += h & 0xffff; d += h >>> 16;
+
+    b += a >>> 16;
+    c += b >>> 16;
+    d += c >>> 16;
+
+    hh[1] = ah1 = (c & 0xffff) | (d << 16);
+    hl[1] = al1 = (a & 0xffff) | (b << 16);
+
+    h = ah2;
+    l = al2;
+
+    a = l & 0xffff; b = l >>> 16;
+    c = h & 0xffff; d = h >>> 16;
+
+    h = hh[2];
+    l = hl[2];
+
+    a += l & 0xffff; b += l >>> 16;
+    c += h & 0xffff; d += h >>> 16;
+
+    b += a >>> 16;
+    c += b >>> 16;
+    d += c >>> 16;
+
+    hh[2] = ah2 = (c & 0xffff) | (d << 16);
+    hl[2] = al2 = (a & 0xffff) | (b << 16);
+
+    h = ah3;
+    l = al3;
+
+    a = l & 0xffff; b = l >>> 16;
+    c = h & 0xffff; d = h >>> 16;
+
+    h = hh[3];
+    l = hl[3];
+
+    a += l & 0xffff; b += l >>> 16;
+    c += h & 0xffff; d += h >>> 16;
+
+    b += a >>> 16;
+    c += b >>> 16;
+    d += c >>> 16;
+
+    hh[3] = ah3 = (c & 0xffff) | (d << 16);
+    hl[3] = al3 = (a & 0xffff) | (b << 16);
+
+    h = ah4;
+    l = al4;
+
+    a = l & 0xffff; b = l >>> 16;
+    c = h & 0xffff; d = h >>> 16;
+
+    h = hh[4];
+    l = hl[4];
+
+    a += l & 0xffff; b += l >>> 16;
+    c += h & 0xffff; d += h >>> 16;
+
+    b += a >>> 16;
+    c += b >>> 16;
+    d += c >>> 16;
+
+    hh[4] = ah4 = (c & 0xffff) | (d << 16);
+    hl[4] = al4 = (a & 0xffff) | (b << 16);
+
+    h = ah5;
+    l = al5;
+
+    a = l & 0xffff; b = l >>> 16;
+    c = h & 0xffff; d = h >>> 16;
+
+    h = hh[5];
+    l = hl[5];
+
+    a += l & 0xffff; b += l >>> 16;
+    c += h & 0xffff; d += h >>> 16;
+
+    b += a >>> 16;
+    c += b >>> 16;
+    d += c >>> 16;
+
+    hh[5] = ah5 = (c & 0xffff) | (d << 16);
+    hl[5] = al5 = (a & 0xffff) | (b << 16);
+
+    h = ah6;
+    l = al6;
+
+    a = l & 0xffff; b = l >>> 16;
+    c = h & 0xffff; d = h >>> 16;
+
+    h = hh[6];
+    l = hl[6];
+
+    a += l & 0xffff; b += l >>> 16;
+    c += h & 0xffff; d += h >>> 16;
+
+    b += a >>> 16;
+    c += b >>> 16;
+    d += c >>> 16;
+
+    hh[6] = ah6 = (c & 0xffff) | (d << 16);
+    hl[6] = al6 = (a & 0xffff) | (b << 16);
+
+    h = ah7;
+    l = al7;
+
+    a = l & 0xffff; b = l >>> 16;
+    c = h & 0xffff; d = h >>> 16;
+
+    h = hh[7];
+    l = hl[7];
+
+    a += l & 0xffff; b += l >>> 16;
+    c += h & 0xffff; d += h >>> 16;
+
+    b += a >>> 16;
+    c += b >>> 16;
+    d += c >>> 16;
+
+    hh[7] = ah7 = (c & 0xffff) | (d << 16);
+    hl[7] = al7 = (a & 0xffff) | (b << 16);
+
+    pos += 128;
+    n -= 128;
+  }
+
+  return n;
+}
+
+function crypto_hash(out, m, n) {
+  var hh = new Int32Array(8),
+      hl = new Int32Array(8),
+      x = new Uint8Array(256),
+      i, b = n;
+
+  hh[0] = 0x6a09e667;
+  hh[1] = 0xbb67ae85;
+  hh[2] = 0x3c6ef372;
+  hh[3] = 0xa54ff53a;
+  hh[4] = 0x510e527f;
+  hh[5] = 0x9b05688c;
+  hh[6] = 0x1f83d9ab;
+  hh[7] = 0x5be0cd19;
+
+  hl[0] = 0xf3bcc908;
+  hl[1] = 0x84caa73b;
+  hl[2] = 0xfe94f82b;
+  hl[3] = 0x5f1d36f1;
+  hl[4] = 0xade682d1;
+  hl[5] = 0x2b3e6c1f;
+  hl[6] = 0xfb41bd6b;
+  hl[7] = 0x137e2179;
+
+  crypto_hashblocks_hl(hh, hl, m, n);
+  n %= 128;
+
+  for (i = 0; i < n; i++) x[i] = m[b-n+i];
+  x[n] = 128;
+
+  n = 256-128*(n<112?1:0);
+  x[n-9] = 0;
+  ts64(x, n-8,  (b / 0x20000000) | 0, b << 3);
+  crypto_hashblocks_hl(hh, hl, x, n);
+
+  for (i = 0; i < 8; i++) ts64(out, 8*i, hh[i], hl[i]);
+
+  return 0;
+}
+
+function add(p, q) {
+  var a = gf(), b = gf(), c = gf(),
+      d = gf(), e = gf(), f = gf(),
+      g = gf(), h = gf(), t = gf();
+
+  Z(a, p[1], p[0]);
+  Z(t, q[1], q[0]);
+  M(a, a, t);
+  A(b, p[0], p[1]);
+  A(t, q[0], q[1]);
+  M(b, b, t);
+  M(c, p[3], q[3]);
+  M(c, c, D2);
+  M(d, p[2], q[2]);
+  A(d, d, d);
+  Z(e, b, a);
+  Z(f, d, c);
+  A(g, d, c);
+  A(h, b, a);
+
+  M(p[0], e, f);
+  M(p[1], h, g);
+  M(p[2], g, f);
+  M(p[3], e, h);
+}
+
+function cswap(p, q, b) {
+  var i;
+  for (i = 0; i < 4; i++) {
+    sel25519(p[i], q[i], b);
+  }
+}
+
+function pack(r, p) {
+  var tx = gf(), ty = gf(), zi = gf();
+  inv25519(zi, p[2]);
+  M(tx, p[0], zi);
+  M(ty, p[1], zi);
+  pack25519(r, ty);
+  r[31] ^= par25519(tx) << 7;
+}
+
+function scalarmult(p, q, s) {
+  var b, i;
+  set25519(p[0], gf0);
+  set25519(p[1], gf1);
+  set25519(p[2], gf1);
+  set25519(p[3], gf0);
+  for (i = 255; i >= 0; --i) {
+    b = (s[(i/8)|0] >> (i&7)) & 1;
+    cswap(p, q, b);
+    add(q, p);
+    add(p, p);
+    cswap(p, q, b);
+  }
+}
+
+function scalarbase(p, s) {
+  var q = [gf(), gf(), gf(), gf()];
+  set25519(q[0], X);
+  set25519(q[1], Y);
+  set25519(q[2], gf1);
+  M(q[3], X, Y);
+  scalarmult(p, q, s);
+}
+
+function crypto_sign_keypair(pk, sk, seeded) {
+  var d = new Uint8Array(64);
+  var p = [gf(), gf(), gf(), gf()];
+  var i;
+
+  if (!seeded) randombytes(sk, 32);
+  crypto_hash(d, sk, 32);
+  d[0] &= 248;
+  d[31] &= 127;
+  d[31] |= 64;
+
+  scalarbase(p, d);
+  pack(pk, p);
+
+  for (i = 0; i < 32; i++) sk[i+32] = pk[i];
+  return 0;
+}
+
+var L = new Float64Array([0xed, 0xd3, 0xf5, 0x5c, 0x1a, 0x63, 0x12, 0x58, 0xd6, 0x9c, 0xf7, 0xa2, 0xde, 0xf9, 0xde, 0x14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x10]);
+
+function modL(r, x) {
+  var carry, i, j, k;
+  for (i = 63; i >= 32; --i) {
+    carry = 0;
+    for (j = i - 32, k = i - 12; j < k; ++j) {
+      x[j] += carry - 16 * x[i] * L[j - (i - 32)];
+      carry = (x[j] + 128) >> 8;
+      x[j] -= carry * 256;
+    }
+    x[j] += carry;
+    x[i] = 0;
+  }
+  carry = 0;
+  for (j = 0; j < 32; j++) {
+    x[j] += carry - (x[31] >> 4) * L[j];
+    carry = x[j] >> 8;
+    x[j] &= 255;
+  }
+  for (j = 0; j < 32; j++) x[j] -= carry * L[j];
+  for (i = 0; i < 32; i++) {
+    x[i+1] += x[i] >> 8;
+    r[i] = x[i] & 255;
+  }
+}
+
+function reduce(r) {
+  var x = new Float64Array(64), i;
+  for (i = 0; i < 64; i++) x[i] = r[i];
+  for (i = 0; i < 64; i++) r[i] = 0;
+  modL(r, x);
+}
+
+// Note: difference from C - smlen returned, not passed as argument.
+function crypto_sign(sm, m, n, sk) {
+  var d = new Uint8Array(64), h = new Uint8Array(64), r = new Uint8Array(64);
+  var i, j, x = new Float64Array(64);
+  var p = [gf(), gf(), gf(), gf()];
+
+  crypto_hash(d, sk, 32);
+  d[0] &= 248;
+  d[31] &= 127;
+  d[31] |= 64;
+
+  var smlen = n + 64;
+  for (i = 0; i < n; i++) sm[64 + i] = m[i];
+  for (i = 0; i < 32; i++) sm[32 + i] = d[32 + i];
+
+  crypto_hash(r, sm.subarray(32), n+32);
+  reduce(r);
+  scalarbase(p, r);
+  pack(sm, p);
+
+  for (i = 32; i < 64; i++) sm[i] = sk[i];
+  crypto_hash(h, sm, n + 64);
+  reduce(h);
+
+  for (i = 0; i < 64; i++) x[i] = 0;
+  for (i = 0; i < 32; i++) x[i] = r[i];
+  for (i = 0; i < 32; i++) {
+    for (j = 0; j < 32; j++) {
+      x[i+j] += h[i] * d[j];
+    }
+  }
+
+  modL(sm.subarray(32), x);
+  return smlen;
+}
+
+function unpackneg(r, p) {
+  var t = gf(), chk = gf(), num = gf(),
+      den = gf(), den2 = gf(), den4 = gf(),
+      den6 = gf();
+
+  set25519(r[2], gf1);
+  unpack25519(r[1], p);
+  S(num, r[1]);
+  M(den, num, D);
+  Z(num, num, r[2]);
+  A(den, r[2], den);
+
+  S(den2, den);
+  S(den4, den2);
+  M(den6, den4, den2);
+  M(t, den6, num);
+  M(t, t, den);
+
+  pow2523(t, t);
+  M(t, t, num);
+  M(t, t, den);
+  M(t, t, den);
+  M(r[0], t, den);
+
+  S(chk, r[0]);
+  M(chk, chk, den);
+  if (neq25519(chk, num)) M(r[0], r[0], I);
+
+  S(chk, r[0]);
+  M(chk, chk, den);
+  if (neq25519(chk, num)) return -1;
+
+  if (par25519(r[0]) === (p[31]>>7)) Z(r[0], gf0, r[0]);
+
+  M(r[3], r[0], r[1]);
+  return 0;
+}
+
+function crypto_sign_open(m, sm, n, pk) {
+  var i, mlen;
+  var t = new Uint8Array(32), h = new Uint8Array(64);
+  var p = [gf(), gf(), gf(), gf()],
+      q = [gf(), gf(), gf(), gf()];
+
+  mlen = -1;
+  if (n < 64) return -1;
+
+  if (unpackneg(q, pk)) return -1;
+
+  for (i = 0; i < n; i++) m[i] = sm[i];
+  for (i = 0; i < 32; i++) m[i+32] = pk[i];
+  crypto_hash(h, m, n);
+  reduce(h);
+  scalarmult(p, q, h);
+
+  scalarbase(q, sm.subarray(32));
+  add(p, q);
+  pack(t, p);
+
+  n -= 64;
+  if (crypto_verify_32(sm, 0, t, 0)) {
+    for (i = 0; i < n; i++) m[i] = 0;
+    return -1;
+  }
+
+  for (i = 0; i < n; i++) m[i] = sm[i + 64];
+  mlen = n;
+  return mlen;
+}
+
+var crypto_secretbox_KEYBYTES = 32,
+    crypto_secretbox_NONCEBYTES = 24,
+    crypto_secretbox_ZEROBYTES = 32,
+    crypto_secretbox_BOXZEROBYTES = 16,
+    crypto_scalarmult_BYTES = 32,
+    crypto_scalarmult_SCALARBYTES = 32,
+    crypto_box_PUBLICKEYBYTES = 32,
+    crypto_box_SECRETKEYBYTES = 32,
+    crypto_box_BEFORENMBYTES = 32,
+    crypto_box_NONCEBYTES = crypto_secretbox_NONCEBYTES,
+    crypto_box_ZEROBYTES = crypto_secretbox_ZEROBYTES,
+    crypto_box_BOXZEROBYTES = crypto_secretbox_BOXZEROBYTES,
+    crypto_sign_BYTES = 64,
+    crypto_sign_PUBLICKEYBYTES = 32,
+    crypto_sign_SECRETKEYBYTES = 64,
+    crypto_sign_SEEDBYTES = 32,
+    crypto_hash_BYTES = 64;
+
+nacl.lowlevel = {
+  crypto_core_hsalsa20: crypto_core_hsalsa20,
+  crypto_stream_xor: crypto_stream_xor,
+  crypto_stream: crypto_stream,
+  crypto_stream_salsa20_xor: crypto_stream_salsa20_xor,
+  crypto_stream_salsa20: crypto_stream_salsa20,
+  crypto_onetimeauth: crypto_onetimeauth,
+  crypto_onetimeauth_verify: crypto_onetimeauth_verify,
+  crypto_verify_16: crypto_verify_16,
+  crypto_verify_32: crypto_verify_32,
+  crypto_secretbox: crypto_secretbox,
+  crypto_secretbox_open: crypto_secretbox_open,
+  crypto_scalarmult: crypto_scalarmult,
+  crypto_scalarmult_base: crypto_scalarmult_base,
+  crypto_box_beforenm: crypto_box_beforenm,
+  crypto_box_afternm: crypto_box_afternm,
+  crypto_box: crypto_box,
+  crypto_box_open: crypto_box_open,
+  crypto_box_keypair: crypto_box_keypair,
+  crypto_hash: crypto_hash,
+  crypto_sign: crypto_sign,
+  crypto_sign_keypair: crypto_sign_keypair,
+  crypto_sign_open: crypto_sign_open,
+
+  crypto_secretbox_KEYBYTES: crypto_secretbox_KEYBYTES,
+  crypto_secretbox_NONCEBYTES: crypto_secretbox_NONCEBYTES,
+  crypto_secretbox_ZEROBYTES: crypto_secretbox_ZEROBYTES,
+  crypto_secretbox_BOXZEROBYTES: crypto_secretbox_BOXZEROBYTES,
+  crypto_scalarmult_BYTES: crypto_scalarmult_BYTES,
+  crypto_scalarmult_SCALARBYTES: crypto_scalarmult_SCALARBYTES,
+  crypto_box_PUBLICKEYBYTES: crypto_box_PUBLICKEYBYTES,
+  crypto_box_SECRETKEYBYTES: crypto_box_SECRETKEYBYTES,
+  crypto_box_BEFORENMBYTES: crypto_box_BEFORENMBYTES,
+  crypto_box_NONCEBYTES: crypto_box_NONCEBYTES,
+  crypto_box_ZEROBYTES: crypto_box_ZEROBYTES,
+  crypto_box_BOXZEROBYTES: crypto_box_BOXZEROBYTES,
+  crypto_sign_BYTES: crypto_sign_BYTES,
+  crypto_sign_PUBLICKEYBYTES: crypto_sign_PUBLICKEYBYTES,
+  crypto_sign_SECRETKEYBYTES: crypto_sign_SECRETKEYBYTES,
+  crypto_sign_SEEDBYTES: crypto_sign_SEEDBYTES,
+  crypto_hash_BYTES: crypto_hash_BYTES
+};
+
+/* High-level API */
+
+function checkLengths(k, n) {
+  if (k.length !== crypto_secretbox_KEYBYTES) throw new Error('bad key size');
+  if (n.length !== crypto_secretbox_NONCEBYTES) throw new Error('bad nonce size');
+}
+
+function checkBoxLengths(pk, sk) {
+  if (pk.length !== crypto_box_PUBLICKEYBYTES) throw new Error('bad public key size');
+  if (sk.length !== crypto_box_SECRETKEYBYTES) throw new Error('bad secret key size');
+}
+
+function checkArrayTypes() {
+  var t, i;
+  for (i = 0; i < arguments.length; i++) {
+     if ((t = Object.prototype.toString.call(arguments[i])) !== '[object Uint8Array]')
+       throw new TypeError('unexpected type ' + t + ', use Uint8Array');
+  }
+}
+
+function cleanup(arr) {
+  for (var i = 0; i < arr.length; i++) arr[i] = 0;
+}
+
+// TODO: Completely remove this in v0.15.
+if (!nacl.util) {
+  nacl.util = {};
+  nacl.util.decodeUTF8 = nacl.util.encodeUTF8 = nacl.util.encodeBase64 = nacl.util.decodeBase64 = function() {
+    throw new Error('nacl.util moved into separate package: https://github.com/dchest/tweetnacl-util-js');
+  };
+}
+
+nacl.randomBytes = function(n) {
+  var b = new Uint8Array(n);
+  randombytes(b, n);
+  return b;
+};
+
+nacl.secretbox = function(msg, nonce, key) {
+  checkArrayTypes(msg, nonce, key);
+  checkLengths(key, nonce);
+  var m = new Uint8Array(crypto_secretbox_ZEROBYTES + msg.length);
+  var c = new Uint8Array(m.length);
+  for (var i = 0; i < msg.length; i++) m[i+crypto_secretbox_ZEROBYTES] = msg[i];
+  crypto_secretbox(c, m, m.length, nonce, key);
+  return c.subarray(crypto_secretbox_BOXZEROBYTES);
+};
+
+nacl.secretbox.open = function(box, nonce, key) {
+  checkArrayTypes(box, nonce, key);
+  checkLengths(key, nonce);
+  var c = new Uint8Array(crypto_secretbox_BOXZEROBYTES + box.length);
+  var m = new Uint8Array(c.length);
+  for (var i = 0; i < box.length; i++) c[i+crypto_secretbox_BOXZEROBYTES] = box[i];
+  if (c.length < 32) return false;
+  if (crypto_secretbox_open(m, c, c.length, nonce, key) !== 0) return false;
+  return m.subarray(crypto_secretbox_ZEROBYTES);
+};
+
+nacl.secretbox.keyLength = crypto_secretbox_KEYBYTES;
+nacl.secretbox.nonceLength = crypto_secretbox_NONCEBYTES;
+nacl.secretbox.overheadLength = crypto_secretbox_BOXZEROBYTES;
+
+nacl.scalarMult = function(n, p) {
+  checkArrayTypes(n, p);
+  if (n.length !== crypto_scalarmult_SCALARBYTES) throw new Error('bad n size');
+  if (p.length !== crypto_scalarmult_BYTES) throw new Error('bad p size');
+  var q = new Uint8Array(crypto_scalarmult_BYTES);
+  crypto_scalarmult(q, n, p);
+  return q;
+};
+
+nacl.scalarMult.base = function(n) {
+  checkArrayTypes(n);
+  if (n.length !== crypto_scalarmult_SCALARBYTES) throw new Error('bad n size');
+  var q = new Uint8Array(crypto_scalarmult_BYTES);
+  crypto_scalarmult_base(q, n);
+  return q;
+};
+
+nacl.scalarMult.scalarLength = crypto_scalarmult_SCALARBYTES;
+nacl.scalarMult.groupElementLength = crypto_scalarmult_BYTES;
+
+nacl.box = function(msg, nonce, publicKey, secretKey) {
+  var k = nacl.box.before(publicKey, secretKey);
+  return nacl.secretbox(msg, nonce, k);
+};
+
+nacl.box.before = function(publicKey, secretKey) {
+  checkArrayTypes(publicKey, secretKey);
+  checkBoxLengths(publicKey, secretKey);
+  var k = new Uint8Array(crypto_box_BEFORENMBYTES);
+  crypto_box_beforenm(k, publicKey, secretKey);
+  return k;
+};
+
+nacl.box.after = nacl.secretbox;
+
+nacl.box.open = function(msg, nonce, publicKey, secretKey) {
+  var k = nacl.box.before(publicKey, secretKey);
+  return nacl.secretbox.open(msg, nonce, k);
+};
+
+nacl.box.open.after = nacl.secretbox.open;
+
+nacl.box.keyPair = function() {
+  var pk = new Uint8Array(crypto_box_PUBLICKEYBYTES);
+  var sk = new Uint8Array(crypto_box_SECRETKEYBYTES);
+  crypto_box_keypair(pk, sk);
+  return {publicKey: pk, secretKey: sk};
+};
+
+nacl.box.keyPair.fromSecretKey = function(secretKey) {
+  checkArrayTypes(secretKey);
+  if (secretKey.length !== crypto_box_SECRETKEYBYTES)
+    throw new Error('bad secret key size');
+  var pk = new Uint8Array(crypto_box_PUBLICKEYBYTES);
+  crypto_scalarmult_base(pk, secretKey);
+  return {publicKey: pk, secretKey: new Uint8Array(secretKey)};
+};
+
+nacl.box.publicKeyLength = crypto_box_PUBLICKEYBYTES;
+nacl.box.secretKeyLength = crypto_box_SECRETKEYBYTES;
+nacl.box.sharedKeyLength = crypto_box_BEFORENMBYTES;
+nacl.box.nonceLength = crypto_box_NONCEBYTES;
+nacl.box.overheadLength = nacl.secretbox.overheadLength;
+
+nacl.sign = function(msg, secretKey) {
+  checkArrayTypes(msg, secretKey);
+  if (secretKey.length !== crypto_sign_SECRETKEYBYTES)
+    throw new Error('bad secret key size');
+  var signedMsg = new Uint8Array(crypto_sign_BYTES+msg.length);
+  crypto_sign(signedMsg, msg, msg.length, secretKey);
+  return signedMsg;
+};
+
+nacl.sign.open = function(signedMsg, publicKey) {
+  if (arguments.length !== 2)
+    throw new Error('nacl.sign.open accepts 2 arguments; did you mean to use nacl.sign.detached.verify?');
+  checkArrayTypes(signedMsg, publicKey);
+  if (publicKey.length !== crypto_sign_PUBLICKEYBYTES)
+    throw new Error('bad public key size');
+  var tmp = new Uint8Array(signedMsg.length);
+  var mlen = crypto_sign_open(tmp, signedMsg, signedMsg.length, publicKey);
+  if (mlen < 0) return null;
+  var m = new Uint8Array(mlen);
+  for (var i = 0; i < m.length; i++) m[i] = tmp[i];
+  return m;
+};
+
+nacl.sign.detached = function(msg, secretKey) {
+  var signedMsg = nacl.sign(msg, secretKey);
+  var sig = new Uint8Array(crypto_sign_BYTES);
+  for (var i = 0; i < sig.length; i++) sig[i] = signedMsg[i];
+  return sig;
+};
+
+nacl.sign.detached.verify = function(msg, sig, publicKey) {
+  checkArrayTypes(msg, sig, publicKey);
+  if (sig.length !== crypto_sign_BYTES)
+    throw new Error('bad signature size');
+  if (publicKey.length !== crypto_sign_PUBLICKEYBYTES)
+    throw new Error('bad public key size');
+  var sm = new Uint8Array(crypto_sign_BYTES + msg.length);
+  var m = new Uint8Array(crypto_sign_BYTES + msg.length);
+  var i;
+  for (i = 0; i < crypto_sign_BYTES; i++) sm[i] = sig[i];
+  for (i = 0; i < msg.length; i++) sm[i+crypto_sign_BYTES] = msg[i];
+  return (crypto_sign_open(m, sm, sm.length, publicKey) >= 0);
+};
+
+nacl.sign.keyPair = function() {
+  var pk = new Uint8Array(crypto_sign_PUBLICKEYBYTES);
+  var sk = new Uint8Array(crypto_sign_SECRETKEYBYTES);
+  crypto_sign_keypair(pk, sk);
+  return {publicKey: pk, secretKey: sk};
+};
+
+nacl.sign.keyPair.fromSecretKey = function(secretKey) {
+  checkArrayTypes(secretKey);
+  if (secretKey.length !== crypto_sign_SECRETKEYBYTES)
+    throw new Error('bad secret key size');
+  var pk = new Uint8Array(crypto_sign_PUBLICKEYBYTES);
+  for (var i = 0; i < pk.length; i++) pk[i] = secretKey[32+i];
+  return {publicKey: pk, secretKey: new Uint8Array(secretKey)};
+};
+
+nacl.sign.keyPair.fromSeed = function(seed) {
+  checkArrayTypes(seed);
+  if (seed.length !== crypto_sign_SEEDBYTES)
+    throw new Error('bad seed size');
+  var pk = new Uint8Array(crypto_sign_PUBLICKEYBYTES);
+  var sk = new Uint8Array(crypto_sign_SECRETKEYBYTES);
+  for (var i = 0; i < 32; i++) sk[i] = seed[i];
+  crypto_sign_keypair(pk, sk, true);
+  return {publicKey: pk, secretKey: sk};
+};
+
+nacl.sign.publicKeyLength = crypto_sign_PUBLICKEYBYTES;
+nacl.sign.secretKeyLength = crypto_sign_SECRETKEYBYTES;
+nacl.sign.seedLength = crypto_sign_SEEDBYTES;
+nacl.sign.signatureLength = crypto_sign_BYTES;
+
+nacl.hash = function(msg) {
+  checkArrayTypes(msg);
+  var h = new Uint8Array(crypto_hash_BYTES);
+  crypto_hash(h, msg, msg.length);
+  return h;
+};
+
+nacl.hash.hashLength = crypto_hash_BYTES;
+
+nacl.verify = function(x, y) {
+  checkArrayTypes(x, y);
+  // Zero length arguments are considered not equal.
+  if (x.length === 0 || y.length === 0) return false;
+  if (x.length !== y.length) return false;
+  return (vn(x, 0, y, 0, x.length) === 0) ? true : false;
+};
+
+nacl.setPRNG = function(fn) {
+  randombytes = fn;
+};
+
+(function() {
+  // Initialize PRNG if environment provides CSPRNG.
+  // If not, methods calling randombytes will throw.
+  var crypto = typeof self !== 'undefined' ? (self.crypto || self.msCrypto) : null;
+  if (crypto && crypto.getRandomValues) {
+    // Browsers.
+    var QUOTA = 65536;
+    nacl.setPRNG(function(x, n) {
+      var i, v = new Uint8Array(n);
+      for (i = 0; i < n; i += QUOTA) {
+        crypto.getRandomValues(v.subarray(i, i + Math.min(n - i, QUOTA)));
+      }
+      for (i = 0; i < n; i++) x[i] = v[i];
+      cleanup(v);
+    });
+  } else if (typeof require !== 'undefined') {
+    // Node.js.
+    crypto = require$$0;
+    if (crypto && crypto.randomBytes) {
+      nacl.setPRNG(function(x, n) {
+        var i, v = crypto.randomBytes(n);
+        for (i = 0; i < n; i++) x[i] = v[i];
+        cleanup(v);
+      });
+    }
+  }
+})();
+
+})('object' !== 'undefined' && module.exports ? module.exports : (self.nacl = self.nacl || {}));
+});
+
+var naclUtil = createCommonjsModule(function (module) {
+// Written in 2014-2016 by Dmitry Chestnykh and Devi Mandiri.
+// Public domain.
+(function(root, f) {
+  'use strict';
+  if ('object' !== 'undefined' && module.exports) module.exports = f();
+  else if (root.nacl) root.nacl.util = f();
+  else {
+    root.nacl = {};
+    root.nacl.util = f();
+  }
+}(commonjsGlobal, function() {
+  'use strict';
+
+  var util$$1 = {};
+
+  util$$1.decodeUTF8 = function(s) {
+    var i, d = unescape(encodeURIComponent(s)), b = new Uint8Array(d.length);
+    for (i = 0; i < d.length; i++) b[i] = d.charCodeAt(i);
+    return b;
+  };
+
+  util$$1.encodeUTF8 = function(arr) {
+    var i, s = [];
+    for (i = 0; i < arr.length; i++) s.push(String.fromCharCode(arr[i]));
+    return decodeURIComponent(escape(s.join('')));
+  };
+
+  util$$1.encodeBase64 = function(arr) {
+    if (typeof btoa === 'undefined') {
+      return (new Buffer(arr)).toString('base64');
+    } else {
+      var i, s = [], len = arr.length;
+      for (i = 0; i < len; i++) s.push(String.fromCharCode(arr[i]));
+      return btoa(s.join(''));
+    }
+  };
+
+  util$$1.decodeBase64 = function(s) {
+    if (typeof atob === 'undefined') {
+      return new Uint8Array(Array.prototype.slice.call(new Buffer(s, 'base64'), 0));
+    } else {
+      var i, d = atob(s), b = new Uint8Array(d.length);
+      for (i = 0; i < d.length; i++) b[i] = d.charCodeAt(i);
+      return b;
+    }
+  };
+
+  return util$$1;
+
+}));
+});
+
+var converters = createCommonjsModule(function (module, exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.toByteArray = exports.byteArrayToBigInteger = exports.stringToHexString = exports.hexStringToByteArray = exports.stringToByteArray = exports.byteArrayToHexString = exports.byteArrayToIntVal = undefined;
+
+
+
+var _bigInteger2 = _interopRequireDefault(BigInteger);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var charToNibble = {};
+var nibbleToChar = [];
+var i = void 0;
+for (i = 0; i <= 9; ++i) {
+  var character = i.toString();
+  charToNibble[character] = i;
+  nibbleToChar.push(character);
+}
+for (i = 10; i <= 15; ++i) {
+  var lowerChar = String.fromCharCode('a'.charCodeAt(0) + i - 10);
+  var upperChar = String.fromCharCode('A'.charCodeAt(0) + i - 10);
+
+  charToNibble[lowerChar] = i;
+  charToNibble[upperChar] = i;
+  nibbleToChar.push(lowerChar);
+}
+
+var byteArrayToIntVal = exports.byteArrayToIntVal = function byteArrayToIntVal(byteArray) {
+  var intval = 0;
+
+  for (var index = 0; index < byteArray.length; index++) {
+    var byt = byteArray[index] & 0xFF;
+    var value = byt * Math.pow(256, index);
+    intval += value;
+  }
+  return intval;
+};
+
+var byteArrayToHexString = exports.byteArrayToHexString = function byteArrayToHexString(byteArray) {
+  var str = '';
+
+  for (var _i = 0; _i < byteArray.length; ++_i) {
+    if (byteArray[_i] < 0) {
+      byteArray[_i] += 256;
+    }
+    str += nibbleToChar[byteArray[_i] >> 4] + nibbleToChar[byteArray[_i] & 0x0F];
+  }
+  return str;
+};
+
+var stringToByteArray = exports.stringToByteArray = function stringToByteArray(str) {
+  str = unescape(encodeURIComponent(str));
+  var bytes = new Array(str.length);
+  for (var _i2 = 0; _i2 < str.length; ++_i2) {
+    bytes[_i2] = str.charCodeAt(_i2);
+  }
+  return bytes;
+};
+
+var hexStringToByteArray = exports.hexStringToByteArray = function hexStringToByteArray(str) {
+  var byteArray = [];
+  var i = 0;
+  if (str.length % 2 !== 0) {
+    byteArray.push(charToNibble[str.charAt(0)]);
+    ++i;
+  }
+  for (; i < str.length - 1; i += 2) {
+    byteArray.push((charToNibble[str.charAt(i)] << 4) + charToNibble[str.charAt(i + 1)]);
+  }
+  return byteArray;
+};
+
+var stringToHexString = exports.stringToHexString = function stringToHexString(str) {
+  return byteArrayToHexString(stringToByteArray(str));
+};
+
+var byteArrayToBigInteger = exports.byteArrayToBigInteger = function byteArrayToBigInteger(byteArray) {
+  var value = new _bigInteger2.default('0', 10);
+  var temp1 = void 0;
+  var temp2 = void 0;
+
+  for (var _i3 = byteArray.length - 1; _i3 >= 0; _i3--) {
+    temp1 = value.multiply(new _bigInteger2.default('256', 10));
+    temp2 = temp1.add(new _bigInteger2.default(byteArray[_i3].toString(10), 10));
+    value = temp2;
+  }
+
+  return value;
+};
+
+var toByteArray = exports.toByteArray = function toByteArray(long) {
+  var byteArray = [0, 0, 0, 0];
+
+  for (var index = 0; index < byteArray.length; index++) {
+    var byte = long & 0xff;
+    byteArray[index] = byte;
+    long = (long - byte) / 256;
+  }
+
+  return byteArray;
+};
+
+exports.default = {
+  byteArrayToIntVal: byteArrayToIntVal,
+  byteArrayToHexString: byteArrayToHexString,
+  byteArrayToBigInteger: byteArrayToBigInteger,
+  stringToByteArray: stringToByteArray,
+  hexStringToByteArray: hexStringToByteArray,
+  stringToHexString: stringToHexString,
+  toByteArray: toByteArray
+};
+});
+
+unwrapExports(converters);
+
+var curve25519 = createCommonjsModule(function (module, exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//region Constants
+
+var KEY_SIZE = 32;
+
+/* array length */
+var UNPACKED_SIZE = 16;
+
+/* group order (a prime near 2^252+2^124) */
+var ORDER = [237, 211, 245, 92, 26, 99, 18, 88, 214, 156, 247, 162, 222, 249, 222, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16];
+
+/* smallest multiple of the order that's >= 2^255 */
+var ORDER_TIMES_8 = [104, 159, 174, 231, 210, 24, 147, 192, 178, 230, 188, 23, 245, 206, 247, 166, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128];
+
+/* constants 2Gy and 1/(2Gy) */
+var BASE_2Y = [22587, 610, 29883, 44076, 15515, 9479, 25859, 56197, 23910, 4462, 17831, 16322, 62102, 36542, 52412, 16035];
+
+var BASE_R2Y = [5744, 16384, 61977, 54121, 8776, 18501, 26522, 34893, 23833, 5823, 55924, 58749, 24147, 14085, 13606, 6080];
+
+var C1 = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var C9 = [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var C486671 = [0x6D0F, 0x0007, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var C39420360 = [0x81C8, 0x0259, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+var P25 = 33554431; /* (1 << 25) - 1 */
+var P26 = 67108863; /* (1 << 26) - 1 */
+
+//#endregion
+
+//region Key Agreement
+
+/* Private key clamping
+ *   k [out] your private key for key agreement
+ *   k  [in]  32 random bytes
+ */
+function clamp(k) {
+    k[31] &= 0x7F;
+    k[31] |= 0x40;
+    k[0] &= 0xF8;
+}
+
+//endregion
+
+//region radix 2^8 math
+
+function cpy32(d, s) {
+    for (var i = 0; i < 32; i++) {
+        d[i] = s[i];
+    }
+}
+
+/* p[m..n+m-1] = q[m..n+m-1] + z * x */
+/* n is the size of x */
+/* n+m is the size of p and q */
+function mula_small(p, q, m, x, n, z) {
+    m = m | 0;
+    n = n | 0;
+    z = z | 0;
+
+    var v = 0;
+    for (var i = 0; i < n; ++i) {
+        v += (q[i + m] & 0xFF) + z * (x[i] & 0xFF);
+        p[i + m] = v & 0xFF;
+        v >>= 8;
+    }
+
+    return v;
+}
+
+/* p += x * y * z  where z is a small integer
+ * x is size 32, y is size t, p is size 32+t
+ * y is allowed to overlap with p+32 if you don't care about the upper half  */
+function mula32(p, x, y, t, z) {
+    t = t | 0;
+    z = z | 0;
+
+    var n = 31;
+    var w = 0;
+    var i = 0;
+    for (; i < t; i++) {
+        var zy = z * (y[i] & 0xFF);
+        w += mula_small(p, p, i, x, n, zy) + (p[i + n] & 0xFF) + zy * (x[n] & 0xFF);
+        p[i + n] = w & 0xFF;
+        w >>= 8;
+    }
+    p[i + n] = w + (p[i + n] & 0xFF) & 0xFF;
+    return w >> 8;
+}
+
+/* divide r (size n) by d (size t), returning quotient q and remainder r
+ * quotient is size n-t+1, remainder is size t
+ * requires t > 0 && d[t-1] !== 0
+ * requires that r[-1] and d[-1] are valid memory locations
+ * q may overlap with r+t */
+function divmod(q, r, n, d, t) {
+    n = n | 0;
+    t = t | 0;
+
+    var rn = 0;
+    var dt = (d[t - 1] & 0xFF) << 8;
+    if (t > 1) dt |= d[t - 2] & 0xFF;
+
+    while (n-- >= t) {
+        var z = rn << 16 | (r[n] & 0xFF) << 8;
+        if (n > 0) z |= r[n - 1] & 0xFF;
+
+        var i = n - t + 1;
+        z /= dt;
+        rn += mula_small(r, r, i, d, t, -z);
+        q[i] = z + rn & 0xFF;
+        /* rn is 0 or -1 (underflow) */
+        mula_small(r, r, i, d, t, -rn);
+        rn = r[n] & 0xFF;
+        r[n] = 0;
+    }
+
+    r[t - 1] = rn & 0xFF;
+}
+
+function numsize(x, n) {
+    while (n-- !== 0 && x[n] === 0) {}
+    return n + 1;
+}
+
+/* Returns x if a contains the gcd, y if b.
+ * Also, the returned buffer contains the inverse of a mod b,
+ * as 32-byte signed.
+ * x and y must have 64 bytes space for temporary use.
+ * requires that a[-1] and b[-1] are valid memory locations  */
+function egcd32(x, y, a, b) {
+    var an,
+        bn = 32,
+        qn,
+        i;
+    for (i = 0; i < 32; i++) {
+        x[i] = y[i] = 0;
+    }x[0] = 1;
+    an = numsize(a, 32);
+    if (an === 0) return y; /* division by zero */
+    var temp = new Array(32);
+    while (true) {
+        qn = bn - an + 1;
+        divmod(temp, b, bn, a, an);
+        bn = numsize(b, bn);
+        if (bn === 0) return x;
+        mula32(y, x, temp, qn, -1);
+
+        qn = an - bn + 1;
+        divmod(temp, a, an, b, bn);
+        an = numsize(a, an);
+        if (an === 0) return y;
+        mula32(x, y, temp, qn, -1);
+    }
+}
+
+//endregion
+
+//region radix 2^25.5 GF(2^255-19) math
+
+//region pack / unpack
+
+/* Convert to internal format from little-endian byte format */
+function unpack(x, m) {
+    for (var i = 0; i < KEY_SIZE; i += 2) {
+        x[i / 2] = m[i] & 0xFF | (m[i + 1] & 0xFF) << 8;
+    }
+}
+
+/* Check if reduced-form input >= 2^255-19 */
+function is_overflow(x) {
+    return x[0] > P26 - 19 && (x[1] & x[3] & x[5] & x[7] & x[9]) === P25 && (x[2] & x[4] & x[6] & x[8]) === P26 || x[9] > P25;
+}
+
+/* Convert from internal format to little-endian byte format.  The
+ * number must be in a reduced form which is output by the following ops:
+ *     unpack, mul, sqr
+ *     set --  if input in range 0 .. P25
+ * If you're unsure if the number is reduced, first multiply it by 1.  */
+function pack(x, m) {
+    for (var i = 0; i < UNPACKED_SIZE; ++i) {
+        m[2 * i] = x[i] & 0x00FF;
+        m[2 * i + 1] = (x[i] & 0xFF00) >> 8;
+    }
+}
+
+//endregion
+
+function createUnpackedArray() {
+    return new Uint16Array(UNPACKED_SIZE);
+}
+
+/* Copy a number */
+function cpy(d, s) {
+    for (var i = 0; i < UNPACKED_SIZE; ++i) {
+        d[i] = s[i];
+    }
+}
+
+/* Set a number to value, which must be in range -185861411 .. 185861411 */
+function set(d, s) {
+    d[0] = s;
+    for (var i = 1; i < UNPACKED_SIZE; ++i) {
+        d[i] = 0;
+    }
+}
+
+/* Add/subtract two numbers.  The inputs must be in reduced form, and the
+ * output isn't, so to do another addition or subtraction on the output,
+ * first multiply it by one to reduce it. */
+var add = c255laddmodp;
+var sub = c255lsubmodp;
+
+/* Multiply a number by a small integer in range -185861411 .. 185861411.
+ * The output is in reduced form, the input x need not be.  x and xy may point
+ * to the same buffer. */
+var mul_small = c255lmulasmall;
+
+/* Multiply two numbers.  The output is in reduced form, the inputs need not be. */
+var mul = c255lmulmodp;
+
+/* Square a number.  Optimization of  mul25519(x2, x, x)  */
+var sqr = c255lsqrmodp;
+
+/* Calculates a reciprocal.  The output is in reduced form, the inputs need not
+ * be.  Simply calculates  y = x^(p-2)  so it's not too fast. */
+/* When sqrtassist is true, it instead calculates y = x^((p-5)/8) */
+function recip(y, x, sqrtassist) {
+    var t0 = createUnpackedArray();
+    var t1 = createUnpackedArray();
+    var t2 = createUnpackedArray();
+    var t3 = createUnpackedArray();
+    var t4 = createUnpackedArray();
+
+    /* the chain for x^(2^255-21) is straight from djb's implementation */
+    var i;
+    sqr(t1, x); /*  2 === 2 * 1	*/
+    sqr(t2, t1); /*  4 === 2 * 2	*/
+    sqr(t0, t2); /*  8 === 2 * 4	*/
+    mul(t2, t0, x); /*  9 === 8 + 1	*/
+    mul(t0, t2, t1); /* 11 === 9 + 2	*/
+    sqr(t1, t0); /* 22 === 2 * 11	*/
+    mul(t3, t1, t2); /* 31 === 22 + 9 === 2^5   - 2^0	*/
+    sqr(t1, t3); /* 2^6   - 2^1	*/
+    sqr(t2, t1); /* 2^7   - 2^2	*/
+    sqr(t1, t2); /* 2^8   - 2^3	*/
+    sqr(t2, t1); /* 2^9   - 2^4	*/
+    sqr(t1, t2); /* 2^10  - 2^5	*/
+    mul(t2, t1, t3); /* 2^10  - 2^0	*/
+    sqr(t1, t2); /* 2^11  - 2^1	*/
+    sqr(t3, t1); /* 2^12  - 2^2	*/
+    for (i = 1; i < 5; i++) {
+        sqr(t1, t3);
+        sqr(t3, t1);
+    } /* t3 */ /* 2^20  - 2^10	*/
+    mul(t1, t3, t2); /* 2^20  - 2^0	*/
+    sqr(t3, t1); /* 2^21  - 2^1	*/
+    sqr(t4, t3); /* 2^22  - 2^2	*/
+    for (i = 1; i < 10; i++) {
+        sqr(t3, t4);
+        sqr(t4, t3);
+    } /* t4 */ /* 2^40  - 2^20	*/
+    mul(t3, t4, t1); /* 2^40  - 2^0	*/
+    for (i = 0; i < 5; i++) {
+        sqr(t1, t3);
+        sqr(t3, t1);
+    } /* t3 */ /* 2^50  - 2^10	*/
+    mul(t1, t3, t2); /* 2^50  - 2^0	*/
+    sqr(t2, t1); /* 2^51  - 2^1	*/
+    sqr(t3, t2); /* 2^52  - 2^2	*/
+    for (i = 1; i < 25; i++) {
+        sqr(t2, t3);
+        sqr(t3, t2);
+    } /* t3 */ /* 2^100 - 2^50 */
+    mul(t2, t3, t1); /* 2^100 - 2^0	*/
+    sqr(t3, t2); /* 2^101 - 2^1	*/
+    sqr(t4, t3); /* 2^102 - 2^2	*/
+    for (i = 1; i < 50; i++) {
+        sqr(t3, t4);
+        sqr(t4, t3);
+    } /* t4 */ /* 2^200 - 2^100 */
+    mul(t3, t4, t2); /* 2^200 - 2^0	*/
+    for (i = 0; i < 25; i++) {
+        sqr(t4, t3);
+        sqr(t3, t4);
+    } /* t3 */ /* 2^250 - 2^50	*/
+    mul(t2, t3, t1); /* 2^250 - 2^0	*/
+    sqr(t1, t2); /* 2^251 - 2^1	*/
+    sqr(t2, t1); /* 2^252 - 2^2	*/
+    if (sqrtassist !== 0) {
+        mul(y, x, t2); /* 2^252 - 3 */
+    } else {
+        sqr(t1, t2); /* 2^253 - 2^3	*/
+        sqr(t2, t1); /* 2^254 - 2^4	*/
+        sqr(t1, t2); /* 2^255 - 2^5	*/
+        mul(y, t1, t0); /* 2^255 - 21	*/
+    }
+}
+
+/* checks if x is "negative", requires reduced input */
+function is_negative(x) {
+    var isOverflowOrNegative = is_overflow(x) || x[9] < 0;
+    var leastSignificantBit = x[0] & 1;
+    return ((isOverflowOrNegative ? 1 : 0) ^ leastSignificantBit) & 0xFFFFFFFF;
+}
+
+/* a square root */
+function sqrt(x, u) {
+    var v = createUnpackedArray();
+    var t1 = createUnpackedArray();
+    var t2 = createUnpackedArray();
+
+    add(t1, u, u); /* t1 = 2u		*/
+    recip(v, t1, 1); /* v = (2u)^((p-5)/8)	*/
+    sqr(x, v); /* x = v^2		*/
+    mul(t2, t1, x); /* t2 = 2uv^2		*/
+    sub(t2, t2, C1); /* t2 = 2uv^2-1		*/
+    mul(t1, v, t2); /* t1 = v(2uv^2-1)	*/
+    mul(x, u, t1); /* x = uv(2uv^2-1)	*/
+}
+
+//endregion
+
+//region JavaScript Fast Math
+
+function c255lsqr8h(a7, a6, a5, a4, a3, a2, a1, a0) {
+    var r = [];
+    var v;
+    r[0] = (v = a0 * a0) & 0xFFFF;
+    r[1] = (v = (v / 0x10000 | 0) + 2 * a0 * a1) & 0xFFFF;
+    r[2] = (v = (v / 0x10000 | 0) + 2 * a0 * a2 + a1 * a1) & 0xFFFF;
+    r[3] = (v = (v / 0x10000 | 0) + 2 * a0 * a3 + 2 * a1 * a2) & 0xFFFF;
+    r[4] = (v = (v / 0x10000 | 0) + 2 * a0 * a4 + 2 * a1 * a3 + a2 * a2) & 0xFFFF;
+    r[5] = (v = (v / 0x10000 | 0) + 2 * a0 * a5 + 2 * a1 * a4 + 2 * a2 * a3) & 0xFFFF;
+    r[6] = (v = (v / 0x10000 | 0) + 2 * a0 * a6 + 2 * a1 * a5 + 2 * a2 * a4 + a3 * a3) & 0xFFFF;
+    r[7] = (v = (v / 0x10000 | 0) + 2 * a0 * a7 + 2 * a1 * a6 + 2 * a2 * a5 + 2 * a3 * a4) & 0xFFFF;
+    r[8] = (v = (v / 0x10000 | 0) + 2 * a1 * a7 + 2 * a2 * a6 + 2 * a3 * a5 + a4 * a4) & 0xFFFF;
+    r[9] = (v = (v / 0x10000 | 0) + 2 * a2 * a7 + 2 * a3 * a6 + 2 * a4 * a5) & 0xFFFF;
+    r[10] = (v = (v / 0x10000 | 0) + 2 * a3 * a7 + 2 * a4 * a6 + a5 * a5) & 0xFFFF;
+    r[11] = (v = (v / 0x10000 | 0) + 2 * a4 * a7 + 2 * a5 * a6) & 0xFFFF;
+    r[12] = (v = (v / 0x10000 | 0) + 2 * a5 * a7 + a6 * a6) & 0xFFFF;
+    r[13] = (v = (v / 0x10000 | 0) + 2 * a6 * a7) & 0xFFFF;
+    r[14] = (v = (v / 0x10000 | 0) + a7 * a7) & 0xFFFF;
+    r[15] = v / 0x10000 | 0;
+    return r;
+}
+
+function c255lsqrmodp(r, a) {
+    var x = c255lsqr8h(a[15], a[14], a[13], a[12], a[11], a[10], a[9], a[8]);
+    var z = c255lsqr8h(a[7], a[6], a[5], a[4], a[3], a[2], a[1], a[0]);
+    var y = c255lsqr8h(a[15] + a[7], a[14] + a[6], a[13] + a[5], a[12] + a[4], a[11] + a[3], a[10] + a[2], a[9] + a[1], a[8] + a[0]);
+
+    var v;
+    r[0] = (v = 0x800000 + z[0] + (y[8] - x[8] - z[8] + x[0] - 0x80) * 38) & 0xFFFF;
+    r[1] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[1] + (y[9] - x[9] - z[9] + x[1]) * 38) & 0xFFFF;
+    r[2] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[2] + (y[10] - x[10] - z[10] + x[2]) * 38) & 0xFFFF;
+    r[3] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[3] + (y[11] - x[11] - z[11] + x[3]) * 38) & 0xFFFF;
+    r[4] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[4] + (y[12] - x[12] - z[12] + x[4]) * 38) & 0xFFFF;
+    r[5] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[5] + (y[13] - x[13] - z[13] + x[5]) * 38) & 0xFFFF;
+    r[6] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[6] + (y[14] - x[14] - z[14] + x[6]) * 38) & 0xFFFF;
+    r[7] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[7] + (y[15] - x[15] - z[15] + x[7]) * 38) & 0xFFFF;
+    r[8] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[8] + y[0] - x[0] - z[0] + x[8] * 38) & 0xFFFF;
+    r[9] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[9] + y[1] - x[1] - z[1] + x[9] * 38) & 0xFFFF;
+    r[10] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[10] + y[2] - x[2] - z[2] + x[10] * 38) & 0xFFFF;
+    r[11] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[11] + y[3] - x[3] - z[3] + x[11] * 38) & 0xFFFF;
+    r[12] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[12] + y[4] - x[4] - z[4] + x[12] * 38) & 0xFFFF;
+    r[13] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[13] + y[5] - x[5] - z[5] + x[13] * 38) & 0xFFFF;
+    r[14] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[14] + y[6] - x[6] - z[6] + x[14] * 38) & 0xFFFF;
+    var r15 = 0x7fff80 + (v / 0x10000 | 0) + z[15] + y[7] - x[7] - z[7] + x[15] * 38;
+    c255lreduce(r, r15);
+}
+
+function c255lmul8h(a7, a6, a5, a4, a3, a2, a1, a0, b7, b6, b5, b4, b3, b2, b1, b0) {
+    var r = [];
+    var v;
+    r[0] = (v = a0 * b0) & 0xFFFF;
+    r[1] = (v = (v / 0x10000 | 0) + a0 * b1 + a1 * b0) & 0xFFFF;
+    r[2] = (v = (v / 0x10000 | 0) + a0 * b2 + a1 * b1 + a2 * b0) & 0xFFFF;
+    r[3] = (v = (v / 0x10000 | 0) + a0 * b3 + a1 * b2 + a2 * b1 + a3 * b0) & 0xFFFF;
+    r[4] = (v = (v / 0x10000 | 0) + a0 * b4 + a1 * b3 + a2 * b2 + a3 * b1 + a4 * b0) & 0xFFFF;
+    r[5] = (v = (v / 0x10000 | 0) + a0 * b5 + a1 * b4 + a2 * b3 + a3 * b2 + a4 * b1 + a5 * b0) & 0xFFFF;
+    r[6] = (v = (v / 0x10000 | 0) + a0 * b6 + a1 * b5 + a2 * b4 + a3 * b3 + a4 * b2 + a5 * b1 + a6 * b0) & 0xFFFF;
+    r[7] = (v = (v / 0x10000 | 0) + a0 * b7 + a1 * b6 + a2 * b5 + a3 * b4 + a4 * b3 + a5 * b2 + a6 * b1 + a7 * b0) & 0xFFFF;
+    r[8] = (v = (v / 0x10000 | 0) + a1 * b7 + a2 * b6 + a3 * b5 + a4 * b4 + a5 * b3 + a6 * b2 + a7 * b1) & 0xFFFF;
+    r[9] = (v = (v / 0x10000 | 0) + a2 * b7 + a3 * b6 + a4 * b5 + a5 * b4 + a6 * b3 + a7 * b2) & 0xFFFF;
+    r[10] = (v = (v / 0x10000 | 0) + a3 * b7 + a4 * b6 + a5 * b5 + a6 * b4 + a7 * b3) & 0xFFFF;
+    r[11] = (v = (v / 0x10000 | 0) + a4 * b7 + a5 * b6 + a6 * b5 + a7 * b4) & 0xFFFF;
+    r[12] = (v = (v / 0x10000 | 0) + a5 * b7 + a6 * b6 + a7 * b5) & 0xFFFF;
+    r[13] = (v = (v / 0x10000 | 0) + a6 * b7 + a7 * b6) & 0xFFFF;
+    r[14] = (v = (v / 0x10000 | 0) + a7 * b7) & 0xFFFF;
+    r[15] = v / 0x10000 | 0;
+    return r;
+}
+
+function c255lmulmodp(r, a, b) {
+    // Karatsuba multiplication scheme: x*y = (b^2+b)*x1*y1 - b*(x1-x0)*(y1-y0) + (b+1)*x0*y0
+    var x = c255lmul8h(a[15], a[14], a[13], a[12], a[11], a[10], a[9], a[8], b[15], b[14], b[13], b[12], b[11], b[10], b[9], b[8]);
+    var z = c255lmul8h(a[7], a[6], a[5], a[4], a[3], a[2], a[1], a[0], b[7], b[6], b[5], b[4], b[3], b[2], b[1], b[0]);
+    var y = c255lmul8h(a[15] + a[7], a[14] + a[6], a[13] + a[5], a[12] + a[4], a[11] + a[3], a[10] + a[2], a[9] + a[1], a[8] + a[0], b[15] + b[7], b[14] + b[6], b[13] + b[5], b[12] + b[4], b[11] + b[3], b[10] + b[2], b[9] + b[1], b[8] + b[0]);
+
+    var v;
+    r[0] = (v = 0x800000 + z[0] + (y[8] - x[8] - z[8] + x[0] - 0x80) * 38) & 0xFFFF;
+    r[1] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[1] + (y[9] - x[9] - z[9] + x[1]) * 38) & 0xFFFF;
+    r[2] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[2] + (y[10] - x[10] - z[10] + x[2]) * 38) & 0xFFFF;
+    r[3] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[3] + (y[11] - x[11] - z[11] + x[3]) * 38) & 0xFFFF;
+    r[4] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[4] + (y[12] - x[12] - z[12] + x[4]) * 38) & 0xFFFF;
+    r[5] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[5] + (y[13] - x[13] - z[13] + x[5]) * 38) & 0xFFFF;
+    r[6] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[6] + (y[14] - x[14] - z[14] + x[6]) * 38) & 0xFFFF;
+    r[7] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[7] + (y[15] - x[15] - z[15] + x[7]) * 38) & 0xFFFF;
+    r[8] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[8] + y[0] - x[0] - z[0] + x[8] * 38) & 0xFFFF;
+    r[9] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[9] + y[1] - x[1] - z[1] + x[9] * 38) & 0xFFFF;
+    r[10] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[10] + y[2] - x[2] - z[2] + x[10] * 38) & 0xFFFF;
+    r[11] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[11] + y[3] - x[3] - z[3] + x[11] * 38) & 0xFFFF;
+    r[12] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[12] + y[4] - x[4] - z[4] + x[12] * 38) & 0xFFFF;
+    r[13] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[13] + y[5] - x[5] - z[5] + x[13] * 38) & 0xFFFF;
+    r[14] = (v = 0x7fff80 + (v / 0x10000 | 0) + z[14] + y[6] - x[6] - z[6] + x[14] * 38) & 0xFFFF;
+    var r15 = 0x7fff80 + (v / 0x10000 | 0) + z[15] + y[7] - x[7] - z[7] + x[15] * 38;
+    c255lreduce(r, r15);
+}
+
+function c255lreduce(a, a15) {
+    var v = a15;
+    a[15] = v & 0x7FFF;
+    v = (v / 0x8000 | 0) * 19;
+    for (var i = 0; i <= 14; ++i) {
+        a[i] = (v += a[i]) & 0xFFFF;
+        v = v / 0x10000 | 0;
+    }
+
+    a[15] += v;
+}
+
+function c255laddmodp(r, a, b) {
+    var v;
+    r[0] = (v = ((a[15] / 0x8000 | 0) + (b[15] / 0x8000 | 0)) * 19 + a[0] + b[0]) & 0xFFFF;
+    for (var i = 1; i <= 14; ++i) {
+        r[i] = (v = (v / 0x10000 | 0) + a[i] + b[i]) & 0xFFFF;
+    }r[15] = (v / 0x10000 | 0) + (a[15] & 0x7FFF) + (b[15] & 0x7FFF);
+}
+
+function c255lsubmodp(r, a, b) {
+    var v;
+    r[0] = (v = 0x80000 + ((a[15] / 0x8000 | 0) - (b[15] / 0x8000 | 0) - 1) * 19 + a[0] - b[0]) & 0xFFFF;
+    for (var i = 1; i <= 14; ++i) {
+        r[i] = (v = (v / 0x10000 | 0) + 0x7fff8 + a[i] - b[i]) & 0xFFFF;
+    }r[15] = (v / 0x10000 | 0) + 0x7ff8 + (a[15] & 0x7FFF) - (b[15] & 0x7FFF);
+}
+
+function c255lmulasmall(r, a, m) {
+    var v;
+    r[0] = (v = a[0] * m) & 0xFFFF;
+    for (var i = 1; i <= 14; ++i) {
+        r[i] = (v = (v / 0x10000 | 0) + a[i] * m) & 0xFFFF;
+    }var r15 = (v / 0x10000 | 0) + a[15] * m;
+    c255lreduce(r, r15);
+}
+
+//endregion
+
+/********************* Elliptic curve *********************/
+
+/* y^2 = x^3 + 486662 x^2 + x  over GF(2^255-19) */
+
+/* t1 = ax + az
+ * t2 = ax - az  */
+function mont_prep(t1, t2, ax, az) {
+    add(t1, ax, az);
+    sub(t2, ax, az);
+}
+
+/* A = P + Q   where
+ *  X(A) = ax/az
+ *  X(P) = (t1+t2)/(t1-t2)
+ *  X(Q) = (t3+t4)/(t3-t4)
+ *  X(P-Q) = dx
+ * clobbers t1 and t2, preserves t3 and t4  */
+function mont_add(t1, t2, t3, t4, ax, az, dx) {
+    mul(ax, t2, t3);
+    mul(az, t1, t4);
+    add(t1, ax, az);
+    sub(t2, ax, az);
+    sqr(ax, t1);
+    sqr(t1, t2);
+    mul(az, t1, dx);
+}
+
+/* B = 2 * Q   where
+ *  X(B) = bx/bz
+ *  X(Q) = (t3+t4)/(t3-t4)
+ * clobbers t1 and t2, preserves t3 and t4  */
+function mont_dbl(t1, t2, t3, t4, bx, bz) {
+    sqr(t1, t3);
+    sqr(t2, t4);
+    mul(bx, t1, t2);
+    sub(t2, t1, t2);
+    mul_small(bz, t2, 121665);
+    add(t1, t1, bz);
+    mul(bz, t1, t2);
+}
+
+/* Y^2 = X^3 + 486662 X^2 + X
+ * t is a temporary  */
+function x_to_y2(t, y2, x) {
+    sqr(t, x);
+    mul_small(y2, x, 486662);
+    add(t, t, y2);
+    add(t, t, C1);
+    mul(y2, t, x);
+}
+
+/* P = kG   and  s = sign(P)/k  */
+function core(Px, s, k, Gx) {
+    var dx = createUnpackedArray();
+    var t1 = createUnpackedArray();
+    var t2 = createUnpackedArray();
+    var t3 = createUnpackedArray();
+    var t4 = createUnpackedArray();
+    var x = [createUnpackedArray(), createUnpackedArray()];
+    var z = [createUnpackedArray(), createUnpackedArray()];
+    var i, j;
+
+    /* unpack the base */
+    if (Gx !== null) unpack(dx, Gx);else set(dx, 9);
+
+    /* 0G = point-at-infinity */
+    set(x[0], 1);
+    set(z[0], 0);
+
+    /* 1G = G */
+    cpy(x[1], dx);
+    set(z[1], 1);
+
+    for (i = 32; i-- !== 0;) {
+        for (j = 8; j-- !== 0;) {
+            /* swap arguments depending on bit */
+            var bit1 = (k[i] & 0xFF) >> j & 1;
+            var bit0 = ~(k[i] & 0xFF) >> j & 1;
+            var ax = x[bit0];
+            var az = z[bit0];
+            var bx = x[bit1];
+            var bz = z[bit1];
+
+            /* a' = a + b	*/
+            /* b' = 2 b	*/
+            mont_prep(t1, t2, ax, az);
+            mont_prep(t3, t4, bx, bz);
+            mont_add(t1, t2, t3, t4, ax, az, dx);
+            mont_dbl(t1, t2, t3, t4, bx, bz);
+        }
+    }
+
+    recip(t1, z[0], 0);
+    mul(dx, x[0], t1);
+
+    pack(dx, Px);
+
+    /* calculate s such that s abs(P) = G  .. assumes G is std base point */
+    if (s !== null) {
+        x_to_y2(t2, t1, dx); /* t1 = Py^2  */
+        recip(t3, z[1], 0); /* where Q=P+G ... */
+        mul(t2, x[1], t3); /* t2 = Qx  */
+        add(t2, t2, dx); /* t2 = Qx + Px  */
+        add(t2, t2, C486671); /* t2 = Qx + Px + Gx + 486662  */
+        sub(dx, dx, C9); /* dx = Px - Gx  */
+        sqr(t3, dx); /* t3 = (Px - Gx)^2  */
+        mul(dx, t2, t3); /* dx = t2 (Px - Gx)^2  */
+        sub(dx, dx, t1); /* dx = t2 (Px - Gx)^2 - Py^2  */
+        sub(dx, dx, C39420360); /* dx = t2 (Px - Gx)^2 - Py^2 - Gy^2  */
+        mul(t1, dx, BASE_R2Y); /* t1 = -Py  */
+
+        if (is_negative(t1) !== 0) /* sign is 1, so just copy  */
+            cpy32(s, k);else /* sign is -1, so negate  */
+            mula_small(s, ORDER_TIMES_8, 0, k, 32, -1);
+
+        /* reduce s mod q
+         * (is this needed?  do it just in case, it's fast anyway) */
+        //divmod((dstptr) t1, s, 32, order25519, 32);
+
+        /* take reciprocal of s mod q */
+        var temp1 = new Array(32);
+        var temp2 = new Array(64);
+        var temp3 = new Array(64);
+        cpy32(temp1, ORDER);
+        cpy32(s, egcd32(temp2, temp3, s, temp1));
+        if ((s[31] & 0x80) !== 0) mula_small(s, s, 0, ORDER, 32, 1);
+    }
+}
+
+/********* DIGITAL SIGNATURES *********/
+
+/* deterministic EC-KCDSA
+ *
+ *    s is the private key for signing
+ *    P is the corresponding public key
+ *    Z is the context data (signer public key or certificate, etc)
+ *
+ * signing:
+ *
+ *    m = hash(Z, message)
+ *    x = hash(m, s)
+ *    keygen25519(Y, NULL, x);
+ *    r = hash(Y);
+ *    h = m XOR r
+ *    sign25519(v, h, x, s);
+ *
+ *    output (v,r) as the signature
+ *
+ * verification:
+ *
+ *    m = hash(Z, message);
+ *    h = m XOR r
+ *    verify25519(Y, v, h, P)
+ *
+ *    confirm  r === hash(Y)
+ *
+ * It would seem to me that it would be simpler to have the signer directly do
+ * h = hash(m, Y) and send that to the recipient instead of r, who can verify
+ * the signature by checking h === hash(m, Y).  If there are any problems with
+ * such a scheme, please let me know.
+ *
+ * Also, EC-KCDSA (like most DS algorithms) picks x random, which is a waste of
+ * perfectly good entropy, but does allow Y to be calculated in advance of (or
+ * parallel to) hashing the message.
+ */
+
+/* Signature generation primitive, calculates (x-h)s mod q
+ *   h  [in]  signature hash (of message, signature pub key, and context data)
+ *   x  [in]  signature private key
+ *   s  [in]  private key for signing
+ * returns signature value on success, undefined on failure (use different x or h)
+ */
+
+function sign(h, x, s) {
+    // v = (x - h) s  mod q
+    var w, i;
+    var h1 = new Array(32);
+    var x1 = new Array(32);
+    var tmp1 = new Array(64);
+    var tmp2 = new Array(64);
+
+    // Don't clobber the arguments, be nice!
+    cpy32(h1, h);
+    cpy32(x1, x);
+
+    // Reduce modulo group order
+    var tmp3 = new Array(32);
+    divmod(tmp3, h1, 32, ORDER, 32);
+    divmod(tmp3, x1, 32, ORDER, 32);
+
+    // v = x1 - h1
+    // If v is negative, add the group order to it to become positive.
+    // If v was already positive we don't have to worry about overflow
+    // when adding the order because v < ORDER and 2*ORDER < 2^256
+    var v = new Array(32);
+    mula_small(v, x1, 0, h1, 32, -1);
+    mula_small(v, v, 0, ORDER, 32, 1);
+
+    // tmp1 = (x-h)*s mod q
+    mula32(tmp1, v, s, 32, 1);
+    divmod(tmp2, tmp1, 64, ORDER, 32);
+
+    for (w = 0, i = 0; i < 32; i++) {
+        w |= v[i] = tmp1[i];
+    }return w !== 0 ? v : undefined;
+}
+
+/* Signature verification primitive, calculates Y = vP + hG
+ *   v  [in]  signature value
+ *   h  [in]  signature hash
+ *   P  [in]  public key
+ *   Returns signature public key
+ */
+function verify(v, h, P) {
+    /* Y = v abs(P) + h G  */
+    var d = new Array(32);
+    var p = [createUnpackedArray(), createUnpackedArray()];
+    var s = [createUnpackedArray(), createUnpackedArray()];
+    var yx = [createUnpackedArray(), createUnpackedArray(), createUnpackedArray()];
+    var yz = [createUnpackedArray(), createUnpackedArray(), createUnpackedArray()];
+    var t1 = [createUnpackedArray(), createUnpackedArray(), createUnpackedArray()];
+    var t2 = [createUnpackedArray(), createUnpackedArray(), createUnpackedArray()];
+
+    var vi = 0,
+        hi = 0,
+        di = 0,
+        nvh = 0,
+        i,
+        j,
+        k;
+
+    /* set p[0] to G and p[1] to P  */
+
+    set(p[0], 9);
+    unpack(p[1], P);
+
+    /* set s[0] to P+G and s[1] to P-G  */
+
+    /* s[0] = (Py^2 + Gy^2 - 2 Py Gy)/(Px - Gx)^2 - Px - Gx - 486662  */
+    /* s[1] = (Py^2 + Gy^2 + 2 Py Gy)/(Px - Gx)^2 - Px - Gx - 486662  */
+
+    x_to_y2(t1[0], t2[0], p[1]); /* t2[0] = Py^2  */
+    sqrt(t1[0], t2[0]); /* t1[0] = Py or -Py  */
+    j = is_negative(t1[0]); /*      ... check which  */
+    add(t2[0], t2[0], C39420360); /* t2[0] = Py^2 + Gy^2  */
+    mul(t2[1], BASE_2Y, t1[0]); /* t2[1] = 2 Py Gy or -2 Py Gy  */
+    sub(t1[j], t2[0], t2[1]); /* t1[0] = Py^2 + Gy^2 - 2 Py Gy  */
+    add(t1[1 - j], t2[0], t2[1]); /* t1[1] = Py^2 + Gy^2 + 2 Py Gy  */
+    cpy(t2[0], p[1]); /* t2[0] = Px  */
+    sub(t2[0], t2[0], C9); /* t2[0] = Px - Gx  */
+    sqr(t2[1], t2[0]); /* t2[1] = (Px - Gx)^2  */
+    recip(t2[0], t2[1], 0); /* t2[0] = 1/(Px - Gx)^2  */
+    mul(s[0], t1[0], t2[0]); /* s[0] = t1[0]/(Px - Gx)^2  */
+    sub(s[0], s[0], p[1]); /* s[0] = t1[0]/(Px - Gx)^2 - Px  */
+    sub(s[0], s[0], C486671); /* s[0] = X(P+G)  */
+    mul(s[1], t1[1], t2[0]); /* s[1] = t1[1]/(Px - Gx)^2  */
+    sub(s[1], s[1], p[1]); /* s[1] = t1[1]/(Px - Gx)^2 - Px  */
+    sub(s[1], s[1], C486671); /* s[1] = X(P-G)  */
+    mul_small(s[0], s[0], 1); /* reduce s[0] */
+    mul_small(s[1], s[1], 1); /* reduce s[1] */
+
+    /* prepare the chain  */
+    for (i = 0; i < 32; i++) {
+        vi = vi >> 8 ^ v[i] & 0xFF ^ (v[i] & 0xFF) << 1;
+        hi = hi >> 8 ^ h[i] & 0xFF ^ (h[i] & 0xFF) << 1;
+        nvh = ~(vi ^ hi);
+        di = nvh & (di & 0x80) >> 7 ^ vi;
+        di ^= nvh & (di & 0x01) << 1;
+        di ^= nvh & (di & 0x02) << 1;
+        di ^= nvh & (di & 0x04) << 1;
+        di ^= nvh & (di & 0x08) << 1;
+        di ^= nvh & (di & 0x10) << 1;
+        di ^= nvh & (di & 0x20) << 1;
+        di ^= nvh & (di & 0x40) << 1;
+        d[i] = di & 0xFF;
+    }
+
+    di = (nvh & (di & 0x80) << 1 ^ vi) >> 8;
+
+    /* initialize state */
+    set(yx[0], 1);
+    cpy(yx[1], p[di]);
+    cpy(yx[2], s[0]);
+    set(yz[0], 0);
+    set(yz[1], 1);
+    set(yz[2], 1);
+
+    /* y[0] is (even)P + (even)G
+     * y[1] is (even)P + (odd)G  if current d-bit is 0
+     * y[1] is (odd)P + (even)G  if current d-bit is 1
+     * y[2] is (odd)P + (odd)G
+     */
+
+    vi = 0;
+    hi = 0;
+
+    /* and go for it! */
+    for (i = 32; i-- !== 0;) {
+        vi = vi << 8 | v[i] & 0xFF;
+        hi = hi << 8 | h[i] & 0xFF;
+        di = di << 8 | d[i] & 0xFF;
+
+        for (j = 8; j-- !== 0;) {
+            mont_prep(t1[0], t2[0], yx[0], yz[0]);
+            mont_prep(t1[1], t2[1], yx[1], yz[1]);
+            mont_prep(t1[2], t2[2], yx[2], yz[2]);
+
+            k = ((vi ^ vi >> 1) >> j & 1) + ((hi ^ hi >> 1) >> j & 1);
+            mont_dbl(yx[2], yz[2], t1[k], t2[k], yx[0], yz[0]);
+
+            k = di >> j & 2 ^ (di >> j & 1) << 1;
+            mont_add(t1[1], t2[1], t1[k], t2[k], yx[1], yz[1], p[di >> j & 1]);
+
+            mont_add(t1[2], t2[2], t1[0], t2[0], yx[2], yz[2], s[((vi ^ hi) >> j & 2) >> 1]);
+        }
+    }
+
+    k = (vi & 1) + (hi & 1);
+    recip(t1[0], yz[k], 0);
+    mul(t1[1], yx[k], t1[0]);
+
+    var Y = [];
+    pack(t1[1], Y);
+    return Y;
+}
+
+/* Key-pair generation
+ *   P  [out] your public key
+ *   s  [out] your private key for signing
+ *   k  [out] your private key for key agreement
+ *   k  [in]  32 random bytes
+ * s may be NULL if you don't care
+ *
+ * WARNING: if s is not NULL, this function has data-dependent timing */
+function keygen(k) {
+    var P = [];
+    var s = [];
+    k = k || [];
+    clamp(k);
+    core(P, s, k, null);
+
+    return { p: P, s: s, k: k };
+}
+
+exports.default = {
+    sign: sign,
+    verify: verify,
+    keygen: keygen
+};
+module.exports = exports["default"];
+});
+
+unwrapExports(curve25519);
+
+var nxtAddress = createCommonjsModule(function (module, exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = NxtAddress;
+/*
+    NXT address class, extended version (with error guessing).
+
+    Version: 1.0, license: Public Domain, coder: NxtChg (admin@nxtchg.com).
+*/
+
+function NxtAddress() {
+	var prefix = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'NXT';
+
+	var codeword = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	var syndrome = [0, 0, 0, 0, 0];
+
+	var gexp = [1, 2, 4, 8, 16, 5, 10, 20, 13, 26, 17, 7, 14, 28, 29, 31, 27, 19, 3, 6, 12, 24, 21, 15, 30, 25, 23, 11, 22, 9, 18, 1];
+	var glog = [0, 0, 1, 18, 2, 5, 19, 11, 3, 29, 6, 27, 20, 8, 12, 23, 4, 10, 30, 17, 7, 22, 28, 26, 21, 25, 9, 16, 13, 14, 24, 15];
+
+	var cwmap = [3, 2, 1, 0, 7, 6, 5, 4, 13, 14, 15, 16, 12, 8, 9, 10, 11];
+
+	var alphabet = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+	//var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ345679';
+
+	this.guess = [];
+
+	function ginv(a) {
+		return gexp[31 - glog[a]];
+	}
+
+	function gmult(a, b) {
+		if (a == 0 || b == 0) return 0;
+
+		var idx = (glog[a] + glog[b]) % 31;
+
+		return gexp[idx];
+	} //__________________________
+
+	function calc_discrepancy(lambda, r) {
+		var discr = 0;
+
+		for (var i = 0; i < r; i++) {
+			discr ^= gmult(lambda[i], syndrome[r - i]);
+		}
+
+		return discr;
+	} //__________________________
+
+	function find_errors(lambda) {
+		var errloc = [];
+
+		for (var i = 1; i <= 31; i++) {
+			var sum = 0;
+
+			for (var j = 0; j < 5; j++) {
+				sum ^= gmult(gexp[j * i % 31], lambda[j]);
+			}
+
+			if (sum == 0) {
+				var pos = 31 - i;
+				if (pos > 12 && pos < 27) return [];
+
+				errloc[errloc.length] = pos;
+			}
+		}
+
+		return errloc;
+	} //__________________________
+
+	function guess_errors() {
+		var el = 0,
+		    b = [0, 0, 0, 0, 0],
+		    t = [];
+
+		var deg_lambda = 0,
+		    lambda = [1, 0, 0, 0, 0]; // error+erasure locator poly
+
+		// Berlekamp-Massey algorithm to determine error+erasure locator polynomial
+
+		for (var r = 0; r < 4; r++) {
+			var discr = calc_discrepancy(lambda, r + 1); // Compute discrepancy at the r-th step in poly-form
+
+			if (discr != 0) {
+				deg_lambda = 0;
+
+				for (var i = 0; i < 5; i++) {
+					t[i] = lambda[i] ^ gmult(discr, b[i]);
+
+					if (t[i]) deg_lambda = i;
+				}
+
+				if (2 * el <= r) {
+					el = r + 1 - el;
+
+					for (i = 0; i < 5; i++) {
+						b[i] = gmult(lambda[i], ginv(discr));
+					}
+				}
+
+				lambda = t.slice(); // copy
+			}
+
+			b.unshift(0); // shift => mul by x
+		}
+
+		// Find roots of the locator polynomial.
+
+		var errloc = find_errors(lambda);
+
+		var errors = errloc.length;
+
+		if (errors < 1 || errors > 2) return false;
+
+		if (deg_lambda != errors) return false; // deg(lambda) unequal to number of roots => uncorrectable error
+
+		// Compute err+eras evaluator poly omega(x) = s(x)*lambda(x) (modulo x**(4)). Also find deg(omega).
+
+		var omega = [0, 0, 0, 0, 0];
+
+		for (var i = 0; i < 4; i++) {
+			var t = 0;
+
+			for (var j = 0; j < i; j++) {
+				t ^= gmult(syndrome[i + 1 - j], lambda[j]);
+			}
+
+			omega[i] = t;
+		}
+
+		// Compute error values in poly-form.
+
+		for (r = 0; r < errors; r++) {
+			var t = 0;
+			var pos = errloc[r];
+			var root = 31 - pos;
+
+			for (i = 0; i < 4; i++) // evaluate Omega at alpha^(-i)
+			{
+				t ^= gmult(omega[i], gexp[root * i % 31]);
+			}
+
+			if (t) // evaluate Lambda' (derivative) at alpha^(-i); all odd powers disappear
+				{
+					var denom = gmult(lambda[1], 1) ^ gmult(lambda[3], gexp[root * 2 % 31]);
+
+					if (denom == 0) return false;
+
+					if (pos > 12) pos -= 14;
+
+					codeword[pos] ^= gmult(t, ginv(denom));
+				}
+		}
+
+		return true;
+	} //__________________________
+
+	function encode() {
+		var p = [0, 0, 0, 0];
+
+		for (var i = 12; i >= 0; i--) {
+			var fb = codeword[i] ^ p[3];
+
+			p[3] = p[2] ^ gmult(30, fb);
+			p[2] = p[1] ^ gmult(6, fb);
+			p[1] = p[0] ^ gmult(9, fb);
+			p[0] = gmult(17, fb);
+		}
+
+		codeword[13] = p[0];
+		codeword[14] = p[1];
+		codeword[15] = p[2];
+		codeword[16] = p[3];
+	} //__________________________
+
+	function reset() {
+		for (var i = 0; i < 17; i++) {
+			codeword[i] = 1;
+		}
+	} //__________________________
+
+	function set_codeword(cw, len, skip) {
+		if (typeof len === 'undefined') len = 17;
+		if (typeof skip === 'undefined') skip = -1;
+
+		for (var i = 0, j = 0; i < len; i++) {
+			if (i != skip) codeword[cwmap[j++]] = cw[i];
+		}
+	} //__________________________
+
+	this.add_guess = function () {
+		var s = this.toString(),
+		    len = this.guess.length;
+
+		if (len > 2) return;
+
+		for (var i = 0; i < len; i++) {
+			if (this.guess[i] == s) return;
+		}
+
+		this.guess[len] = s;
+	}; //__________________________
+
+	this.ok = function () {
+		var sum = 0;
+
+		for (var i = 1; i < 5; i++) {
+			for (var j = 0, t = 0; j < 31; j++) {
+				if (j > 12 && j < 27) continue;
+
+				var pos = j;
+				if (j > 26) pos -= 14;
+
+				t ^= gmult(codeword[pos], gexp[i * j % 31]);
+			}
+
+			sum |= t;
+			syndrome[i] = t;
+		}
+
+		return sum == 0;
+	}; //__________________________
+
+	function from_acc(acc) {
+		var inp = [],
+		    out = [],
+		    pos = 0,
+		    len = acc.length;
+
+		if (len == 20 && acc.charAt(0) != '1') return false;
+
+		for (var i = 0; i < len; i++) {
+			inp[i] = acc.charCodeAt(i) - '0'.charCodeAt(0);
+		}
+
+		do // base 10 to base 32 conversion
+		{
+			var divide = 0,
+			    newlen = 0;
+
+			for (i = 0; i < len; i++) {
+				divide = divide * 10 + inp[i];
+
+				if (divide >= 32) {
+					inp[newlen++] = divide >> 5;
+					divide &= 31;
+				} else if (newlen > 0) {
+					inp[newlen++] = 0;
+				}
+			}
+
+			len = newlen;
+			out[pos++] = divide;
+		} while (newlen);
+
+		for (i = 0; i < 13; i++) // copy to codeword in reverse, pad with 0's
+		{
+			codeword[i] = --pos >= 0 ? out[i] : 0;
+		}
+
+		encode();
+
+		return true;
+	} //__________________________
+
+	this.toString = function () {
+		var out = prefix + '-';
+
+		for (var i = 0; i < 17; i++) {
+			out += alphabet[codeword[cwmap[i]]];
+
+			if ((i & 3) == 3 && i < 13) out += '-';
+		}
+
+		return out;
+	}; //__________________________
+
+	this.account_id = function () {
+		var out = '',
+		    inp = [],
+		    len = 13;
+
+		for (var i = 0; i < 13; i++) {
+			inp[i] = codeword[12 - i];
+		}
+
+		do // base 32 to base 10 conversion
+		{
+			var divide = 0,
+			    newlen = 0;
+
+			for (i = 0; i < len; i++) {
+				divide = divide * 32 + inp[i];
+
+				if (divide >= 10) {
+					inp[newlen++] = Math.floor(divide / 10);
+					divide %= 10;
+				} else if (newlen > 0) {
+					inp[newlen++] = 0;
+				}
+			}
+
+			len = newlen;
+			out += String.fromCharCode(divide + '0'.charCodeAt(0));
+		} while (newlen);
+
+		return out.split("").reverse().join("");
+	}; //__________________________
+
+	this.set = function (adr, allow_accounts) {
+		if (typeof allow_accounts === 'undefined') allow_accounts = true;
+
+		var len = 0;
+		this.guess = [];
+		reset();
+
+		adr = String(adr);
+
+		adr = adr.replace(/(^\s+)|(\s+$)/g, '').toUpperCase();
+
+		if (adr.indexOf(prefix + '-') == 0) adr = adr.substr(4);
+
+		if (adr.match(/^\d{1,20}$/g)) // account id
+			{
+				if (allow_accounts) return from_acc(adr);
+			} else // address
+			{
+				var clean = [];
+
+				for (var i = 0; i < adr.length; i++) {
+					var pos = alphabet.indexOf(adr[i]);
+
+					if (pos >= 0) {
+						clean[len++] = pos;
+						if (len > 18) return false;
+					}
+				}
+			}
+
+		if (len == 16) // guess deletion
+			{
+				for (var i = 16; i >= 0; i--) {
+					for (var j = 0; j < 32; j++) {
+						clean[i] = j;
+
+						set_codeword(clean);
+
+						if (this.ok()) this.add_guess();
+					}
+
+					if (i > 0) {
+						var t = clean[i - 1];
+						clean[i - 1] = clean[i];
+						clean[i] = t;
+					}
+				}
+			}
+
+		if (len == 18) // guess insertion
+			{
+				for (var i = 0; i < 18; i++) {
+					set_codeword(clean, 18, i);
+
+					if (this.ok()) this.add_guess();
+				}
+			}
+
+		if (len == 17) {
+			set_codeword(clean);
+
+			if (this.ok()) return true;
+
+			if (guess_errors() && this.ok()) this.add_guess();
+		}
+
+		reset();
+
+		return false;
+	};
+
+	this.format_guess = function (s, org) {
+		var d = '',
+		    list = [];
+
+		s = s.toUpperCase();
+		org = org.toUpperCase();
+
+		for (var i = 0; i < s.length;) {
+			var m = 0;
+
+			for (var j = 1; j < s.length; j++) {
+				var pos = org.indexOf(s.substr(i, j));
+
+				if (pos != -1) {
+					if (Math.abs(pos - i) < 3) m = j;
+				} else break;
+			}
+
+			if (m) {
+				list[list.length] = {
+					's': i,
+					'e': i + m
+				};
+				i += m;
+			} else i++;
+		}
+
+		if (list.length == 0) return s;
+
+		for (var i = 0, j = 0; i < s.length; i++) {
+			if (i >= list[j].e) {
+				var start;
+
+				while (j < list.length - 1) {
+					start = list[j++].s;
+
+					if (i < list[j].e || list[j].s >= start) break;
+				}
+			}
+
+			if (i >= list[j].s && i < list[j].e) {
+				d += s.charAt(i);
+			} else {
+				d += '<b style="color:red">' + s.charAt(i) + '</b>';
+			}
+		}
+
+		return d;
+	};
+}
+module.exports = exports['default'];
+});
+
+unwrapExports(nxtAddress);
+
+var crypto$1 = createCommonjsModule(function (module, exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.sha256 = exports.decrypt = exports.encrypt = exports.createKeyBytes = exports.generateSecretPhrase = exports.getAccountRS = exports.getAccountId = exports.getPublicKey = exports.generateToken = exports.parseToken = exports.areByteArraysEqual = exports.byteArrayToHashByteArray = undefined;
+exports.getAccountRSFromSecretPhrase = getAccountRSFromSecretPhrase;
+exports.signBytes = signBytes;
+exports.generateTransactionBytes = generateTransactionBytes;
+
+
+
+var _crypto2 = _interopRequireDefault(require$$0);
+
+
+
+var _bigInteger2 = _interopRequireDefault(BigInteger);
+
+
+
+var _BigInteger2 = _interopRequireDefault(BigInteger_1);
+
+
+
+var _tweetnacl2 = _interopRequireDefault(naclFast$2);
+
+
+
+var _tweetnaclUtil2 = _interopRequireDefault(naclUtil);
+
+
+
+
+
+var _curve2 = _interopRequireDefault(curve25519);
+
+
+
+var _nxtAddress2 = _interopRequireDefault(nxtAddress);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_tweetnacl2.default.util = _tweetnaclUtil2.default;
+
+var byteArrayToHashByteArray = exports.byteArrayToHashByteArray = function byteArrayToHashByteArray(byteArray, byteArray2) {
+  var hashBytes = _crypto2.default.createHash('sha256').update(new Buffer(byteArray));
+
+  if (byteArray2) {
+    hashBytes.update(new Buffer(byteArray2));
+  }
+
+  return (_converters.hexStringToByteArray)(hashBytes.digest('hex'));
+};
+
+var areByteArraysEqual = exports.areByteArraysEqual = function areByteArraysEqual(bytes1, bytes2) {
+  if (bytes1.length !== bytes2.length) {
+    return false;
+  }
+
+  for (var i = 0; i < bytes1.length; ++i) {
+    if (bytes1[i] !== bytes2[i]) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+var verifyBytes = function verifyBytes(signature, message, publicKey) {
+  var signatureBytes = signature;
+  var messageBytes = message;
+  var publicKeyBytes = publicKey;
+  var v = signatureBytes.slice(0, 32);
+  var h = signatureBytes.slice(32);
+  var y = _curve2.default.verify(v, h, publicKeyBytes);
+  var m = _crypto2.default.createHash('sha256').update(new Buffer(messageBytes)).digest('hex');
+  var h2 = _crypto2.default.createHash('sha256').update(new Buffer((_converters.hexStringToByteArray)(m))).update(new Buffer(y)).digest('hex');
+
+  return areByteArraysEqual(h, (_converters.hexStringToByteArray)(h2));
+};
+
+var parseToken = exports.parseToken = function parseToken(tokenString, dataString) {
+  var epochBeginning = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1385294400;
+
+  var dataBytes = (_converters.stringToByteArray)(dataString);
+  var tokenBytes = [];
+  var i = 0;
+  var j = 0;
+
+  for (; i < tokenString.length; i += 8, j += 5) {
+    var number = (_bigInteger2.default)(tokenString.substring(i, i + 8), 32);
+    var part = (_converters.hexStringToByteArray)(number.toString(16));
+    tokenBytes[j] = part[4];
+    tokenBytes[j + 1] = part[3];
+    tokenBytes[j + 2] = part[2];
+    tokenBytes[j + 3] = part[1];
+    tokenBytes[j + 4] = part[0];
+  }
+
+  if (i !== 160) {
+    throw Error('tokenString parsed to invalid size');
+  }
+
+  var publicKey = tokenBytes.slice(0, 32);
+  var timebytes = [tokenBytes[32], tokenBytes[33], tokenBytes[34], tokenBytes[35]];
+
+  var timestamp = (_converters.byteArrayToIntVal)(timebytes);
+  timestamp = new Date(timestamp * 1000 + epochBeginning * 1000);
+  var signature = tokenBytes.slice(36, 100);
+  var data = dataBytes.concat(tokenBytes.slice(0, 36));
+
+  var isValid = verifyBytes(signature, data, publicKey);
+  publicKey = (_converters.byteArrayToHexString)(publicKey);
+
+  return {
+    isValid: isValid,
+    timestamp: timestamp,
+    publicKey: publicKey
+  };
+};
+
+var generateToken = exports.generateToken = function generateToken(tokenString, secretPhrase) {
+  var epochBeginning = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1385294400;
+
+  var hexwebsite = (_converters.stringToHexString)(tokenString);
+  var website = (_converters.hexStringToByteArray)(hexwebsite);
+  var publicKey = (_converters.hexStringToByteArray)(getPublicKey(secretPhrase));
+  var data = website.concat(publicKey);
+  var unix = Math.round(+new Date() / 1000);
+  var timestamp = unix - epochBeginning;
+  var timestamparray = (_converters.toByteArray)(timestamp);
+  var dataWithTimeStamp = (_converters.byteArrayToHexString)(data.concat(timestamparray));
+  var token = publicKey.concat(timestamparray);
+  var signature = signBytes(dataWithTimeStamp, secretPhrase);
+  var signatureBytes = (_converters.hexStringToByteArray)(signature);
+  var tokenWithSignature = token.concat(signatureBytes);
+  var buf = '';
+
+  for (var ptr = 0; ptr < 100; ptr += 5) {
+    var nbr = [];
+    nbr[0] = tokenWithSignature[ptr] & 0xFF;
+    nbr[1] = tokenWithSignature[ptr + 1] & 0xFF;
+    nbr[2] = tokenWithSignature[ptr + 2] & 0xFF;
+    nbr[3] = tokenWithSignature[ptr + 3] & 0xFF;
+    nbr[4] = tokenWithSignature[ptr + 4] & 0xFF;
+    var number = (_converters.byteArrayToBigInteger)(nbr);
+
+    if (number < 32) {
+      buf += "0000000";
+    } else if (number < 1024) {
+      buf += "000000";
+    } else if (number < 32768) {
+      buf += "00000";
+    } else if (number < 1048576) {
+      buf += "0000";
+    } else if (number < 33554432) {
+      buf += "000";
+    } else if (number < 1073741824) {
+      buf += "00";
+    } else if (number < 34359738368) {
+      buf += "0";
+    }
+    buf += number.toString(32);
+  }
+
+  return buf;
+};
+
+var getPublicKey = exports.getPublicKey = function getPublicKey(secretPhrase) {
+  var secretPhraseBytes = (_converters.stringToByteArray)(secretPhrase);
+  var hashBytes = byteArrayToHashByteArray(secretPhraseBytes);
+
+  return (_converters.byteArrayToHexString)(_curve2.default.keygen(hashBytes).p);
+};
+
+function getAccountRSFromSecretPhrase(secretphrase) {
+  var prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'NXT';
+
+  var publicKey = getPublicKey(secretphrase);
+
+  return getAccountRS(publicKey, prefix);
+}
+
+var getAccountId = exports.getAccountId = function getAccountId(publicKey) {
+  var publicKeyBytes = (_converters.hexStringToByteArray)(publicKey);
+  var hashBytes = byteArrayToHashByteArray(publicKeyBytes);
+  var account = (_converters.byteArrayToHexString)(hashBytes);
+  var accountSlice = (_converters.hexStringToByteArray)(account).slice(0, 8);
+  var accountId = (_converters.byteArrayToBigInteger)(accountSlice).toString();
+
+  return accountId;
+};
+
+var getAccountRS = exports.getAccountRS = function getAccountRS(publicKey) {
+  var prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'NXT';
+
+  var accountId = getAccountId(publicKey);
+  var accountRS = new _nxtAddress2.default(prefix);
+  accountRS.set(accountId);
+  return accountRS.toString();
+};
+
+var generateSecretPhrase = exports.generateSecretPhrase = function generateSecretPhrase() {
+  var bytes = _tweetnacl2.default.randomBytes(128);
+  return _crypto2.default.createHash('sha512').update(bytes).digest('hex');
+};
+
+var createKeyBytes = exports.createKeyBytes = function createKeyBytes(key) {
+  // hash the key so we have 32 bytes key
+  var hash = _crypto2.default.createHash('sha256').update(key).digest('base64');
+  // convert key into bytes
+  return _tweetnacl2.default.util.decodeBase64(hash);
+};
+
+/**
+ * Encrypt the message with the given key
+ * @param  {string} message
+ * @param  {string} key
+ * @return {object} object
+ */
+var encrypt = exports.encrypt = function encrypt(message, key) {
+  // convert message to bytes
+  var messageBytes = _tweetnacl2.default.util.decodeUTF8(message);
+  // generate 24 byte nonce
+  var nonceBytes = _tweetnacl2.default.randomBytes(24);
+  // generate key bytes
+  var keyBytes = createKeyBytes(key);
+  // encrypt
+  var encryptedBytes = _tweetnacl2.default.secretbox(messageBytes, nonceBytes, keyBytes);
+
+  return {
+    nonce: _tweetnacl2.default.util.encodeBase64(nonceBytes),
+    message: _tweetnacl2.default.util.encodeBase64(encryptedBytes)
+  };
+};
+
+/**
+ * Decrypt the given message object and return the UTF8 string
+ * @param  {object} encrypted
+ * @param  {string} key
+ * @return {string} decrypted message
+ */
+var decrypt = exports.decrypt = function decrypt(encrypted, key) {
+  if (typeof encrypted === 'string') {
+    try {
+      encrypted = JSON.parse(encrypted);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  if (!encrypted || !encrypted.message) {
+    return null;
+  }
+
+  // convert message to bytes
+  var messageBytes = _tweetnacl2.default.util.decodeBase64(encrypted.message);
+  // convert key into bytes
+  var keyBytes = createKeyBytes(key);
+  // convert nonce to bytes
+  var nonceBytes = _tweetnacl2.default.util.decodeBase64(encrypted.nonce);
+  // decrypt
+  var decryptedBytes = _tweetnacl2.default.secretbox.open(messageBytes, nonceBytes, keyBytes);
+  // return encoded UTF8 string
+  return _tweetnacl2.default.util.encodeUTF8(decryptedBytes);
+};
+
+var sha256 = exports.sha256 = function sha256(string) {
+  return _crypto2.default.createHash('sha256').update(string).digest('hex');
+};
+
+/**
+ * Sign transaction bytes
+ * @param  {string} message
+ * @param  {string} secretphrase
+ * @return {string} signed transaction bytes
+ */
+function signBytes(message, secretphrase) {
+  secretphrase = (_converters.stringToHexString)(secretphrase);
+  var messageBytes = (_converters.hexStringToByteArray)(message);
+  var secretphraseBytes = (_converters.hexStringToByteArray)(secretphrase);
+
+  var digest = byteArrayToHashByteArray(secretphraseBytes);
+  var s = _curve2.default.keygen(digest).s;
+  var m = byteArrayToHashByteArray(messageBytes);
+  var x = byteArrayToHashByteArray(m, s);
+  var y = _curve2.default.keygen(x).p;
+  var h = byteArrayToHashByteArray(m, y);
+  var v = _curve2.default.sign(h, x, s);
+  return (_converters.byteArrayToHexString)(v.concat(h));
+}
+
+function pad(length, val) {
+  var array = [];
+  for (var i = 0; i < length; i++) {
+    array[i] = val;
+  }
+  return array;
+}
+
+function generateTransactionBytes(recipient, amountNQT, feeNQT, secretPhrase) {
+  var prefix = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'NXT';
+
+  var publicKeyBytes = (_converters.hexStringToByteArray)(getPublicKey(secretPhrase));
+  var zeroArray = [0];
+  var txbytes = [];
+  var type = 0;
+  txbytes.push(type);
+  var version = 1;
+  txbytes.push(version << 4);
+  var timestamp = Math.floor(Date.now() / 1000) - 1385294400;
+  if (process.env.ENV === 'test') {
+    timestamp = Math.floor(1494481510847 / 1000) - 1385294400;
+  }
+  txbytes = txbytes.concat((_converters.toByteArray)(timestamp));
+  txbytes.push(160);
+  txbytes.push(5); // deadline
+  txbytes = txbytes.concat(publicKeyBytes);
+
+  var recipientRS = new _nxtAddress2.default(prefix);
+  recipientRS.set(recipient);
+  var recipientBytes = new _BigInteger2.default(recipientRS.account_id()).toByteArray().reverse();
+  if (recipientBytes.length == 9) recipientBytes = recipientBytes.slice(0, 8);
+  while (recipientBytes.length != 8) {
+    recipientBytes = recipientBytes.concat(zeroArray);
+  }txbytes = txbytes.concat(recipientBytes);
+  var amount = new _BigInteger2.default(String(amountNQT)).toByteArray().reverse();
+  if (amount.length == 9) amount = amount.slice(0, 8);
+  while (amount.length != 8) {
+    amount = amount.concat(zeroArray);
+  }txbytes = txbytes.concat(amount);
+  var feeBytes = new _BigInteger2.default(String(feeNQT)).toByteArray().reverse();
+  while (feeBytes.length != 8) {
+    feeBytes = feeBytes.concat(zeroArray);
+  }txbytes = txbytes.concat(feeBytes);
+  txbytes = txbytes.concat(pad(32, 0)); // ref full hash
+  txbytes = (_converters.hexStringToByteArray)((_converters.byteArrayToHexString)(txbytes));
+  var signable = txbytes;
+
+  txbytes = txbytes.concat(pad(64, 0)); // signature
+  txbytes = txbytes.concat(pad(16, 0)); // no public key
+
+  var sig = signBytes((_converters.byteArrayToHexString)(txbytes), secretPhrase);
+  sig = (_converters.hexStringToByteArray)(sig);
+  signable = signable.concat(sig);
+  signable = signable.concat(pad(16, 0)); // no public key
+
+  return (_converters.byteArrayToHexString)(signable);
+}
+
+exports.default = {
+  parseToken: parseToken,
+  getPublicKey: getPublicKey,
+  getAccountId: getAccountId,
+  getAccountRS: getAccountRS,
+  getAccountRSFromSecretPhrase: getAccountRSFromSecretPhrase,
+  generateSecretPhrase: generateSecretPhrase,
+  encrypt: encrypt,
+  decrypt: decrypt,
+  sha256: sha256,
+  signBytes: signBytes,
+  generateToken: generateToken,
+  generateTransactionBytes: generateTransactionBytes
+};
+});
+
+unwrapExports(crypto$1);
+
+var lib$4 = createCommonjsModule(function (module, exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+
+
+var _crypto2 = _interopRequireDefault(crypto$1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _crypto2.default;
+module.exports = exports['default'];
+});
+
+unwrapExports(lib$4);
+
 var src = {
   bitcore: bitcoreLib,
   bip39: bip39,
   lightwallet: ethLightwallet,
   __SolidityCoder: coder_1$2,
   Web3: web3,
-  HookedWeb3Provider: hookedWeb3Provider
+  HookedWeb3Provider: hookedWeb3Provider,
+  nxtCrypto: lib$4
 };
 
 var src_1 = src.bitcore;
@@ -93515,6 +100457,7 @@ var src_3 = src.lightwallet;
 var src_4 = src.__SolidityCoder;
 var src_5 = src.Web3;
 var src_6 = src.HookedWeb3Provider;
+var src_7 = src.nxtCrypto;
 
 exports['default'] = src;
 exports.bitcore = src_1;
@@ -93523,4 +100466,5 @@ exports.lightwallet = src_3;
 exports.__SolidityCoder = src_4;
 exports.Web3 = src_5;
 exports.HookedWeb3Provider = src_6;
+exports.nxtCrypto = src_7;
 //# sourceMappingURL=heat-libs.js.map
