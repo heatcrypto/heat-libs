@@ -1,6 +1,6 @@
 {
   "name": "heat-libs",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "HEAT external libraries for use in Node.js and any (modern) browser",
   "keywords": [
     "heat-libs"
