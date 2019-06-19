@@ -25,7 +25,7 @@ export default [
       }),
       sourceMaps()
     ],
-    sourcemap: true,
+    sourcemap: false,
     external: 'buffer,memcpy,url,http,https,zlib,stream,util'.split(','),
     output: [
 			{ file: 'dist/heat-libs.js', format: 'cjs' }
@@ -65,7 +65,7 @@ export default [
       sourceMaps(),
       uglify({}, minify)
     ],
-    sourcemap: true,
+    sourcemap: false,
     output: [
 			{ file: 'dist/heat-libs.umd.min.js', format: 'umd', name: 'heatlibs' }
     ]

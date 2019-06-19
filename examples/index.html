@@ -20,6 +20,28 @@
         }
         works('bitcore-works',itworks)
       }
+      // test iota
+      function testIota() {
+        var itworks
+        try {          
+          var IotaCore = window.heatlibs.IotaCore
+          var Converter = window.heatlibs.IotaConverter
+          var Sign = window.heatlibs.IotaSigning
+          
+          const seed = Converter.asciiToTrytes('pizza ladder design rebuild focus spider version simple syrup lend trumpet among')
+          var subseed = Sign.subseed(Converter.trytesToTrits(seed), 0 /*index*/);
+          var privateKey1 = Sign.key(subseed, 1 /*security level*/);
+          var privateKey1Digests = Sign.digests(privateKey1);
+          var privateKey1Address = Sign.address(privateKey1Digests);
+          IotaCore.generateAddress(seed, 0 /*index*/, 1 /*security level*/)
+          var a = IotaCore.composeAPI;
+          itworks = true
+        }
+        catch (e) {
+          itworks = false
+        }
+        works('iota-works',itworks)
+      }
 
       // Test bip39
       function testBip39() {
@@ -75,11 +97,13 @@
     <div id="bip39-works"></div>
     <div id="eth-lightwallet-works"></div>
     <div id="web3-works"></div>
+    <div id="iota-works"></div>
   </body>
   <script>
     testBitcore()
     testBip39()
     testEthLightWallet()
     testWeb3()
+    testIota()
   </script>
 </html>
