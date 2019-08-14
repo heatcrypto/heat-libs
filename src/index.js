@@ -8,6 +8,9 @@ const nxtCrypto           = require('nxt-crypto')
 const IotaCore            = require('@iota/core')
 const IotaSigning         = require('@iota/signing')
 const IotaConverter       = require('@iota/converter')
+const hdkey               = require('hdkey')
+const wif                 = require('wif')
+const ecc                 = require('eosjs-ecc')
 
 module.exports = {
   bitcore: bitcore,
@@ -19,5 +22,8 @@ module.exports = {
   nxtCrypto: nxtCrypto,
   IotaCore: IotaCore,
   IotaSigning: IotaSigning,
-  IotaConverter: IotaConverter
+  IotaConverter: IotaConverter,
+  hdkey,
+  wif,
+  ecc
 }

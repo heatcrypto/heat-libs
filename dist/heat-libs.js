@@ -6,7 +6,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var buffer = _interopDefault(require('buffer'));
 var assert = _interopDefault(require('assert'));
-var require$$0 = _interopDefault(require('crypto'));
+var crypto = _interopDefault(require('crypto'));
 var util = _interopDefault(require('util'));
 var Url = _interopDefault(require('url'));
 var Stream = _interopDefault(require('stream'));
@@ -21716,12 +21716,12 @@ if (typeof self === 'object') {
 } else {
   // Node.js or Web worker with no crypto support
   try {
-    var crypto = require$$0;
-    if (typeof crypto.randomBytes !== 'function')
+    var crypto$1 = crypto;
+    if (typeof crypto$1.randomBytes !== 'function')
       throw new Error('Not supported');
 
     Rand.prototype._rand = function _rand(n) {
-      return crypto.randomBytes(n);
+      return crypto$1.randomBytes(n);
     };
   } catch (e) {
   }
@@ -26843,14 +26843,14 @@ EDDSA.prototype.isPoint = function isPoint(val) {
   return val instanceof this.pointClass;
 };
 
-var require$$0$6 = ( _package$3 && _package$2 ) || _package$3;
+var require$$0$5 = ( _package$3 && _package$2 ) || _package$3;
 
 var elliptic_1 = createCommonjsModule(function (module, exports) {
 'use strict';
 
 var elliptic = exports;
 
-elliptic.version = require$$0$6.version;
+elliptic.version = require$$0$5.version;
 elliptic.utils = utils_1;
 elliptic.rand = brorand;
 elliptic.curve = curve_1;
@@ -27337,14 +27337,14 @@ var Hash = module.exports;
 
 Hash.sha1 = function(buf) {
   preconditions.checkArgument(buffer_1.isBuffer(buf));
-  return require$$0.createHash('sha1').update(buf).digest();
+  return crypto.createHash('sha1').update(buf).digest();
 };
 
 Hash.sha1.blocksize = 512;
 
 Hash.sha256 = function(buf) {
   preconditions.checkArgument(buffer_1.isBuffer(buf));
-  return require$$0.createHash('sha256').update(buf).digest();
+  return crypto.createHash('sha256').update(buf).digest();
 };
 
 Hash.sha256.blocksize = 512;
@@ -27356,7 +27356,7 @@ Hash.sha256sha256 = function(buf) {
 
 Hash.ripemd160 = function(buf) {
   preconditions.checkArgument(buffer_1.isBuffer(buf));
-  return require$$0.createHash('ripemd160').update(buf).digest();
+  return crypto.createHash('ripemd160').update(buf).digest();
 };
 
 Hash.sha256ripemd160 = function(buf) {
@@ -27366,7 +27366,7 @@ Hash.sha256ripemd160 = function(buf) {
 
 Hash.sha512 = function(buf) {
   preconditions.checkArgument(buffer_1.isBuffer(buf));
-  return require$$0.createHash('sha512').update(buf).digest();
+  return crypto.createHash('sha512').update(buf).digest();
 };
 
 Hash.sha512.blocksize = 1024;
@@ -34280,8 +34280,8 @@ Random.getRandomBuffer = function(size) {
 };
 
 Random.getRandomBufferNode = function(size) {
-  var crypto = require$$0;
-  return crypto.randomBytes(size);
+  var crypto$$2 = crypto;
+  return crypto$$2.randomBytes(size);
 };
 
 Random.getRandomBufferBrowser = function(size) {
@@ -34289,14 +34289,14 @@ Random.getRandomBufferBrowser = function(size) {
     throw new Error('window.crypto not available');
 
   if (window.crypto && window.crypto.getRandomValues)
-    var crypto = window.crypto;
+    var crypto$$2 = window.crypto;
   else if (window.msCrypto && window.msCrypto.getRandomValues) //internet explorer
-    var crypto = window.msCrypto;
+    var crypto$$2 = window.msCrypto;
   else
     throw new Error('window.crypto.getRandomValues not available');
 
   var bbuf = new Uint8Array(size);
-  crypto.getRandomValues(bbuf);
+  crypto$$2.getRandomValues(bbuf);
   var buf = new Buffer(bbuf);
 
   return buf;
@@ -37758,7 +37758,7 @@ URI.prototype.inspect = function() {
 
 var uri = URI;
 
-var require$$0$12 = ( _package$1 && _package ) || _package$1;
+var require$$0$11 = ( _package$1 && _package ) || _package$1;
 
 var bitcoreLib = createCommonjsModule(function (module) {
 'use strict';
@@ -37766,7 +37766,7 @@ var bitcoreLib = createCommonjsModule(function (module) {
 var bitcore = module.exports;
 
 // module information
-bitcore.version = 'v' + require$$0$12.version;
+bitcore.version = 'v' + require$$0$11.version;
 bitcore.versionGuard = function(version) {
   if (version !== undefined) {
     var message = 'More than one instance of bitcore-lib found. ' +
@@ -39212,7 +39212,7 @@ var lib = function (secp256k1) {
   }
 };
 
-var createHash = require$$0.createHash;
+var createHash = crypto.createHash;
 
 var _args$2 = [["elliptic@6.4.0","/home/rails/repositories/heat-libs"]];
 var _from$2 = "elliptic@6.4.0";
@@ -43131,14 +43131,14 @@ EDDSA$1.prototype.isPoint = function isPoint(val) {
   return val instanceof this.pointClass;
 };
 
-var require$$0$18 = ( _package$5 && _package$4 ) || _package$5;
+var require$$0$17 = ( _package$5 && _package$4 ) || _package$5;
 
 var elliptic_1$3 = createCommonjsModule(function (module, exports) {
 'use strict';
 
 var elliptic = exports;
 
-elliptic.version = require$$0$18.version;
+elliptic.version = require$$0$17.version;
 elliptic.utils = utils_1$4;
 elliptic.rand = brorand;
 elliptic.curve = curve_1$2;
@@ -45143,7 +45143,7 @@ var bignumber = createCommonjsModule(function (module) {
     */
 
 
-    var BigNumber, crypto, parseNumeric,
+    var BigNumber, crypto$$2, parseNumeric,
         isNumeric = /^-?(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i,
         mathceil = Math.ceil,
         mathfloor = Math.floor,
@@ -45572,8 +45572,8 @@ var bignumber = createCommonjsModule(function (module) {
             if ( has( p = 'CRYPTO' ) ) {
 
                 if ( v === !!v || v === 1 || v === 0 ) {
-                    CRYPTO = !!( v && crypto && typeof crypto == 'object' );
-                    if ( v && !CRYPTO && ERRORS ) raise( 2, 'crypto unavailable', crypto );
+                    CRYPTO = !!( v && crypto$$2 && typeof crypto$$2 == 'object' );
+                    if ( v && !CRYPTO && ERRORS ) raise( 2, 'crypto unavailable', crypto$$2 );
                 } else if (ERRORS) {
                     raise( 2, p + notBool, v );
                 }
@@ -45663,9 +45663,9 @@ var bignumber = createCommonjsModule(function (module) {
                 if (CRYPTO) {
 
                     // Browsers supporting crypto.getRandomValues.
-                    if ( crypto && crypto.getRandomValues ) {
+                    if ( crypto$$2 && crypto$$2.getRandomValues ) {
 
-                        a = crypto.getRandomValues( new Uint32Array( k *= 2 ) );
+                        a = crypto$$2.getRandomValues( new Uint32Array( k *= 2 ) );
 
                         for ( ; i < k; ) {
 
@@ -45682,7 +45682,7 @@ var bignumber = createCommonjsModule(function (module) {
                             // Probability that v >= 9e15, is
                             // 7199254740992 / 9007199254740992 ~= 0.0008, i.e. 1 in 1251
                             if ( v >= 9e15 ) {
-                                b = crypto.getRandomValues( new Uint32Array(2) );
+                                b = crypto$$2.getRandomValues( new Uint32Array(2) );
                                 a[i] = b[0];
                                 a[i + 1] = b[1];
                             } else {
@@ -45696,10 +45696,10 @@ var bignumber = createCommonjsModule(function (module) {
                         i = k / 2;
 
                     // Node.js supporting crypto.randomBytes.
-                    } else if ( crypto && crypto.randomBytes ) {
+                    } else if ( crypto$$2 && crypto$$2.randomBytes ) {
 
                         // buffer
-                        a = crypto.randomBytes( k *= 7 );
+                        a = crypto$$2.randomBytes( k *= 7 );
 
                         for ( ; i < k; ) {
 
@@ -45712,7 +45712,7 @@ var bignumber = createCommonjsModule(function (module) {
                                   ( a[i + 4] << 16 ) + ( a[i + 5] << 8 ) + a[i + 6];
 
                             if ( v >= 9e15 ) {
-                                crypto.randomBytes(7).copy( a, i );
+                                crypto$$2.randomBytes(7).copy( a, i );
                             } else {
 
                                 // 0 <= (v % 1e14) <= 99999999999999
@@ -45722,7 +45722,7 @@ var bignumber = createCommonjsModule(function (module) {
                         }
                         i = k / 7;
                     } else if (ERRORS) {
-                        raise( 14, 'crypto unavailable', crypto );
+                        raise( 14, 'crypto unavailable', crypto$$2 );
                     }
                 }
 
@@ -47805,7 +47805,7 @@ var bignumber = createCommonjsModule(function (module) {
     // Node and other environments that support module.exports.
     } else if ( 'object' != 'undefined' && module.exports ) {
         module.exports = BigNumber;
-        if ( !crypto ) try { crypto = require$$0; } catch (e) {}
+        if ( !crypto$$2 ) try { crypto$$2 = crypto; } catch (e) {}
 
     // Browser.
     } else {
@@ -58855,28 +58855,28 @@ nacl.setPRNG = function(fn) {
 (function() {
   // Initialize PRNG if environment provides CSPRNG.
   // If not, methods calling randombytes will throw.
-  var crypto;
+  var crypto$$2;
   if (typeof window !== 'undefined') {
     // Browser.
     if (window.crypto && window.crypto.getRandomValues) {
-      crypto = window.crypto; // Standard
+      crypto$$2 = window.crypto; // Standard
     } else if (window.msCrypto && window.msCrypto.getRandomValues) {
-      crypto = window.msCrypto; // Internet Explorer 11+
+      crypto$$2 = window.msCrypto; // Internet Explorer 11+
     }
-    if (crypto) {
+    if (crypto$$2) {
       nacl.setPRNG(function(x, n) {
         var i, v = new Uint8Array(n);
-        crypto.getRandomValues(v);
+        crypto$$2.getRandomValues(v);
         for (i = 0; i < n; i++) x[i] = v[i];
         cleanup(v);
       });
     }
   } else if (typeof require !== 'undefined') {
     // Node.js.
-    crypto = require$$0;
-    if (crypto) {
+    crypto$$2 = crypto;
+    if (crypto$$2) {
       nacl.setPRNG(function(x, n) {
-        var i, v = crypto.randomBytes(n);
+        var i, v = crypto$$2.randomBytes(n);
         for (i = 0; i < n; i++) x[i] = v[i];
         cleanup(v);
       });
@@ -64944,14 +64944,14 @@ EC$4.prototype.getKeyRecoveryParam = function(e, signature, Q, enc) {
   throw new Error('Unable to find valid recovery factor');
 };
 
-var require$$0$25 = ( _package$7 && _package$6 ) || _package$7;
+var require$$0$24 = ( _package$7 && _package$6 ) || _package$7;
 
 var elliptic_1$5 = createCommonjsModule(function (module, exports) {
 'use strict';
 
 var elliptic = exports;
 
-elliptic.version = require$$0$25.version;
+elliptic.version = require$$0$24.version;
 elliptic.utils = utils_1$7;
 elliptic.rand = brorand;
 elliptic.hmacDRBG = hmacDrbg$2;
@@ -65449,12 +65449,12 @@ function pbkdf2$2(key, salt, iterations, dkLen) {
     block1[salt.length + 2] = (i >> 8  & 0xff);
     block1[salt.length + 3] = (i >> 0  & 0xff);
 
-    U = require$$0.createHmac('sha512', key).update(block1).digest();
+    U = crypto.createHmac('sha512', key).update(block1).digest();
 
     U.copy(T, 0, 0, hLen);
 
     for (var j = 1; j < iterations; j++) {
-      U = require$$0.createHmac('sha512', key).update(U).digest();
+      U = crypto.createHmac('sha512', key).update(U).digest();
 
       for (var k = 0; k < hLen; k++) {
         T[k] ^= U[k];
@@ -67007,7 +67007,7 @@ var precondition = function (password, salt, iterations, keylen) {
   }
 };
 
-var createHmac = require$$0.createHmac;
+var createHmac = crypto.createHmac;
 
 var defaultEncoding;
 /* istanbul ignore next */
@@ -67180,17 +67180,17 @@ function nativePBKDF2 (password, salt, iterations, keylen, digest, callback) {
   }
   if (typeof callback !== 'function') throw new Error('No callback provided to pbkdf2')
 
-  return require$$0.pbkdf2(password, salt, iterations, keylen, digest, callback)
+  return crypto.pbkdf2(password, salt, iterations, keylen, digest, callback)
 }
 
 function nativePBKDF2Sync (password, salt, iterations, keylen, digest) {
   precondition(password, salt, iterations, keylen);
   digest = digest || 'sha1';
-  return require$$0.pbkdf2Sync(password, salt, iterations, keylen, digest)
+  return crypto.pbkdf2Sync(password, salt, iterations, keylen, digest)
 }
 
 /* istanbul ignore next */
-if (!require$$0.pbkdf2Sync || require$$0.pbkdf2Sync.toString().indexOf('keylen, digest') === -1) {
+if (!crypto.pbkdf2Sync || crypto.pbkdf2Sync.toString().indexOf('keylen, digest') === -1) {
   exports.pbkdf2Sync = sync;
   exports.pbkdf2 = async;
 
@@ -67201,7 +67201,7 @@ if (!require$$0.pbkdf2Sync || require$$0.pbkdf2Sync.toString().indexOf('keylen, 
 }
 });
 
-var randombytes = require$$0.randomBytes;
+var randombytes = crypto.randomBytes;
 
 var chinese_simplified = [
   "的",
@@ -83836,7 +83836,7 @@ var bignumber$2 = createCommonjsModule(function (module) {
     */
 
 
-    var BigNumber, crypto, parseNumeric,
+    var BigNumber, crypto$$2, parseNumeric,
         isNumeric = /^-?(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i,
         mathceil = Math.ceil,
         mathfloor = Math.floor,
@@ -84265,8 +84265,8 @@ var bignumber$2 = createCommonjsModule(function (module) {
             if ( has( p = 'CRYPTO' ) ) {
 
                 if ( v === !!v || v === 1 || v === 0 ) {
-                    CRYPTO = !!( v && crypto && typeof crypto == 'object' );
-                    if ( v && !CRYPTO && ERRORS ) raise( 2, 'crypto unavailable', crypto );
+                    CRYPTO = !!( v && crypto$$2 && typeof crypto$$2 == 'object' );
+                    if ( v && !CRYPTO && ERRORS ) raise( 2, 'crypto unavailable', crypto$$2 );
                 } else if (ERRORS) {
                     raise( 2, p + notBool, v );
                 }
@@ -84356,9 +84356,9 @@ var bignumber$2 = createCommonjsModule(function (module) {
                 if (CRYPTO) {
 
                     // Browsers supporting crypto.getRandomValues.
-                    if ( crypto && crypto.getRandomValues ) {
+                    if ( crypto$$2 && crypto$$2.getRandomValues ) {
 
-                        a = crypto.getRandomValues( new Uint32Array( k *= 2 ) );
+                        a = crypto$$2.getRandomValues( new Uint32Array( k *= 2 ) );
 
                         for ( ; i < k; ) {
 
@@ -84375,7 +84375,7 @@ var bignumber$2 = createCommonjsModule(function (module) {
                             // Probability that v >= 9e15, is
                             // 7199254740992 / 9007199254740992 ~= 0.0008, i.e. 1 in 1251
                             if ( v >= 9e15 ) {
-                                b = crypto.getRandomValues( new Uint32Array(2) );
+                                b = crypto$$2.getRandomValues( new Uint32Array(2) );
                                 a[i] = b[0];
                                 a[i + 1] = b[1];
                             } else {
@@ -84389,10 +84389,10 @@ var bignumber$2 = createCommonjsModule(function (module) {
                         i = k / 2;
 
                     // Node.js supporting crypto.randomBytes.
-                    } else if ( crypto && crypto.randomBytes ) {
+                    } else if ( crypto$$2 && crypto$$2.randomBytes ) {
 
                         // buffer
-                        a = crypto.randomBytes( k *= 7 );
+                        a = crypto$$2.randomBytes( k *= 7 );
 
                         for ( ; i < k; ) {
 
@@ -84405,7 +84405,7 @@ var bignumber$2 = createCommonjsModule(function (module) {
                                   ( a[i + 4] << 16 ) + ( a[i + 5] << 8 ) + a[i + 6];
 
                             if ( v >= 9e15 ) {
-                                crypto.randomBytes(7).copy( a, i );
+                                crypto$$2.randomBytes(7).copy( a, i );
                             } else {
 
                                 // 0 <= (v % 1e14) <= 99999999999999
@@ -84415,7 +84415,7 @@ var bignumber$2 = createCommonjsModule(function (module) {
                         }
                         i = k / 7;
                     } else if (ERRORS) {
-                        raise( 14, 'crypto unavailable', crypto );
+                        raise( 14, 'crypto unavailable', crypto$$2 );
                     }
                 }
 
@@ -86499,7 +86499,7 @@ var bignumber$2 = createCommonjsModule(function (module) {
     // Node and other environments that support module.exports.
     } else if ( 'object' != 'undefined' && module.exports ) {
         module.exports = BigNumber;
-        if ( !crypto ) try { crypto = require$$0; } catch (e) {}
+        if ( !crypto$$2 ) try { crypto$$2 = crypto; } catch (e) {}
 
     // Browser.
     } else {
@@ -98600,24 +98600,24 @@ nacl.setPRNG = function(fn) {
 (function() {
   // Initialize PRNG if environment provides CSPRNG.
   // If not, methods calling randombytes will throw.
-  var crypto = typeof self !== 'undefined' ? (self.crypto || self.msCrypto) : null;
-  if (crypto && crypto.getRandomValues) {
+  var crypto$$2 = typeof self !== 'undefined' ? (self.crypto || self.msCrypto) : null;
+  if (crypto$$2 && crypto$$2.getRandomValues) {
     // Browsers.
     var QUOTA = 65536;
     nacl.setPRNG(function(x, n) {
       var i, v = new Uint8Array(n);
       for (i = 0; i < n; i += QUOTA) {
-        crypto.getRandomValues(v.subarray(i, i + Math.min(n - i, QUOTA)));
+        crypto$$2.getRandomValues(v.subarray(i, i + Math.min(n - i, QUOTA)));
       }
       for (i = 0; i < n; i++) x[i] = v[i];
       cleanup(v);
     });
   } else if (typeof require !== 'undefined') {
     // Node.js.
-    crypto = require$$0;
-    if (crypto && crypto.randomBytes) {
+    crypto$$2 = crypto;
+    if (crypto$$2 && crypto$$2.randomBytes) {
       nacl.setPRNG(function(x, n) {
-        var i, v = crypto.randomBytes(n);
+        var i, v = crypto$$2.randomBytes(n);
         for (i = 0; i < n; i++) x[i] = v[i];
         cleanup(v);
       });
@@ -100054,7 +100054,7 @@ module.exports = exports['default'];
 
 unwrapExports(nxtAddress);
 
-var crypto$1 = createCommonjsModule(function (module, exports) {
+var crypto$3 = createCommonjsModule(function (module, exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -100067,7 +100067,7 @@ exports.generateTransactionBytes = generateTransactionBytes;
 
 
 
-var _crypto2 = _interopRequireDefault(require$$0);
+var _crypto2 = _interopRequireDefault(crypto);
 
 
 
@@ -100421,7 +100421,7 @@ exports.default = {
 };
 });
 
-unwrapExports(crypto$1);
+unwrapExports(crypto$3);
 
 var lib$4 = createCommonjsModule(function (module, exports) {
 'use strict';
@@ -100432,7 +100432,7 @@ Object.defineProperty(exports, "__esModule", {
 
 
 
-var _crypto2 = _interopRequireDefault(crypto$1);
+var _crypto2 = _interopRequireDefault(crypto$3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -122620,6 +122620,9187 @@ exports.composeAPI = composeAPI.composeAPI;
 
 unwrapExports(src$6);
 
+// Base58 encoding/decoding
+// Originally written by Mike Hearn for BitcoinJ
+// Copyright (c) 2011 Google Inc
+// Ported to JavaScript by Stefan Thomas
+// Merged Buffer refactorings from base58-native by Stephen Pair
+// Copyright (c) 2013 BitPay Inc
+
+var ALPHABET$2 = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+var ALPHABET_MAP = {};
+for(var i$1 = 0; i$1 < ALPHABET$2.length; i$1++) {
+  ALPHABET_MAP[ALPHABET$2.charAt(i$1)] = i$1;
+}
+var BASE = 58;
+
+function encode$2(buffer$$1) {
+  if (buffer$$1.length === 0) return ''
+
+  var i, j, digits = [0];
+  for (i = 0; i < buffer$$1.length; i++) {
+    for (j = 0; j < digits.length; j++) digits[j] <<= 8;
+
+    digits[0] += buffer$$1[i];
+
+    var carry = 0;
+    for (j = 0; j < digits.length; ++j) {
+      digits[j] += carry;
+
+      carry = (digits[j] / BASE) | 0;
+      digits[j] %= BASE;
+    }
+
+    while (carry) {
+      digits.push(carry % BASE);
+
+      carry = (carry / BASE) | 0;
+    }
+  }
+
+  // deal with leading zeros
+  for (i = 0; buffer$$1[i] === 0 && i < buffer$$1.length - 1; i++) digits.push(0);
+
+  // convert digits to a string
+  var stringOutput = "";
+  for (var i = digits.length - 1; i >= 0; i--) {
+    stringOutput = stringOutput + ALPHABET$2[digits[i]];
+  }
+  return stringOutput
+}
+
+function decode$2(string) {
+  if (string.length === 0) return []
+
+  var i, j, bytes = [0];
+  for (i = 0; i < string.length; i++) {
+    var c = string[i];
+    if (!(c in ALPHABET_MAP)) throw new Error('Non-base58 character')
+
+    for (j = 0; j < bytes.length; j++) bytes[j] *= BASE;
+    bytes[0] += ALPHABET_MAP[c];
+
+    var carry = 0;
+    for (j = 0; j < bytes.length; ++j) {
+      bytes[j] += carry;
+
+      carry = bytes[j] >> 8;
+      bytes[j] &= 0xff;
+    }
+
+    while (carry) {
+      bytes.push(carry & 0xff);
+
+      carry >>= 8;
+    }
+  }
+
+  // deal with leading zeros
+  for (i = 0; string[i] === '1' && i < string.length - 1; i++) bytes.push(0);
+
+  return bytes.reverse()
+}
+
+var bs58$2 = {
+  encode: encode$2,
+  decode: decode$2
+};
+
+function encode$1 (payload, version) {
+  if (Array.isArray(payload) || payload instanceof Uint8Array) {
+    payload = new Buffer(payload);
+  }
+
+  var buf;
+  if (version != null) {
+    if (typeof version === 'number') {
+      version = new Buffer([version]);
+    }
+    buf = Buffer.concat([version, payload]);
+  } else {
+    buf = payload;
+  }
+
+  var checksum = sha256x2(buf).slice(0, 4);
+  var result = Buffer.concat([buf, checksum]);
+  return bs58$2.encode(result)
+}
+
+function decode$1 (base58str, version) {
+  var arr = bs58$2.decode(base58str);
+  var buf = new Buffer(arr);
+  var versionLength;
+
+  if (version == null) {
+    versionLength = 0;
+  } else {
+    if (typeof version === 'number') version = new Buffer([version]);
+
+    versionLength = version.length;
+    var versionCompare = buf.slice(0, versionLength);
+    if (versionCompare.toString('hex') !== version.toString('hex')) {
+      throw new Error('Invalid version')
+    }
+  }
+
+  var checksum = buf.slice(-4);
+  var endPos = buf.length - 4;
+  var bytes = buf.slice(0, endPos);
+
+  var newChecksum = sha256x2(bytes).slice(0, 4);
+  if (checksum.toString('hex') !== newChecksum.toString('hex')) {
+    throw new Error('Invalid checksum')
+  }
+
+  return bytes.slice(versionLength)
+}
+
+function isValid (base58str, version) {
+  try {
+    decode$1(base58str, version);
+  } catch (e) {
+    return false
+  }
+
+  return true
+}
+
+function createEncoder (version) {
+  return function (payload) {
+    return encode$1(payload, version)
+  }
+}
+
+function createDecoder (version) {
+  return function (base58str) {
+    return decode$1(base58str, version)
+  }
+}
+
+function createValidator (version) {
+  return function (base58str) {
+    return isValid(base58str, version)
+  }
+}
+
+function sha256x2 (buffer$$1) {
+  var sha = createHash('sha256').update(buffer$$1).digest();
+  return createHash('sha256').update(sha).digest()
+}
+
+var coinstring = {
+  encode: encode$1,
+  decode: decode$1,
+  isValid: isValid,
+  createEncoder: createEncoder,
+  createDecoder: createDecoder,
+  createValidator: createValidator
+};
+
+var Buffer$10 = safeBuffer.Buffer;
+
+
+
+
+var MASTER_SECRET = Buffer$10.from('Bitcoin seed', 'utf8');
+var HARDENED_OFFSET = 0x80000000;
+var LEN = 78;
+
+// Bitcoin hardcoded by default, can use package `coininfo` for others
+var BITCOIN_VERSIONS = {private: 0x0488ADE4, public: 0x0488B21E};
+
+function HDKey (versions) {
+  this.versions = versions || BITCOIN_VERSIONS;
+  this.depth = 0;
+  this.index = 0;
+  this._privateKey = null;
+  this._publicKey = null;
+  this.chainCode = null;
+  this._fingerprint = 0;
+  this.parentFingerprint = 0;
+}
+
+Object.defineProperty(HDKey.prototype, 'fingerprint', { get: function () { return this._fingerprint } });
+Object.defineProperty(HDKey.prototype, 'identifier', { get: function () { return this._identifier } });
+Object.defineProperty(HDKey.prototype, 'pubKeyHash', { get: function () { return this.identifier } });
+
+Object.defineProperty(HDKey.prototype, 'privateKey', {
+  get: function () {
+    return this._privateKey
+  },
+  set: function (value) {
+    assert.equal(value.length, 32, 'Private key must be 32 bytes.');
+    assert(secp256k1$2.privateKeyVerify(value) === true, 'Invalid private key');
+
+    this._privateKey = value;
+    this._publicKey = secp256k1$2.publicKeyCreate(value, true);
+    this._identifier = hash160(this.publicKey);
+    this._fingerprint = this._identifier.slice(0, 4).readUInt32BE(0);
+  }
+});
+
+Object.defineProperty(HDKey.prototype, 'publicKey', {
+  get: function () {
+    return this._publicKey
+  },
+  set: function (value) {
+    assert(value.length === 33 || value.length === 65, 'Public key must be 33 or 65 bytes.');
+    assert(secp256k1$2.publicKeyVerify(value) === true, 'Invalid public key');
+
+    this._publicKey = secp256k1$2.publicKeyConvert(value, true); // force compressed point
+    this._identifier = hash160(this.publicKey);
+    this._fingerprint = this._identifier.slice(0, 4).readUInt32BE(0);
+    this._privateKey = null;
+  }
+});
+
+Object.defineProperty(HDKey.prototype, 'privateExtendedKey', {
+  get: function () {
+    if (this._privateKey) return coinstring.encode(serialize(this, this.versions.private, Buffer$10.concat([Buffer$10.alloc(1, 0), this.privateKey])))
+    else return null
+  }
+});
+
+Object.defineProperty(HDKey.prototype, 'publicExtendedKey', {
+  get: function () {
+    return coinstring.encode(serialize(this, this.versions.public, this.publicKey))
+  }
+});
+
+HDKey.prototype.derive = function (path$$1) {
+  if (path$$1 === 'm' || path$$1 === 'M' || path$$1 === "m'" || path$$1 === "M'") {
+    return this
+  }
+
+  var entries = path$$1.split('/');
+  var hdkey = this;
+  entries.forEach(function (c, i) {
+    if (i === 0) {
+      assert(/^[mM]{1}/.test(c), 'Path must start with "m" or "M"');
+      return
+    }
+
+    var hardened = (c.length > 1) && (c[c.length - 1] === "'");
+    var childIndex = parseInt(c, 10); // & (HARDENED_OFFSET - 1)
+    assert(childIndex < HARDENED_OFFSET, 'Invalid index');
+    if (hardened) childIndex += HARDENED_OFFSET;
+
+    hdkey = hdkey.deriveChild(childIndex);
+  });
+
+  return hdkey
+};
+
+HDKey.prototype.deriveChild = function (index) {
+  var isHardened = index >= HARDENED_OFFSET;
+  var indexBuffer = Buffer$10.allocUnsafe(4);
+  indexBuffer.writeUInt32BE(index, 0);
+
+  var data;
+
+  if (isHardened) { // Hardened child
+    assert(this.privateKey, 'Could not derive hardened child key');
+
+    var pk = this.privateKey;
+    var zb = Buffer$10.alloc(1, 0);
+    pk = Buffer$10.concat([zb, pk]);
+
+    // data = 0x00 || ser256(kpar) || ser32(index)
+    data = Buffer$10.concat([pk, indexBuffer]);
+  } else { // Normal child
+    // data = serP(point(kpar)) || ser32(index)
+    //      = serP(Kpar) || ser32(index)
+    data = Buffer$10.concat([this.publicKey, indexBuffer]);
+  }
+
+  var I = crypto.createHmac('sha512', this.chainCode).update(data).digest();
+  var IL = I.slice(0, 32);
+  var IR = I.slice(32);
+
+  var hd = new HDKey(this.versions);
+
+  // Private parent key -> private child key
+  if (this.privateKey) {
+    // ki = parse256(IL) + kpar (mod n)
+    try {
+      hd.privateKey = secp256k1$2.privateKeyTweakAdd(this.privateKey, IL);
+      // throw if IL >= n || (privateKey + IL) === 0
+    } catch (err) {
+      // In case parse256(IL) >= n or ki == 0, one should proceed with the next value for i
+      return this.derive(index + 1)
+    }
+  // Public parent key -> public child key
+  } else {
+    // Ki = point(parse256(IL)) + Kpar
+    //    = G*IL + Kpar
+    try {
+      hd.publicKey = secp256k1$2.publicKeyTweakAdd(this.publicKey, IL, true);
+      // throw if IL >= n || (g**IL + publicKey) is infinity
+    } catch (err) {
+      // In case parse256(IL) >= n or Ki is the point at infinity, one should proceed with the next value for i
+      return this.derive(index + 1, isHardened)
+    }
+  }
+
+  hd.chainCode = IR;
+  hd.depth = this.depth + 1;
+  hd.parentFingerprint = this.fingerprint;// .readUInt32BE(0)
+  hd.index = index;
+
+  return hd
+};
+
+HDKey.prototype.sign = function (hash) {
+  return secp256k1$2.sign(hash, this.privateKey).signature
+};
+
+HDKey.prototype.verify = function (hash, signature) {
+  return secp256k1$2.verify(hash, signature, this.publicKey)
+};
+
+HDKey.prototype.wipePrivateData = function () {
+  if (this._privateKey) crypto.randomBytes(this._privateKey.length).copy(this._privateKey);
+  this._privateKey = null;
+  return this
+};
+
+HDKey.prototype.toJSON = function () {
+  return {
+    xpriv: this.privateExtendedKey,
+    xpub: this.publicExtendedKey
+  }
+};
+
+HDKey.fromMasterSeed = function (seedBuffer, versions) {
+  var I = crypto.createHmac('sha512', MASTER_SECRET).update(seedBuffer).digest();
+  var IL = I.slice(0, 32);
+  var IR = I.slice(32);
+
+  var hdkey = new HDKey(versions);
+  hdkey.chainCode = IR;
+  hdkey.privateKey = IL;
+
+  return hdkey
+};
+
+HDKey.fromExtendedKey = function (base58key, versions) {
+  // => version(4) || depth(1) || fingerprint(4) || index(4) || chain(32) || key(33)
+  versions = versions || BITCOIN_VERSIONS;
+  var hdkey = new HDKey(versions);
+
+  var keyBuffer = coinstring.decode(base58key);
+
+  var version = keyBuffer.readUInt32BE(0);
+  assert(version === versions.private || version === versions.public, 'Version mismatch: does not match private or public');
+
+  hdkey.depth = keyBuffer.readUInt8(4);
+  hdkey.parentFingerprint = keyBuffer.readUInt32BE(5);
+  hdkey.index = keyBuffer.readUInt32BE(9);
+  hdkey.chainCode = keyBuffer.slice(13, 45);
+
+  var key = keyBuffer.slice(45);
+  if (key.readUInt8(0) === 0) { // private
+    assert(version === versions.private, 'Version mismatch: version does not match private');
+    hdkey.privateKey = key.slice(1); // cut off first 0x0 byte
+  } else {
+    assert(version === versions.public, 'Version mismatch: version does not match public');
+    hdkey.publicKey = key;
+  }
+
+  return hdkey
+};
+
+HDKey.fromJSON = function (obj) {
+  return HDKey.fromExtendedKey(obj.xpriv)
+};
+
+function serialize (hdkey, version, key) {
+  // => version(4) || depth(1) || fingerprint(4) || index(4) || chain(32) || key(33)
+  var buffer$$1 = Buffer$10.allocUnsafe(LEN);
+
+  buffer$$1.writeUInt32BE(version, 0);
+  buffer$$1.writeUInt8(hdkey.depth, 4);
+
+  var fingerprint = hdkey.depth ? hdkey.parentFingerprint : 0x00000000;
+  buffer$$1.writeUInt32BE(fingerprint, 5);
+  buffer$$1.writeUInt32BE(hdkey.index, 9);
+
+  hdkey.chainCode.copy(buffer$$1, 13);
+  key.copy(buffer$$1, 45);
+
+  return buffer$$1
+}
+
+function hash160 (buf) {
+  var sha = crypto.createHash('sha256').update(buf).digest();
+  return crypto.createHash('ripemd160').update(sha).digest()
+}
+
+HDKey.HARDENED_OFFSET = HARDENED_OFFSET;
+var hdkey = HDKey;
+
+'use strict';
+
+
+var Buffer$11 = safeBuffer.Buffer;
+
+var base$6 = function (checksumFn) {
+  // Encode a buffer as a base58-check encoded string
+  function encode (payload) {
+    var checksum = checksumFn(payload);
+
+    return bs58.encode(Buffer$11.concat([
+      payload,
+      checksum
+    ], payload.length + 4))
+  }
+
+  function decodeRaw (buffer$$1) {
+    var payload = buffer$$1.slice(0, -4);
+    var checksum = buffer$$1.slice(-4);
+    var newChecksum = checksumFn(payload);
+
+    if (checksum[0] ^ newChecksum[0] |
+        checksum[1] ^ newChecksum[1] |
+        checksum[2] ^ newChecksum[2] |
+        checksum[3] ^ newChecksum[3]) return
+
+    return payload
+  }
+
+  // Decode a base58-check encoded string to a buffer, no result if checksum is wrong
+  function decodeUnsafe (string) {
+    var buffer$$1 = bs58.decodeUnsafe(string);
+    if (!buffer$$1) return
+
+    return decodeRaw(buffer$$1)
+  }
+
+  function decode (string) {
+    var buffer$$1 = bs58.decode(string);
+    var payload = decodeRaw(buffer$$1, checksumFn);
+    if (!payload) throw new Error('Invalid checksum')
+    return payload
+  }
+
+  return {
+    encode: encode,
+    decode: decode,
+    decodeUnsafe: decodeUnsafe
+  }
+};
+
+'use strict';
+
+
+
+
+// SHA256(SHA256(buffer))
+function sha256x2$1 (buffer$$1) {
+  var tmp = createHash('sha256').update(buffer$$1).digest();
+  return createHash('sha256').update(tmp).digest()
+}
+
+var bs58check = base$6(sha256x2$1);
+
+function decodeRaw (buffer$$1, version) {
+  // check version only if defined
+  if (version !== undefined && buffer$$1[0] !== version) throw new Error('Invalid network version')
+
+  // uncompressed
+  if (buffer$$1.length === 33) {
+    return {
+      version: buffer$$1[0],
+      privateKey: buffer$$1.slice(1, 33),
+      compressed: false
+    }
+  }
+
+  // invalid length
+  if (buffer$$1.length !== 34) throw new Error('Invalid WIF length')
+
+  // invalid compression flag
+  if (buffer$$1[33] !== 0x01) throw new Error('Invalid compression flag')
+
+  return {
+    version: buffer$$1[0],
+    privateKey: buffer$$1.slice(1, 33),
+    compressed: true
+  }
+}
+
+function encodeRaw (version, privateKey, compressed) {
+  var result = new Buffer(compressed ? 34 : 33);
+
+  result.writeUInt8(version, 0);
+  privateKey.copy(result, 1);
+
+  if (compressed) {
+    result[33] = 0x01;
+  }
+
+  return result
+}
+
+function decode$3 (string, version) {
+  return decodeRaw(bs58check.decode(string), version)
+}
+
+function encode$3 (version, privateKey, compressed) {
+  if (typeof version === 'number') return bs58check.encode(encodeRaw(version, privateKey, compressed))
+
+  return bs58check.encode(
+    encodeRaw(
+      version.version,
+      version.privateKey,
+      version.compressed
+    )
+  )
+}
+
+var wif = {
+  decode: decode$3,
+  decodeRaw: decodeRaw,
+  encode: encode$3,
+  encodeRaw: encodeRaw
+};
+
+var long_1 = createCommonjsModule(function (module) {
+/*
+ Copyright 2013 Daniel Wirtz <dcode@dcode.io>
+ Copyright 2009 The Closure Library Authors. All Rights Reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS-IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
+/**
+ * @license long.js (c) 2013 Daniel Wirtz <dcode@dcode.io>
+ * Released under the Apache License, Version 2.0
+ * see: https://github.com/dcodeIO/long.js for details
+ */
+(function(global, factory) {
+
+    /* AMD */ if (typeof undefined === 'function' && undefined["amd"])
+        undefined([], factory);
+    /* CommonJS */ else if (typeof require === 'function' && 'object' === "object" && module && module["exports"])
+        module["exports"] = factory();
+    /* Global */ else
+        (global["dcodeIO"] = global["dcodeIO"] || {})["Long"] = factory();
+
+})(commonjsGlobal, function() {
+    "use strict";
+
+    /**
+     * Constructs a 64 bit two's-complement integer, given its low and high 32 bit values as *signed* integers.
+     *  See the from* functions below for more convenient ways of constructing Longs.
+     * @exports Long
+     * @class A Long class for representing a 64 bit two's-complement integer value.
+     * @param {number} low The low (signed) 32 bits of the long
+     * @param {number} high The high (signed) 32 bits of the long
+     * @param {boolean=} unsigned Whether unsigned or not, defaults to `false` for signed
+     * @constructor
+     */
+    function Long(low, high, unsigned) {
+
+        /**
+         * The low 32 bits as a signed value.
+         * @type {number}
+         */
+        this.low = low | 0;
+
+        /**
+         * The high 32 bits as a signed value.
+         * @type {number}
+         */
+        this.high = high | 0;
+
+        /**
+         * Whether unsigned or not.
+         * @type {boolean}
+         */
+        this.unsigned = !!unsigned;
+    }
+
+    // The internal representation of a long is the two given signed, 32-bit values.
+    // We use 32-bit pieces because these are the size of integers on which
+    // Javascript performs bit-operations.  For operations like addition and
+    // multiplication, we split each number into 16 bit pieces, which can easily be
+    // multiplied within Javascript's floating-point representation without overflow
+    // or change in sign.
+    //
+    // In the algorithms below, we frequently reduce the negative case to the
+    // positive case by negating the input(s) and then post-processing the result.
+    // Note that we must ALWAYS check specially whether those values are MIN_VALUE
+    // (-2^63) because -MIN_VALUE == MIN_VALUE (since 2^63 cannot be represented as
+    // a positive number, it overflows back into a negative).  Not handling this
+    // case would often result in infinite recursion.
+    //
+    // Common constant values ZERO, ONE, NEG_ONE, etc. are defined below the from*
+    // methods on which they depend.
+
+    /**
+     * An indicator used to reliably determine if an object is a Long or not.
+     * @type {boolean}
+     * @const
+     * @private
+     */
+    Long.prototype.__isLong__;
+
+    Object.defineProperty(Long.prototype, "__isLong__", {
+        value: true,
+        enumerable: false,
+        configurable: false
+    });
+
+    /**
+     * @function
+     * @param {*} obj Object
+     * @returns {boolean}
+     * @inner
+     */
+    function isLong(obj) {
+        return (obj && obj["__isLong__"]) === true;
+    }
+
+    /**
+     * Tests if the specified object is a Long.
+     * @function
+     * @param {*} obj Object
+     * @returns {boolean}
+     */
+    Long.isLong = isLong;
+
+    /**
+     * A cache of the Long representations of small integer values.
+     * @type {!Object}
+     * @inner
+     */
+    var INT_CACHE = {};
+
+    /**
+     * A cache of the Long representations of small unsigned integer values.
+     * @type {!Object}
+     * @inner
+     */
+    var UINT_CACHE = {};
+
+    /**
+     * @param {number} value
+     * @param {boolean=} unsigned
+     * @returns {!Long}
+     * @inner
+     */
+    function fromInt(value, unsigned) {
+        var obj, cachedObj, cache;
+        if (unsigned) {
+            value >>>= 0;
+            if (cache = (0 <= value && value < 256)) {
+                cachedObj = UINT_CACHE[value];
+                if (cachedObj)
+                    return cachedObj;
+            }
+            obj = fromBits(value, (value | 0) < 0 ? -1 : 0, true);
+            if (cache)
+                UINT_CACHE[value] = obj;
+            return obj;
+        } else {
+            value |= 0;
+            if (cache = (-128 <= value && value < 128)) {
+                cachedObj = INT_CACHE[value];
+                if (cachedObj)
+                    return cachedObj;
+            }
+            obj = fromBits(value, value < 0 ? -1 : 0, false);
+            if (cache)
+                INT_CACHE[value] = obj;
+            return obj;
+        }
+    }
+
+    /**
+     * Returns a Long representing the given 32 bit integer value.
+     * @function
+     * @param {number} value The 32 bit integer in question
+     * @param {boolean=} unsigned Whether unsigned or not, defaults to `false` for signed
+     * @returns {!Long} The corresponding Long value
+     */
+    Long.fromInt = fromInt;
+
+    /**
+     * @param {number} value
+     * @param {boolean=} unsigned
+     * @returns {!Long}
+     * @inner
+     */
+    function fromNumber(value, unsigned) {
+        if (isNaN(value) || !isFinite(value))
+            return unsigned ? UZERO : ZERO;
+        if (unsigned) {
+            if (value < 0)
+                return UZERO;
+            if (value >= TWO_PWR_64_DBL)
+                return MAX_UNSIGNED_VALUE;
+        } else {
+            if (value <= -TWO_PWR_63_DBL)
+                return MIN_VALUE;
+            if (value + 1 >= TWO_PWR_63_DBL)
+                return MAX_VALUE;
+        }
+        if (value < 0)
+            return fromNumber(-value, unsigned).neg();
+        return fromBits((value % TWO_PWR_32_DBL) | 0, (value / TWO_PWR_32_DBL) | 0, unsigned);
+    }
+
+    /**
+     * Returns a Long representing the given value, provided that it is a finite number. Otherwise, zero is returned.
+     * @function
+     * @param {number} value The number in question
+     * @param {boolean=} unsigned Whether unsigned or not, defaults to `false` for signed
+     * @returns {!Long} The corresponding Long value
+     */
+    Long.fromNumber = fromNumber;
+
+    /**
+     * @param {number} lowBits
+     * @param {number} highBits
+     * @param {boolean=} unsigned
+     * @returns {!Long}
+     * @inner
+     */
+    function fromBits(lowBits, highBits, unsigned) {
+        return new Long(lowBits, highBits, unsigned);
+    }
+
+    /**
+     * Returns a Long representing the 64 bit integer that comes by concatenating the given low and high bits. Each is
+     *  assumed to use 32 bits.
+     * @function
+     * @param {number} lowBits The low 32 bits
+     * @param {number} highBits The high 32 bits
+     * @param {boolean=} unsigned Whether unsigned or not, defaults to `false` for signed
+     * @returns {!Long} The corresponding Long value
+     */
+    Long.fromBits = fromBits;
+
+    /**
+     * @function
+     * @param {number} base
+     * @param {number} exponent
+     * @returns {number}
+     * @inner
+     */
+    var pow_dbl = Math.pow; // Used 4 times (4*8 to 15+4)
+
+    /**
+     * @param {string} str
+     * @param {(boolean|number)=} unsigned
+     * @param {number=} radix
+     * @returns {!Long}
+     * @inner
+     */
+    function fromString(str, unsigned, radix) {
+        if (str.length === 0)
+            throw Error('empty string');
+        if (str === "NaN" || str === "Infinity" || str === "+Infinity" || str === "-Infinity")
+            return ZERO;
+        if (typeof unsigned === 'number') {
+            // For goog.math.long compatibility
+            radix = unsigned, unsigned = false;
+        } else {
+            unsigned = !! unsigned;
+        }
+        radix = radix || 10;
+        if (radix < 2 || 36 < radix)
+            throw RangeError('radix');
+
+        var p;
+        if ((p = str.indexOf('-')) > 0)
+            throw Error('interior hyphen');
+        else if (p === 0) {
+            return fromString(str.substring(1), unsigned, radix).neg();
+        }
+
+        // Do several (8) digits each time through the loop, so as to
+        // minimize the calls to the very expensive emulated div.
+        var radixToPower = fromNumber(pow_dbl(radix, 8));
+
+        var result = ZERO;
+        for (var i = 0; i < str.length; i += 8) {
+            var size = Math.min(8, str.length - i),
+                value = parseInt(str.substring(i, i + size), radix);
+            if (size < 8) {
+                var power = fromNumber(pow_dbl(radix, size));
+                result = result.mul(power).add(fromNumber(value));
+            } else {
+                result = result.mul(radixToPower);
+                result = result.add(fromNumber(value));
+            }
+        }
+        result.unsigned = unsigned;
+        return result;
+    }
+
+    /**
+     * Returns a Long representation of the given string, written using the specified radix.
+     * @function
+     * @param {string} str The textual representation of the Long
+     * @param {(boolean|number)=} unsigned Whether unsigned or not, defaults to `false` for signed
+     * @param {number=} radix The radix in which the text is written (2-36), defaults to 10
+     * @returns {!Long} The corresponding Long value
+     */
+    Long.fromString = fromString;
+
+    /**
+     * @function
+     * @param {!Long|number|string|!{low: number, high: number, unsigned: boolean}} val
+     * @returns {!Long}
+     * @inner
+     */
+    function fromValue(val) {
+        if (val /* is compatible */ instanceof Long)
+            return val;
+        if (typeof val === 'number')
+            return fromNumber(val);
+        if (typeof val === 'string')
+            return fromString(val);
+        // Throws for non-objects, converts non-instanceof Long:
+        return fromBits(val.low, val.high, val.unsigned);
+    }
+
+    /**
+     * Converts the specified value to a Long.
+     * @function
+     * @param {!Long|number|string|!{low: number, high: number, unsigned: boolean}} val Value
+     * @returns {!Long}
+     */
+    Long.fromValue = fromValue;
+
+    // NOTE: the compiler should inline these constant values below and then remove these variables, so there should be
+    // no runtime penalty for these.
+
+    /**
+     * @type {number}
+     * @const
+     * @inner
+     */
+    var TWO_PWR_16_DBL = 1 << 16;
+
+    /**
+     * @type {number}
+     * @const
+     * @inner
+     */
+    var TWO_PWR_24_DBL = 1 << 24;
+
+    /**
+     * @type {number}
+     * @const
+     * @inner
+     */
+    var TWO_PWR_32_DBL = TWO_PWR_16_DBL * TWO_PWR_16_DBL;
+
+    /**
+     * @type {number}
+     * @const
+     * @inner
+     */
+    var TWO_PWR_64_DBL = TWO_PWR_32_DBL * TWO_PWR_32_DBL;
+
+    /**
+     * @type {number}
+     * @const
+     * @inner
+     */
+    var TWO_PWR_63_DBL = TWO_PWR_64_DBL / 2;
+
+    /**
+     * @type {!Long}
+     * @const
+     * @inner
+     */
+    var TWO_PWR_24 = fromInt(TWO_PWR_24_DBL);
+
+    /**
+     * @type {!Long}
+     * @inner
+     */
+    var ZERO = fromInt(0);
+
+    /**
+     * Signed zero.
+     * @type {!Long}
+     */
+    Long.ZERO = ZERO;
+
+    /**
+     * @type {!Long}
+     * @inner
+     */
+    var UZERO = fromInt(0, true);
+
+    /**
+     * Unsigned zero.
+     * @type {!Long}
+     */
+    Long.UZERO = UZERO;
+
+    /**
+     * @type {!Long}
+     * @inner
+     */
+    var ONE = fromInt(1);
+
+    /**
+     * Signed one.
+     * @type {!Long}
+     */
+    Long.ONE = ONE;
+
+    /**
+     * @type {!Long}
+     * @inner
+     */
+    var UONE = fromInt(1, true);
+
+    /**
+     * Unsigned one.
+     * @type {!Long}
+     */
+    Long.UONE = UONE;
+
+    /**
+     * @type {!Long}
+     * @inner
+     */
+    var NEG_ONE = fromInt(-1);
+
+    /**
+     * Signed negative one.
+     * @type {!Long}
+     */
+    Long.NEG_ONE = NEG_ONE;
+
+    /**
+     * @type {!Long}
+     * @inner
+     */
+    var MAX_VALUE = fromBits(0xFFFFFFFF|0, 0x7FFFFFFF|0, false);
+
+    /**
+     * Maximum signed value.
+     * @type {!Long}
+     */
+    Long.MAX_VALUE = MAX_VALUE;
+
+    /**
+     * @type {!Long}
+     * @inner
+     */
+    var MAX_UNSIGNED_VALUE = fromBits(0xFFFFFFFF|0, 0xFFFFFFFF|0, true);
+
+    /**
+     * Maximum unsigned value.
+     * @type {!Long}
+     */
+    Long.MAX_UNSIGNED_VALUE = MAX_UNSIGNED_VALUE;
+
+    /**
+     * @type {!Long}
+     * @inner
+     */
+    var MIN_VALUE = fromBits(0, 0x80000000|0, false);
+
+    /**
+     * Minimum signed value.
+     * @type {!Long}
+     */
+    Long.MIN_VALUE = MIN_VALUE;
+
+    /**
+     * @alias Long.prototype
+     * @inner
+     */
+    var LongPrototype = Long.prototype;
+
+    /**
+     * Converts the Long to a 32 bit integer, assuming it is a 32 bit integer.
+     * @returns {number}
+     */
+    LongPrototype.toInt = function toInt() {
+        return this.unsigned ? this.low >>> 0 : this.low;
+    };
+
+    /**
+     * Converts the Long to a the nearest floating-point representation of this value (double, 53 bit mantissa).
+     * @returns {number}
+     */
+    LongPrototype.toNumber = function toNumber() {
+        if (this.unsigned)
+            return ((this.high >>> 0) * TWO_PWR_32_DBL) + (this.low >>> 0);
+        return this.high * TWO_PWR_32_DBL + (this.low >>> 0);
+    };
+
+    /**
+     * Converts the Long to a string written in the specified radix.
+     * @param {number=} radix Radix (2-36), defaults to 10
+     * @returns {string}
+     * @override
+     * @throws {RangeError} If `radix` is out of range
+     */
+    LongPrototype.toString = function toString(radix) {
+        radix = radix || 10;
+        if (radix < 2 || 36 < radix)
+            throw RangeError('radix');
+        if (this.isZero())
+            return '0';
+        if (this.isNegative()) { // Unsigned Longs are never negative
+            if (this.eq(MIN_VALUE)) {
+                // We need to change the Long value before it can be negated, so we remove
+                // the bottom-most digit in this base and then recurse to do the rest.
+                var radixLong = fromNumber(radix),
+                    div = this.div(radixLong),
+                    rem1 = div.mul(radixLong).sub(this);
+                return div.toString(radix) + rem1.toInt().toString(radix);
+            } else
+                return '-' + this.neg().toString(radix);
+        }
+
+        // Do several (6) digits each time through the loop, so as to
+        // minimize the calls to the very expensive emulated div.
+        var radixToPower = fromNumber(pow_dbl(radix, 6), this.unsigned),
+            rem = this;
+        var result = '';
+        while (true) {
+            var remDiv = rem.div(radixToPower),
+                intval = rem.sub(remDiv.mul(radixToPower)).toInt() >>> 0,
+                digits = intval.toString(radix);
+            rem = remDiv;
+            if (rem.isZero())
+                return digits + result;
+            else {
+                while (digits.length < 6)
+                    digits = '0' + digits;
+                result = '' + digits + result;
+            }
+        }
+    };
+
+    /**
+     * Gets the high 32 bits as a signed integer.
+     * @returns {number} Signed high bits
+     */
+    LongPrototype.getHighBits = function getHighBits() {
+        return this.high;
+    };
+
+    /**
+     * Gets the high 32 bits as an unsigned integer.
+     * @returns {number} Unsigned high bits
+     */
+    LongPrototype.getHighBitsUnsigned = function getHighBitsUnsigned() {
+        return this.high >>> 0;
+    };
+
+    /**
+     * Gets the low 32 bits as a signed integer.
+     * @returns {number} Signed low bits
+     */
+    LongPrototype.getLowBits = function getLowBits() {
+        return this.low;
+    };
+
+    /**
+     * Gets the low 32 bits as an unsigned integer.
+     * @returns {number} Unsigned low bits
+     */
+    LongPrototype.getLowBitsUnsigned = function getLowBitsUnsigned() {
+        return this.low >>> 0;
+    };
+
+    /**
+     * Gets the number of bits needed to represent the absolute value of this Long.
+     * @returns {number}
+     */
+    LongPrototype.getNumBitsAbs = function getNumBitsAbs() {
+        if (this.isNegative()) // Unsigned Longs are never negative
+            return this.eq(MIN_VALUE) ? 64 : this.neg().getNumBitsAbs();
+        var val = this.high != 0 ? this.high : this.low;
+        for (var bit = 31; bit > 0; bit--)
+            if ((val & (1 << bit)) != 0)
+                break;
+        return this.high != 0 ? bit + 33 : bit + 1;
+    };
+
+    /**
+     * Tests if this Long's value equals zero.
+     * @returns {boolean}
+     */
+    LongPrototype.isZero = function isZero() {
+        return this.high === 0 && this.low === 0;
+    };
+
+    /**
+     * Tests if this Long's value is negative.
+     * @returns {boolean}
+     */
+    LongPrototype.isNegative = function isNegative() {
+        return !this.unsigned && this.high < 0;
+    };
+
+    /**
+     * Tests if this Long's value is positive.
+     * @returns {boolean}
+     */
+    LongPrototype.isPositive = function isPositive() {
+        return this.unsigned || this.high >= 0;
+    };
+
+    /**
+     * Tests if this Long's value is odd.
+     * @returns {boolean}
+     */
+    LongPrototype.isOdd = function isOdd() {
+        return (this.low & 1) === 1;
+    };
+
+    /**
+     * Tests if this Long's value is even.
+     * @returns {boolean}
+     */
+    LongPrototype.isEven = function isEven() {
+        return (this.low & 1) === 0;
+    };
+
+    /**
+     * Tests if this Long's value equals the specified's.
+     * @param {!Long|number|string} other Other value
+     * @returns {boolean}
+     */
+    LongPrototype.equals = function equals(other) {
+        if (!isLong(other))
+            other = fromValue(other);
+        if (this.unsigned !== other.unsigned && (this.high >>> 31) === 1 && (other.high >>> 31) === 1)
+            return false;
+        return this.high === other.high && this.low === other.low;
+    };
+
+    /**
+     * Tests if this Long's value equals the specified's. This is an alias of {@link Long#equals}.
+     * @function
+     * @param {!Long|number|string} other Other value
+     * @returns {boolean}
+     */
+    LongPrototype.eq = LongPrototype.equals;
+
+    /**
+     * Tests if this Long's value differs from the specified's.
+     * @param {!Long|number|string} other Other value
+     * @returns {boolean}
+     */
+    LongPrototype.notEquals = function notEquals(other) {
+        return !this.eq(/* validates */ other);
+    };
+
+    /**
+     * Tests if this Long's value differs from the specified's. This is an alias of {@link Long#notEquals}.
+     * @function
+     * @param {!Long|number|string} other Other value
+     * @returns {boolean}
+     */
+    LongPrototype.neq = LongPrototype.notEquals;
+
+    /**
+     * Tests if this Long's value is less than the specified's.
+     * @param {!Long|number|string} other Other value
+     * @returns {boolean}
+     */
+    LongPrototype.lessThan = function lessThan(other) {
+        return this.comp(/* validates */ other) < 0;
+    };
+
+    /**
+     * Tests if this Long's value is less than the specified's. This is an alias of {@link Long#lessThan}.
+     * @function
+     * @param {!Long|number|string} other Other value
+     * @returns {boolean}
+     */
+    LongPrototype.lt = LongPrototype.lessThan;
+
+    /**
+     * Tests if this Long's value is less than or equal the specified's.
+     * @param {!Long|number|string} other Other value
+     * @returns {boolean}
+     */
+    LongPrototype.lessThanOrEqual = function lessThanOrEqual(other) {
+        return this.comp(/* validates */ other) <= 0;
+    };
+
+    /**
+     * Tests if this Long's value is less than or equal the specified's. This is an alias of {@link Long#lessThanOrEqual}.
+     * @function
+     * @param {!Long|number|string} other Other value
+     * @returns {boolean}
+     */
+    LongPrototype.lte = LongPrototype.lessThanOrEqual;
+
+    /**
+     * Tests if this Long's value is greater than the specified's.
+     * @param {!Long|number|string} other Other value
+     * @returns {boolean}
+     */
+    LongPrototype.greaterThan = function greaterThan(other) {
+        return this.comp(/* validates */ other) > 0;
+    };
+
+    /**
+     * Tests if this Long's value is greater than the specified's. This is an alias of {@link Long#greaterThan}.
+     * @function
+     * @param {!Long|number|string} other Other value
+     * @returns {boolean}
+     */
+    LongPrototype.gt = LongPrototype.greaterThan;
+
+    /**
+     * Tests if this Long's value is greater than or equal the specified's.
+     * @param {!Long|number|string} other Other value
+     * @returns {boolean}
+     */
+    LongPrototype.greaterThanOrEqual = function greaterThanOrEqual(other) {
+        return this.comp(/* validates */ other) >= 0;
+    };
+
+    /**
+     * Tests if this Long's value is greater than or equal the specified's. This is an alias of {@link Long#greaterThanOrEqual}.
+     * @function
+     * @param {!Long|number|string} other Other value
+     * @returns {boolean}
+     */
+    LongPrototype.gte = LongPrototype.greaterThanOrEqual;
+
+    /**
+     * Compares this Long's value with the specified's.
+     * @param {!Long|number|string} other Other value
+     * @returns {number} 0 if they are the same, 1 if the this is greater and -1
+     *  if the given one is greater
+     */
+    LongPrototype.compare = function compare(other) {
+        if (!isLong(other))
+            other = fromValue(other);
+        if (this.eq(other))
+            return 0;
+        var thisNeg = this.isNegative(),
+            otherNeg = other.isNegative();
+        if (thisNeg && !otherNeg)
+            return -1;
+        if (!thisNeg && otherNeg)
+            return 1;
+        // At this point the sign bits are the same
+        if (!this.unsigned)
+            return this.sub(other).isNegative() ? -1 : 1;
+        // Both are positive if at least one is unsigned
+        return (other.high >>> 0) > (this.high >>> 0) || (other.high === this.high && (other.low >>> 0) > (this.low >>> 0)) ? -1 : 1;
+    };
+
+    /**
+     * Compares this Long's value with the specified's. This is an alias of {@link Long#compare}.
+     * @function
+     * @param {!Long|number|string} other Other value
+     * @returns {number} 0 if they are the same, 1 if the this is greater and -1
+     *  if the given one is greater
+     */
+    LongPrototype.comp = LongPrototype.compare;
+
+    /**
+     * Negates this Long's value.
+     * @returns {!Long} Negated Long
+     */
+    LongPrototype.negate = function negate() {
+        if (!this.unsigned && this.eq(MIN_VALUE))
+            return MIN_VALUE;
+        return this.not().add(ONE);
+    };
+
+    /**
+     * Negates this Long's value. This is an alias of {@link Long#negate}.
+     * @function
+     * @returns {!Long} Negated Long
+     */
+    LongPrototype.neg = LongPrototype.negate;
+
+    /**
+     * Returns the sum of this and the specified Long.
+     * @param {!Long|number|string} addend Addend
+     * @returns {!Long} Sum
+     */
+    LongPrototype.add = function add(addend) {
+        if (!isLong(addend))
+            addend = fromValue(addend);
+
+        // Divide each number into 4 chunks of 16 bits, and then sum the chunks.
+
+        var a48 = this.high >>> 16;
+        var a32 = this.high & 0xFFFF;
+        var a16 = this.low >>> 16;
+        var a00 = this.low & 0xFFFF;
+
+        var b48 = addend.high >>> 16;
+        var b32 = addend.high & 0xFFFF;
+        var b16 = addend.low >>> 16;
+        var b00 = addend.low & 0xFFFF;
+
+        var c48 = 0, c32 = 0, c16 = 0, c00 = 0;
+        c00 += a00 + b00;
+        c16 += c00 >>> 16;
+        c00 &= 0xFFFF;
+        c16 += a16 + b16;
+        c32 += c16 >>> 16;
+        c16 &= 0xFFFF;
+        c32 += a32 + b32;
+        c48 += c32 >>> 16;
+        c32 &= 0xFFFF;
+        c48 += a48 + b48;
+        c48 &= 0xFFFF;
+        return fromBits((c16 << 16) | c00, (c48 << 16) | c32, this.unsigned);
+    };
+
+    /**
+     * Returns the difference of this and the specified Long.
+     * @param {!Long|number|string} subtrahend Subtrahend
+     * @returns {!Long} Difference
+     */
+    LongPrototype.subtract = function subtract(subtrahend) {
+        if (!isLong(subtrahend))
+            subtrahend = fromValue(subtrahend);
+        return this.add(subtrahend.neg());
+    };
+
+    /**
+     * Returns the difference of this and the specified Long. This is an alias of {@link Long#subtract}.
+     * @function
+     * @param {!Long|number|string} subtrahend Subtrahend
+     * @returns {!Long} Difference
+     */
+    LongPrototype.sub = LongPrototype.subtract;
+
+    /**
+     * Returns the product of this and the specified Long.
+     * @param {!Long|number|string} multiplier Multiplier
+     * @returns {!Long} Product
+     */
+    LongPrototype.multiply = function multiply(multiplier) {
+        if (this.isZero())
+            return ZERO;
+        if (!isLong(multiplier))
+            multiplier = fromValue(multiplier);
+        if (multiplier.isZero())
+            return ZERO;
+        if (this.eq(MIN_VALUE))
+            return multiplier.isOdd() ? MIN_VALUE : ZERO;
+        if (multiplier.eq(MIN_VALUE))
+            return this.isOdd() ? MIN_VALUE : ZERO;
+
+        if (this.isNegative()) {
+            if (multiplier.isNegative())
+                return this.neg().mul(multiplier.neg());
+            else
+                return this.neg().mul(multiplier).neg();
+        } else if (multiplier.isNegative())
+            return this.mul(multiplier.neg()).neg();
+
+        // If both longs are small, use float multiplication
+        if (this.lt(TWO_PWR_24) && multiplier.lt(TWO_PWR_24))
+            return fromNumber(this.toNumber() * multiplier.toNumber(), this.unsigned);
+
+        // Divide each long into 4 chunks of 16 bits, and then add up 4x4 products.
+        // We can skip products that would overflow.
+
+        var a48 = this.high >>> 16;
+        var a32 = this.high & 0xFFFF;
+        var a16 = this.low >>> 16;
+        var a00 = this.low & 0xFFFF;
+
+        var b48 = multiplier.high >>> 16;
+        var b32 = multiplier.high & 0xFFFF;
+        var b16 = multiplier.low >>> 16;
+        var b00 = multiplier.low & 0xFFFF;
+
+        var c48 = 0, c32 = 0, c16 = 0, c00 = 0;
+        c00 += a00 * b00;
+        c16 += c00 >>> 16;
+        c00 &= 0xFFFF;
+        c16 += a16 * b00;
+        c32 += c16 >>> 16;
+        c16 &= 0xFFFF;
+        c16 += a00 * b16;
+        c32 += c16 >>> 16;
+        c16 &= 0xFFFF;
+        c32 += a32 * b00;
+        c48 += c32 >>> 16;
+        c32 &= 0xFFFF;
+        c32 += a16 * b16;
+        c48 += c32 >>> 16;
+        c32 &= 0xFFFF;
+        c32 += a00 * b32;
+        c48 += c32 >>> 16;
+        c32 &= 0xFFFF;
+        c48 += a48 * b00 + a32 * b16 + a16 * b32 + a00 * b48;
+        c48 &= 0xFFFF;
+        return fromBits((c16 << 16) | c00, (c48 << 16) | c32, this.unsigned);
+    };
+
+    /**
+     * Returns the product of this and the specified Long. This is an alias of {@link Long#multiply}.
+     * @function
+     * @param {!Long|number|string} multiplier Multiplier
+     * @returns {!Long} Product
+     */
+    LongPrototype.mul = LongPrototype.multiply;
+
+    /**
+     * Returns this Long divided by the specified. The result is signed if this Long is signed or
+     *  unsigned if this Long is unsigned.
+     * @param {!Long|number|string} divisor Divisor
+     * @returns {!Long} Quotient
+     */
+    LongPrototype.divide = function divide(divisor) {
+        if (!isLong(divisor))
+            divisor = fromValue(divisor);
+        if (divisor.isZero())
+            throw Error('division by zero');
+        if (this.isZero())
+            return this.unsigned ? UZERO : ZERO;
+        var approx, rem, res;
+        if (!this.unsigned) {
+            // This section is only relevant for signed longs and is derived from the
+            // closure library as a whole.
+            if (this.eq(MIN_VALUE)) {
+                if (divisor.eq(ONE) || divisor.eq(NEG_ONE))
+                    return MIN_VALUE;  // recall that -MIN_VALUE == MIN_VALUE
+                else if (divisor.eq(MIN_VALUE))
+                    return ONE;
+                else {
+                    // At this point, we have |other| >= 2, so |this/other| < |MIN_VALUE|.
+                    var halfThis = this.shr(1);
+                    approx = halfThis.div(divisor).shl(1);
+                    if (approx.eq(ZERO)) {
+                        return divisor.isNegative() ? ONE : NEG_ONE;
+                    } else {
+                        rem = this.sub(divisor.mul(approx));
+                        res = approx.add(rem.div(divisor));
+                        return res;
+                    }
+                }
+            } else if (divisor.eq(MIN_VALUE))
+                return this.unsigned ? UZERO : ZERO;
+            if (this.isNegative()) {
+                if (divisor.isNegative())
+                    return this.neg().div(divisor.neg());
+                return this.neg().div(divisor).neg();
+            } else if (divisor.isNegative())
+                return this.div(divisor.neg()).neg();
+            res = ZERO;
+        } else {
+            // The algorithm below has not been made for unsigned longs. It's therefore
+            // required to take special care of the MSB prior to running it.
+            if (!divisor.unsigned)
+                divisor = divisor.toUnsigned();
+            if (divisor.gt(this))
+                return UZERO;
+            if (divisor.gt(this.shru(1))) // 15 >>> 1 = 7 ; with divisor = 8 ; true
+                return UONE;
+            res = UZERO;
+        }
+
+        // Repeat the following until the remainder is less than other:  find a
+        // floating-point that approximates remainder / other *from below*, add this
+        // into the result, and subtract it from the remainder.  It is critical that
+        // the approximate value is less than or equal to the real value so that the
+        // remainder never becomes negative.
+        rem = this;
+        while (rem.gte(divisor)) {
+            // Approximate the result of division. This may be a little greater or
+            // smaller than the actual value.
+            approx = Math.max(1, Math.floor(rem.toNumber() / divisor.toNumber()));
+
+            // We will tweak the approximate result by changing it in the 48-th digit or
+            // the smallest non-fractional digit, whichever is larger.
+            var log2 = Math.ceil(Math.log(approx) / Math.LN2),
+                delta = (log2 <= 48) ? 1 : pow_dbl(2, log2 - 48),
+
+            // Decrease the approximation until it is smaller than the remainder.  Note
+            // that if it is too large, the product overflows and is negative.
+                approxRes = fromNumber(approx),
+                approxRem = approxRes.mul(divisor);
+            while (approxRem.isNegative() || approxRem.gt(rem)) {
+                approx -= delta;
+                approxRes = fromNumber(approx, this.unsigned);
+                approxRem = approxRes.mul(divisor);
+            }
+
+            // We know the answer can't be zero... and actually, zero would cause
+            // infinite recursion since we would make no progress.
+            if (approxRes.isZero())
+                approxRes = ONE;
+
+            res = res.add(approxRes);
+            rem = rem.sub(approxRem);
+        }
+        return res;
+    };
+
+    /**
+     * Returns this Long divided by the specified. This is an alias of {@link Long#divide}.
+     * @function
+     * @param {!Long|number|string} divisor Divisor
+     * @returns {!Long} Quotient
+     */
+    LongPrototype.div = LongPrototype.divide;
+
+    /**
+     * Returns this Long modulo the specified.
+     * @param {!Long|number|string} divisor Divisor
+     * @returns {!Long} Remainder
+     */
+    LongPrototype.modulo = function modulo(divisor) {
+        if (!isLong(divisor))
+            divisor = fromValue(divisor);
+        return this.sub(this.div(divisor).mul(divisor));
+    };
+
+    /**
+     * Returns this Long modulo the specified. This is an alias of {@link Long#modulo}.
+     * @function
+     * @param {!Long|number|string} divisor Divisor
+     * @returns {!Long} Remainder
+     */
+    LongPrototype.mod = LongPrototype.modulo;
+
+    /**
+     * Returns the bitwise NOT of this Long.
+     * @returns {!Long}
+     */
+    LongPrototype.not = function not() {
+        return fromBits(~this.low, ~this.high, this.unsigned);
+    };
+
+    /**
+     * Returns the bitwise AND of this Long and the specified.
+     * @param {!Long|number|string} other Other Long
+     * @returns {!Long}
+     */
+    LongPrototype.and = function and(other) {
+        if (!isLong(other))
+            other = fromValue(other);
+        return fromBits(this.low & other.low, this.high & other.high, this.unsigned);
+    };
+
+    /**
+     * Returns the bitwise OR of this Long and the specified.
+     * @param {!Long|number|string} other Other Long
+     * @returns {!Long}
+     */
+    LongPrototype.or = function or(other) {
+        if (!isLong(other))
+            other = fromValue(other);
+        return fromBits(this.low | other.low, this.high | other.high, this.unsigned);
+    };
+
+    /**
+     * Returns the bitwise XOR of this Long and the given one.
+     * @param {!Long|number|string} other Other Long
+     * @returns {!Long}
+     */
+    LongPrototype.xor = function xor(other) {
+        if (!isLong(other))
+            other = fromValue(other);
+        return fromBits(this.low ^ other.low, this.high ^ other.high, this.unsigned);
+    };
+
+    /**
+     * Returns this Long with bits shifted to the left by the given amount.
+     * @param {number|!Long} numBits Number of bits
+     * @returns {!Long} Shifted Long
+     */
+    LongPrototype.shiftLeft = function shiftLeft(numBits) {
+        if (isLong(numBits))
+            numBits = numBits.toInt();
+        if ((numBits &= 63) === 0)
+            return this;
+        else if (numBits < 32)
+            return fromBits(this.low << numBits, (this.high << numBits) | (this.low >>> (32 - numBits)), this.unsigned);
+        else
+            return fromBits(0, this.low << (numBits - 32), this.unsigned);
+    };
+
+    /**
+     * Returns this Long with bits shifted to the left by the given amount. This is an alias of {@link Long#shiftLeft}.
+     * @function
+     * @param {number|!Long} numBits Number of bits
+     * @returns {!Long} Shifted Long
+     */
+    LongPrototype.shl = LongPrototype.shiftLeft;
+
+    /**
+     * Returns this Long with bits arithmetically shifted to the right by the given amount.
+     * @param {number|!Long} numBits Number of bits
+     * @returns {!Long} Shifted Long
+     */
+    LongPrototype.shiftRight = function shiftRight(numBits) {
+        if (isLong(numBits))
+            numBits = numBits.toInt();
+        if ((numBits &= 63) === 0)
+            return this;
+        else if (numBits < 32)
+            return fromBits((this.low >>> numBits) | (this.high << (32 - numBits)), this.high >> numBits, this.unsigned);
+        else
+            return fromBits(this.high >> (numBits - 32), this.high >= 0 ? 0 : -1, this.unsigned);
+    };
+
+    /**
+     * Returns this Long with bits arithmetically shifted to the right by the given amount. This is an alias of {@link Long#shiftRight}.
+     * @function
+     * @param {number|!Long} numBits Number of bits
+     * @returns {!Long} Shifted Long
+     */
+    LongPrototype.shr = LongPrototype.shiftRight;
+
+    /**
+     * Returns this Long with bits logically shifted to the right by the given amount.
+     * @param {number|!Long} numBits Number of bits
+     * @returns {!Long} Shifted Long
+     */
+    LongPrototype.shiftRightUnsigned = function shiftRightUnsigned(numBits) {
+        if (isLong(numBits))
+            numBits = numBits.toInt();
+        numBits &= 63;
+        if (numBits === 0)
+            return this;
+        else {
+            var high = this.high;
+            if (numBits < 32) {
+                var low = this.low;
+                return fromBits((low >>> numBits) | (high << (32 - numBits)), high >>> numBits, this.unsigned);
+            } else if (numBits === 32)
+                return fromBits(high, 0, this.unsigned);
+            else
+                return fromBits(high >>> (numBits - 32), 0, this.unsigned);
+        }
+    };
+
+    /**
+     * Returns this Long with bits logically shifted to the right by the given amount. This is an alias of {@link Long#shiftRightUnsigned}.
+     * @function
+     * @param {number|!Long} numBits Number of bits
+     * @returns {!Long} Shifted Long
+     */
+    LongPrototype.shru = LongPrototype.shiftRightUnsigned;
+
+    /**
+     * Converts this Long to signed.
+     * @returns {!Long} Signed long
+     */
+    LongPrototype.toSigned = function toSigned() {
+        if (!this.unsigned)
+            return this;
+        return fromBits(this.low, this.high, false);
+    };
+
+    /**
+     * Converts this Long to unsigned.
+     * @returns {!Long} Unsigned long
+     */
+    LongPrototype.toUnsigned = function toUnsigned() {
+        if (this.unsigned)
+            return this;
+        return fromBits(this.low, this.high, true);
+    };
+
+    /**
+     * Converts this Long to its byte representation.
+     * @param {boolean=} le Whether little or big endian, defaults to big endian
+     * @returns {!Array.<number>} Byte representation
+     */
+    LongPrototype.toBytes = function(le) {
+        return le ? this.toBytesLE() : this.toBytesBE();
+    };
+
+    /**
+     * Converts this Long to its little endian byte representation.
+     * @returns {!Array.<number>} Little endian byte representation
+     */
+    LongPrototype.toBytesLE = function() {
+        var hi = this.high,
+            lo = this.low;
+        return [
+             lo         & 0xff,
+            (lo >>>  8) & 0xff,
+            (lo >>> 16) & 0xff,
+            (lo >>> 24) & 0xff,
+             hi         & 0xff,
+            (hi >>>  8) & 0xff,
+            (hi >>> 16) & 0xff,
+            (hi >>> 24) & 0xff
+        ];
+    };
+
+    /**
+     * Converts this Long to its big endian byte representation.
+     * @returns {!Array.<number>} Big endian byte representation
+     */
+    LongPrototype.toBytesBE = function() {
+        var hi = this.high,
+            lo = this.low;
+        return [
+            (hi >>> 24) & 0xff,
+            (hi >>> 16) & 0xff,
+            (hi >>>  8) & 0xff,
+             hi         & 0xff,
+            (lo >>> 24) & 0xff,
+            (lo >>> 16) & 0xff,
+            (lo >>>  8) & 0xff,
+             lo         & 0xff
+        ];
+    };
+
+    return Long;
+});
+});
+
+/*
+ Copyright 2013-2014 Daniel Wirtz <dcode@dcode.io>
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
+/**
+ * @license bytebuffer.js (c) 2015 Daniel Wirtz <dcode@dcode.io>
+ * Backing buffer / Accessor: node Buffer
+ * Released under the Apache License, Version 2.0
+ * see: https://github.com/dcodeIO/bytebuffer.js for details
+ */
+var bytebufferNode = (function() {
+    "use strict";
+
+    var buffer$$2 = buffer,
+        Buffer = buffer$$2["Buffer"],
+        Long = long_1,
+        memcpy = null; try { memcpy = require("memcpy"); } catch (e) {}
+
+    /**
+     * Constructs a new ByteBuffer.
+     * @class The swiss army knife for binary data in JavaScript.
+     * @exports ByteBuffer
+     * @constructor
+     * @param {number=} capacity Initial capacity. Defaults to {@link ByteBuffer.DEFAULT_CAPACITY}.
+     * @param {boolean=} littleEndian Whether to use little or big endian byte order. Defaults to
+     *  {@link ByteBuffer.DEFAULT_ENDIAN}.
+     * @param {boolean=} noAssert Whether to skip assertions of offsets and values. Defaults to
+     *  {@link ByteBuffer.DEFAULT_NOASSERT}.
+     * @expose
+     */
+    var ByteBuffer = function(capacity, littleEndian, noAssert) {
+        if (typeof capacity === 'undefined')
+            capacity = ByteBuffer.DEFAULT_CAPACITY;
+        if (typeof littleEndian === 'undefined')
+            littleEndian = ByteBuffer.DEFAULT_ENDIAN;
+        if (typeof noAssert === 'undefined')
+            noAssert = ByteBuffer.DEFAULT_NOASSERT;
+        if (!noAssert) {
+            capacity = capacity | 0;
+            if (capacity < 0)
+                throw RangeError("Illegal capacity");
+            littleEndian = !!littleEndian;
+            noAssert = !!noAssert;
+        }
+
+        /**
+         * Backing node Buffer.
+         * @type {!Buffer}
+         * @expose
+         */
+        this.buffer = capacity === 0 ? EMPTY_BUFFER : new Buffer(capacity);
+
+        /**
+         * Absolute read/write offset.
+         * @type {number}
+         * @expose
+         * @see ByteBuffer#flip
+         * @see ByteBuffer#clear
+         */
+        this.offset = 0;
+
+        /**
+         * Marked offset.
+         * @type {number}
+         * @expose
+         * @see ByteBuffer#mark
+         * @see ByteBuffer#reset
+         */
+        this.markedOffset = -1;
+
+        /**
+         * Absolute limit of the contained data. Set to the backing buffer's capacity upon allocation.
+         * @type {number}
+         * @expose
+         * @see ByteBuffer#flip
+         * @see ByteBuffer#clear
+         */
+        this.limit = capacity;
+
+        /**
+         * Whether to use little endian byte order, defaults to `false` for big endian.
+         * @type {boolean}
+         * @expose
+         */
+        this.littleEndian = littleEndian;
+
+        /**
+         * Whether to skip assertions of offsets and values, defaults to `false`.
+         * @type {boolean}
+         * @expose
+         */
+        this.noAssert = noAssert;
+    };
+
+    /**
+     * ByteBuffer version.
+     * @type {string}
+     * @const
+     * @expose
+     */
+    ByteBuffer.VERSION = "5.0.1";
+
+    /**
+     * Little endian constant that can be used instead of its boolean value. Evaluates to `true`.
+     * @type {boolean}
+     * @const
+     * @expose
+     */
+    ByteBuffer.LITTLE_ENDIAN = true;
+
+    /**
+     * Big endian constant that can be used instead of its boolean value. Evaluates to `false`.
+     * @type {boolean}
+     * @const
+     * @expose
+     */
+    ByteBuffer.BIG_ENDIAN = false;
+
+    /**
+     * Default initial capacity of `16`.
+     * @type {number}
+     * @expose
+     */
+    ByteBuffer.DEFAULT_CAPACITY = 16;
+
+    /**
+     * Default endianess of `false` for big endian.
+     * @type {boolean}
+     * @expose
+     */
+    ByteBuffer.DEFAULT_ENDIAN = ByteBuffer.BIG_ENDIAN;
+
+    /**
+     * Default no assertions flag of `false`.
+     * @type {boolean}
+     * @expose
+     */
+    ByteBuffer.DEFAULT_NOASSERT = false;
+
+    /**
+     * A `Long` class for representing a 64-bit two's-complement integer value.
+     * @type {!Long}
+     * @const
+     * @see https://npmjs.org/package/long
+     * @expose
+     */
+    ByteBuffer.Long = Long;
+
+    /**
+     * @alias ByteBuffer.prototype
+     * @inner
+     */
+    var ByteBufferPrototype = ByteBuffer.prototype;
+
+    /**
+     * An indicator used to reliably determine if an object is a ByteBuffer or not.
+     * @type {boolean}
+     * @const
+     * @expose
+     * @private
+     */
+    ByteBufferPrototype.__isByteBuffer__;
+
+    Object.defineProperty(ByteBufferPrototype, "__isByteBuffer__", {
+        value: true,
+        enumerable: false,
+        configurable: false
+    });
+
+    // helpers
+
+    /**
+     * @type {!Buffer}
+     * @inner
+     */
+    var EMPTY_BUFFER = new Buffer(0);
+
+    /**
+     * String.fromCharCode reference for compile-time renaming.
+     * @type {function(...number):string}
+     * @inner
+     */
+    var stringFromCharCode = String.fromCharCode;
+
+    /**
+     * Creates a source function for a string.
+     * @param {string} s String to read from
+     * @returns {function():number|null} Source function returning the next char code respectively `null` if there are
+     *  no more characters left.
+     * @throws {TypeError} If the argument is invalid
+     * @inner
+     */
+    function stringSource(s) {
+        var i=0; return function() {
+            return i < s.length ? s.charCodeAt(i++) : null;
+        };
+    }
+
+    /**
+     * Creates a destination function for a string.
+     * @returns {function(number=):undefined|string} Destination function successively called with the next char code.
+     *  Returns the final string when called without arguments.
+     * @inner
+     */
+    function stringDestination() {
+        var cs = [], ps = []; return function() {
+            if (arguments.length === 0)
+                return ps.join('')+stringFromCharCode.apply(String, cs);
+            if (cs.length + arguments.length > 1024)
+                ps.push(stringFromCharCode.apply(String, cs)), cs.length = 0;
+            Array.prototype.push.apply(cs, arguments);
+        };
+    }
+
+    /**
+     * Gets the accessor type.
+     * @returns {Function} `Buffer` under node.js, `Uint8Array` respectively `DataView` in the browser (classes)
+     * @expose
+     */
+    ByteBuffer.accessor = function() {
+        return Buffer;
+    };
+    /**
+     * Allocates a new ByteBuffer backed by a buffer of the specified capacity.
+     * @param {number=} capacity Initial capacity. Defaults to {@link ByteBuffer.DEFAULT_CAPACITY}.
+     * @param {boolean=} littleEndian Whether to use little or big endian byte order. Defaults to
+     *  {@link ByteBuffer.DEFAULT_ENDIAN}.
+     * @param {boolean=} noAssert Whether to skip assertions of offsets and values. Defaults to
+     *  {@link ByteBuffer.DEFAULT_NOASSERT}.
+     * @returns {!ByteBuffer}
+     * @expose
+     */
+    ByteBuffer.allocate = function(capacity, littleEndian, noAssert) {
+        return new ByteBuffer(capacity, littleEndian, noAssert);
+    };
+
+    /**
+     * Concatenates multiple ByteBuffers into one.
+     * @param {!Array.<!ByteBuffer|!Buffer|!ArrayBuffer|!Uint8Array|string>} buffers Buffers to concatenate
+     * @param {(string|boolean)=} encoding String encoding if `buffers` contains a string ("base64", "hex", "binary",
+     *  defaults to "utf8")
+     * @param {boolean=} littleEndian Whether to use little or big endian byte order for the resulting ByteBuffer. Defaults
+     *  to {@link ByteBuffer.DEFAULT_ENDIAN}.
+     * @param {boolean=} noAssert Whether to skip assertions of offsets and values for the resulting ByteBuffer. Defaults to
+     *  {@link ByteBuffer.DEFAULT_NOASSERT}.
+     * @returns {!ByteBuffer} Concatenated ByteBuffer
+     * @expose
+     */
+    ByteBuffer.concat = function(buffers, encoding, littleEndian, noAssert) {
+        if (typeof encoding === 'boolean' || typeof encoding !== 'string') {
+            noAssert = littleEndian;
+            littleEndian = encoding;
+            encoding = undefined;
+        }
+        var capacity = 0;
+        for (var i=0, k=buffers.length, length; i<k; ++i) {
+            if (!ByteBuffer.isByteBuffer(buffers[i]))
+                buffers[i] = ByteBuffer.wrap(buffers[i], encoding);
+            length = buffers[i].limit - buffers[i].offset;
+            if (length > 0) capacity += length;
+        }
+        if (capacity === 0)
+            return new ByteBuffer(0, littleEndian, noAssert);
+        var bb = new ByteBuffer(capacity, littleEndian, noAssert),
+            bi;
+        i=0; while (i<k) {
+            bi = buffers[i++];
+            length = bi.limit - bi.offset;
+            if (length <= 0) continue;
+            bi.buffer.copy(bb.buffer, bb.offset, bi.offset, bi.limit);
+            bb.offset += length;
+        }
+        bb.limit = bb.offset;
+        bb.offset = 0;
+        return bb;
+    };
+
+    /**
+     * Tests if the specified type is a ByteBuffer.
+     * @param {*} bb ByteBuffer to test
+     * @returns {boolean} `true` if it is a ByteBuffer, otherwise `false`
+     * @expose
+     */
+    ByteBuffer.isByteBuffer = function(bb) {
+        return (bb && bb["__isByteBuffer__"]) === true;
+    };
+    /**
+     * Gets the backing buffer type.
+     * @returns {Function} `Buffer` under node.js, `ArrayBuffer` in the browser (classes)
+     * @expose
+     */
+    ByteBuffer.type = function() {
+        return Buffer;
+    };
+    /**
+     * Wraps a buffer or a string. Sets the allocated ByteBuffer's {@link ByteBuffer#offset} to `0` and its
+     *  {@link ByteBuffer#limit} to the length of the wrapped data.
+     * @param {!ByteBuffer|!Buffer|!ArrayBuffer|!Uint8Array|string|!Array.<number>} buffer Anything that can be wrapped
+     * @param {(string|boolean)=} encoding String encoding if `buffer` is a string ("base64", "hex", "binary", defaults to
+     *  "utf8")
+     * @param {boolean=} littleEndian Whether to use little or big endian byte order. Defaults to
+     *  {@link ByteBuffer.DEFAULT_ENDIAN}.
+     * @param {boolean=} noAssert Whether to skip assertions of offsets and values. Defaults to
+     *  {@link ByteBuffer.DEFAULT_NOASSERT}.
+     * @returns {!ByteBuffer} A ByteBuffer wrapping `buffer`
+     * @expose
+     */
+    ByteBuffer.wrap = function(buffer$$2, encoding, littleEndian, noAssert) {
+        if (typeof encoding !== 'string') {
+            noAssert = littleEndian;
+            littleEndian = encoding;
+            encoding = undefined;
+        }
+        if (typeof buffer$$2 === 'string') {
+            if (typeof encoding === 'undefined')
+                encoding = "utf8";
+            switch (encoding) {
+                case "base64":
+                    return ByteBuffer.fromBase64(buffer$$2, littleEndian);
+                case "hex":
+                    return ByteBuffer.fromHex(buffer$$2, littleEndian);
+                case "binary":
+                    return ByteBuffer.fromBinary(buffer$$2, littleEndian);
+                case "utf8":
+                    return ByteBuffer.fromUTF8(buffer$$2, littleEndian);
+                case "debug":
+                    return ByteBuffer.fromDebug(buffer$$2, littleEndian);
+                default:
+                    throw Error("Unsupported encoding: "+encoding);
+            }
+        }
+        if (buffer$$2 === null || typeof buffer$$2 !== 'object')
+            throw TypeError("Illegal buffer");
+        var bb;
+        if (ByteBuffer.isByteBuffer(buffer$$2)) {
+            bb = ByteBufferPrototype.clone.call(buffer$$2);
+            bb.markedOffset = -1;
+            return bb;
+        }
+        var i = 0,
+            k = 0,
+            b;
+        if (buffer$$2 instanceof Uint8Array) { // Extract bytes from Uint8Array
+            b = new Buffer(buffer$$2.length);
+            if (memcpy) { // Fast
+                memcpy(b, 0, buffer$$2.buffer, buffer$$2.byteOffset, buffer$$2.byteOffset + buffer$$2.length);
+            } else { // Slow
+                for (i=0, k=buffer.length; i<k; ++i)
+                    b[i] = buffer$$2[i];
+            }
+            buffer$$2 = b;
+        } else if (buffer$$2 instanceof ArrayBuffer) { // Convert ArrayBuffer to Buffer
+            b = new Buffer(buffer$$2.byteLength);
+            if (memcpy) { // Fast
+                memcpy(b, 0, buffer$$2, 0, buffer$$2.byteLength);
+            } else { // Slow
+                buffer$$2 = new Uint8Array(buffer$$2);
+                for (i=0, k=buffer.length; i<k; ++i) {
+                    b[i] = buffer$$2[i];
+                }
+            }
+            buffer$$2 = b;
+        } else if (!(buffer$$2 instanceof Buffer)) { // Create from octets if it is an error, otherwise fail
+            if (Object.prototype.toString.call(buffer$$2) !== "[object Array]")
+                throw TypeError("Illegal buffer");
+            buffer$$2 = new Buffer(buffer$$2);
+        }
+        bb = new ByteBuffer(0, littleEndian, noAssert);
+        if (buffer$$2.length > 0) { // Avoid references to more than one EMPTY_BUFFER
+            bb.buffer = buffer$$2;
+            bb.limit = buffer$$2.length;
+        }
+        return bb;
+    };
+
+    /**
+     * Writes the array as a bitset.
+     * @param {Array<boolean>} value Array of booleans to write
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by `length` if omitted.
+     * @returns {!ByteBuffer}
+     * @expose
+     */
+    ByteBufferPrototype.writeBitSet = function(value, offset) {
+      var relative = typeof offset === 'undefined';
+      if (relative) offset = this.offset;
+      if (!this.noAssert) {
+        if (!(value instanceof Array))
+          throw TypeError("Illegal BitSet: Not an array");
+        if (typeof offset !== 'number' || offset % 1 !== 0)
+            throw TypeError("Illegal offset: "+offset+" (not an integer)");
+        offset >>>= 0;
+        if (offset < 0 || offset + 0 > this.buffer.length)
+            throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+      }
+
+      var start = offset,
+          bits = value.length,
+          bytes = (bits >> 3),
+          bit = 0,
+          k;
+
+      offset += this.writeVarint32(bits,offset);
+
+      while(bytes--) {
+        k = (!!value[bit++] & 1) |
+            ((!!value[bit++] & 1) << 1) |
+            ((!!value[bit++] & 1) << 2) |
+            ((!!value[bit++] & 1) << 3) |
+            ((!!value[bit++] & 1) << 4) |
+            ((!!value[bit++] & 1) << 5) |
+            ((!!value[bit++] & 1) << 6) |
+            ((!!value[bit++] & 1) << 7);
+        this.writeByte(k,offset++);
+      }
+
+      if(bit < bits) {
+        var m = 0; k = 0;
+        while(bit < bits) k = k | ((!!value[bit++] & 1) << (m++));
+        this.writeByte(k,offset++);
+      }
+
+      if (relative) {
+        this.offset = offset;
+        return this;
+      }
+      return offset - start;
+    };
+
+    /**
+     * Reads a BitSet as an array of booleans.
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by `length` if omitted.
+     * @returns {Array<boolean>
+     * @expose
+     */
+    ByteBufferPrototype.readBitSet = function(offset) {
+      var relative = typeof offset === 'undefined';
+      if (relative) offset = this.offset;
+
+      var ret = this.readVarint32(offset),
+          bits = ret.value,
+          bytes = (bits >> 3),
+          bit = 0,
+          value = [],
+          k;
+
+      offset += ret.length;
+
+      while(bytes--) {
+        k = this.readByte(offset++);
+        value[bit++] = !!(k & 0x01);
+        value[bit++] = !!(k & 0x02);
+        value[bit++] = !!(k & 0x04);
+        value[bit++] = !!(k & 0x08);
+        value[bit++] = !!(k & 0x10);
+        value[bit++] = !!(k & 0x20);
+        value[bit++] = !!(k & 0x40);
+        value[bit++] = !!(k & 0x80);
+      }
+
+      if(bit < bits) {
+        var m = 0;
+        k = this.readByte(offset++);
+        while(bit < bits) value[bit++] = !!((k >> (m++)) & 1);
+      }
+
+      if (relative) {
+        this.offset = offset;
+      }
+      return value;
+    };
+    /**
+     * Reads the specified number of bytes.
+     * @param {number} length Number of bytes to read
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by `length` if omitted.
+     * @returns {!ByteBuffer}
+     * @expose
+     */
+    ByteBufferPrototype.readBytes = function(length, offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + length > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+length+") <= "+this.buffer.length);
+        }
+        var slice = this.slice(offset, offset + length);
+        if (relative) this.offset += length;
+        return slice;
+    };
+
+    /**
+     * Writes a payload of bytes. This is an alias of {@link ByteBuffer#append}.
+     * @function
+     * @param {!ByteBuffer|!Buffer|!ArrayBuffer|!Uint8Array|string} source Data to write. If `source` is a ByteBuffer, its
+     * offsets will be modified according to the performed read operation.
+     * @param {(string|number)=} encoding Encoding if `data` is a string ("base64", "hex", "binary", defaults to "utf8")
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  written if omitted.
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.writeBytes = ByteBufferPrototype.append;
+
+    // types/ints/int8
+
+    /**
+     * Writes an 8bit signed integer.
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and advance {@link ByteBuffer#offset} by `1` if omitted.
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.writeInt8 = function(value, offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof value !== 'number' || value % 1 !== 0)
+                throw TypeError("Illegal value: "+value+" (not an integer)");
+            value |= 0;
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        offset += 1;
+        var capacity0 = this.buffer.length;
+        if (offset > capacity0)
+            this.resize((capacity0 *= 2) > offset ? capacity0 : offset);
+        offset -= 1;
+        this.buffer[offset] = value;
+        if (relative) this.offset += 1;
+        return this;
+    };
+
+    /**
+     * Writes an 8bit signed integer. This is an alias of {@link ByteBuffer#writeInt8}.
+     * @function
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and advance {@link ByteBuffer#offset} by `1` if omitted.
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.writeByte = ByteBufferPrototype.writeInt8;
+
+    /**
+     * Reads an 8bit signed integer.
+     * @param {number=} offset Offset to read from. Will use and advance {@link ByteBuffer#offset} by `1` if omitted.
+     * @returns {number} Value read
+     * @expose
+     */
+    ByteBufferPrototype.readInt8 = function(offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 1 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+1+") <= "+this.buffer.length);
+        }
+        var value = this.buffer[offset];
+        if ((value & 0x80) === 0x80) value = -(0xFF - value + 1); // Cast to signed
+        if (relative) this.offset += 1;
+        return value;
+    };
+
+    /**
+     * Reads an 8bit signed integer. This is an alias of {@link ByteBuffer#readInt8}.
+     * @function
+     * @param {number=} offset Offset to read from. Will use and advance {@link ByteBuffer#offset} by `1` if omitted.
+     * @returns {number} Value read
+     * @expose
+     */
+    ByteBufferPrototype.readByte = ByteBufferPrototype.readInt8;
+
+    /**
+     * Writes an 8bit unsigned integer.
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and advance {@link ByteBuffer#offset} by `1` if omitted.
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.writeUint8 = function(value, offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof value !== 'number' || value % 1 !== 0)
+                throw TypeError("Illegal value: "+value+" (not an integer)");
+            value >>>= 0;
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        offset += 1;
+        var capacity1 = this.buffer.length;
+        if (offset > capacity1)
+            this.resize((capacity1 *= 2) > offset ? capacity1 : offset);
+        offset -= 1;
+        this.buffer[offset] = value;
+        if (relative) this.offset += 1;
+        return this;
+    };
+
+    /**
+     * Writes an 8bit unsigned integer. This is an alias of {@link ByteBuffer#writeUint8}.
+     * @function
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and advance {@link ByteBuffer#offset} by `1` if omitted.
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.writeUInt8 = ByteBufferPrototype.writeUint8;
+
+    /**
+     * Reads an 8bit unsigned integer.
+     * @param {number=} offset Offset to read from. Will use and advance {@link ByteBuffer#offset} by `1` if omitted.
+     * @returns {number} Value read
+     * @expose
+     */
+    ByteBufferPrototype.readUint8 = function(offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 1 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+1+") <= "+this.buffer.length);
+        }
+        var value = this.buffer[offset];
+        if (relative) this.offset += 1;
+        return value;
+    };
+
+    /**
+     * Reads an 8bit unsigned integer. This is an alias of {@link ByteBuffer#readUint8}.
+     * @function
+     * @param {number=} offset Offset to read from. Will use and advance {@link ByteBuffer#offset} by `1` if omitted.
+     * @returns {number} Value read
+     * @expose
+     */
+    ByteBufferPrototype.readUInt8 = ByteBufferPrototype.readUint8;
+
+    // types/ints/int16
+
+    /**
+     * Writes a 16bit signed integer.
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and advance {@link ByteBuffer#offset} by `2` if omitted.
+     * @throws {TypeError} If `offset` or `value` is not a valid number
+     * @throws {RangeError} If `offset` is out of bounds
+     * @expose
+     */
+    ByteBufferPrototype.writeInt16 = function(value, offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof value !== 'number' || value % 1 !== 0)
+                throw TypeError("Illegal value: "+value+" (not an integer)");
+            value |= 0;
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        offset += 2;
+        var capacity2 = this.buffer.length;
+        if (offset > capacity2)
+            this.resize((capacity2 *= 2) > offset ? capacity2 : offset);
+        offset -= 2;
+        if (this.littleEndian) {
+            this.buffer[offset+1] = (value & 0xFF00) >>> 8;
+            this.buffer[offset  ] =  value & 0x00FF;
+        } else {
+            this.buffer[offset]   = (value & 0xFF00) >>> 8;
+            this.buffer[offset+1] =  value & 0x00FF;
+        }
+        if (relative) this.offset += 2;
+        return this;
+    };
+
+    /**
+     * Writes a 16bit signed integer. This is an alias of {@link ByteBuffer#writeInt16}.
+     * @function
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and advance {@link ByteBuffer#offset} by `2` if omitted.
+     * @throws {TypeError} If `offset` or `value` is not a valid number
+     * @throws {RangeError} If `offset` is out of bounds
+     * @expose
+     */
+    ByteBufferPrototype.writeShort = ByteBufferPrototype.writeInt16;
+
+    /**
+     * Reads a 16bit signed integer.
+     * @param {number=} offset Offset to read from. Will use and advance {@link ByteBuffer#offset} by `2` if omitted.
+     * @returns {number} Value read
+     * @throws {TypeError} If `offset` is not a valid number
+     * @throws {RangeError} If `offset` is out of bounds
+     * @expose
+     */
+    ByteBufferPrototype.readInt16 = function(offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 2 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+2+") <= "+this.buffer.length);
+        }
+        var value = 0;
+        if (this.littleEndian) {
+            value  = this.buffer[offset  ];
+            value |= this.buffer[offset+1] << 8;
+        } else {
+            value  = this.buffer[offset  ] << 8;
+            value |= this.buffer[offset+1];
+        }
+        if ((value & 0x8000) === 0x8000) value = -(0xFFFF - value + 1); // Cast to signed
+        if (relative) this.offset += 2;
+        return value;
+    };
+
+    /**
+     * Reads a 16bit signed integer. This is an alias of {@link ByteBuffer#readInt16}.
+     * @function
+     * @param {number=} offset Offset to read from. Will use and advance {@link ByteBuffer#offset} by `2` if omitted.
+     * @returns {number} Value read
+     * @throws {TypeError} If `offset` is not a valid number
+     * @throws {RangeError} If `offset` is out of bounds
+     * @expose
+     */
+    ByteBufferPrototype.readShort = ByteBufferPrototype.readInt16;
+
+    /**
+     * Writes a 16bit unsigned integer.
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and advance {@link ByteBuffer#offset} by `2` if omitted.
+     * @throws {TypeError} If `offset` or `value` is not a valid number
+     * @throws {RangeError} If `offset` is out of bounds
+     * @expose
+     */
+    ByteBufferPrototype.writeUint16 = function(value, offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof value !== 'number' || value % 1 !== 0)
+                throw TypeError("Illegal value: "+value+" (not an integer)");
+            value >>>= 0;
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        offset += 2;
+        var capacity3 = this.buffer.length;
+        if (offset > capacity3)
+            this.resize((capacity3 *= 2) > offset ? capacity3 : offset);
+        offset -= 2;
+        if (this.littleEndian) {
+            this.buffer[offset+1] = (value & 0xFF00) >>> 8;
+            this.buffer[offset  ] =  value & 0x00FF;
+        } else {
+            this.buffer[offset]   = (value & 0xFF00) >>> 8;
+            this.buffer[offset+1] =  value & 0x00FF;
+        }
+        if (relative) this.offset += 2;
+        return this;
+    };
+
+    /**
+     * Writes a 16bit unsigned integer. This is an alias of {@link ByteBuffer#writeUint16}.
+     * @function
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and advance {@link ByteBuffer#offset} by `2` if omitted.
+     * @throws {TypeError} If `offset` or `value` is not a valid number
+     * @throws {RangeError} If `offset` is out of bounds
+     * @expose
+     */
+    ByteBufferPrototype.writeUInt16 = ByteBufferPrototype.writeUint16;
+
+    /**
+     * Reads a 16bit unsigned integer.
+     * @param {number=} offset Offset to read from. Will use and advance {@link ByteBuffer#offset} by `2` if omitted.
+     * @returns {number} Value read
+     * @throws {TypeError} If `offset` is not a valid number
+     * @throws {RangeError} If `offset` is out of bounds
+     * @expose
+     */
+    ByteBufferPrototype.readUint16 = function(offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 2 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+2+") <= "+this.buffer.length);
+        }
+        var value = 0;
+        if (this.littleEndian) {
+            value  = this.buffer[offset  ];
+            value |= this.buffer[offset+1] << 8;
+        } else {
+            value  = this.buffer[offset  ] << 8;
+            value |= this.buffer[offset+1];
+        }
+        if (relative) this.offset += 2;
+        return value;
+    };
+
+    /**
+     * Reads a 16bit unsigned integer. This is an alias of {@link ByteBuffer#readUint16}.
+     * @function
+     * @param {number=} offset Offset to read from. Will use and advance {@link ByteBuffer#offset} by `2` if omitted.
+     * @returns {number} Value read
+     * @throws {TypeError} If `offset` is not a valid number
+     * @throws {RangeError} If `offset` is out of bounds
+     * @expose
+     */
+    ByteBufferPrototype.readUInt16 = ByteBufferPrototype.readUint16;
+
+    // types/ints/int32
+
+    /**
+     * Writes a 32bit signed integer.
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by `4` if omitted.
+     * @expose
+     */
+    ByteBufferPrototype.writeInt32 = function(value, offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof value !== 'number' || value % 1 !== 0)
+                throw TypeError("Illegal value: "+value+" (not an integer)");
+            value |= 0;
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        offset += 4;
+        var capacity4 = this.buffer.length;
+        if (offset > capacity4)
+            this.resize((capacity4 *= 2) > offset ? capacity4 : offset);
+        offset -= 4;
+        if (this.littleEndian) {
+            this.buffer[offset+3] = (value >>> 24) & 0xFF;
+            this.buffer[offset+2] = (value >>> 16) & 0xFF;
+            this.buffer[offset+1] = (value >>>  8) & 0xFF;
+            this.buffer[offset  ] =  value         & 0xFF;
+        } else {
+            this.buffer[offset  ] = (value >>> 24) & 0xFF;
+            this.buffer[offset+1] = (value >>> 16) & 0xFF;
+            this.buffer[offset+2] = (value >>>  8) & 0xFF;
+            this.buffer[offset+3] =  value         & 0xFF;
+        }
+        if (relative) this.offset += 4;
+        return this;
+    };
+
+    /**
+     * Writes a 32bit signed integer. This is an alias of {@link ByteBuffer#writeInt32}.
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by `4` if omitted.
+     * @expose
+     */
+    ByteBufferPrototype.writeInt = ByteBufferPrototype.writeInt32;
+
+    /**
+     * Reads a 32bit signed integer.
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by `4` if omitted.
+     * @returns {number} Value read
+     * @expose
+     */
+    ByteBufferPrototype.readInt32 = function(offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 4 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+4+") <= "+this.buffer.length);
+        }
+        var value = 0;
+        if (this.littleEndian) {
+            value  = this.buffer[offset+2] << 16;
+            value |= this.buffer[offset+1] <<  8;
+            value |= this.buffer[offset  ];
+            value += this.buffer[offset+3] << 24 >>> 0;
+        } else {
+            value  = this.buffer[offset+1] << 16;
+            value |= this.buffer[offset+2] <<  8;
+            value |= this.buffer[offset+3];
+            value += this.buffer[offset  ] << 24 >>> 0;
+        }
+        value |= 0; // Cast to signed
+        if (relative) this.offset += 4;
+        return value;
+    };
+
+    /**
+     * Reads a 32bit signed integer. This is an alias of {@link ByteBuffer#readInt32}.
+     * @param {number=} offset Offset to read from. Will use and advance {@link ByteBuffer#offset} by `4` if omitted.
+     * @returns {number} Value read
+     * @expose
+     */
+    ByteBufferPrototype.readInt = ByteBufferPrototype.readInt32;
+
+    /**
+     * Writes a 32bit unsigned integer.
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by `4` if omitted.
+     * @expose
+     */
+    ByteBufferPrototype.writeUint32 = function(value, offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof value !== 'number' || value % 1 !== 0)
+                throw TypeError("Illegal value: "+value+" (not an integer)");
+            value >>>= 0;
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        offset += 4;
+        var capacity5 = this.buffer.length;
+        if (offset > capacity5)
+            this.resize((capacity5 *= 2) > offset ? capacity5 : offset);
+        offset -= 4;
+        if (this.littleEndian) {
+            this.buffer[offset+3] = (value >>> 24) & 0xFF;
+            this.buffer[offset+2] = (value >>> 16) & 0xFF;
+            this.buffer[offset+1] = (value >>>  8) & 0xFF;
+            this.buffer[offset  ] =  value         & 0xFF;
+        } else {
+            this.buffer[offset  ] = (value >>> 24) & 0xFF;
+            this.buffer[offset+1] = (value >>> 16) & 0xFF;
+            this.buffer[offset+2] = (value >>>  8) & 0xFF;
+            this.buffer[offset+3] =  value         & 0xFF;
+        }
+        if (relative) this.offset += 4;
+        return this;
+    };
+
+    /**
+     * Writes a 32bit unsigned integer. This is an alias of {@link ByteBuffer#writeUint32}.
+     * @function
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by `4` if omitted.
+     * @expose
+     */
+    ByteBufferPrototype.writeUInt32 = ByteBufferPrototype.writeUint32;
+
+    /**
+     * Reads a 32bit unsigned integer.
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by `4` if omitted.
+     * @returns {number} Value read
+     * @expose
+     */
+    ByteBufferPrototype.readUint32 = function(offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 4 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+4+") <= "+this.buffer.length);
+        }
+        var value = 0;
+        if (this.littleEndian) {
+            value  = this.buffer[offset+2] << 16;
+            value |= this.buffer[offset+1] <<  8;
+            value |= this.buffer[offset  ];
+            value += this.buffer[offset+3] << 24 >>> 0;
+        } else {
+            value  = this.buffer[offset+1] << 16;
+            value |= this.buffer[offset+2] <<  8;
+            value |= this.buffer[offset+3];
+            value += this.buffer[offset  ] << 24 >>> 0;
+        }
+        if (relative) this.offset += 4;
+        return value;
+    };
+
+    /**
+     * Reads a 32bit unsigned integer. This is an alias of {@link ByteBuffer#readUint32}.
+     * @function
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by `4` if omitted.
+     * @returns {number} Value read
+     * @expose
+     */
+    ByteBufferPrototype.readUInt32 = ByteBufferPrototype.readUint32;
+
+    // types/ints/int64
+
+    if (Long) {
+
+        /**
+         * Writes a 64bit signed integer.
+         * @param {number|!Long} value Value to write
+         * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by `8` if omitted.
+         * @returns {!ByteBuffer} this
+         * @expose
+         */
+        ByteBufferPrototype.writeInt64 = function(value, offset) {
+            var relative = typeof offset === 'undefined';
+            if (relative) offset = this.offset;
+            if (!this.noAssert) {
+                if (typeof value === 'number')
+                    value = Long.fromNumber(value);
+                else if (typeof value === 'string')
+                    value = Long.fromString(value);
+                else if (!(value && value instanceof Long))
+                    throw TypeError("Illegal value: "+value+" (not an integer or Long)");
+                if (typeof offset !== 'number' || offset % 1 !== 0)
+                    throw TypeError("Illegal offset: "+offset+" (not an integer)");
+                offset >>>= 0;
+                if (offset < 0 || offset + 0 > this.buffer.length)
+                    throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+            }
+            if (typeof value === 'number')
+                value = Long.fromNumber(value);
+            else if (typeof value === 'string')
+                value = Long.fromString(value);
+            offset += 8;
+            var capacity6 = this.buffer.length;
+            if (offset > capacity6)
+                this.resize((capacity6 *= 2) > offset ? capacity6 : offset);
+            offset -= 8;
+            var lo = value.low,
+                hi = value.high;
+            if (this.littleEndian) {
+                this.buffer[offset+3] = (lo >>> 24) & 0xFF;
+                this.buffer[offset+2] = (lo >>> 16) & 0xFF;
+                this.buffer[offset+1] = (lo >>>  8) & 0xFF;
+                this.buffer[offset  ] =  lo         & 0xFF;
+                offset += 4;
+                this.buffer[offset+3] = (hi >>> 24) & 0xFF;
+                this.buffer[offset+2] = (hi >>> 16) & 0xFF;
+                this.buffer[offset+1] = (hi >>>  8) & 0xFF;
+                this.buffer[offset  ] =  hi         & 0xFF;
+            } else {
+                this.buffer[offset  ] = (hi >>> 24) & 0xFF;
+                this.buffer[offset+1] = (hi >>> 16) & 0xFF;
+                this.buffer[offset+2] = (hi >>>  8) & 0xFF;
+                this.buffer[offset+3] =  hi         & 0xFF;
+                offset += 4;
+                this.buffer[offset  ] = (lo >>> 24) & 0xFF;
+                this.buffer[offset+1] = (lo >>> 16) & 0xFF;
+                this.buffer[offset+2] = (lo >>>  8) & 0xFF;
+                this.buffer[offset+3] =  lo         & 0xFF;
+            }
+            if (relative) this.offset += 8;
+            return this;
+        };
+
+        /**
+         * Writes a 64bit signed integer. This is an alias of {@link ByteBuffer#writeInt64}.
+         * @param {number|!Long} value Value to write
+         * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by `8` if omitted.
+         * @returns {!ByteBuffer} this
+         * @expose
+         */
+        ByteBufferPrototype.writeLong = ByteBufferPrototype.writeInt64;
+
+        /**
+         * Reads a 64bit signed integer.
+         * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by `8` if omitted.
+         * @returns {!Long}
+         * @expose
+         */
+        ByteBufferPrototype.readInt64 = function(offset) {
+            var relative = typeof offset === 'undefined';
+            if (relative) offset = this.offset;
+            if (!this.noAssert) {
+                if (typeof offset !== 'number' || offset % 1 !== 0)
+                    throw TypeError("Illegal offset: "+offset+" (not an integer)");
+                offset >>>= 0;
+                if (offset < 0 || offset + 8 > this.buffer.length)
+                    throw RangeError("Illegal offset: 0 <= "+offset+" (+"+8+") <= "+this.buffer.length);
+            }
+            var lo = 0,
+                hi = 0;
+            if (this.littleEndian) {
+                lo  = this.buffer[offset+2] << 16;
+                lo |= this.buffer[offset+1] <<  8;
+                lo |= this.buffer[offset  ];
+                lo += this.buffer[offset+3] << 24 >>> 0;
+                offset += 4;
+                hi  = this.buffer[offset+2] << 16;
+                hi |= this.buffer[offset+1] <<  8;
+                hi |= this.buffer[offset  ];
+                hi += this.buffer[offset+3] << 24 >>> 0;
+            } else {
+                hi  = this.buffer[offset+1] << 16;
+                hi |= this.buffer[offset+2] <<  8;
+                hi |= this.buffer[offset+3];
+                hi += this.buffer[offset  ] << 24 >>> 0;
+                offset += 4;
+                lo  = this.buffer[offset+1] << 16;
+                lo |= this.buffer[offset+2] <<  8;
+                lo |= this.buffer[offset+3];
+                lo += this.buffer[offset  ] << 24 >>> 0;
+            }
+            var value = new Long(lo, hi, false);
+            if (relative) this.offset += 8;
+            return value;
+        };
+
+        /**
+         * Reads a 64bit signed integer. This is an alias of {@link ByteBuffer#readInt64}.
+         * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by `8` if omitted.
+         * @returns {!Long}
+         * @expose
+         */
+        ByteBufferPrototype.readLong = ByteBufferPrototype.readInt64;
+
+        /**
+         * Writes a 64bit unsigned integer.
+         * @param {number|!Long} value Value to write
+         * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by `8` if omitted.
+         * @returns {!ByteBuffer} this
+         * @expose
+         */
+        ByteBufferPrototype.writeUint64 = function(value, offset) {
+            var relative = typeof offset === 'undefined';
+            if (relative) offset = this.offset;
+            if (!this.noAssert) {
+                if (typeof value === 'number')
+                    value = Long.fromNumber(value);
+                else if (typeof value === 'string')
+                    value = Long.fromString(value);
+                else if (!(value && value instanceof Long))
+                    throw TypeError("Illegal value: "+value+" (not an integer or Long)");
+                if (typeof offset !== 'number' || offset % 1 !== 0)
+                    throw TypeError("Illegal offset: "+offset+" (not an integer)");
+                offset >>>= 0;
+                if (offset < 0 || offset + 0 > this.buffer.length)
+                    throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+            }
+            if (typeof value === 'number')
+                value = Long.fromNumber(value);
+            else if (typeof value === 'string')
+                value = Long.fromString(value);
+            offset += 8;
+            var capacity7 = this.buffer.length;
+            if (offset > capacity7)
+                this.resize((capacity7 *= 2) > offset ? capacity7 : offset);
+            offset -= 8;
+            var lo = value.low,
+                hi = value.high;
+            if (this.littleEndian) {
+                this.buffer[offset+3] = (lo >>> 24) & 0xFF;
+                this.buffer[offset+2] = (lo >>> 16) & 0xFF;
+                this.buffer[offset+1] = (lo >>>  8) & 0xFF;
+                this.buffer[offset  ] =  lo         & 0xFF;
+                offset += 4;
+                this.buffer[offset+3] = (hi >>> 24) & 0xFF;
+                this.buffer[offset+2] = (hi >>> 16) & 0xFF;
+                this.buffer[offset+1] = (hi >>>  8) & 0xFF;
+                this.buffer[offset  ] =  hi         & 0xFF;
+            } else {
+                this.buffer[offset  ] = (hi >>> 24) & 0xFF;
+                this.buffer[offset+1] = (hi >>> 16) & 0xFF;
+                this.buffer[offset+2] = (hi >>>  8) & 0xFF;
+                this.buffer[offset+3] =  hi         & 0xFF;
+                offset += 4;
+                this.buffer[offset  ] = (lo >>> 24) & 0xFF;
+                this.buffer[offset+1] = (lo >>> 16) & 0xFF;
+                this.buffer[offset+2] = (lo >>>  8) & 0xFF;
+                this.buffer[offset+3] =  lo         & 0xFF;
+            }
+            if (relative) this.offset += 8;
+            return this;
+        };
+
+        /**
+         * Writes a 64bit unsigned integer. This is an alias of {@link ByteBuffer#writeUint64}.
+         * @function
+         * @param {number|!Long} value Value to write
+         * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by `8` if omitted.
+         * @returns {!ByteBuffer} this
+         * @expose
+         */
+        ByteBufferPrototype.writeUInt64 = ByteBufferPrototype.writeUint64;
+
+        /**
+         * Reads a 64bit unsigned integer.
+         * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by `8` if omitted.
+         * @returns {!Long}
+         * @expose
+         */
+        ByteBufferPrototype.readUint64 = function(offset) {
+            var relative = typeof offset === 'undefined';
+            if (relative) offset = this.offset;
+            if (!this.noAssert) {
+                if (typeof offset !== 'number' || offset % 1 !== 0)
+                    throw TypeError("Illegal offset: "+offset+" (not an integer)");
+                offset >>>= 0;
+                if (offset < 0 || offset + 8 > this.buffer.length)
+                    throw RangeError("Illegal offset: 0 <= "+offset+" (+"+8+") <= "+this.buffer.length);
+            }
+            var lo = 0,
+                hi = 0;
+            if (this.littleEndian) {
+                lo  = this.buffer[offset+2] << 16;
+                lo |= this.buffer[offset+1] <<  8;
+                lo |= this.buffer[offset  ];
+                lo += this.buffer[offset+3] << 24 >>> 0;
+                offset += 4;
+                hi  = this.buffer[offset+2] << 16;
+                hi |= this.buffer[offset+1] <<  8;
+                hi |= this.buffer[offset  ];
+                hi += this.buffer[offset+3] << 24 >>> 0;
+            } else {
+                hi  = this.buffer[offset+1] << 16;
+                hi |= this.buffer[offset+2] <<  8;
+                hi |= this.buffer[offset+3];
+                hi += this.buffer[offset  ] << 24 >>> 0;
+                offset += 4;
+                lo  = this.buffer[offset+1] << 16;
+                lo |= this.buffer[offset+2] <<  8;
+                lo |= this.buffer[offset+3];
+                lo += this.buffer[offset  ] << 24 >>> 0;
+            }
+            var value = new Long(lo, hi, true);
+            if (relative) this.offset += 8;
+            return value;
+        };
+
+        /**
+         * Reads a 64bit unsigned integer. This is an alias of {@link ByteBuffer#readUint64}.
+         * @function
+         * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by `8` if omitted.
+         * @returns {!Long}
+         * @expose
+         */
+        ByteBufferPrototype.readUInt64 = ByteBufferPrototype.readUint64;
+
+    } // Long
+
+
+    // types/floats/float32
+
+    /**
+     * Writes a 32bit float.
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by `4` if omitted.
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.writeFloat32 = function(value, offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof value !== 'number')
+                throw TypeError("Illegal value: "+value+" (not a number)");
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        offset += 4;
+        var capacity8 = this.buffer.length;
+        if (offset > capacity8)
+            this.resize((capacity8 *= 2) > offset ? capacity8 : offset);
+        offset -= 4;
+        this.littleEndian
+            ? this.buffer.writeFloatLE(value, offset, true)
+            : this.buffer.writeFloatBE(value, offset, true);
+        if (relative) this.offset += 4;
+        return this;
+    };
+
+    /**
+     * Writes a 32bit float. This is an alias of {@link ByteBuffer#writeFloat32}.
+     * @function
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by `4` if omitted.
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.writeFloat = ByteBufferPrototype.writeFloat32;
+
+    /**
+     * Reads a 32bit float.
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by `4` if omitted.
+     * @returns {number}
+     * @expose
+     */
+    ByteBufferPrototype.readFloat32 = function(offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 4 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+4+") <= "+this.buffer.length);
+        }
+        var value = this.littleEndian
+            ? this.buffer.readFloatLE(offset, true)
+            : this.buffer.readFloatBE(offset, true);
+        if (relative) this.offset += 4;
+        return value;
+    };
+
+    /**
+     * Reads a 32bit float. This is an alias of {@link ByteBuffer#readFloat32}.
+     * @function
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by `4` if omitted.
+     * @returns {number}
+     * @expose
+     */
+    ByteBufferPrototype.readFloat = ByteBufferPrototype.readFloat32;
+
+    // types/floats/float64
+
+    /**
+     * Writes a 64bit float.
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by `8` if omitted.
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.writeFloat64 = function(value, offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof value !== 'number')
+                throw TypeError("Illegal value: "+value+" (not a number)");
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        offset += 8;
+        var capacity9 = this.buffer.length;
+        if (offset > capacity9)
+            this.resize((capacity9 *= 2) > offset ? capacity9 : offset);
+        offset -= 8;
+        this.littleEndian
+            ? this.buffer.writeDoubleLE(value, offset, true)
+            : this.buffer.writeDoubleBE(value, offset, true);
+        if (relative) this.offset += 8;
+        return this;
+    };
+
+    /**
+     * Writes a 64bit float. This is an alias of {@link ByteBuffer#writeFloat64}.
+     * @function
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by `8` if omitted.
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.writeDouble = ByteBufferPrototype.writeFloat64;
+
+    /**
+     * Reads a 64bit float.
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by `8` if omitted.
+     * @returns {number}
+     * @expose
+     */
+    ByteBufferPrototype.readFloat64 = function(offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 8 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+8+") <= "+this.buffer.length);
+        }
+        var value = this.littleEndian
+            ? this.buffer.readDoubleLE(offset, true)
+            : this.buffer.readDoubleBE(offset, true);
+        if (relative) this.offset += 8;
+        return value;
+    };
+
+    /**
+     * Reads a 64bit float. This is an alias of {@link ByteBuffer#readFloat64}.
+     * @function
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by `8` if omitted.
+     * @returns {number}
+     * @expose
+     */
+    ByteBufferPrototype.readDouble = ByteBufferPrototype.readFloat64;
+
+
+    // types/varints/varint32
+
+    /**
+     * Maximum number of bytes required to store a 32bit base 128 variable-length integer.
+     * @type {number}
+     * @const
+     * @expose
+     */
+    ByteBuffer.MAX_VARINT32_BYTES = 5;
+
+    /**
+     * Calculates the actual number of bytes required to store a 32bit base 128 variable-length integer.
+     * @param {number} value Value to encode
+     * @returns {number} Number of bytes required. Capped to {@link ByteBuffer.MAX_VARINT32_BYTES}
+     * @expose
+     */
+    ByteBuffer.calculateVarint32 = function(value) {
+        // ref: src/google/protobuf/io/coded_stream.cc
+        value = value >>> 0;
+             if (value < 1 << 7 ) return 1;
+        else if (value < 1 << 14) return 2;
+        else if (value < 1 << 21) return 3;
+        else if (value < 1 << 28) return 4;
+        else                      return 5;
+    };
+
+    /**
+     * Zigzag encodes a signed 32bit integer so that it can be effectively used with varint encoding.
+     * @param {number} n Signed 32bit integer
+     * @returns {number} Unsigned zigzag encoded 32bit integer
+     * @expose
+     */
+    ByteBuffer.zigZagEncode32 = function(n) {
+        return (((n |= 0) << 1) ^ (n >> 31)) >>> 0; // ref: src/google/protobuf/wire_format_lite.h
+    };
+
+    /**
+     * Decodes a zigzag encoded signed 32bit integer.
+     * @param {number} n Unsigned zigzag encoded 32bit integer
+     * @returns {number} Signed 32bit integer
+     * @expose
+     */
+    ByteBuffer.zigZagDecode32 = function(n) {
+        return ((n >>> 1) ^ -(n & 1)) | 0; // // ref: src/google/protobuf/wire_format_lite.h
+    };
+
+    /**
+     * Writes a 32bit base 128 variable-length integer.
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  written if omitted.
+     * @returns {!ByteBuffer|number} this if `offset` is omitted, else the actual number of bytes written
+     * @expose
+     */
+    ByteBufferPrototype.writeVarint32 = function(value, offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof value !== 'number' || value % 1 !== 0)
+                throw TypeError("Illegal value: "+value+" (not an integer)");
+            value |= 0;
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        var size = ByteBuffer.calculateVarint32(value),
+            b;
+        offset += size;
+        var capacity10 = this.buffer.length;
+        if (offset > capacity10)
+            this.resize((capacity10 *= 2) > offset ? capacity10 : offset);
+        offset -= size;
+        value >>>= 0;
+        while (value >= 0x80) {
+            b = (value & 0x7f) | 0x80;
+            this.buffer[offset++] = b;
+            value >>>= 7;
+        }
+        this.buffer[offset++] = value;
+        if (relative) {
+            this.offset = offset;
+            return this;
+        }
+        return size;
+    };
+
+    /**
+     * Writes a zig-zag encoded (signed) 32bit base 128 variable-length integer.
+     * @param {number} value Value to write
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  written if omitted.
+     * @returns {!ByteBuffer|number} this if `offset` is omitted, else the actual number of bytes written
+     * @expose
+     */
+    ByteBufferPrototype.writeVarint32ZigZag = function(value, offset) {
+        return this.writeVarint32(ByteBuffer.zigZagEncode32(value), offset);
+    };
+
+    /**
+     * Reads a 32bit base 128 variable-length integer.
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  written if omitted.
+     * @returns {number|!{value: number, length: number}} The value read if offset is omitted, else the value read
+     *  and the actual number of bytes read.
+     * @throws {Error} If it's not a valid varint. Has a property `truncated = true` if there is not enough data available
+     *  to fully decode the varint.
+     * @expose
+     */
+    ByteBufferPrototype.readVarint32 = function(offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 1 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+1+") <= "+this.buffer.length);
+        }
+        var c = 0,
+            value = 0 >>> 0,
+            b;
+        do {
+            if (!this.noAssert && offset > this.limit) {
+                var err = Error("Truncated");
+                err['truncated'] = true;
+                throw err;
+            }
+            b = this.buffer[offset++];
+            if (c < 5)
+                value |= (b & 0x7f) << (7*c);
+            ++c;
+        } while ((b & 0x80) !== 0);
+        value |= 0;
+        if (relative) {
+            this.offset = offset;
+            return value;
+        }
+        return {
+            "value": value,
+            "length": c
+        };
+    };
+
+    /**
+     * Reads a zig-zag encoded (signed) 32bit base 128 variable-length integer.
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  written if omitted.
+     * @returns {number|!{value: number, length: number}} The value read if offset is omitted, else the value read
+     *  and the actual number of bytes read.
+     * @throws {Error} If it's not a valid varint
+     * @expose
+     */
+    ByteBufferPrototype.readVarint32ZigZag = function(offset) {
+        var val = this.readVarint32(offset);
+        if (typeof val === 'object')
+            val["value"] = ByteBuffer.zigZagDecode32(val["value"]);
+        else
+            val = ByteBuffer.zigZagDecode32(val);
+        return val;
+    };
+
+    // types/varints/varint64
+
+    if (Long) {
+
+        /**
+         * Maximum number of bytes required to store a 64bit base 128 variable-length integer.
+         * @type {number}
+         * @const
+         * @expose
+         */
+        ByteBuffer.MAX_VARINT64_BYTES = 10;
+
+        /**
+         * Calculates the actual number of bytes required to store a 64bit base 128 variable-length integer.
+         * @param {number|!Long} value Value to encode
+         * @returns {number} Number of bytes required. Capped to {@link ByteBuffer.MAX_VARINT64_BYTES}
+         * @expose
+         */
+        ByteBuffer.calculateVarint64 = function(value) {
+            if (typeof value === 'number')
+                value = Long.fromNumber(value);
+            else if (typeof value === 'string')
+                value = Long.fromString(value);
+            // ref: src/google/protobuf/io/coded_stream.cc
+            var part0 = value.toInt() >>> 0,
+                part1 = value.shiftRightUnsigned(28).toInt() >>> 0,
+                part2 = value.shiftRightUnsigned(56).toInt() >>> 0;
+            if (part2 == 0) {
+                if (part1 == 0) {
+                    if (part0 < 1 << 14)
+                        return part0 < 1 << 7 ? 1 : 2;
+                    else
+                        return part0 < 1 << 21 ? 3 : 4;
+                } else {
+                    if (part1 < 1 << 14)
+                        return part1 < 1 << 7 ? 5 : 6;
+                    else
+                        return part1 < 1 << 21 ? 7 : 8;
+                }
+            } else
+                return part2 < 1 << 7 ? 9 : 10;
+        };
+
+        /**
+         * Zigzag encodes a signed 64bit integer so that it can be effectively used with varint encoding.
+         * @param {number|!Long} value Signed long
+         * @returns {!Long} Unsigned zigzag encoded long
+         * @expose
+         */
+        ByteBuffer.zigZagEncode64 = function(value) {
+            if (typeof value === 'number')
+                value = Long.fromNumber(value, false);
+            else if (typeof value === 'string')
+                value = Long.fromString(value, false);
+            else if (value.unsigned !== false) value = value.toSigned();
+            // ref: src/google/protobuf/wire_format_lite.h
+            return value.shiftLeft(1).xor(value.shiftRight(63)).toUnsigned();
+        };
+
+        /**
+         * Decodes a zigzag encoded signed 64bit integer.
+         * @param {!Long|number} value Unsigned zigzag encoded long or JavaScript number
+         * @returns {!Long} Signed long
+         * @expose
+         */
+        ByteBuffer.zigZagDecode64 = function(value) {
+            if (typeof value === 'number')
+                value = Long.fromNumber(value, false);
+            else if (typeof value === 'string')
+                value = Long.fromString(value, false);
+            else if (value.unsigned !== false) value = value.toSigned();
+            // ref: src/google/protobuf/wire_format_lite.h
+            return value.shiftRightUnsigned(1).xor(value.and(Long.ONE).toSigned().negate()).toSigned();
+        };
+
+        /**
+         * Writes a 64bit base 128 variable-length integer.
+         * @param {number|Long} value Value to write
+         * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+         *  written if omitted.
+         * @returns {!ByteBuffer|number} `this` if offset is omitted, else the actual number of bytes written.
+         * @expose
+         */
+        ByteBufferPrototype.writeVarint64 = function(value, offset) {
+            var relative = typeof offset === 'undefined';
+            if (relative) offset = this.offset;
+            if (!this.noAssert) {
+                if (typeof value === 'number')
+                    value = Long.fromNumber(value);
+                else if (typeof value === 'string')
+                    value = Long.fromString(value);
+                else if (!(value && value instanceof Long))
+                    throw TypeError("Illegal value: "+value+" (not an integer or Long)");
+                if (typeof offset !== 'number' || offset % 1 !== 0)
+                    throw TypeError("Illegal offset: "+offset+" (not an integer)");
+                offset >>>= 0;
+                if (offset < 0 || offset + 0 > this.buffer.length)
+                    throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+            }
+            if (typeof value === 'number')
+                value = Long.fromNumber(value, false);
+            else if (typeof value === 'string')
+                value = Long.fromString(value, false);
+            else if (value.unsigned !== false) value = value.toSigned();
+            var size = ByteBuffer.calculateVarint64(value),
+                part0 = value.toInt() >>> 0,
+                part1 = value.shiftRightUnsigned(28).toInt() >>> 0,
+                part2 = value.shiftRightUnsigned(56).toInt() >>> 0;
+            offset += size;
+            var capacity11 = this.buffer.length;
+            if (offset > capacity11)
+                this.resize((capacity11 *= 2) > offset ? capacity11 : offset);
+            offset -= size;
+            switch (size) {
+                case 10: this.buffer[offset+9] = (part2 >>>  7) & 0x01;
+                case 9 : this.buffer[offset+8] = size !== 9 ? (part2       ) | 0x80 : (part2       ) & 0x7F;
+                case 8 : this.buffer[offset+7] = size !== 8 ? (part1 >>> 21) | 0x80 : (part1 >>> 21) & 0x7F;
+                case 7 : this.buffer[offset+6] = size !== 7 ? (part1 >>> 14) | 0x80 : (part1 >>> 14) & 0x7F;
+                case 6 : this.buffer[offset+5] = size !== 6 ? (part1 >>>  7) | 0x80 : (part1 >>>  7) & 0x7F;
+                case 5 : this.buffer[offset+4] = size !== 5 ? (part1       ) | 0x80 : (part1       ) & 0x7F;
+                case 4 : this.buffer[offset+3] = size !== 4 ? (part0 >>> 21) | 0x80 : (part0 >>> 21) & 0x7F;
+                case 3 : this.buffer[offset+2] = size !== 3 ? (part0 >>> 14) | 0x80 : (part0 >>> 14) & 0x7F;
+                case 2 : this.buffer[offset+1] = size !== 2 ? (part0 >>>  7) | 0x80 : (part0 >>>  7) & 0x7F;
+                case 1 : this.buffer[offset  ] = size !== 1 ? (part0       ) | 0x80 : (part0       ) & 0x7F;
+            }
+            if (relative) {
+                this.offset += size;
+                return this;
+            } else {
+                return size;
+            }
+        };
+
+        /**
+         * Writes a zig-zag encoded 64bit base 128 variable-length integer.
+         * @param {number|Long} value Value to write
+         * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+         *  written if omitted.
+         * @returns {!ByteBuffer|number} `this` if offset is omitted, else the actual number of bytes written.
+         * @expose
+         */
+        ByteBufferPrototype.writeVarint64ZigZag = function(value, offset) {
+            return this.writeVarint64(ByteBuffer.zigZagEncode64(value), offset);
+        };
+
+        /**
+         * Reads a 64bit base 128 variable-length integer. Requires Long.js.
+         * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+         *  read if omitted.
+         * @returns {!Long|!{value: Long, length: number}} The value read if offset is omitted, else the value read and
+         *  the actual number of bytes read.
+         * @throws {Error} If it's not a valid varint
+         * @expose
+         */
+        ByteBufferPrototype.readVarint64 = function(offset) {
+            var relative = typeof offset === 'undefined';
+            if (relative) offset = this.offset;
+            if (!this.noAssert) {
+                if (typeof offset !== 'number' || offset % 1 !== 0)
+                    throw TypeError("Illegal offset: "+offset+" (not an integer)");
+                offset >>>= 0;
+                if (offset < 0 || offset + 1 > this.buffer.length)
+                    throw RangeError("Illegal offset: 0 <= "+offset+" (+"+1+") <= "+this.buffer.length);
+            }
+            // ref: src/google/protobuf/io/coded_stream.cc
+            var start = offset,
+                part0 = 0,
+                part1 = 0,
+                part2 = 0,
+                b  = 0;
+            b = this.buffer[offset++]; part0  = (b & 0x7F)      ; if ( b & 0x80                                                   ) {
+            b = this.buffer[offset++]; part0 |= (b & 0x7F) <<  7; if ((b & 0x80) || (this.noAssert && typeof b === 'undefined')) {
+            b = this.buffer[offset++]; part0 |= (b & 0x7F) << 14; if ((b & 0x80) || (this.noAssert && typeof b === 'undefined')) {
+            b = this.buffer[offset++]; part0 |= (b & 0x7F) << 21; if ((b & 0x80) || (this.noAssert && typeof b === 'undefined')) {
+            b = this.buffer[offset++]; part1  = (b & 0x7F)      ; if ((b & 0x80) || (this.noAssert && typeof b === 'undefined')) {
+            b = this.buffer[offset++]; part1 |= (b & 0x7F) <<  7; if ((b & 0x80) || (this.noAssert && typeof b === 'undefined')) {
+            b = this.buffer[offset++]; part1 |= (b & 0x7F) << 14; if ((b & 0x80) || (this.noAssert && typeof b === 'undefined')) {
+            b = this.buffer[offset++]; part1 |= (b & 0x7F) << 21; if ((b & 0x80) || (this.noAssert && typeof b === 'undefined')) {
+            b = this.buffer[offset++]; part2  = (b & 0x7F)      ; if ((b & 0x80) || (this.noAssert && typeof b === 'undefined')) {
+            b = this.buffer[offset++]; part2 |= (b & 0x7F) <<  7; if ((b & 0x80) || (this.noAssert && typeof b === 'undefined')) {
+            throw Error("Buffer overrun"); }}}}}}}}}}
+            var value = Long.fromBits(part0 | (part1 << 28), (part1 >>> 4) | (part2) << 24, false);
+            if (relative) {
+                this.offset = offset;
+                return value;
+            } else {
+                return {
+                    'value': value,
+                    'length': offset-start
+                };
+            }
+        };
+
+        /**
+         * Reads a zig-zag encoded 64bit base 128 variable-length integer. Requires Long.js.
+         * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+         *  read if omitted.
+         * @returns {!Long|!{value: Long, length: number}} The value read if offset is omitted, else the value read and
+         *  the actual number of bytes read.
+         * @throws {Error} If it's not a valid varint
+         * @expose
+         */
+        ByteBufferPrototype.readVarint64ZigZag = function(offset) {
+            var val = this.readVarint64(offset);
+            if (val && val['value'] instanceof Long)
+                val["value"] = ByteBuffer.zigZagDecode64(val["value"]);
+            else
+                val = ByteBuffer.zigZagDecode64(val);
+            return val;
+        };
+
+    } // Long
+
+
+    // types/strings/cstring
+
+    /**
+     * Writes a NULL-terminated UTF8 encoded string. For this to work the specified string must not contain any NULL
+     *  characters itself.
+     * @param {string} str String to write
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  contained in `str` + 1 if omitted.
+     * @returns {!ByteBuffer|number} this if offset is omitted, else the actual number of bytes written
+     * @expose
+     */
+    ByteBufferPrototype.writeCString = function(str, offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        var i,
+            k = str.length;
+        if (!this.noAssert) {
+            if (typeof str !== 'string')
+                throw TypeError("Illegal str: Not a string");
+            for (i=0; i<k; ++i) {
+                if (str.charCodeAt(i) === 0)
+                    throw RangeError("Illegal str: Contains NULL-characters");
+            }
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        // UTF8 strings do not contain zero bytes in between except for the zero character, so:
+        k = Buffer.byteLength(str, "utf8");
+        offset += k+1;
+        var capacity12 = this.buffer.length;
+        if (offset > capacity12)
+            this.resize((capacity12 *= 2) > offset ? capacity12 : offset);
+        offset -= k+1;
+        offset += this.buffer.write(str, offset, k, "utf8");
+        this.buffer[offset++] = 0;
+        if (relative) {
+            this.offset = offset;
+            return this;
+        }
+        return k;
+    };
+
+    /**
+     * Reads a NULL-terminated UTF8 encoded string. For this to work the string read must not contain any NULL characters
+     *  itself.
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  read if omitted.
+     * @returns {string|!{string: string, length: number}} The string read if offset is omitted, else the string
+     *  read and the actual number of bytes read.
+     * @expose
+     */
+    ByteBufferPrototype.readCString = function(offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 1 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+1+") <= "+this.buffer.length);
+        }
+        var start = offset,
+            temp;
+        // UTF8 strings do not contain zero bytes in between except for the zero character itself, so:
+        do {
+            if (offset >= this.buffer.length)
+                throw RangeError("Index out of range: "+offset+" <= "+this.buffer.length);
+            temp = this.buffer[offset++];
+        } while (temp !== 0);
+        var str = this.buffer.toString("utf8", start, offset-1);
+        if (relative) {
+            this.offset = offset;
+            return str;
+        } else {
+            return {
+                "string": str,
+                "length": offset - start
+            };
+        }
+    };
+
+    // types/strings/istring
+
+    /**
+     * Writes a length as uint32 prefixed UTF8 encoded string.
+     * @param {string} str String to write
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  written if omitted.
+     * @returns {!ByteBuffer|number} `this` if `offset` is omitted, else the actual number of bytes written
+     * @expose
+     * @see ByteBuffer#writeVarint32
+     */
+    ByteBufferPrototype.writeIString = function(str, offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof str !== 'string')
+                throw TypeError("Illegal str: Not a string");
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        var start = offset,
+            k;
+        k = Buffer.byteLength(str, "utf8");
+        offset += 4+k;
+        var capacity13 = this.buffer.length;
+        if (offset > capacity13)
+            this.resize((capacity13 *= 2) > offset ? capacity13 : offset);
+        offset -= 4+k;
+        if (this.littleEndian) {
+            this.buffer[offset+3] = (k >>> 24) & 0xFF;
+            this.buffer[offset+2] = (k >>> 16) & 0xFF;
+            this.buffer[offset+1] = (k >>>  8) & 0xFF;
+            this.buffer[offset  ] =  k         & 0xFF;
+        } else {
+            this.buffer[offset  ] = (k >>> 24) & 0xFF;
+            this.buffer[offset+1] = (k >>> 16) & 0xFF;
+            this.buffer[offset+2] = (k >>>  8) & 0xFF;
+            this.buffer[offset+3] =  k         & 0xFF;
+        }
+        offset += 4;
+        offset += this.buffer.write(str, offset, k, "utf8");
+        if (relative) {
+            this.offset = offset;
+            return this;
+        }
+        return offset - start;
+    };
+
+    /**
+     * Reads a length as uint32 prefixed UTF8 encoded string.
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  read if omitted.
+     * @returns {string|!{string: string, length: number}} The string read if offset is omitted, else the string
+     *  read and the actual number of bytes read.
+     * @expose
+     * @see ByteBuffer#readVarint32
+     */
+    ByteBufferPrototype.readIString = function(offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 4 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+4+") <= "+this.buffer.length);
+        }
+        var start = offset;
+        var len = this.readUint32(offset);
+        var str = this.readUTF8String(len, ByteBuffer.METRICS_BYTES, offset += 4);
+        offset += str['length'];
+        if (relative) {
+            this.offset = offset;
+            return str['string'];
+        } else {
+            return {
+                'string': str['string'],
+                'length': offset - start
+            };
+        }
+    };
+
+    // types/strings/utf8string
+
+    /**
+     * Metrics representing number of UTF8 characters. Evaluates to `c`.
+     * @type {string}
+     * @const
+     * @expose
+     */
+    ByteBuffer.METRICS_CHARS = 'c';
+
+    /**
+     * Metrics representing number of bytes. Evaluates to `b`.
+     * @type {string}
+     * @const
+     * @expose
+     */
+    ByteBuffer.METRICS_BYTES = 'b';
+
+    /**
+     * Writes an UTF8 encoded string.
+     * @param {string} str String to write
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} if omitted.
+     * @returns {!ByteBuffer|number} this if offset is omitted, else the actual number of bytes written.
+     * @expose
+     */
+    ByteBufferPrototype.writeUTF8String = function(str, offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        var k;
+        k = Buffer.byteLength(str, "utf8");
+        offset += k;
+        var capacity14 = this.buffer.length;
+        if (offset > capacity14)
+            this.resize((capacity14 *= 2) > offset ? capacity14 : offset);
+        offset -= k;
+        offset += this.buffer.write(str, offset, k, "utf8");
+        if (relative) {
+            this.offset = offset;
+            return this;
+        }
+        return k;
+    };
+
+    /**
+     * Writes an UTF8 encoded string. This is an alias of {@link ByteBuffer#writeUTF8String}.
+     * @function
+     * @param {string} str String to write
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} if omitted.
+     * @returns {!ByteBuffer|number} this if offset is omitted, else the actual number of bytes written.
+     * @expose
+     */
+    ByteBufferPrototype.writeString = ByteBufferPrototype.writeUTF8String;
+
+    /**
+     * Calculates the number of UTF8 characters of a string. JavaScript itself uses UTF-16, so that a string's
+     *  `length` property does not reflect its actual UTF8 size if it contains code points larger than 0xFFFF.
+     * @param {string} str String to calculate
+     * @returns {number} Number of UTF8 characters
+     * @expose
+     */
+    ByteBuffer.calculateUTF8Chars = function(str) {
+        return utfx.calculateUTF16asUTF8(stringSource(str))[0];
+    };
+
+    /**
+     * Calculates the number of UTF8 bytes of a string.
+     * @param {string} str String to calculate
+     * @returns {number} Number of UTF8 bytes
+     * @expose
+     */
+    ByteBuffer.calculateUTF8Bytes = function(str) {
+        if (typeof str !== 'string')
+            throw TypeError("Illegal argument: "+(typeof str));
+        return Buffer.byteLength(str, "utf8");
+    };
+
+    /**
+     * Calculates the number of UTF8 bytes of a string. This is an alias of {@link ByteBuffer.calculateUTF8Bytes}.
+     * @function
+     * @param {string} str String to calculate
+     * @returns {number} Number of UTF8 bytes
+     * @expose
+     */
+    ByteBuffer.calculateString = ByteBuffer.calculateUTF8Bytes;
+
+    /**
+     * Reads an UTF8 encoded string.
+     * @param {number} length Number of characters or bytes to read.
+     * @param {string=} metrics Metrics specifying what `length` is meant to count. Defaults to
+     *  {@link ByteBuffer.METRICS_CHARS}.
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  read if omitted.
+     * @returns {string|!{string: string, length: number}} The string read if offset is omitted, else the string
+     *  read and the actual number of bytes read.
+     * @expose
+     */
+    ByteBufferPrototype.readUTF8String = function(length, metrics, offset) {
+        if (typeof metrics === 'number') {
+            offset = metrics;
+            metrics = undefined;
+        }
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (typeof metrics === 'undefined') metrics = ByteBuffer.METRICS_CHARS;
+        if (!this.noAssert) {
+            if (typeof length !== 'number' || length % 1 !== 0)
+                throw TypeError("Illegal length: "+length+" (not an integer)");
+            length |= 0;
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        var i = 0,
+            start = offset,
+            temp,
+            sd;
+        if (metrics === ByteBuffer.METRICS_CHARS) { // The same for node and the browser
+            sd = stringDestination();
+            utfx.decodeUTF8(function() {
+                return i < length && offset < this.limit ? this.buffer[offset++] : null;
+            }.bind(this), function(cp) {
+                ++i; utfx.UTF8toUTF16(cp, sd);
+            });
+            if (i !== length)
+                throw RangeError("Illegal range: Truncated data, "+i+" == "+length);
+            if (relative) {
+                this.offset = offset;
+                return sd();
+            } else {
+                return {
+                    "string": sd(),
+                    "length": offset - start
+                };
+            }
+        } else if (metrics === ByteBuffer.METRICS_BYTES) {
+            if (!this.noAssert) {
+                if (typeof offset !== 'number' || offset % 1 !== 0)
+                    throw TypeError("Illegal offset: "+offset+" (not an integer)");
+                offset >>>= 0;
+                if (offset < 0 || offset + length > this.buffer.length)
+                    throw RangeError("Illegal offset: 0 <= "+offset+" (+"+length+") <= "+this.buffer.length);
+            }
+            temp = this.buffer.toString("utf8", offset, offset+length);
+            if (relative) {
+                this.offset += length;
+                return temp;
+            } else {
+                return {
+                    'string': temp,
+                    'length': length
+                };
+            }
+        } else
+            throw TypeError("Unsupported metrics: "+metrics);
+    };
+
+    /**
+     * Reads an UTF8 encoded string. This is an alias of {@link ByteBuffer#readUTF8String}.
+     * @function
+     * @param {number} length Number of characters or bytes to read
+     * @param {number=} metrics Metrics specifying what `n` is meant to count. Defaults to
+     *  {@link ByteBuffer.METRICS_CHARS}.
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  read if omitted.
+     * @returns {string|!{string: string, length: number}} The string read if offset is omitted, else the string
+     *  read and the actual number of bytes read.
+     * @expose
+     */
+    ByteBufferPrototype.readString = ByteBufferPrototype.readUTF8String;
+
+    // types/strings/vstring
+
+    /**
+     * Writes a length as varint32 prefixed UTF8 encoded string.
+     * @param {string} str String to write
+     * @param {number=} offset Offset to write to. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  written if omitted.
+     * @returns {!ByteBuffer|number} `this` if `offset` is omitted, else the actual number of bytes written
+     * @expose
+     * @see ByteBuffer#writeVarint32
+     */
+    ByteBufferPrototype.writeVString = function(str, offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof str !== 'string')
+                throw TypeError("Illegal str: Not a string");
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        var start = offset,
+            k, l;
+        k = Buffer.byteLength(str, "utf8");
+        l = ByteBuffer.calculateVarint32(k);
+        offset += l+k;
+        var capacity15 = this.buffer.length;
+        if (offset > capacity15)
+            this.resize((capacity15 *= 2) > offset ? capacity15 : offset);
+        offset -= l+k;
+        offset += this.writeVarint32(k, offset);
+        offset += this.buffer.write(str, offset, k, "utf8");
+        if (relative) {
+            this.offset = offset;
+            return this;
+        }
+        return offset - start;
+    };
+
+    /**
+     * Reads a length as varint32 prefixed UTF8 encoded string.
+     * @param {number=} offset Offset to read from. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  read if omitted.
+     * @returns {string|!{string: string, length: number}} The string read if offset is omitted, else the string
+     *  read and the actual number of bytes read.
+     * @expose
+     * @see ByteBuffer#readVarint32
+     */
+    ByteBufferPrototype.readVString = function(offset) {
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 1 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+1+") <= "+this.buffer.length);
+        }
+        var start = offset;
+        var len = this.readVarint32(offset);
+        var str = this.readUTF8String(len['value'], ByteBuffer.METRICS_BYTES, offset += len['length']);
+        offset += str['length'];
+        if (relative) {
+            this.offset = offset;
+            return str['string'];
+        } else {
+            return {
+                'string': str['string'],
+                'length': offset - start
+            };
+        }
+    };
+
+
+    /**
+     * Appends some data to this ByteBuffer. This will overwrite any contents behind the specified offset up to the appended
+     *  data's length.
+     * @param {!ByteBuffer|!Buffer|!ArrayBuffer|!Uint8Array|string} source Data to append. If `source` is a ByteBuffer, its
+     * offsets will be modified according to the performed read operation.
+     * @param {(string|number)=} encoding Encoding if `data` is a string ("base64", "hex", "binary", defaults to "utf8")
+     * @param {number=} offset Offset to append at. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  written if omitted.
+     * @returns {!ByteBuffer} this
+     * @expose
+     * @example A relative `<01 02>03.append(<04 05>)` will result in `<01 02 04 05>, 04 05|`
+     * @example An absolute `<01 02>03.append(04 05>, 1)` will result in `<01 04>05, 04 05|`
+     */
+    ByteBufferPrototype.append = function(source, encoding, offset) {
+        if (typeof encoding === 'number' || typeof encoding !== 'string') {
+            offset = encoding;
+            encoding = undefined;
+        }
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        if (!(source instanceof ByteBuffer))
+            source = ByteBuffer.wrap(source, encoding);
+        var length = source.limit - source.offset;
+        if (length <= 0) return this; // Nothing to append
+        offset += length;
+        var capacity16 = this.buffer.length;
+        if (offset > capacity16)
+            this.resize((capacity16 *= 2) > offset ? capacity16 : offset);
+        offset -= length;
+        source.buffer.copy(this.buffer, offset, source.offset, source.limit);
+        source.offset += length;
+        if (relative) this.offset += length;
+        return this;
+    };
+
+    /**
+     * Appends this ByteBuffer's contents to another ByteBuffer. This will overwrite any contents at and after the
+        specified offset up to the length of this ByteBuffer's data.
+     * @param {!ByteBuffer} target Target ByteBuffer
+     * @param {number=} offset Offset to append to. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  read if omitted.
+     * @returns {!ByteBuffer} this
+     * @expose
+     * @see ByteBuffer#append
+     */
+    ByteBufferPrototype.appendTo = function(target, offset) {
+        target.append(this, offset);
+        return this;
+    };
+
+    /**
+     * Enables or disables assertions of argument types and offsets. Assertions are enabled by default but you can opt to
+     *  disable them if your code already makes sure that everything is valid.
+     * @param {boolean} assert `true` to enable assertions, otherwise `false`
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.assert = function(assert$$1) {
+        this.noAssert = !assert$$1;
+        return this;
+    };
+
+    /**
+     * Gets the capacity of this ByteBuffer's backing buffer.
+     * @returns {number} Capacity of the backing buffer
+     * @expose
+     */
+    ByteBufferPrototype.capacity = function() {
+        return this.buffer.length;
+    };
+    /**
+     * Clears this ByteBuffer's offsets by setting {@link ByteBuffer#offset} to `0` and {@link ByteBuffer#limit} to the
+     *  backing buffer's capacity. Discards {@link ByteBuffer#markedOffset}.
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.clear = function() {
+        this.offset = 0;
+        this.limit = this.buffer.length;
+        this.markedOffset = -1;
+        return this;
+    };
+
+    /**
+     * Creates a cloned instance of this ByteBuffer, preset with this ByteBuffer's values for {@link ByteBuffer#offset},
+     *  {@link ByteBuffer#markedOffset} and {@link ByteBuffer#limit}.
+     * @param {boolean=} copy Whether to copy the backing buffer or to return another view on the same, defaults to `false`
+     * @returns {!ByteBuffer} Cloned instance
+     * @expose
+     */
+    ByteBufferPrototype.clone = function(copy) {
+        var bb = new ByteBuffer(0, this.littleEndian, this.noAssert);
+        if (copy) {
+            var buffer$$2 = new Buffer(this.buffer.length);
+            this.buffer.copy(buffer$$2);
+            bb.buffer = buffer$$2;
+        } else {
+            bb.buffer = this.buffer;
+        }
+        bb.offset = this.offset;
+        bb.markedOffset = this.markedOffset;
+        bb.limit = this.limit;
+        return bb;
+    };
+
+    /**
+     * Compacts this ByteBuffer to be backed by a {@link ByteBuffer#buffer} of its contents' length. Contents are the bytes
+     *  between {@link ByteBuffer#offset} and {@link ByteBuffer#limit}. Will set `offset = 0` and `limit = capacity` and
+     *  adapt {@link ByteBuffer#markedOffset} to the same relative position if set.
+     * @param {number=} begin Offset to start at, defaults to {@link ByteBuffer#offset}
+     * @param {number=} end Offset to end at, defaults to {@link ByteBuffer#limit}
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.compact = function(begin, end) {
+        if (typeof begin === 'undefined') begin = this.offset;
+        if (typeof end === 'undefined') end = this.limit;
+        if (!this.noAssert) {
+            if (typeof begin !== 'number' || begin % 1 !== 0)
+                throw TypeError("Illegal begin: Not an integer");
+            begin >>>= 0;
+            if (typeof end !== 'number' || end % 1 !== 0)
+                throw TypeError("Illegal end: Not an integer");
+            end >>>= 0;
+            if (begin < 0 || begin > end || end > this.buffer.length)
+                throw RangeError("Illegal range: 0 <= "+begin+" <= "+end+" <= "+this.buffer.length);
+        }
+        if (begin === 0 && end === this.buffer.length)
+            return this; // Already compacted
+        var len = end - begin;
+        if (len === 0) {
+            this.buffer = EMPTY_BUFFER;
+            if (this.markedOffset >= 0) this.markedOffset -= begin;
+            this.offset = 0;
+            this.limit = 0;
+            return this;
+        }
+        var buffer$$2 = new Buffer(len);
+        this.buffer.copy(buffer$$2, 0, begin, end);
+        this.buffer = buffer$$2;
+        if (this.markedOffset >= 0) this.markedOffset -= begin;
+        this.offset = 0;
+        this.limit = len;
+        return this;
+    };
+
+    /**
+     * Creates a copy of this ByteBuffer's contents. Contents are the bytes between {@link ByteBuffer#offset} and
+     *  {@link ByteBuffer#limit}.
+     * @param {number=} begin Begin offset, defaults to {@link ByteBuffer#offset}.
+     * @param {number=} end End offset, defaults to {@link ByteBuffer#limit}.
+     * @returns {!ByteBuffer} Copy
+     * @expose
+     */
+    ByteBufferPrototype.copy = function(begin, end) {
+        if (typeof begin === 'undefined') begin = this.offset;
+        if (typeof end === 'undefined') end = this.limit;
+        if (!this.noAssert) {
+            if (typeof begin !== 'number' || begin % 1 !== 0)
+                throw TypeError("Illegal begin: Not an integer");
+            begin >>>= 0;
+            if (typeof end !== 'number' || end % 1 !== 0)
+                throw TypeError("Illegal end: Not an integer");
+            end >>>= 0;
+            if (begin < 0 || begin > end || end > this.buffer.length)
+                throw RangeError("Illegal range: 0 <= "+begin+" <= "+end+" <= "+this.buffer.length);
+        }
+        if (begin === end)
+            return new ByteBuffer(0, this.littleEndian, this.noAssert);
+        var capacity = end - begin,
+            bb = new ByteBuffer(capacity, this.littleEndian, this.noAssert);
+        bb.offset = 0;
+        bb.limit = capacity;
+        if (bb.markedOffset >= 0) bb.markedOffset -= begin;
+        this.copyTo(bb, 0, begin, end);
+        return bb;
+    };
+
+    /**
+     * Copies this ByteBuffer's contents to another ByteBuffer. Contents are the bytes between {@link ByteBuffer#offset} and
+     *  {@link ByteBuffer#limit}.
+     * @param {!ByteBuffer} target Target ByteBuffer
+     * @param {number=} targetOffset Offset to copy to. Will use and increase the target's {@link ByteBuffer#offset}
+     *  by the number of bytes copied if omitted.
+     * @param {number=} sourceOffset Offset to start copying from. Will use and increase {@link ByteBuffer#offset} by the
+     *  number of bytes copied if omitted.
+     * @param {number=} sourceLimit Offset to end copying from, defaults to {@link ByteBuffer#limit}
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.copyTo = function(target, targetOffset, sourceOffset, sourceLimit) {
+        var relative,
+            targetRelative;
+        if (!this.noAssert) {
+            if (!ByteBuffer.isByteBuffer(target))
+                throw TypeError("Illegal target: Not a ByteBuffer");
+        }
+        targetOffset = (targetRelative = typeof targetOffset === 'undefined') ? target.offset : targetOffset | 0;
+        sourceOffset = (relative = typeof sourceOffset === 'undefined') ? this.offset : sourceOffset | 0;
+        sourceLimit = typeof sourceLimit === 'undefined' ? this.limit : sourceLimit | 0;
+
+        if (targetOffset < 0 || targetOffset > target.buffer.length)
+            throw RangeError("Illegal target range: 0 <= "+targetOffset+" <= "+target.buffer.length);
+        if (sourceOffset < 0 || sourceLimit > this.buffer.length)
+            throw RangeError("Illegal source range: 0 <= "+sourceOffset+" <= "+this.buffer.length);
+
+        var len = sourceLimit - sourceOffset;
+        if (len === 0)
+            return target; // Nothing to copy
+
+        target.ensureCapacity(targetOffset + len);
+
+        this.buffer.copy(target.buffer, targetOffset, sourceOffset, sourceLimit);
+
+        if (relative) this.offset += len;
+        if (targetRelative) target.offset += len;
+
+        return this;
+    };
+
+    /**
+     * Makes sure that this ByteBuffer is backed by a {@link ByteBuffer#buffer} of at least the specified capacity. If the
+     *  current capacity is exceeded, it will be doubled. If double the current capacity is less than the required capacity,
+     *  the required capacity will be used instead.
+     * @param {number} capacity Required capacity
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.ensureCapacity = function(capacity) {
+        var current = this.buffer.length;
+        if (current < capacity)
+            return this.resize((current *= 2) > capacity ? current : capacity);
+        return this;
+    };
+
+    /**
+     * Overwrites this ByteBuffer's contents with the specified value. Contents are the bytes between
+     *  {@link ByteBuffer#offset} and {@link ByteBuffer#limit}.
+     * @param {number|string} value Byte value to fill with. If given as a string, the first character is used.
+     * @param {number=} begin Begin offset. Will use and increase {@link ByteBuffer#offset} by the number of bytes
+     *  written if omitted. defaults to {@link ByteBuffer#offset}.
+     * @param {number=} end End offset, defaults to {@link ByteBuffer#limit}.
+     * @returns {!ByteBuffer} this
+     * @expose
+     * @example `someByteBuffer.clear().fill(0)` fills the entire backing buffer with zeroes
+     */
+    ByteBufferPrototype.fill = function(value, begin, end) {
+        var relative = typeof begin === 'undefined';
+        if (relative) begin = this.offset;
+        if (typeof value === 'string' && value.length > 0)
+            value = value.charCodeAt(0);
+        if (typeof begin === 'undefined') begin = this.offset;
+        if (typeof end === 'undefined') end = this.limit;
+        if (!this.noAssert) {
+            if (typeof value !== 'number' || value % 1 !== 0)
+                throw TypeError("Illegal value: "+value+" (not an integer)");
+            value |= 0;
+            if (typeof begin !== 'number' || begin % 1 !== 0)
+                throw TypeError("Illegal begin: Not an integer");
+            begin >>>= 0;
+            if (typeof end !== 'number' || end % 1 !== 0)
+                throw TypeError("Illegal end: Not an integer");
+            end >>>= 0;
+            if (begin < 0 || begin > end || end > this.buffer.length)
+                throw RangeError("Illegal range: 0 <= "+begin+" <= "+end+" <= "+this.buffer.length);
+        }
+        if (begin >= end)
+            return this; // Nothing to fill
+        this.buffer.fill(value, begin, end);
+        begin = end;
+        if (relative) this.offset = begin;
+        return this;
+    };
+
+    /**
+     * Makes this ByteBuffer ready for a new sequence of write or relative read operations. Sets `limit = offset` and
+     *  `offset = 0`. Make sure always to flip a ByteBuffer when all relative read or write operations are complete.
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.flip = function() {
+        this.limit = this.offset;
+        this.offset = 0;
+        return this;
+    };
+    /**
+     * Marks an offset on this ByteBuffer to be used later.
+     * @param {number=} offset Offset to mark. Defaults to {@link ByteBuffer#offset}.
+     * @returns {!ByteBuffer} this
+     * @throws {TypeError} If `offset` is not a valid number
+     * @throws {RangeError} If `offset` is out of bounds
+     * @see ByteBuffer#reset
+     * @expose
+     */
+    ByteBufferPrototype.mark = function(offset) {
+        offset = typeof offset === 'undefined' ? this.offset : offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        this.markedOffset = offset;
+        return this;
+    };
+    /**
+     * Sets the byte order.
+     * @param {boolean} littleEndian `true` for little endian byte order, `false` for big endian
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.order = function(littleEndian) {
+        if (!this.noAssert) {
+            if (typeof littleEndian !== 'boolean')
+                throw TypeError("Illegal littleEndian: Not a boolean");
+        }
+        this.littleEndian = !!littleEndian;
+        return this;
+    };
+
+    /**
+     * Switches (to) little endian byte order.
+     * @param {boolean=} littleEndian Defaults to `true`, otherwise uses big endian
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.LE = function(littleEndian) {
+        this.littleEndian = typeof littleEndian !== 'undefined' ? !!littleEndian : true;
+        return this;
+    };
+
+    /**
+     * Switches (to) big endian byte order.
+     * @param {boolean=} bigEndian Defaults to `true`, otherwise uses little endian
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.BE = function(bigEndian) {
+        this.littleEndian = typeof bigEndian !== 'undefined' ? !bigEndian : false;
+        return this;
+    };
+    /**
+     * Prepends some data to this ByteBuffer. This will overwrite any contents before the specified offset up to the
+     *  prepended data's length. If there is not enough space available before the specified `offset`, the backing buffer
+     *  will be resized and its contents moved accordingly.
+     * @param {!ByteBuffer|string||!Buffer} source Data to prepend. If `source` is a ByteBuffer, its offset will be modified
+     *  according to the performed read operation.
+     * @param {(string|number)=} encoding Encoding if `data` is a string ("base64", "hex", "binary", defaults to "utf8")
+     * @param {number=} offset Offset to prepend at. Will use and decrease {@link ByteBuffer#offset} by the number of bytes
+     *  prepended if omitted.
+     * @returns {!ByteBuffer} this
+     * @expose
+     * @example A relative `00<01 02 03>.prepend(<04 05>)` results in `<04 05 01 02 03>, 04 05|`
+     * @example An absolute `00<01 02 03>.prepend(<04 05>, 2)` results in `04<05 02 03>, 04 05|`
+     */
+    ByteBufferPrototype.prepend = function(source, encoding, offset) {
+        if (typeof encoding === 'number' || typeof encoding !== 'string') {
+            offset = encoding;
+            encoding = undefined;
+        }
+        var relative = typeof offset === 'undefined';
+        if (relative) offset = this.offset;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: "+offset+" (not an integer)");
+            offset >>>= 0;
+            if (offset < 0 || offset + 0 > this.buffer.length)
+                throw RangeError("Illegal offset: 0 <= "+offset+" (+"+0+") <= "+this.buffer.length);
+        }
+        if (!(source instanceof ByteBuffer))
+            source = ByteBuffer.wrap(source, encoding);
+        var len = source.limit - source.offset;
+        if (len <= 0) return this; // Nothing to prepend
+        var diff = len - offset;
+        if (diff > 0) { // Not enough space before offset, so resize + move
+            var buffer$$2 = new Buffer(this.buffer.length + diff);
+            this.buffer.copy(buffer$$2, len, offset, this.buffer.length);
+            this.buffer = buffer$$2;
+            this.offset += diff;
+            if (this.markedOffset >= 0) this.markedOffset += diff;
+            this.limit += diff;
+            offset += diff;
+        }        source.buffer.copy(this.buffer, offset - len, source.offset, source.limit);
+
+        source.offset = source.limit;
+        if (relative)
+            this.offset -= len;
+        return this;
+    };
+
+    /**
+     * Prepends this ByteBuffer to another ByteBuffer. This will overwrite any contents before the specified offset up to the
+     *  prepended data's length. If there is not enough space available before the specified `offset`, the backing buffer
+     *  will be resized and its contents moved accordingly.
+     * @param {!ByteBuffer} target Target ByteBuffer
+     * @param {number=} offset Offset to prepend at. Will use and decrease {@link ByteBuffer#offset} by the number of bytes
+     *  prepended if omitted.
+     * @returns {!ByteBuffer} this
+     * @expose
+     * @see ByteBuffer#prepend
+     */
+    ByteBufferPrototype.prependTo = function(target, offset) {
+        target.prepend(this, offset);
+        return this;
+    };
+    /**
+     * Prints debug information about this ByteBuffer's contents.
+     * @param {function(string)=} out Output function to call, defaults to console.log
+     * @expose
+     */
+    ByteBufferPrototype.printDebug = function(out) {
+        if (typeof out !== 'function') out = console.log.bind(console);
+        out(
+            this.toString()+"\n"+
+            "-------------------------------------------------------------------\n"+
+            this.toDebug(/* columns */ true)
+        );
+    };
+
+    /**
+     * Gets the number of remaining readable bytes. Contents are the bytes between {@link ByteBuffer#offset} and
+     *  {@link ByteBuffer#limit}, so this returns `limit - offset`.
+     * @returns {number} Remaining readable bytes. May be negative if `offset > limit`.
+     * @expose
+     */
+    ByteBufferPrototype.remaining = function() {
+        return this.limit - this.offset;
+    };
+    /**
+     * Resets this ByteBuffer's {@link ByteBuffer#offset}. If an offset has been marked through {@link ByteBuffer#mark}
+     *  before, `offset` will be set to {@link ByteBuffer#markedOffset}, which will then be discarded. If no offset has been
+     *  marked, sets `offset = 0`.
+     * @returns {!ByteBuffer} this
+     * @see ByteBuffer#mark
+     * @expose
+     */
+    ByteBufferPrototype.reset = function() {
+        if (this.markedOffset >= 0) {
+            this.offset = this.markedOffset;
+            this.markedOffset = -1;
+        } else {
+            this.offset = 0;
+        }
+        return this;
+    };
+    /**
+     * Resizes this ByteBuffer to be backed by a buffer of at least the given capacity. Will do nothing if already that
+     *  large or larger.
+     * @param {number} capacity Capacity required
+     * @returns {!ByteBuffer} this
+     * @throws {TypeError} If `capacity` is not a number
+     * @throws {RangeError} If `capacity < 0`
+     * @expose
+     */
+    ByteBufferPrototype.resize = function(capacity) {
+        if (!this.noAssert) {
+            if (typeof capacity !== 'number' || capacity % 1 !== 0)
+                throw TypeError("Illegal capacity: "+capacity+" (not an integer)");
+            capacity |= 0;
+            if (capacity < 0)
+                throw RangeError("Illegal capacity: 0 <= "+capacity);
+        }
+        if (this.buffer.length < capacity) {
+            var buffer$$2 = new Buffer(capacity);
+            this.buffer.copy(buffer$$2);
+            this.buffer = buffer$$2;
+        }
+        return this;
+    };
+    /**
+     * Reverses this ByteBuffer's contents.
+     * @param {number=} begin Offset to start at, defaults to {@link ByteBuffer#offset}
+     * @param {number=} end Offset to end at, defaults to {@link ByteBuffer#limit}
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.reverse = function(begin, end) {
+        if (typeof begin === 'undefined') begin = this.offset;
+        if (typeof end === 'undefined') end = this.limit;
+        if (!this.noAssert) {
+            if (typeof begin !== 'number' || begin % 1 !== 0)
+                throw TypeError("Illegal begin: Not an integer");
+            begin >>>= 0;
+            if (typeof end !== 'number' || end % 1 !== 0)
+                throw TypeError("Illegal end: Not an integer");
+            end >>>= 0;
+            if (begin < 0 || begin > end || end > this.buffer.length)
+                throw RangeError("Illegal range: 0 <= "+begin+" <= "+end+" <= "+this.buffer.length);
+        }
+        if (begin === end)
+            return this; // Nothing to reverse
+        Array.prototype.reverse.call(this.buffer.slice(begin, end));
+        return this;
+    };
+    /**
+     * Skips the next `length` bytes. This will just advance
+     * @param {number} length Number of bytes to skip. May also be negative to move the offset back.
+     * @returns {!ByteBuffer} this
+     * @expose
+     */
+    ByteBufferPrototype.skip = function(length) {
+        if (!this.noAssert) {
+            if (typeof length !== 'number' || length % 1 !== 0)
+                throw TypeError("Illegal length: "+length+" (not an integer)");
+            length |= 0;
+        }
+        var offset = this.offset + length;
+        if (!this.noAssert) {
+            if (offset < 0 || offset > this.buffer.length)
+                throw RangeError("Illegal length: 0 <= "+this.offset+" + "+length+" <= "+this.buffer.length);
+        }
+        this.offset = offset;
+        return this;
+    };
+
+    /**
+     * Slices this ByteBuffer by creating a cloned instance with `offset = begin` and `limit = end`.
+     * @param {number=} begin Begin offset, defaults to {@link ByteBuffer#offset}.
+     * @param {number=} end End offset, defaults to {@link ByteBuffer#limit}.
+     * @returns {!ByteBuffer} Clone of this ByteBuffer with slicing applied, backed by the same {@link ByteBuffer#buffer}
+     * @expose
+     */
+    ByteBufferPrototype.slice = function(begin, end) {
+        if (typeof begin === 'undefined') begin = this.offset;
+        if (typeof end === 'undefined') end = this.limit;
+        if (!this.noAssert) {
+            if (typeof begin !== 'number' || begin % 1 !== 0)
+                throw TypeError("Illegal begin: Not an integer");
+            begin >>>= 0;
+            if (typeof end !== 'number' || end % 1 !== 0)
+                throw TypeError("Illegal end: Not an integer");
+            end >>>= 0;
+            if (begin < 0 || begin > end || end > this.buffer.length)
+                throw RangeError("Illegal range: 0 <= "+begin+" <= "+end+" <= "+this.buffer.length);
+        }
+        var bb = this.clone();
+        bb.offset = begin;
+        bb.limit = end;
+        return bb;
+    };
+    /**
+     * Returns a copy of the backing buffer that contains this ByteBuffer's contents. Contents are the bytes between
+     *  {@link ByteBuffer#offset} and {@link ByteBuffer#limit}.
+     * @param {boolean=} forceCopy If `true` returns a copy, otherwise returns a view referencing the same memory if
+     *  possible. Defaults to `false`
+     * @returns {!Buffer} Contents as a Buffer
+     * @expose
+     */
+    ByteBufferPrototype.toBuffer = function(forceCopy) {
+        var offset = this.offset,
+            limit = this.limit;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: Not an integer");
+            offset >>>= 0;
+            if (typeof limit !== 'number' || limit % 1 !== 0)
+                throw TypeError("Illegal limit: Not an integer");
+            limit >>>= 0;
+            if (offset < 0 || offset > limit || limit > this.buffer.length)
+                throw RangeError("Illegal range: 0 <= "+offset+" <= "+limit+" <= "+this.buffer.length);
+        }
+        if (forceCopy) {
+            var buffer$$2 = new Buffer(limit - offset);
+            this.buffer.copy(buffer$$2, 0, offset, limit);
+            return buffer$$2;
+        } else {
+            if (offset === 0 && limit === this.buffer.length)
+                return this.buffer;
+            else
+                return this.buffer.slice(offset, limit);
+        }
+    };
+
+    /**
+     * Returns a copy of the backing buffer compacted to contain this ByteBuffer's contents. Contents are the bytes between
+     *  {@link ByteBuffer#offset} and {@link ByteBuffer#limit}.
+     * @returns {!ArrayBuffer} Contents as an ArrayBuffer
+     */
+    ByteBufferPrototype.toArrayBuffer = function() {
+        var offset = this.offset,
+            limit = this.limit;
+        if (!this.noAssert) {
+            if (typeof offset !== 'number' || offset % 1 !== 0)
+                throw TypeError("Illegal offset: Not an integer");
+            offset >>>= 0;
+            if (typeof limit !== 'number' || limit % 1 !== 0)
+                throw TypeError("Illegal limit: Not an integer");
+            limit >>>= 0;
+            if (offset < 0 || offset > limit || limit > this.buffer.length)
+                throw RangeError("Illegal range: 0 <= "+offset+" <= "+limit+" <= "+this.buffer.length);
+        }
+        var ab = new ArrayBuffer(limit - offset);
+        if (memcpy) { // Fast
+            memcpy(ab, 0, this.buffer, offset, limit);
+        } else { // Slow
+            var dst = new Uint8Array(ab);
+            for (var i=offset; i<limit; ++i)
+                dst[i-offset] = this.buffer[i];
+        }
+        return ab;
+    };
+
+    /**
+     * Converts the ByteBuffer's contents to a string.
+     * @param {string=} encoding Output encoding. Returns an informative string representation if omitted but also allows
+     *  direct conversion to "utf8", "hex", "base64" and "binary" encoding. "debug" returns a hex representation with
+     *  highlighted offsets.
+     * @param {number=} begin Offset to begin at, defaults to {@link ByteBuffer#offset}
+     * @param {number=} end Offset to end at, defaults to {@link ByteBuffer#limit}
+     * @returns {string} String representation
+     * @throws {Error} If `encoding` is invalid
+     * @expose
+     */
+    ByteBufferPrototype.toString = function(encoding, begin, end) {
+        if (typeof encoding === 'undefined')
+            return "ByteBufferNB(offset="+this.offset+",markedOffset="+this.markedOffset+",limit="+this.limit+",capacity="+this.capacity()+")";
+        if (typeof encoding === 'number')
+            encoding = "utf8", begin = encoding, end = begin;
+        switch (encoding) {
+            case "utf8":
+                return this.toUTF8(begin, end);
+            case "base64":
+                return this.toBase64(begin, end);
+            case "hex":
+                return this.toHex(begin, end);
+            case "binary":
+                return this.toBinary(begin, end);
+            case "debug":
+                return this.toDebug();
+            case "columns":
+                return this.toColumns();
+            default:
+                throw Error("Unsupported encoding: "+encoding);
+        }
+    };
+
+    // encodings/base64
+
+    /**
+     * Encodes this ByteBuffer's contents to a base64 encoded string.
+     * @param {number=} begin Offset to begin at, defaults to {@link ByteBuffer#offset}.
+     * @param {number=} end Offset to end at, defaults to {@link ByteBuffer#limit}.
+     * @returns {string} Base64 encoded string
+     * @throws {RangeError} If `begin` or `end` is out of bounds
+     * @expose
+     */
+    ByteBufferPrototype.toBase64 = function(begin, end) {
+        if (typeof begin === 'undefined')
+            begin = this.offset;
+        if (typeof end === 'undefined')
+            end = this.limit;
+        begin = begin | 0; end = end | 0;
+        if (begin < 0 || end > this.capacity || begin > end)
+            throw RangeError("begin, end");
+        return this.buffer.toString("base64", begin, end);
+    };
+
+    /**
+     * Decodes a base64 encoded string to a ByteBuffer.
+     * @param {string} str String to decode
+     * @param {boolean=} littleEndian Whether to use little or big endian byte order. Defaults to
+     *  {@link ByteBuffer.DEFAULT_ENDIAN}.
+     * @returns {!ByteBuffer} ByteBuffer
+     * @expose
+     */
+    ByteBuffer.fromBase64 = function(str, littleEndian) {
+        return ByteBuffer.wrap(new Buffer(str, "base64"), littleEndian);
+        return bb;
+    };
+
+    /**
+     * Encodes a binary string to base64 like `window.btoa` does.
+     * @param {string} str Binary string
+     * @returns {string} Base64 encoded string
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Window.btoa
+     * @expose
+     */
+    ByteBuffer.btoa = function(str) {
+        return ByteBuffer.fromBinary(str).toBase64();
+    };
+
+    /**
+     * Decodes a base64 encoded string to binary like `window.atob` does.
+     * @param {string} b64 Base64 encoded string
+     * @returns {string} Binary string
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Window.atob
+     * @expose
+     */
+    ByteBuffer.atob = function(b64) {
+        return ByteBuffer.fromBase64(b64).toBinary();
+    };
+
+    // encodings/binary
+
+    /**
+     * Encodes this ByteBuffer to a binary encoded string, that is using only characters 0x00-0xFF as bytes.
+     * @param {number=} begin Offset to begin at. Defaults to {@link ByteBuffer#offset}.
+     * @param {number=} end Offset to end at. Defaults to {@link ByteBuffer#limit}.
+     * @returns {string} Binary encoded string
+     * @throws {RangeError} If `offset > limit`
+     * @expose
+     */
+    ByteBufferPrototype.toBinary = function(begin, end) {
+        if (typeof begin === 'undefined')
+            begin = this.offset;
+        if (typeof end === 'undefined')
+            end = this.limit;
+        begin |= 0; end |= 0;
+        if (begin < 0 || end > this.capacity() || begin > end)
+            throw RangeError("begin, end");
+        return this.buffer.toString("binary", begin, end);
+    };
+
+    /**
+     * Decodes a binary encoded string, that is using only characters 0x00-0xFF as bytes, to a ByteBuffer.
+     * @param {string} str String to decode
+     * @param {boolean=} littleEndian Whether to use little or big endian byte order. Defaults to
+     *  {@link ByteBuffer.DEFAULT_ENDIAN}.
+     * @returns {!ByteBuffer} ByteBuffer
+     * @expose
+     */
+    ByteBuffer.fromBinary = function(str, littleEndian) {
+        return ByteBuffer.wrap(new Buffer(str, "binary"), littleEndian);
+        return bb;
+    };
+
+    // encodings/debug
+
+    /**
+     * Encodes this ByteBuffer to a hex encoded string with marked offsets. Offset symbols are:
+     * * `<` : offset,
+     * * `'` : markedOffset,
+     * * `>` : limit,
+     * * `|` : offset and limit,
+     * * `[` : offset and markedOffset,
+     * * `]` : markedOffset and limit,
+     * * `!` : offset, markedOffset and limit
+     * @param {boolean=} columns If `true` returns two columns hex + ascii, defaults to `false`
+     * @returns {string|!Array.<string>} Debug string or array of lines if `asArray = true`
+     * @expose
+     * @example `>00'01 02<03` contains four bytes with `limit=0, markedOffset=1, offset=3`
+     * @example `00[01 02 03>` contains four bytes with `offset=markedOffset=1, limit=4`
+     * @example `00|01 02 03` contains four bytes with `offset=limit=1, markedOffset=-1`
+     * @example `|` contains zero bytes with `offset=limit=0, markedOffset=-1`
+     */
+    ByteBufferPrototype.toDebug = function(columns) {
+        var i = -1,
+            k = this.buffer.length,
+            b,
+            hex = "",
+            asc = "",
+            out = "";
+        while (i<k) {
+            if (i !== -1) {
+                b = this.buffer[i];
+                if (b < 0x10) hex += "0"+b.toString(16).toUpperCase();
+                else hex += b.toString(16).toUpperCase();
+                if (columns)
+                    asc += b > 32 && b < 127 ? String.fromCharCode(b) : '.';
+            }
+            ++i;
+            if (columns) {
+                if (i > 0 && i % 16 === 0 && i !== k) {
+                    while (hex.length < 3*16+3) hex += " ";
+                    out += hex+asc+"\n";
+                    hex = asc = "";
+                }
+            }
+            if (i === this.offset && i === this.limit)
+                hex += i === this.markedOffset ? "!" : "|";
+            else if (i === this.offset)
+                hex += i === this.markedOffset ? "[" : "<";
+            else if (i === this.limit)
+                hex += i === this.markedOffset ? "]" : ">";
+            else
+                hex += i === this.markedOffset ? "'" : (columns || (i !== 0 && i !== k) ? " " : "");
+        }
+        if (columns && hex !== " ") {
+            while (hex.length < 3*16+3)
+                hex += " ";
+            out += hex + asc + "\n";
+        }
+        return columns ? out : hex;
+    };
+
+    /**
+     * Decodes a hex encoded string with marked offsets to a ByteBuffer.
+     * @param {string} str Debug string to decode (not be generated with `columns = true`)
+     * @param {boolean=} littleEndian Whether to use little or big endian byte order. Defaults to
+     *  {@link ByteBuffer.DEFAULT_ENDIAN}.
+     * @param {boolean=} noAssert Whether to skip assertions of offsets and values. Defaults to
+     *  {@link ByteBuffer.DEFAULT_NOASSERT}.
+     * @returns {!ByteBuffer} ByteBuffer
+     * @expose
+     * @see ByteBuffer#toDebug
+     */
+    ByteBuffer.fromDebug = function(str, littleEndian, noAssert) {
+        var k = str.length,
+            bb = new ByteBuffer(((k+1)/3)|0, littleEndian, noAssert);
+        var i = 0, j = 0, ch, b,
+            rs = false, // Require symbol next
+            ho = false, hm = false, hl = false, // Already has offset (ho), markedOffset (hm), limit (hl)?
+            fail = false;
+        while (i<k) {
+            switch (ch = str.charAt(i++)) {
+                case '!':
+                    if (!noAssert) {
+                        if (ho || hm || hl) {
+                            fail = true;
+                            break;
+                        }
+                        ho = hm = hl = true;
+                    }
+                    bb.offset = bb.markedOffset = bb.limit = j;
+                    rs = false;
+                    break;
+                case '|':
+                    if (!noAssert) {
+                        if (ho || hl) {
+                            fail = true;
+                            break;
+                        }
+                        ho = hl = true;
+                    }
+                    bb.offset = bb.limit = j;
+                    rs = false;
+                    break;
+                case '[':
+                    if (!noAssert) {
+                        if (ho || hm) {
+                            fail = true;
+                            break;
+                        }
+                        ho = hm = true;
+                    }
+                    bb.offset = bb.markedOffset = j;
+                    rs = false;
+                    break;
+                case '<':
+                    if (!noAssert) {
+                        if (ho) {
+                            fail = true;
+                            break;
+                        }
+                        ho = true;
+                    }
+                    bb.offset = j;
+                    rs = false;
+                    break;
+                case ']':
+                    if (!noAssert) {
+                        if (hl || hm) {
+                            fail = true;
+                            break;
+                        }
+                        hl = hm = true;
+                    }
+                    bb.limit = bb.markedOffset = j;
+                    rs = false;
+                    break;
+                case '>':
+                    if (!noAssert) {
+                        if (hl) {
+                            fail = true;
+                            break;
+                        }
+                        hl = true;
+                    }
+                    bb.limit = j;
+                    rs = false;
+                    break;
+                case "'":
+                    if (!noAssert) {
+                        if (hm) {
+                            fail = true;
+                            break;
+                        }
+                        hm = true;
+                    }
+                    bb.markedOffset = j;
+                    rs = false;
+                    break;
+                case ' ':
+                    rs = false;
+                    break;
+                default:
+                    if (!noAssert) {
+                        if (rs) {
+                            fail = true;
+                            break;
+                        }
+                    }
+                    b = parseInt(ch+str.charAt(i++), 16);
+                    if (!noAssert) {
+                        if (isNaN(b) || b < 0 || b > 255)
+                            throw TypeError("Illegal str: Not a debug encoded string");
+                    }
+                    bb.buffer[j++] = b;
+                    rs = true;
+            }
+            if (fail)
+                throw TypeError("Illegal str: Invalid symbol at "+i);
+        }
+        if (!noAssert) {
+            if (!ho || !hl)
+                throw TypeError("Illegal str: Missing offset or limit");
+            if (j<bb.buffer.length)
+                throw TypeError("Illegal str: Not a debug encoded string (is it hex?) "+j+" < "+k);
+        }
+        return bb;
+    };
+
+    // encodings/hex
+
+    /**
+     * Encodes this ByteBuffer's contents to a hex encoded string.
+     * @param {number=} begin Offset to begin at. Defaults to {@link ByteBuffer#offset}.
+     * @param {number=} end Offset to end at. Defaults to {@link ByteBuffer#limit}.
+     * @returns {string} Hex encoded string
+     * @expose
+     */
+    ByteBufferPrototype.toHex = function(begin, end) {
+        begin = typeof begin === 'undefined' ? this.offset : begin;
+        end = typeof end === 'undefined' ? this.limit : end;
+        if (!this.noAssert) {
+            if (typeof begin !== 'number' || begin % 1 !== 0)
+                throw TypeError("Illegal begin: Not an integer");
+            begin >>>= 0;
+            if (typeof end !== 'number' || end % 1 !== 0)
+                throw TypeError("Illegal end: Not an integer");
+            end >>>= 0;
+            if (begin < 0 || begin > end || end > this.buffer.length)
+                throw RangeError("Illegal range: 0 <= "+begin+" <= "+end+" <= "+this.buffer.length);
+        }
+        return this.buffer.toString("hex", begin, end);
+    };
+
+    /**
+     * Decodes a hex encoded string to a ByteBuffer.
+     * @param {string} str String to decode
+     * @param {boolean=} littleEndian Whether to use little or big endian byte order. Defaults to
+     *  {@link ByteBuffer.DEFAULT_ENDIAN}.
+     * @param {boolean=} noAssert Whether to skip assertions of offsets and values. Defaults to
+     *  {@link ByteBuffer.DEFAULT_NOASSERT}.
+     * @returns {!ByteBuffer} ByteBuffer
+     * @expose
+     */
+    ByteBuffer.fromHex = function(str, littleEndian, noAssert) {
+        if (!noAssert) {
+            if (typeof str !== 'string')
+                throw TypeError("Illegal str: Not a string");
+            if (str.length % 2 !== 0)
+                throw TypeError("Illegal str: Length not a multiple of 2");
+        }
+        var bb = new ByteBuffer(0, littleEndian, true);
+        bb.buffer = new Buffer(str, "hex");
+        bb.limit = bb.buffer.length;
+        return bb;
+    };
+
+    // utfx-embeddable
+
+    /**
+     * utfx-embeddable (c) 2014 Daniel Wirtz <dcode@dcode.io>
+     * Released under the Apache License, Version 2.0
+     * see: https://github.com/dcodeIO/utfx for details
+     */
+    var utfx = function() {
+        "use strict";
+
+        /**
+         * utfx namespace.
+         * @inner
+         * @type {!Object.<string,*>}
+         */
+        var utfx = {};
+
+        /**
+         * Maximum valid code point.
+         * @type {number}
+         * @const
+         */
+        utfx.MAX_CODEPOINT = 0x10FFFF;
+
+        /**
+         * Encodes UTF8 code points to UTF8 bytes.
+         * @param {(!function():number|null) | number} src Code points source, either as a function returning the next code point
+         *  respectively `null` if there are no more code points left or a single numeric code point.
+         * @param {!function(number)} dst Bytes destination as a function successively called with the next byte
+         */
+        utfx.encodeUTF8 = function(src, dst) {
+            var cp = null;
+            if (typeof src === 'number')
+                cp = src, src = function() { return null; };
+            while (cp !== null || (cp = src()) !== null) {
+                if (cp < 0x80)
+                    dst(cp&0x7F);
+                else if (cp < 0x800)
+                    dst(((cp>>6)&0x1F)|0xC0), dst((cp&0x3F)|0x80);
+                else if (cp < 0x10000)
+                    dst(((cp>>12)&0x0F)|0xE0), dst(((cp>>6)&0x3F)|0x80), dst((cp&0x3F)|0x80);
+                else
+                    dst(((cp>>18)&0x07)|0xF0), dst(((cp>>12)&0x3F)|0x80), dst(((cp>>6)&0x3F)|0x80), dst((cp&0x3F)|0x80);
+                cp = null;
+            }
+        };
+
+        /**
+         * Decodes UTF8 bytes to UTF8 code points.
+         * @param {!function():number|null} src Bytes source as a function returning the next byte respectively `null` if there
+         *  are no more bytes left.
+         * @param {!function(number)} dst Code points destination as a function successively called with each decoded code point.
+         * @throws {RangeError} If a starting byte is invalid in UTF8
+         * @throws {Error} If the last sequence is truncated. Has an array property `bytes` holding the
+         *  remaining bytes.
+         */
+        utfx.decodeUTF8 = function(src, dst) {
+            var a, b, c, d, fail = function(b) {
+                b = b.slice(0, b.indexOf(null));
+                var err = Error(b.toString());
+                err.name = "TruncatedError";
+                err['bytes'] = b;
+                throw err;
+            };
+            while ((a = src()) !== null) {
+                if ((a&0x80) === 0)
+                    dst(a);
+                else if ((a&0xE0) === 0xC0)
+                    ((b = src()) === null) && fail([a, b]), dst(((a&0x1F)<<6) | (b&0x3F));
+                else if ((a&0xF0) === 0xE0)
+                    ((b=src()) === null || (c=src()) === null) && fail([a, b, c]), dst(((a&0x0F)<<12) | ((b&0x3F)<<6) | (c&0x3F));
+                else if ((a&0xF8) === 0xF0)
+                    ((b=src()) === null || (c=src()) === null || (d=src()) === null) && fail([a, b, c ,d]), dst(((a&0x07)<<18) | ((b&0x3F)<<12) | ((c&0x3F)<<6) | (d&0x3F));
+                else throw RangeError("Illegal starting byte: "+a);
+            }
+        };
+
+        /**
+         * Converts UTF16 characters to UTF8 code points.
+         * @param {!function():number|null} src Characters source as a function returning the next char code respectively
+         *  `null` if there are no more characters left.
+         * @param {!function(number)} dst Code points destination as a function successively called with each converted code
+         *  point.
+         */
+        utfx.UTF16toUTF8 = function(src, dst) {
+            var c1, c2 = null;
+            while (true) {
+                if ((c1 = c2 !== null ? c2 : src()) === null)
+                    break;
+                if (c1 >= 0xD800 && c1 <= 0xDFFF) {
+                    if ((c2 = src()) !== null) {
+                        if (c2 >= 0xDC00 && c2 <= 0xDFFF) {
+                            dst((c1-0xD800)*0x400+c2-0xDC00+0x10000);
+                            c2 = null; continue;
+                        }
+                    }
+                }
+                dst(c1);
+            }
+            if (c2 !== null) dst(c2);
+        };
+
+        /**
+         * Converts UTF8 code points to UTF16 characters.
+         * @param {(!function():number|null) | number} src Code points source, either as a function returning the next code point
+         *  respectively `null` if there are no more code points left or a single numeric code point.
+         * @param {!function(number)} dst Characters destination as a function successively called with each converted char code.
+         * @throws {RangeError} If a code point is out of range
+         */
+        utfx.UTF8toUTF16 = function(src, dst) {
+            var cp = null;
+            if (typeof src === 'number')
+                cp = src, src = function() { return null; };
+            while (cp !== null || (cp = src()) !== null) {
+                if (cp <= 0xFFFF)
+                    dst(cp);
+                else
+                    cp -= 0x10000, dst((cp>>10)+0xD800), dst((cp%0x400)+0xDC00);
+                cp = null;
+            }
+        };
+
+        /**
+         * Converts and encodes UTF16 characters to UTF8 bytes.
+         * @param {!function():number|null} src Characters source as a function returning the next char code respectively `null`
+         *  if there are no more characters left.
+         * @param {!function(number)} dst Bytes destination as a function successively called with the next byte.
+         */
+        utfx.encodeUTF16toUTF8 = function(src, dst) {
+            utfx.UTF16toUTF8(src, function(cp) {
+                utfx.encodeUTF8(cp, dst);
+            });
+        };
+
+        /**
+         * Decodes and converts UTF8 bytes to UTF16 characters.
+         * @param {!function():number|null} src Bytes source as a function returning the next byte respectively `null` if there
+         *  are no more bytes left.
+         * @param {!function(number)} dst Characters destination as a function successively called with each converted char code.
+         * @throws {RangeError} If a starting byte is invalid in UTF8
+         * @throws {Error} If the last sequence is truncated. Has an array property `bytes` holding the remaining bytes.
+         */
+        utfx.decodeUTF8toUTF16 = function(src, dst) {
+            utfx.decodeUTF8(src, function(cp) {
+                utfx.UTF8toUTF16(cp, dst);
+            });
+        };
+
+        /**
+         * Calculates the byte length of an UTF8 code point.
+         * @param {number} cp UTF8 code point
+         * @returns {number} Byte length
+         */
+        utfx.calculateCodePoint = function(cp) {
+            return (cp < 0x80) ? 1 : (cp < 0x800) ? 2 : (cp < 0x10000) ? 3 : 4;
+        };
+
+        /**
+         * Calculates the number of UTF8 bytes required to store UTF8 code points.
+         * @param {(!function():number|null)} src Code points source as a function returning the next code point respectively
+         *  `null` if there are no more code points left.
+         * @returns {number} The number of UTF8 bytes required
+         */
+        utfx.calculateUTF8 = function(src) {
+            var cp, l=0;
+            while ((cp = src()) !== null)
+                l += (cp < 0x80) ? 1 : (cp < 0x800) ? 2 : (cp < 0x10000) ? 3 : 4;
+            return l;
+        };
+
+        /**
+         * Calculates the number of UTF8 code points respectively UTF8 bytes required to store UTF16 char codes.
+         * @param {(!function():number|null)} src Characters source as a function returning the next char code respectively
+         *  `null` if there are no more characters left.
+         * @returns {!Array.<number>} The number of UTF8 code points at index 0 and the number of UTF8 bytes required at index 1.
+         */
+        utfx.calculateUTF16asUTF8 = function(src) {
+            var n=0, l=0;
+            utfx.UTF16toUTF8(src, function(cp) {
+                ++n; l += (cp < 0x80) ? 1 : (cp < 0x800) ? 2 : (cp < 0x10000) ? 3 : 4;
+            });
+            return [n,l];
+        };
+
+        return utfx;
+    }();
+
+    // encodings/utf8
+
+    /**
+     * Encodes this ByteBuffer's contents between {@link ByteBuffer#offset} and {@link ByteBuffer#limit} to an UTF8 encoded
+     *  string.
+     * @returns {string} Hex encoded string
+     * @throws {RangeError} If `offset > limit`
+     * @expose
+     */
+    ByteBufferPrototype.toUTF8 = function(begin, end) {
+        if (typeof begin === 'undefined') begin = this.offset;
+        if (typeof end === 'undefined') end = this.limit;
+        if (!this.noAssert) {
+            if (typeof begin !== 'number' || begin % 1 !== 0)
+                throw TypeError("Illegal begin: Not an integer");
+            begin >>>= 0;
+            if (typeof end !== 'number' || end % 1 !== 0)
+                throw TypeError("Illegal end: Not an integer");
+            end >>>= 0;
+            if (begin < 0 || begin > end || end > this.buffer.length)
+                throw RangeError("Illegal range: 0 <= "+begin+" <= "+end+" <= "+this.buffer.length);
+        }
+        return this.buffer.toString("utf8", begin, end);
+    };
+
+    /**
+     * Decodes an UTF8 encoded string to a ByteBuffer.
+     * @param {string} str String to decode
+     * @param {boolean=} littleEndian Whether to use little or big endian byte order. Defaults to
+     *  {@link ByteBuffer.DEFAULT_ENDIAN}.
+     * @param {boolean=} noAssert Whether to skip assertions of offsets and values. Defaults to
+     *  {@link ByteBuffer.DEFAULT_NOASSERT}.
+     * @returns {!ByteBuffer} ByteBuffer
+     * @expose
+     */
+    ByteBuffer.fromUTF8 = function(str, littleEndian, noAssert) {
+        if (!noAssert)
+            if (typeof str !== 'string')
+                throw TypeError("Illegal str: Not a string");
+        var bb = new ByteBuffer(0, littleEndian, noAssert);
+        bb.buffer = new Buffer(str, "utf8");
+        bb.limit = bb.buffer.length;
+        return bb;
+    };
+
+
+    /**
+     * node-memcpy. This is an optional binding dependency and may not be present.
+     * @function
+     * @param {!(Buffer|ArrayBuffer|Uint8Array)} target Destination
+     * @param {number|!(Buffer|ArrayBuffer)} targetStart Destination start, defaults to 0.
+     * @param {(!(Buffer|ArrayBuffer|Uint8Array)|number)=} source Source
+     * @param {number=} sourceStart Source start, defaults to 0.
+     * @param {number=} sourceEnd Source end, defaults to capacity.
+     * @returns {number} Number of bytes copied
+     * @throws {Error} If any index is out of bounds
+     * @expose
+     */
+    ByteBuffer.memcpy = memcpy;
+
+    return ByteBuffer;
+
+})();
+
+var browserifyAes = createCommonjsModule(function (module, exports) {
+exports.createCipher = exports.Cipher = crypto.createCipher;
+exports.createCipheriv = exports.Cipheriv = crypto.createCipheriv;
+exports.createDecipher = exports.Decipher = crypto.createDecipher;
+exports.createDecipheriv = exports.Decipheriv = crypto.createDecipheriv;
+exports.listCiphers = exports.getCiphers = crypto.getCiphers;
+});
+
+var _from$4 = "bigi@^1.4.2";
+var _id$4 = "bigi@1.4.2";
+var _inBundle$4 = false;
+var _integrity$4 = "sha1-nGZalfiLiwj8Bc/XMfVhhZ1yWCU=";
+var _location$4 = "/bigi";
+var _phantomChildren$4 = {};
+var _requested$4 = {"type":"range","registry":true,"raw":"bigi@^1.4.2","name":"bigi","escapedName":"bigi","rawSpec":"^1.4.2","saveSpec":null,"fetchSpec":"^1.4.2"};
+var _requiredBy$4 = ["/ecurve","/eosjs-ecc"];
+var _resolved$4 = "https://registry.npmjs.org/bigi/-/bigi-1.4.2.tgz";
+var _shasum = "9c665a95f88b8b08fc05cfd731f561859d725825";
+var _spec$4 = "bigi@^1.4.2";
+var _where$4 = "/home/rails/repositories/heat-libs/node_modules/eosjs-ecc";
+var bugs$4 = {"url":"https://github.com/cryptocoinjs/bigi/issues"};
+var bundleDependencies = false;
+var dependencies$4 = {};
+var deprecated = false;
+var description$4 = "Big integers.";
+var devDependencies$4 = {"coveralls":"^2.11.2","istanbul":"^0.3.5","jshint":"^2.5.1","mocha":"^2.1.0","mochify":"^2.1.0"};
+var homepage$4 = "https://github.com/cryptocoinjs/bigi#readme";
+var keywords$4 = ["cryptography","math","bitcoin","arbitrary","precision","arithmetic","big","integer","int","number","biginteger","bigint","bignumber","decimal","float"];
+var main$4 = "./lib/index.js";
+var name$4 = "bigi";
+var repository$4 = {"url":"git+https://github.com/cryptocoinjs/bigi.git","type":"git"};
+var scripts$4 = {"browser-test":"mochify --wd -R spec","coverage":"istanbul cover ./node_modules/.bin/_mocha -- --reporter list test/*.js","coveralls":"npm run-script coverage && node ./node_modules/.bin/coveralls < coverage/lcov.info","jshint":"jshint --config jshint.json lib/*.js ; true","test":"_mocha -- test/*.js","unit":"mocha"};
+var testling = {"files":"test/*.js","harness":"mocha","browsers":["ie/9..latest","firefox/latest","chrome/latest","safari/6.0..latest","iphone/6.0..latest","android-browser/4.2..latest"]};
+var version$8 = "1.4.2";
+var _package$8 = {
+	_from: _from$4,
+	_id: _id$4,
+	_inBundle: _inBundle$4,
+	_integrity: _integrity$4,
+	_location: _location$4,
+	_phantomChildren: _phantomChildren$4,
+	_requested: _requested$4,
+	_requiredBy: _requiredBy$4,
+	_resolved: _resolved$4,
+	_shasum: _shasum,
+	_spec: _spec$4,
+	_where: _where$4,
+	bugs: bugs$4,
+	bundleDependencies: bundleDependencies,
+	dependencies: dependencies$4,
+	deprecated: deprecated,
+	description: description$4,
+	devDependencies: devDependencies$4,
+	homepage: homepage$4,
+	keywords: keywords$4,
+	main: main$4,
+	name: name$4,
+	repository: repository$4,
+	scripts: scripts$4,
+	testling: testling,
+	version: version$8
+};
+
+var _package$9 = Object.freeze({
+	_from: _from$4,
+	_id: _id$4,
+	_inBundle: _inBundle$4,
+	_integrity: _integrity$4,
+	_location: _location$4,
+	_phantomChildren: _phantomChildren$4,
+	_requested: _requested$4,
+	_requiredBy: _requiredBy$4,
+	_resolved: _resolved$4,
+	_shasum: _shasum,
+	_spec: _spec$4,
+	_where: _where$4,
+	bugs: bugs$4,
+	bundleDependencies: bundleDependencies,
+	dependencies: dependencies$4,
+	deprecated: deprecated,
+	description: description$4,
+	devDependencies: devDependencies$4,
+	homepage: homepage$4,
+	keywords: keywords$4,
+	main: main$4,
+	name: name$4,
+	repository: repository$4,
+	scripts: scripts$4,
+	testling: testling,
+	version: version$8,
+	default: _package$8
+});
+
+var require$$0$37 = ( _package$9 && _package$8 ) || _package$9;
+
+// (public) Constructor
+function BigInteger$3(a, b, c) {
+  if (!(this instanceof BigInteger$3))
+    return new BigInteger$3(a, b, c)
+
+  if (a != null) {
+    if ("number" == typeof a) this.fromNumber(a, b, c);
+    else if (b == null && "string" != typeof a) this.fromString(a, 256);
+    else this.fromString(a, b);
+  }
+}
+
+var proto = BigInteger$3.prototype;
+
+// duck-typed isBigInteger
+proto.__bigi = require$$0$37.version;
+BigInteger$3.isBigInteger = function (obj, check_ver) {
+  return obj && obj.__bigi && (!check_ver || obj.__bigi === proto.__bigi)
+};
+
+// Bits per digit
+var dbits;
+
+// am: Compute w_j += (x*this_i), propagate carries,
+// c is initial carry, returns final carry.
+// c < 3*dvalue, x < 2*dvalue, this_i < dvalue
+// We need to select the fastest one that works in this environment.
+
+// am1: use a single mult and divide to get the high bits,
+// max digit bits should be 26 because
+// max internal value = 2*dvalue^2-2*dvalue (< 2^53)
+function am1(i, x, w, j, c, n) {
+  while (--n >= 0) {
+    var v = x * this[i++] + w[j] + c;
+    c = Math.floor(v / 0x4000000);
+    w[j++] = v & 0x3ffffff;
+  }
+  return c
+}
+// wtf?
+BigInteger$3.prototype.am = am1;
+dbits = 26;
+
+BigInteger$3.prototype.DB = dbits;
+BigInteger$3.prototype.DM = ((1 << dbits) - 1);
+var DV = BigInteger$3.prototype.DV = (1 << dbits);
+
+var BI_FP = 52;
+BigInteger$3.prototype.FV = Math.pow(2, BI_FP);
+BigInteger$3.prototype.F1 = BI_FP - dbits;
+BigInteger$3.prototype.F2 = 2 * dbits - BI_FP;
+
+// Digit conversions
+var BI_RM = "0123456789abcdefghijklmnopqrstuvwxyz";
+var BI_RC = new Array();
+var rr;
+var vv;
+rr = "0".charCodeAt(0);
+for (vv = 0; vv <= 9; ++vv) BI_RC[rr++] = vv;
+rr = "a".charCodeAt(0);
+for (vv = 10; vv < 36; ++vv) BI_RC[rr++] = vv;
+rr = "A".charCodeAt(0);
+for (vv = 10; vv < 36; ++vv) BI_RC[rr++] = vv;
+
+function int2char(n) {
+  return BI_RM.charAt(n)
+}
+
+function intAt(s, i) {
+  var c = BI_RC[s.charCodeAt(i)];
+  return (c == null) ? -1 : c
+}
+
+// (protected) copy this to r
+function bnpCopyTo(r) {
+  for (var i = this.t - 1; i >= 0; --i) r[i] = this[i];
+  r.t = this.t;
+  r.s = this.s;
+}
+
+// (protected) set from integer value x, -DV <= x < DV
+function bnpFromInt(x) {
+  this.t = 1;
+  this.s = (x < 0) ? -1 : 0;
+  if (x > 0) this[0] = x;
+  else if (x < -1) this[0] = x + DV;
+  else this.t = 0;
+}
+
+// return bigint initialized to value
+function nbv(i) {
+  var r = new BigInteger$3();
+  r.fromInt(i);
+  return r
+}
+
+// (protected) set from string and radix
+function bnpFromString(s, b) {
+  var self = this;
+
+  var k;
+  if (b == 16) k = 4;
+  else if (b == 8) k = 3;
+  else if (b == 256) k = 8; // byte array
+  else if (b == 2) k = 1;
+  else if (b == 32) k = 5;
+  else if (b == 4) k = 2;
+  else {
+    self.fromRadix(s, b);
+    return
+  }
+  self.t = 0;
+  self.s = 0;
+  var i = s.length,
+    mi = false,
+    sh = 0;
+  while (--i >= 0) {
+    var x = (k == 8) ? s[i] & 0xff : intAt(s, i);
+    if (x < 0) {
+      if (s.charAt(i) == "-") mi = true;
+      continue
+    }
+    mi = false;
+    if (sh == 0)
+      self[self.t++] = x;
+    else if (sh + k > self.DB) {
+      self[self.t - 1] |= (x & ((1 << (self.DB - sh)) - 1)) << sh;
+      self[self.t++] = (x >> (self.DB - sh));
+    } else
+      self[self.t - 1] |= x << sh;
+    sh += k;
+    if (sh >= self.DB) sh -= self.DB;
+  }
+  if (k == 8 && (s[0] & 0x80) != 0) {
+    self.s = -1;
+    if (sh > 0) self[self.t - 1] |= ((1 << (self.DB - sh)) - 1) << sh;
+  }
+  self.clamp();
+  if (mi) BigInteger$3.ZERO.subTo(self, self);
+}
+
+// (protected) clamp off excess high words
+function bnpClamp() {
+  var c = this.s & this.DM;
+  while (this.t > 0 && this[this.t - 1] == c)--this.t;
+}
+
+// (public) return string representation in given radix
+function bnToString(b) {
+  var self = this;
+  if (self.s < 0) return "-" + self.negate()
+    .toString(b)
+  var k;
+  if (b == 16) k = 4;
+  else if (b == 8) k = 3;
+  else if (b == 2) k = 1;
+  else if (b == 32) k = 5;
+  else if (b == 4) k = 2;
+  else return self.toRadix(b)
+  var km = (1 << k) - 1,
+    d, m = false,
+    r = "",
+    i = self.t;
+  var p = self.DB - (i * self.DB) % k;
+  if (i-- > 0) {
+    if (p < self.DB && (d = self[i] >> p) > 0) {
+      m = true;
+      r = int2char(d);
+    }
+    while (i >= 0) {
+      if (p < k) {
+        d = (self[i] & ((1 << p) - 1)) << (k - p);
+        d |= self[--i] >> (p += self.DB - k);
+      } else {
+        d = (self[i] >> (p -= k)) & km;
+        if (p <= 0) {
+          p += self.DB;
+          --i;
+        }
+      }
+      if (d > 0) m = true;
+      if (m) r += int2char(d);
+    }
+  }
+  return m ? r : "0"
+}
+
+// (public) -this
+function bnNegate() {
+  var r = new BigInteger$3();
+  BigInteger$3.ZERO.subTo(this, r);
+  return r
+}
+
+// (public) |this|
+function bnAbs() {
+  return (this.s < 0) ? this.negate() : this
+}
+
+// (public) return + if this > a, - if this < a, 0 if equal
+function bnCompareTo(a) {
+  var r = this.s - a.s;
+  if (r != 0) return r
+  var i = this.t;
+  r = i - a.t;
+  if (r != 0) return (this.s < 0) ? -r : r
+  while (--i >= 0)
+    if ((r = this[i] - a[i]) != 0) return r
+  return 0
+}
+
+// returns bit length of the integer x
+function nbits(x) {
+  var r = 1,
+    t;
+  if ((t = x >>> 16) != 0) {
+    x = t;
+    r += 16;
+  }
+  if ((t = x >> 8) != 0) {
+    x = t;
+    r += 8;
+  }
+  if ((t = x >> 4) != 0) {
+    x = t;
+    r += 4;
+  }
+  if ((t = x >> 2) != 0) {
+    x = t;
+    r += 2;
+  }
+  if ((t = x >> 1) != 0) {
+    x = t;
+    r += 1;
+  }
+  return r
+}
+
+// (public) return the number of bits in "this"
+function bnBitLength() {
+  if (this.t <= 0) return 0
+  return this.DB * (this.t - 1) + nbits(this[this.t - 1] ^ (this.s & this.DM))
+}
+
+// (public) return the number of bytes in "this"
+function bnByteLength() {
+  return this.bitLength() >> 3
+}
+
+// (protected) r = this << n*DB
+function bnpDLShiftTo(n, r) {
+  var i;
+  for (i = this.t - 1; i >= 0; --i) r[i + n] = this[i];
+  for (i = n - 1; i >= 0; --i) r[i] = 0;
+  r.t = this.t + n;
+  r.s = this.s;
+}
+
+// (protected) r = this >> n*DB
+function bnpDRShiftTo(n, r) {
+  for (var i = n; i < this.t; ++i) r[i - n] = this[i];
+  r.t = Math.max(this.t - n, 0);
+  r.s = this.s;
+}
+
+// (protected) r = this << n
+function bnpLShiftTo(n, r) {
+  var self = this;
+  var bs = n % self.DB;
+  var cbs = self.DB - bs;
+  var bm = (1 << cbs) - 1;
+  var ds = Math.floor(n / self.DB),
+    c = (self.s << bs) & self.DM,
+    i;
+  for (i = self.t - 1; i >= 0; --i) {
+    r[i + ds + 1] = (self[i] >> cbs) | c;
+    c = (self[i] & bm) << bs;
+  }
+  for (i = ds - 1; i >= 0; --i) r[i] = 0;
+  r[ds] = c;
+  r.t = self.t + ds + 1;
+  r.s = self.s;
+  r.clamp();
+}
+
+// (protected) r = this >> n
+function bnpRShiftTo(n, r) {
+  var self = this;
+  r.s = self.s;
+  var ds = Math.floor(n / self.DB);
+  if (ds >= self.t) {
+    r.t = 0;
+    return
+  }
+  var bs = n % self.DB;
+  var cbs = self.DB - bs;
+  var bm = (1 << bs) - 1;
+  r[0] = self[ds] >> bs;
+  for (var i = ds + 1; i < self.t; ++i) {
+    r[i - ds - 1] |= (self[i] & bm) << cbs;
+    r[i - ds] = self[i] >> bs;
+  }
+  if (bs > 0) r[self.t - ds - 1] |= (self.s & bm) << cbs;
+  r.t = self.t - ds;
+  r.clamp();
+}
+
+// (protected) r = this - a
+function bnpSubTo(a, r) {
+  var self = this;
+  var i = 0,
+    c = 0,
+    m = Math.min(a.t, self.t);
+  while (i < m) {
+    c += self[i] - a[i];
+    r[i++] = c & self.DM;
+    c >>= self.DB;
+  }
+  if (a.t < self.t) {
+    c -= a.s;
+    while (i < self.t) {
+      c += self[i];
+      r[i++] = c & self.DM;
+      c >>= self.DB;
+    }
+    c += self.s;
+  } else {
+    c += self.s;
+    while (i < a.t) {
+      c -= a[i];
+      r[i++] = c & self.DM;
+      c >>= self.DB;
+    }
+    c -= a.s;
+  }
+  r.s = (c < 0) ? -1 : 0;
+  if (c < -1) r[i++] = self.DV + c;
+  else if (c > 0) r[i++] = c;
+  r.t = i;
+  r.clamp();
+}
+
+// (protected) r = this * a, r != this,a (HAC 14.12)
+// "this" should be the larger one if appropriate.
+function bnpMultiplyTo(a, r) {
+  var x = this.abs(),
+    y = a.abs();
+  var i = x.t;
+  r.t = i + y.t;
+  while (--i >= 0) r[i] = 0;
+  for (i = 0; i < y.t; ++i) r[i + x.t] = x.am(0, y[i], r, i, 0, x.t);
+  r.s = 0;
+  r.clamp();
+  if (this.s != a.s) BigInteger$3.ZERO.subTo(r, r);
+}
+
+// (protected) r = this^2, r != this (HAC 14.16)
+function bnpSquareTo(r) {
+  var x = this.abs();
+  var i = r.t = 2 * x.t;
+  while (--i >= 0) r[i] = 0;
+  for (i = 0; i < x.t - 1; ++i) {
+    var c = x.am(i, x[i], r, 2 * i, 0, 1);
+    if ((r[i + x.t] += x.am(i + 1, 2 * x[i], r, 2 * i + 1, c, x.t - i - 1)) >= x.DV) {
+      r[i + x.t] -= x.DV;
+      r[i + x.t + 1] = 1;
+    }
+  }
+  if (r.t > 0) r[r.t - 1] += x.am(i, x[i], r, 2 * i, 0, 1);
+  r.s = 0;
+  r.clamp();
+}
+
+// (protected) divide this by m, quotient and remainder to q, r (HAC 14.20)
+// r != q, this != m.  q or r may be null.
+function bnpDivRemTo(m, q, r) {
+  var self = this;
+  var pm = m.abs();
+  if (pm.t <= 0) return
+  var pt = self.abs();
+  if (pt.t < pm.t) {
+    if (q != null) q.fromInt(0);
+    if (r != null) self.copyTo(r);
+    return
+  }
+  if (r == null) r = new BigInteger$3();
+  var y = new BigInteger$3(),
+    ts = self.s,
+    ms = m.s;
+  var nsh = self.DB - nbits(pm[pm.t - 1]); // normalize modulus
+  if (nsh > 0) {
+    pm.lShiftTo(nsh, y);
+    pt.lShiftTo(nsh, r);
+  } else {
+    pm.copyTo(y);
+    pt.copyTo(r);
+  }
+  var ys = y.t;
+  var y0 = y[ys - 1];
+  if (y0 == 0) return
+  var yt = y0 * (1 << self.F1) + ((ys > 1) ? y[ys - 2] >> self.F2 : 0);
+  var d1 = self.FV / yt,
+    d2 = (1 << self.F1) / yt,
+    e = 1 << self.F2;
+  var i = r.t,
+    j = i - ys,
+    t = (q == null) ? new BigInteger$3() : q;
+  y.dlShiftTo(j, t);
+  if (r.compareTo(t) >= 0) {
+    r[r.t++] = 1;
+    r.subTo(t, r);
+  }
+  BigInteger$3.ONE.dlShiftTo(ys, t);
+  t.subTo(y, y); // "negative" y so we can replace sub with am later
+  while (y.t < ys) y[y.t++] = 0;
+  while (--j >= 0) {
+    // Estimate quotient digit
+    var qd = (r[--i] == y0) ? self.DM : Math.floor(r[i] * d1 + (r[i - 1] + e) * d2);
+    if ((r[i] += y.am(0, qd, r, j, 0, ys)) < qd) { // Try it out
+      y.dlShiftTo(j, t);
+      r.subTo(t, r);
+      while (r[i] < --qd) r.subTo(t, r);
+    }
+  }
+  if (q != null) {
+    r.drShiftTo(ys, q);
+    if (ts != ms) BigInteger$3.ZERO.subTo(q, q);
+  }
+  r.t = ys;
+  r.clamp();
+  if (nsh > 0) r.rShiftTo(nsh, r); // Denormalize remainder
+  if (ts < 0) BigInteger$3.ZERO.subTo(r, r);
+}
+
+// (public) this mod a
+function bnMod(a) {
+  var r = new BigInteger$3();
+  this.abs()
+    .divRemTo(a, null, r);
+  if (this.s < 0 && r.compareTo(BigInteger$3.ZERO) > 0) a.subTo(r, r);
+  return r
+}
+
+// Modular reduction using "classic" algorithm
+function Classic(m) {
+  this.m = m;
+}
+
+function cConvert(x) {
+  if (x.s < 0 || x.compareTo(this.m) >= 0) return x.mod(this.m)
+  else return x
+}
+
+function cRevert(x) {
+  return x
+}
+
+function cReduce(x) {
+  x.divRemTo(this.m, null, x);
+}
+
+function cMulTo(x, y, r) {
+  x.multiplyTo(y, r);
+  this.reduce(r);
+}
+
+function cSqrTo(x, r) {
+  x.squareTo(r);
+  this.reduce(r);
+}
+
+Classic.prototype.convert = cConvert;
+Classic.prototype.revert = cRevert;
+Classic.prototype.reduce = cReduce;
+Classic.prototype.mulTo = cMulTo;
+Classic.prototype.sqrTo = cSqrTo;
+
+// (protected) return "-1/this % 2^DB"; useful for Mont. reduction
+// justification:
+//         xy == 1 (mod m)
+//         xy =  1+km
+//   xy(2-xy) = (1+km)(1-km)
+// x[y(2-xy)] = 1-k^2m^2
+// x[y(2-xy)] == 1 (mod m^2)
+// if y is 1/x mod m, then y(2-xy) is 1/x mod m^2
+// should reduce x and y(2-xy) by m^2 at each step to keep size bounded.
+// JS multiply "overflows" differently from C/C++, so care is needed here.
+function bnpInvDigit() {
+  if (this.t < 1) return 0
+  var x = this[0];
+  if ((x & 1) == 0) return 0
+  var y = x & 3; // y == 1/x mod 2^2
+  y = (y * (2 - (x & 0xf) * y)) & 0xf; // y == 1/x mod 2^4
+  y = (y * (2 - (x & 0xff) * y)) & 0xff; // y == 1/x mod 2^8
+  y = (y * (2 - (((x & 0xffff) * y) & 0xffff))) & 0xffff; // y == 1/x mod 2^16
+  // last step - calculate inverse mod DV directly
+  // assumes 16 < DB <= 32 and assumes ability to handle 48-bit ints
+  y = (y * (2 - x * y % this.DV)) % this.DV; // y == 1/x mod 2^dbits
+  // we really want the negative inverse, and -DV < y < DV
+  return (y > 0) ? this.DV - y : -y
+}
+
+// Montgomery reduction
+function Montgomery(m) {
+  this.m = m;
+  this.mp = m.invDigit();
+  this.mpl = this.mp & 0x7fff;
+  this.mph = this.mp >> 15;
+  this.um = (1 << (m.DB - 15)) - 1;
+  this.mt2 = 2 * m.t;
+}
+
+// xR mod m
+function montConvert(x) {
+  var r = new BigInteger$3();
+  x.abs()
+    .dlShiftTo(this.m.t, r);
+  r.divRemTo(this.m, null, r);
+  if (x.s < 0 && r.compareTo(BigInteger$3.ZERO) > 0) this.m.subTo(r, r);
+  return r
+}
+
+// x/R mod m
+function montRevert(x) {
+  var r = new BigInteger$3();
+  x.copyTo(r);
+  this.reduce(r);
+  return r
+}
+
+// x = x/R mod m (HAC 14.32)
+function montReduce(x) {
+  while (x.t <= this.mt2) // pad x so am has enough room later
+    x[x.t++] = 0;
+  for (var i = 0; i < this.m.t; ++i) {
+    // faster way of calculating u0 = x[i]*mp mod DV
+    var j = x[i] & 0x7fff;
+    var u0 = (j * this.mpl + (((j * this.mph + (x[i] >> 15) * this.mpl) & this.um) << 15)) & x.DM;
+    // use am to combine the multiply-shift-add into one call
+    j = i + this.m.t;
+    x[j] += this.m.am(0, u0, x, i, 0, this.m.t);
+    // propagate carry
+    while (x[j] >= x.DV) {
+      x[j] -= x.DV;
+      x[++j]++;
+    }
+  }
+  x.clamp();
+  x.drShiftTo(this.m.t, x);
+  if (x.compareTo(this.m) >= 0) x.subTo(this.m, x);
+}
+
+// r = "x^2/R mod m"; x != r
+function montSqrTo(x, r) {
+  x.squareTo(r);
+  this.reduce(r);
+}
+
+// r = "xy/R mod m"; x,y != r
+function montMulTo(x, y, r) {
+  x.multiplyTo(y, r);
+  this.reduce(r);
+}
+
+Montgomery.prototype.convert = montConvert;
+Montgomery.prototype.revert = montRevert;
+Montgomery.prototype.reduce = montReduce;
+Montgomery.prototype.mulTo = montMulTo;
+Montgomery.prototype.sqrTo = montSqrTo;
+
+// (protected) true iff this is even
+function bnpIsEven() {
+  return ((this.t > 0) ? (this[0] & 1) : this.s) == 0
+}
+
+// (protected) this^e, e < 2^32, doing sqr and mul with "r" (HAC 14.79)
+function bnpExp(e, z) {
+  if (e > 0xffffffff || e < 1) return BigInteger$3.ONE
+  var r = new BigInteger$3(),
+    r2 = new BigInteger$3(),
+    g = z.convert(this),
+    i = nbits(e) - 1;
+  g.copyTo(r);
+  while (--i >= 0) {
+    z.sqrTo(r, r2);
+    if ((e & (1 << i)) > 0) z.mulTo(r2, g, r);
+    else {
+      var t = r;
+      r = r2;
+      r2 = t;
+    }
+  }
+  return z.revert(r)
+}
+
+// (public) this^e % m, 0 <= e < 2^32
+function bnModPowInt(e, m) {
+  var z;
+  if (e < 256 || m.isEven()) z = new Classic(m);
+  else z = new Montgomery(m);
+  return this.exp(e, z)
+}
+
+// protected
+proto.copyTo = bnpCopyTo;
+proto.fromInt = bnpFromInt;
+proto.fromString = bnpFromString;
+proto.clamp = bnpClamp;
+proto.dlShiftTo = bnpDLShiftTo;
+proto.drShiftTo = bnpDRShiftTo;
+proto.lShiftTo = bnpLShiftTo;
+proto.rShiftTo = bnpRShiftTo;
+proto.subTo = bnpSubTo;
+proto.multiplyTo = bnpMultiplyTo;
+proto.squareTo = bnpSquareTo;
+proto.divRemTo = bnpDivRemTo;
+proto.invDigit = bnpInvDigit;
+proto.isEven = bnpIsEven;
+proto.exp = bnpExp;
+
+// public
+proto.toString = bnToString;
+proto.negate = bnNegate;
+proto.abs = bnAbs;
+proto.compareTo = bnCompareTo;
+proto.bitLength = bnBitLength;
+proto.byteLength = bnByteLength;
+proto.mod = bnMod;
+proto.modPowInt = bnModPowInt;
+
+// (public)
+function bnClone() {
+  var r = new BigInteger$3();
+  this.copyTo(r);
+  return r
+}
+
+// (public) return value as integer
+function bnIntValue() {
+  if (this.s < 0) {
+    if (this.t == 1) return this[0] - this.DV
+    else if (this.t == 0) return -1
+  } else if (this.t == 1) return this[0]
+  else if (this.t == 0) return 0
+  // assumes 16 < DB < 32
+  return ((this[1] & ((1 << (32 - this.DB)) - 1)) << this.DB) | this[0]
+}
+
+// (public) return value as byte
+function bnByteValue() {
+  return (this.t == 0) ? this.s : (this[0] << 24) >> 24
+}
+
+// (public) return value as short (assumes DB>=16)
+function bnShortValue() {
+  return (this.t == 0) ? this.s : (this[0] << 16) >> 16
+}
+
+// (protected) return x s.t. r^x < DV
+function bnpChunkSize(r) {
+  return Math.floor(Math.LN2 * this.DB / Math.log(r))
+}
+
+// (public) 0 if this == 0, 1 if this > 0
+function bnSigNum() {
+  if (this.s < 0) return -1
+  else if (this.t <= 0 || (this.t == 1 && this[0] <= 0)) return 0
+  else return 1
+}
+
+// (protected) convert to radix string
+function bnpToRadix(b) {
+  if (b == null) b = 10;
+  if (this.signum() == 0 || b < 2 || b > 36) return "0"
+  var cs = this.chunkSize(b);
+  var a = Math.pow(b, cs);
+  var d = nbv(a),
+    y = new BigInteger$3(),
+    z = new BigInteger$3(),
+    r = "";
+  this.divRemTo(d, y, z);
+  while (y.signum() > 0) {
+    r = (a + z.intValue())
+      .toString(b)
+      .substr(1) + r;
+    y.divRemTo(d, y, z);
+  }
+  return z.intValue()
+    .toString(b) + r
+}
+
+// (protected) convert from radix string
+function bnpFromRadix(s, b) {
+  var self = this;
+  self.fromInt(0);
+  if (b == null) b = 10;
+  var cs = self.chunkSize(b);
+  var d = Math.pow(b, cs),
+    mi = false,
+    j = 0,
+    w = 0;
+  for (var i = 0; i < s.length; ++i) {
+    var x = intAt(s, i);
+    if (x < 0) {
+      if (s.charAt(i) == "-" && self.signum() == 0) mi = true;
+      continue
+    }
+    w = b * w + x;
+    if (++j >= cs) {
+      self.dMultiply(d);
+      self.dAddOffset(w, 0);
+      j = 0;
+      w = 0;
+    }
+  }
+  if (j > 0) {
+    self.dMultiply(Math.pow(b, j));
+    self.dAddOffset(w, 0);
+  }
+  if (mi) BigInteger$3.ZERO.subTo(self, self);
+}
+
+// (protected) alternate constructor
+function bnpFromNumber(a, b, c) {
+  var self = this;
+  if ("number" == typeof b) {
+    // new BigInteger(int,int,RNG)
+    if (a < 2) self.fromInt(1);
+    else {
+      self.fromNumber(a, c);
+      if (!self.testBit(a - 1)) // force MSB set
+        self.bitwiseTo(BigInteger$3.ONE.shiftLeft(a - 1), op_or, self);
+      if (self.isEven()) self.dAddOffset(1, 0); // force odd
+      while (!self.isProbablePrime(b)) {
+        self.dAddOffset(2, 0);
+        if (self.bitLength() > a) self.subTo(BigInteger$3.ONE.shiftLeft(a - 1), self);
+      }
+    }
+  } else {
+    // new BigInteger(int,RNG)
+    var x = new Array(),
+      t = a & 7;
+    x.length = (a >> 3) + 1;
+    b.nextBytes(x);
+    if (t > 0) x[0] &= ((1 << t) - 1);
+    else x[0] = 0;
+    self.fromString(x, 256);
+  }
+}
+
+// (public) convert to bigendian byte array
+function bnToByteArray() {
+  var self = this;
+  var i = self.t,
+    r = new Array();
+  r[0] = self.s;
+  var p = self.DB - (i * self.DB) % 8,
+    d, k = 0;
+  if (i-- > 0) {
+    if (p < self.DB && (d = self[i] >> p) != (self.s & self.DM) >> p)
+      r[k++] = d | (self.s << (self.DB - p));
+    while (i >= 0) {
+      if (p < 8) {
+        d = (self[i] & ((1 << p) - 1)) << (8 - p);
+        d |= self[--i] >> (p += self.DB - 8);
+      } else {
+        d = (self[i] >> (p -= 8)) & 0xff;
+        if (p <= 0) {
+          p += self.DB;
+          --i;
+        }
+      }
+      if ((d & 0x80) != 0) d |= -256;
+      if (k === 0 && (self.s & 0x80) != (d & 0x80))++k;
+      if (k > 0 || d != self.s) r[k++] = d;
+    }
+  }
+  return r
+}
+
+function bnEquals(a) {
+  return (this.compareTo(a) == 0)
+}
+
+function bnMin(a) {
+  return (this.compareTo(a) < 0) ? this : a
+}
+
+function bnMax(a) {
+  return (this.compareTo(a) > 0) ? this : a
+}
+
+// (protected) r = this op a (bitwise)
+function bnpBitwiseTo(a, op, r) {
+  var self = this;
+  var i, f, m = Math.min(a.t, self.t);
+  for (i = 0; i < m; ++i) r[i] = op(self[i], a[i]);
+  if (a.t < self.t) {
+    f = a.s & self.DM;
+    for (i = m; i < self.t; ++i) r[i] = op(self[i], f);
+    r.t = self.t;
+  } else {
+    f = self.s & self.DM;
+    for (i = m; i < a.t; ++i) r[i] = op(f, a[i]);
+    r.t = a.t;
+  }
+  r.s = op(self.s, a.s);
+  r.clamp();
+}
+
+// (public) this & a
+function op_and(x, y) {
+  return x & y
+}
+
+function bnAnd(a) {
+  var r = new BigInteger$3();
+  this.bitwiseTo(a, op_and, r);
+  return r
+}
+
+// (public) this | a
+function op_or(x, y) {
+  return x | y
+}
+
+function bnOr(a) {
+  var r = new BigInteger$3();
+  this.bitwiseTo(a, op_or, r);
+  return r
+}
+
+// (public) this ^ a
+function op_xor(x, y) {
+  return x ^ y
+}
+
+function bnXor(a) {
+  var r = new BigInteger$3();
+  this.bitwiseTo(a, op_xor, r);
+  return r
+}
+
+// (public) this & ~a
+function op_andnot(x, y) {
+  return x & ~y
+}
+
+function bnAndNot(a) {
+  var r = new BigInteger$3();
+  this.bitwiseTo(a, op_andnot, r);
+  return r
+}
+
+// (public) ~this
+function bnNot() {
+  var r = new BigInteger$3();
+  for (var i = 0; i < this.t; ++i) r[i] = this.DM & ~this[i];
+  r.t = this.t;
+  r.s = ~this.s;
+  return r
+}
+
+// (public) this << n
+function bnShiftLeft(n) {
+  var r = new BigInteger$3();
+  if (n < 0) this.rShiftTo(-n, r);
+  else this.lShiftTo(n, r);
+  return r
+}
+
+// (public) this >> n
+function bnShiftRight(n) {
+  var r = new BigInteger$3();
+  if (n < 0) this.lShiftTo(-n, r);
+  else this.rShiftTo(n, r);
+  return r
+}
+
+// return index of lowest 1-bit in x, x < 2^31
+function lbit(x) {
+  if (x == 0) return -1
+  var r = 0;
+  if ((x & 0xffff) == 0) {
+    x >>= 16;
+    r += 16;
+  }
+  if ((x & 0xff) == 0) {
+    x >>= 8;
+    r += 8;
+  }
+  if ((x & 0xf) == 0) {
+    x >>= 4;
+    r += 4;
+  }
+  if ((x & 3) == 0) {
+    x >>= 2;
+    r += 2;
+  }
+  if ((x & 1) == 0)++r;
+  return r
+}
+
+// (public) returns index of lowest 1-bit (or -1 if none)
+function bnGetLowestSetBit() {
+  for (var i = 0; i < this.t; ++i)
+    if (this[i] != 0) return i * this.DB + lbit(this[i])
+  if (this.s < 0) return this.t * this.DB
+  return -1
+}
+
+// return number of 1 bits in x
+function cbit(x) {
+  var r = 0;
+  while (x != 0) {
+    x &= x - 1;
+    ++r;
+  }
+  return r
+}
+
+// (public) return number of set bits
+function bnBitCount() {
+  var r = 0,
+    x = this.s & this.DM;
+  for (var i = 0; i < this.t; ++i) r += cbit(this[i] ^ x);
+  return r
+}
+
+// (public) true iff nth bit is set
+function bnTestBit(n) {
+  var j = Math.floor(n / this.DB);
+  if (j >= this.t) return (this.s != 0)
+  return ((this[j] & (1 << (n % this.DB))) != 0)
+}
+
+// (protected) this op (1<<n)
+function bnpChangeBit(n, op) {
+  var r = BigInteger$3.ONE.shiftLeft(n);
+  this.bitwiseTo(r, op, r);
+  return r
+}
+
+// (public) this | (1<<n)
+function bnSetBit(n) {
+  return this.changeBit(n, op_or)
+}
+
+// (public) this & ~(1<<n)
+function bnClearBit(n) {
+  return this.changeBit(n, op_andnot)
+}
+
+// (public) this ^ (1<<n)
+function bnFlipBit(n) {
+  return this.changeBit(n, op_xor)
+}
+
+// (protected) r = this + a
+function bnpAddTo(a, r) {
+  var self = this;
+
+  var i = 0,
+    c = 0,
+    m = Math.min(a.t, self.t);
+  while (i < m) {
+    c += self[i] + a[i];
+    r[i++] = c & self.DM;
+    c >>= self.DB;
+  }
+  if (a.t < self.t) {
+    c += a.s;
+    while (i < self.t) {
+      c += self[i];
+      r[i++] = c & self.DM;
+      c >>= self.DB;
+    }
+    c += self.s;
+  } else {
+    c += self.s;
+    while (i < a.t) {
+      c += a[i];
+      r[i++] = c & self.DM;
+      c >>= self.DB;
+    }
+    c += a.s;
+  }
+  r.s = (c < 0) ? -1 : 0;
+  if (c > 0) r[i++] = c;
+  else if (c < -1) r[i++] = self.DV + c;
+  r.t = i;
+  r.clamp();
+}
+
+// (public) this + a
+function bnAdd(a) {
+  var r = new BigInteger$3();
+  this.addTo(a, r);
+  return r
+}
+
+// (public) this - a
+function bnSubtract(a) {
+  var r = new BigInteger$3();
+  this.subTo(a, r);
+  return r
+}
+
+// (public) this * a
+function bnMultiply(a) {
+  var r = new BigInteger$3();
+  this.multiplyTo(a, r);
+  return r
+}
+
+// (public) this^2
+function bnSquare() {
+  var r = new BigInteger$3();
+  this.squareTo(r);
+  return r
+}
+
+// (public) this / a
+function bnDivide(a) {
+  var r = new BigInteger$3();
+  this.divRemTo(a, r, null);
+  return r
+}
+
+// (public) this % a
+function bnRemainder(a) {
+  var r = new BigInteger$3();
+  this.divRemTo(a, null, r);
+  return r
+}
+
+// (public) [this/a,this%a]
+function bnDivideAndRemainder(a) {
+  var q = new BigInteger$3(),
+    r = new BigInteger$3();
+  this.divRemTo(a, q, r);
+  return new Array(q, r)
+}
+
+// (protected) this *= n, this >= 0, 1 < n < DV
+function bnpDMultiply(n) {
+  this[this.t] = this.am(0, n - 1, this, 0, 0, this.t);
+  ++this.t;
+  this.clamp();
+}
+
+// (protected) this += n << w words, this >= 0
+function bnpDAddOffset(n, w) {
+  if (n == 0) return
+  while (this.t <= w) this[this.t++] = 0;
+  this[w] += n;
+  while (this[w] >= this.DV) {
+    this[w] -= this.DV;
+    if (++w >= this.t) this[this.t++] = 0;
+    ++this[w];
+  }
+}
+
+// A "null" reducer
+function NullExp() {}
+
+function nNop(x) {
+  return x
+}
+
+function nMulTo(x, y, r) {
+  x.multiplyTo(y, r);
+}
+
+function nSqrTo(x, r) {
+  x.squareTo(r);
+}
+
+NullExp.prototype.convert = nNop;
+NullExp.prototype.revert = nNop;
+NullExp.prototype.mulTo = nMulTo;
+NullExp.prototype.sqrTo = nSqrTo;
+
+// (public) this^e
+function bnPow(e) {
+  return this.exp(e, new NullExp())
+}
+
+// (protected) r = lower n words of "this * a", a.t <= n
+// "this" should be the larger one if appropriate.
+function bnpMultiplyLowerTo(a, n, r) {
+  var i = Math.min(this.t + a.t, n);
+  r.s = 0; // assumes a,this >= 0
+  r.t = i;
+  while (i > 0) r[--i] = 0;
+  var j;
+  for (j = r.t - this.t; i < j; ++i) r[i + this.t] = this.am(0, a[i], r, i, 0, this.t);
+  for (j = Math.min(a.t, n); i < j; ++i) this.am(0, a[i], r, i, 0, n - i);
+  r.clamp();
+}
+
+// (protected) r = "this * a" without lower n words, n > 0
+// "this" should be the larger one if appropriate.
+function bnpMultiplyUpperTo(a, n, r) {
+  --n;
+  var i = r.t = this.t + a.t - n;
+  r.s = 0; // assumes a,this >= 0
+  while (--i >= 0) r[i] = 0;
+  for (i = Math.max(n - this.t, 0); i < a.t; ++i)
+    r[this.t + i - n] = this.am(n - i, a[i], r, 0, 0, this.t + i - n);
+  r.clamp();
+  r.drShiftTo(1, r);
+}
+
+// Barrett modular reduction
+function Barrett(m) {
+  // setup Barrett
+  this.r2 = new BigInteger$3();
+  this.q3 = new BigInteger$3();
+  BigInteger$3.ONE.dlShiftTo(2 * m.t, this.r2);
+  this.mu = this.r2.divide(m);
+  this.m = m;
+}
+
+function barrettConvert(x) {
+  if (x.s < 0 || x.t > 2 * this.m.t) return x.mod(this.m)
+  else if (x.compareTo(this.m) < 0) return x
+  else {
+    var r = new BigInteger$3();
+    x.copyTo(r);
+    this.reduce(r);
+    return r
+  }
+}
+
+function barrettRevert(x) {
+  return x
+}
+
+// x = x mod m (HAC 14.42)
+function barrettReduce(x) {
+  var self = this;
+  x.drShiftTo(self.m.t - 1, self.r2);
+  if (x.t > self.m.t + 1) {
+    x.t = self.m.t + 1;
+    x.clamp();
+  }
+  self.mu.multiplyUpperTo(self.r2, self.m.t + 1, self.q3);
+  self.m.multiplyLowerTo(self.q3, self.m.t + 1, self.r2);
+  while (x.compareTo(self.r2) < 0) x.dAddOffset(1, self.m.t + 1);
+  x.subTo(self.r2, x);
+  while (x.compareTo(self.m) >= 0) x.subTo(self.m, x);
+}
+
+// r = x^2 mod m; x != r
+function barrettSqrTo(x, r) {
+  x.squareTo(r);
+  this.reduce(r);
+}
+
+// r = x*y mod m; x,y != r
+function barrettMulTo(x, y, r) {
+  x.multiplyTo(y, r);
+  this.reduce(r);
+}
+
+Barrett.prototype.convert = barrettConvert;
+Barrett.prototype.revert = barrettRevert;
+Barrett.prototype.reduce = barrettReduce;
+Barrett.prototype.mulTo = barrettMulTo;
+Barrett.prototype.sqrTo = barrettSqrTo;
+
+// (public) this^e % m (HAC 14.85)
+function bnModPow(e, m) {
+  var i = e.bitLength(),
+    k, r = nbv(1),
+    z;
+  if (i <= 0) return r
+  else if (i < 18) k = 1;
+  else if (i < 48) k = 3;
+  else if (i < 144) k = 4;
+  else if (i < 768) k = 5;
+  else k = 6;
+  if (i < 8)
+    z = new Classic(m);
+  else if (m.isEven())
+    z = new Barrett(m);
+  else
+    z = new Montgomery(m);
+
+  // precomputation
+  var g = new Array(),
+    n = 3,
+    k1 = k - 1,
+    km = (1 << k) - 1;
+  g[1] = z.convert(this);
+  if (k > 1) {
+    var g2 = new BigInteger$3();
+    z.sqrTo(g[1], g2);
+    while (n <= km) {
+      g[n] = new BigInteger$3();
+      z.mulTo(g2, g[n - 2], g[n]);
+      n += 2;
+    }
+  }
+
+  var j = e.t - 1,
+    w, is1 = true,
+    r2 = new BigInteger$3(),
+    t;
+  i = nbits(e[j]) - 1;
+  while (j >= 0) {
+    if (i >= k1) w = (e[j] >> (i - k1)) & km;
+    else {
+      w = (e[j] & ((1 << (i + 1)) - 1)) << (k1 - i);
+      if (j > 0) w |= e[j - 1] >> (this.DB + i - k1);
+    }
+
+    n = k;
+    while ((w & 1) == 0) {
+      w >>= 1;
+      --n;
+    }
+    if ((i -= n) < 0) {
+      i += this.DB;
+      --j;
+    }
+    if (is1) { // ret == 1, don't bother squaring or multiplying it
+      g[w].copyTo(r);
+      is1 = false;
+    } else {
+      while (n > 1) {
+        z.sqrTo(r, r2);
+        z.sqrTo(r2, r);
+        n -= 2;
+      }
+      if (n > 0) z.sqrTo(r, r2);
+      else {
+        t = r;
+        r = r2;
+        r2 = t;
+      }
+      z.mulTo(r2, g[w], r);
+    }
+
+    while (j >= 0 && (e[j] & (1 << i)) == 0) {
+      z.sqrTo(r, r2);
+      t = r;
+      r = r2;
+      r2 = t;
+      if (--i < 0) {
+        i = this.DB - 1;
+        --j;
+      }
+    }
+  }
+  return z.revert(r)
+}
+
+// (public) gcd(this,a) (HAC 14.54)
+function bnGCD(a) {
+  var x = (this.s < 0) ? this.negate() : this.clone();
+  var y = (a.s < 0) ? a.negate() : a.clone();
+  if (x.compareTo(y) < 0) {
+    var t = x;
+    x = y;
+    y = t;
+  }
+  var i = x.getLowestSetBit(),
+    g = y.getLowestSetBit();
+  if (g < 0) return x
+  if (i < g) g = i;
+  if (g > 0) {
+    x.rShiftTo(g, x);
+    y.rShiftTo(g, y);
+  }
+  while (x.signum() > 0) {
+    if ((i = x.getLowestSetBit()) > 0) x.rShiftTo(i, x);
+    if ((i = y.getLowestSetBit()) > 0) y.rShiftTo(i, y);
+    if (x.compareTo(y) >= 0) {
+      x.subTo(y, x);
+      x.rShiftTo(1, x);
+    } else {
+      y.subTo(x, y);
+      y.rShiftTo(1, y);
+    }
+  }
+  if (g > 0) y.lShiftTo(g, y);
+  return y
+}
+
+// (protected) this % n, n < 2^26
+function bnpModInt(n) {
+  if (n <= 0) return 0
+  var d = this.DV % n,
+    r = (this.s < 0) ? n - 1 : 0;
+  if (this.t > 0)
+    if (d == 0) r = this[0] % n;
+    else
+      for (var i = this.t - 1; i >= 0; --i) r = (d * r + this[i]) % n;
+  return r
+}
+
+// (public) 1/this % m (HAC 14.61)
+function bnModInverse(m) {
+  var ac = m.isEven();
+  if (this.signum() === 0) throw new Error('division by zero')
+  if ((this.isEven() && ac) || m.signum() == 0) return BigInteger$3.ZERO
+  var u = m.clone(),
+    v = this.clone();
+  var a = nbv(1),
+    b = nbv(0),
+    c = nbv(0),
+    d = nbv(1);
+  while (u.signum() != 0) {
+    while (u.isEven()) {
+      u.rShiftTo(1, u);
+      if (ac) {
+        if (!a.isEven() || !b.isEven()) {
+          a.addTo(this, a);
+          b.subTo(m, b);
+        }
+        a.rShiftTo(1, a);
+      } else if (!b.isEven()) b.subTo(m, b);
+      b.rShiftTo(1, b);
+    }
+    while (v.isEven()) {
+      v.rShiftTo(1, v);
+      if (ac) {
+        if (!c.isEven() || !d.isEven()) {
+          c.addTo(this, c);
+          d.subTo(m, d);
+        }
+        c.rShiftTo(1, c);
+      } else if (!d.isEven()) d.subTo(m, d);
+      d.rShiftTo(1, d);
+    }
+    if (u.compareTo(v) >= 0) {
+      u.subTo(v, u);
+      if (ac) a.subTo(c, a);
+      b.subTo(d, b);
+    } else {
+      v.subTo(u, v);
+      if (ac) c.subTo(a, c);
+      d.subTo(b, d);
+    }
+  }
+  if (v.compareTo(BigInteger$3.ONE) != 0) return BigInteger$3.ZERO
+  while (d.compareTo(m) >= 0) d.subTo(m, d);
+  while (d.signum() < 0) d.addTo(m, d);
+  return d
+}
+
+var lowprimes = [
+  2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
+  73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151,
+  157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233,
+  239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317,
+  331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419,
+  421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503,
+  509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601, 607,
+  613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673, 677, 683, 691, 701,
+  709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809, 811,
+  821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887, 907, 911,
+  919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997
+];
+
+var lplim = (1 << 26) / lowprimes[lowprimes.length - 1];
+
+// (public) test primality with certainty >= 1-.5^t
+function bnIsProbablePrime(t) {
+  var i, x = this.abs();
+  if (x.t == 1 && x[0] <= lowprimes[lowprimes.length - 1]) {
+    for (i = 0; i < lowprimes.length; ++i)
+      if (x[0] == lowprimes[i]) return true
+    return false
+  }
+  if (x.isEven()) return false
+  i = 1;
+  while (i < lowprimes.length) {
+    var m = lowprimes[i],
+      j = i + 1;
+    while (j < lowprimes.length && m < lplim) m *= lowprimes[j++];
+    m = x.modInt(m);
+    while (i < j) if (m % lowprimes[i++] == 0) return false
+  }
+  return x.millerRabin(t)
+}
+
+// (protected) true if probably prime (HAC 4.24, Miller-Rabin)
+function bnpMillerRabin(t) {
+  var n1 = this.subtract(BigInteger$3.ONE);
+  var k = n1.getLowestSetBit();
+  if (k <= 0) return false
+  var r = n1.shiftRight(k);
+  t = (t + 1) >> 1;
+  if (t > lowprimes.length) t = lowprimes.length;
+  var a = new BigInteger$3(null);
+  var j, bases = [];
+  for (var i = 0; i < t; ++i) {
+    for (;;) {
+      j = lowprimes[Math.floor(Math.random() * lowprimes.length)];
+      if (bases.indexOf(j) == -1) break
+    }
+    bases.push(j);
+    a.fromInt(j);
+    var y = a.modPow(r, this);
+    if (y.compareTo(BigInteger$3.ONE) != 0 && y.compareTo(n1) != 0) {
+      var j = 1;
+      while (j++ < k && y.compareTo(n1) != 0) {
+        y = y.modPowInt(2, this);
+        if (y.compareTo(BigInteger$3.ONE) == 0) return false
+      }
+      if (y.compareTo(n1) != 0) return false
+    }
+  }
+  return true
+}
+
+// protected
+proto.chunkSize = bnpChunkSize;
+proto.toRadix = bnpToRadix;
+proto.fromRadix = bnpFromRadix;
+proto.fromNumber = bnpFromNumber;
+proto.bitwiseTo = bnpBitwiseTo;
+proto.changeBit = bnpChangeBit;
+proto.addTo = bnpAddTo;
+proto.dMultiply = bnpDMultiply;
+proto.dAddOffset = bnpDAddOffset;
+proto.multiplyLowerTo = bnpMultiplyLowerTo;
+proto.multiplyUpperTo = bnpMultiplyUpperTo;
+proto.modInt = bnpModInt;
+proto.millerRabin = bnpMillerRabin;
+
+// public
+proto.clone = bnClone;
+proto.intValue = bnIntValue;
+proto.byteValue = bnByteValue;
+proto.shortValue = bnShortValue;
+proto.signum = bnSigNum;
+proto.toByteArray = bnToByteArray;
+proto.equals = bnEquals;
+proto.min = bnMin;
+proto.max = bnMax;
+proto.and = bnAnd;
+proto.or = bnOr;
+proto.xor = bnXor;
+proto.andNot = bnAndNot;
+proto.not = bnNot;
+proto.shiftLeft = bnShiftLeft;
+proto.shiftRight = bnShiftRight;
+proto.getLowestSetBit = bnGetLowestSetBit;
+proto.bitCount = bnBitCount;
+proto.testBit = bnTestBit;
+proto.setBit = bnSetBit;
+proto.clearBit = bnClearBit;
+proto.flipBit = bnFlipBit;
+proto.add = bnAdd;
+proto.subtract = bnSubtract;
+proto.multiply = bnMultiply;
+proto.divide = bnDivide;
+proto.remainder = bnRemainder;
+proto.divideAndRemainder = bnDivideAndRemainder;
+proto.modPow = bnModPow;
+proto.modInverse = bnModInverse;
+proto.pow = bnPow;
+proto.gcd = bnGCD;
+proto.isProbablePrime = bnIsProbablePrime;
+
+// JSBN-specific extension
+proto.square = bnSquare;
+
+// constants
+BigInteger$3.ZERO = nbv(0);
+BigInteger$3.ONE = nbv(1);
+BigInteger$3.valueOf = nbv;
+
+var bigi = BigInteger$3;
+
+// FIXME: Kind of a weird way to throw exceptions, consider removing
+
+
+
+/**
+ * Turns a byte array into a big integer.
+ *
+ * This function will interpret a byte array as a big integer in big
+ * endian notation.
+ */
+bigi.fromByteArrayUnsigned = function(byteArray) {
+  // BigInteger expects a DER integer conformant byte array
+  if (byteArray[0] & 0x80) {
+    return new bigi([0].concat(byteArray))
+  }
+
+  return new bigi(byteArray)
+};
+
+/**
+ * Returns a byte array representation of the big integer.
+ *
+ * This returns the absolute of the contained value in big endian
+ * form. A value of zero results in an empty array.
+ */
+bigi.prototype.toByteArrayUnsigned = function() {
+  var byteArray = this.toByteArray();
+  return byteArray[0] === 0 ? byteArray.slice(1) : byteArray
+};
+
+bigi.fromDERInteger = function(byteArray) {
+  return new bigi(byteArray)
+};
+
+/*
+ * Converts BigInteger to a DER integer representation.
+ *
+ * The format for this value uses the most significant bit as a sign
+ * bit.  If the most significant bit is already set and the integer is
+ * positive, a 0x00 is prepended.
+ *
+ * Examples:
+ *
+ *      0 =>     0x00
+ *      1 =>     0x01
+ *     -1 =>     0xff
+ *    127 =>     0x7f
+ *   -127 =>     0x81
+ *    128 =>   0x0080
+ *   -128 =>     0x80
+ *    255 =>   0x00ff
+ *   -255 =>   0xff01
+ *  16300 =>   0x3fac
+ * -16300 =>   0xc054
+ *  62300 => 0x00f35c
+ * -62300 => 0xff0ca4
+*/
+bigi.prototype.toDERInteger = bigi.prototype.toByteArray;
+
+bigi.fromBuffer = function(buffer$$1) {
+  // BigInteger expects a DER integer conformant byte array
+  if (buffer$$1[0] & 0x80) {
+    var byteArray = Array.prototype.slice.call(buffer$$1);
+
+    return new bigi([0].concat(byteArray))
+  }
+
+  return new bigi(buffer$$1)
+};
+
+bigi.fromHex = function(hex) {
+  if (hex === '') return bigi.ZERO
+
+  assert.equal(hex, hex.match(/^[A-Fa-f0-9]+/), 'Invalid hex string');
+  assert.equal(hex.length % 2, 0, 'Incomplete hex');
+  return new bigi(hex, 16)
+};
+
+bigi.prototype.toBuffer = function(size) {
+  var byteArray = this.toByteArrayUnsigned();
+  var zeros = [];
+
+  var padding = size - byteArray.length;
+  while (zeros.length < padding) zeros.push(0);
+
+  return new Buffer(zeros.concat(byteArray))
+};
+
+bigi.prototype.toHex = function(size) {
+  return this.toBuffer(size).toString('hex')
+};
+
+//addons
+
+
+var lib$10 = bigi;
+
+var Buffer$12 = safeBuffer.Buffer;
+
+
+var THREE = lib$10.valueOf(3);
+
+function Point$11 (curve, x, y, z) {
+  assert.notStrictEqual(z, undefined, 'Missing Z coordinate');
+
+  this.curve = curve;
+  this.x = x;
+  this.y = y;
+  this.z = z;
+  this._zInv = null;
+
+  this.compressed = true;
+}
+
+Object.defineProperty(Point$11.prototype, 'zInv', {
+  get: function () {
+    if (this._zInv === null) {
+      this._zInv = this.z.modInverse(this.curve.p);
+    }
+
+    return this._zInv
+  }
+});
+
+Object.defineProperty(Point$11.prototype, 'affineX', {
+  get: function () {
+    return this.x.multiply(this.zInv).mod(this.curve.p)
+  }
+});
+
+Object.defineProperty(Point$11.prototype, 'affineY', {
+  get: function () {
+    return this.y.multiply(this.zInv).mod(this.curve.p)
+  }
+});
+
+Point$11.fromAffine = function (curve, x, y) {
+  return new Point$11(curve, x, y, lib$10.ONE)
+};
+
+Point$11.prototype.equals = function (other) {
+  if (other === this) return true
+  if (this.curve.isInfinity(this)) return this.curve.isInfinity(other)
+  if (this.curve.isInfinity(other)) return this.curve.isInfinity(this)
+
+  // u = Y2 * Z1 - Y1 * Z2
+  var u = other.y.multiply(this.z).subtract(this.y.multiply(other.z)).mod(this.curve.p);
+
+  if (u.signum() !== 0) return false
+
+  // v = X2 * Z1 - X1 * Z2
+  var v = other.x.multiply(this.z).subtract(this.x.multiply(other.z)).mod(this.curve.p);
+
+  return v.signum() === 0
+};
+
+Point$11.prototype.negate = function () {
+  var y = this.curve.p.subtract(this.y);
+
+  return new Point$11(this.curve, this.x, y, this.z)
+};
+
+Point$11.prototype.add = function (b) {
+  if (this.curve.isInfinity(this)) return b
+  if (this.curve.isInfinity(b)) return this
+
+  var x1 = this.x;
+  var y1 = this.y;
+  var x2 = b.x;
+  var y2 = b.y;
+
+  // u = Y2 * Z1 - Y1 * Z2
+  var u = y2.multiply(this.z).subtract(y1.multiply(b.z)).mod(this.curve.p);
+  // v = X2 * Z1 - X1 * Z2
+  var v = x2.multiply(this.z).subtract(x1.multiply(b.z)).mod(this.curve.p);
+
+  if (v.signum() === 0) {
+    if (u.signum() === 0) {
+      return this.twice() // this == b, so double
+    }
+
+    return this.curve.infinity // this = -b, so infinity
+  }
+
+  var v2 = v.square();
+  var v3 = v2.multiply(v);
+  var x1v2 = x1.multiply(v2);
+  var zu2 = u.square().multiply(this.z);
+
+  // x3 = v * (z2 * (z1 * u^2 - 2 * x1 * v^2) - v^3)
+  var x3 = zu2.subtract(x1v2.shiftLeft(1)).multiply(b.z).subtract(v3).multiply(v).mod(this.curve.p);
+  // y3 = z2 * (3 * x1 * u * v^2 - y1 * v^3 - z1 * u^3) + u * v^3
+  var y3 = x1v2.multiply(THREE).multiply(u).subtract(y1.multiply(v3)).subtract(zu2.multiply(u)).multiply(b.z).add(u.multiply(v3)).mod(this.curve.p);
+  // z3 = v^3 * z1 * z2
+  var z3 = v3.multiply(this.z).multiply(b.z).mod(this.curve.p);
+
+  return new Point$11(this.curve, x3, y3, z3)
+};
+
+Point$11.prototype.twice = function () {
+  if (this.curve.isInfinity(this)) return this
+  if (this.y.signum() === 0) return this.curve.infinity
+
+  var x1 = this.x;
+  var y1 = this.y;
+
+  var y1z1 = y1.multiply(this.z).mod(this.curve.p);
+  var y1sqz1 = y1z1.multiply(y1).mod(this.curve.p);
+  var a = this.curve.a;
+
+  // w = 3 * x1^2 + a * z1^2
+  var w = x1.square().multiply(THREE);
+
+  if (a.signum() !== 0) {
+    w = w.add(this.z.square().multiply(a));
+  }
+
+  w = w.mod(this.curve.p);
+  // x3 = 2 * y1 * z1 * (w^2 - 8 * x1 * y1^2 * z1)
+  var x3 = w.square().subtract(x1.shiftLeft(3).multiply(y1sqz1)).shiftLeft(1).multiply(y1z1).mod(this.curve.p);
+  // y3 = 4 * y1^2 * z1 * (3 * w * x1 - 2 * y1^2 * z1) - w^3
+  var y3 = w.multiply(THREE).multiply(x1).subtract(y1sqz1.shiftLeft(1)).shiftLeft(2).multiply(y1sqz1).subtract(w.pow(3)).mod(this.curve.p);
+  // z3 = 8 * (y1 * z1)^3
+  var z3 = y1z1.pow(3).shiftLeft(3).mod(this.curve.p);
+
+  return new Point$11(this.curve, x3, y3, z3)
+};
+
+// Simple NAF (Non-Adjacent Form) multiplication algorithm
+// TODO: modularize the multiplication algorithm
+Point$11.prototype.multiply = function (k) {
+  if (this.curve.isInfinity(this)) return this
+  if (k.signum() === 0) return this.curve.infinity
+
+  var e = k;
+  var h = e.multiply(THREE);
+
+  var neg = this.negate();
+  var R = this;
+
+  for (var i = h.bitLength() - 2; i > 0; --i) {
+    var hBit = h.testBit(i);
+    var eBit = e.testBit(i);
+
+    R = R.twice();
+
+    if (hBit !== eBit) {
+      R = R.add(hBit ? this : neg);
+    }
+  }
+
+  return R
+};
+
+// Compute this*j + x*k (simultaneous multiplication)
+Point$11.prototype.multiplyTwo = function (j, x, k) {
+  var i = Math.max(j.bitLength(), k.bitLength()) - 1;
+  var R = this.curve.infinity;
+  var both = this.add(x);
+
+  while (i >= 0) {
+    var jBit = j.testBit(i);
+    var kBit = k.testBit(i);
+
+    R = R.twice();
+
+    if (jBit) {
+      if (kBit) {
+        R = R.add(both);
+      } else {
+        R = R.add(this);
+      }
+    } else if (kBit) {
+      R = R.add(x);
+    }
+    --i;
+  }
+
+  return R
+};
+
+Point$11.prototype.getEncoded = function (compressed) {
+  if (compressed == null) compressed = this.compressed;
+  if (this.curve.isInfinity(this)) return Buffer$12.alloc(1, 0) // Infinity point encoded is simply '00'
+
+  var x = this.affineX;
+  var y = this.affineY;
+  var byteLength = this.curve.pLength;
+  var buffer$$1;
+
+  // 0x02/0x03 | X
+  if (compressed) {
+    buffer$$1 = Buffer$12.allocUnsafe(1 + byteLength);
+    buffer$$1.writeUInt8(y.isEven() ? 0x02 : 0x03, 0);
+
+  // 0x04 | X | Y
+  } else {
+    buffer$$1 = Buffer$12.allocUnsafe(1 + byteLength + byteLength);
+    buffer$$1.writeUInt8(0x04, 0);
+
+    y.toBuffer(byteLength).copy(buffer$$1, 1 + byteLength);
+  }
+
+  x.toBuffer(byteLength).copy(buffer$$1, 1);
+
+  return buffer$$1
+};
+
+Point$11.decodeFrom = function (curve, buffer$$1) {
+  var type = buffer$$1.readUInt8(0);
+  var compressed = (type !== 4);
+
+  var byteLength = Math.floor((curve.p.bitLength() + 7) / 8);
+  var x = lib$10.fromBuffer(buffer$$1.slice(1, 1 + byteLength));
+
+  var Q;
+  if (compressed) {
+    assert.equal(buffer$$1.length, byteLength + 1, 'Invalid sequence length');
+    assert(type === 0x02 || type === 0x03, 'Invalid sequence tag');
+
+    var isOdd = (type === 0x03);
+    Q = curve.pointFromX(isOdd, x);
+  } else {
+    assert.equal(buffer$$1.length, 1 + byteLength + byteLength, 'Invalid sequence length');
+
+    var y = lib$10.fromBuffer(buffer$$1.slice(1 + byteLength));
+    Q = Point$11.fromAffine(curve, x, y);
+  }
+
+  Q.compressed = compressed;
+  return Q
+};
+
+Point$11.prototype.toString = function () {
+  if (this.curve.isInfinity(this)) return '(INFINITY)'
+
+  return '(' + this.affineX.toString() + ',' + this.affineY.toString() + ')'
+};
+
+var point$2 = Point$11;
+
+function Curve (p, a, b, Gx, Gy, n, h) {
+  this.p = p;
+  this.a = a;
+  this.b = b;
+  this.G = point$2.fromAffine(this, Gx, Gy);
+  this.n = n;
+  this.h = h;
+
+  this.infinity = new point$2(this, null, null, lib$10.ZERO);
+
+  // result caching
+  this.pOverFour = p.add(lib$10.ONE).shiftRight(2);
+
+  // determine size of p in bytes
+  this.pLength = Math.floor((this.p.bitLength() + 7) / 8);
+}
+
+Curve.prototype.pointFromX = function (isOdd, x) {
+  var alpha = x.pow(3).add(this.a.multiply(x)).add(this.b).mod(this.p);
+  var beta = alpha.modPow(this.pOverFour, this.p); // XXX: not compatible with all curves
+
+  var y = beta;
+  if (beta.isEven() ^ !isOdd) {
+    y = this.p.subtract(y); // -y % p
+  }
+
+  return point$2.fromAffine(this, x, y)
+};
+
+Curve.prototype.isInfinity = function (Q) {
+  if (Q === this.infinity) return true
+
+  return Q.z.signum() === 0 && Q.y.signum() !== 0
+};
+
+Curve.prototype.isOnCurve = function (Q) {
+  if (this.isInfinity(Q)) return true
+
+  var x = Q.affineX;
+  var y = Q.affineY;
+  var a = this.a;
+  var b = this.b;
+  var p = this.p;
+
+  // Check that xQ and yQ are integers in the interval [0, p - 1]
+  if (x.signum() < 0 || x.compareTo(p) >= 0) return false
+  if (y.signum() < 0 || y.compareTo(p) >= 0) return false
+
+  // and check that y^2 = x^3 + ax + b (mod p)
+  var lhs = y.square().mod(p);
+  var rhs = x.pow(3).add(a.multiply(x)).add(b).mod(p);
+  return lhs.equals(rhs)
+};
+
+/**
+ * Validate an elliptic curve point.
+ *
+ * See SEC 1, section 3.2.2.1: Elliptic Curve Public Key Validation Primitive
+ */
+Curve.prototype.validate = function (Q) {
+  // Check Q != O
+  assert(!this.isInfinity(Q), 'Point is at infinity');
+  assert(this.isOnCurve(Q), 'Point is not on the curve');
+
+  // Check nQ = O (where Q is a scalar multiple of G)
+  var nQ = Q.multiply(this.n);
+  assert(this.isInfinity(nQ), 'Point is not a scalar multiple of G');
+
+  return true
+};
+
+var curve$3 = Curve;
+
+var secp128r1 = {"p":"fffffffdffffffffffffffffffffffff","a":"fffffffdfffffffffffffffffffffffc","b":"e87579c11079f43dd824993c2cee5ed3","n":"fffffffe0000000075a30d1b9038a115","h":"01","Gx":"161ff7528b899b2d0c28607ca52c5b86","Gy":"cf5ac8395bafeb13c02da292dded7a83"};
+var secp160k1 = {"p":"fffffffffffffffffffffffffffffffeffffac73","a":"00","b":"07","n":"0100000000000000000001b8fa16dfab9aca16b6b3","h":"01","Gx":"3b4c382ce37aa192a4019e763036f4f5dd4d7ebb","Gy":"938cf935318fdced6bc28286531733c3f03c4fee"};
+var secp160r1 = {"p":"ffffffffffffffffffffffffffffffff7fffffff","a":"ffffffffffffffffffffffffffffffff7ffffffc","b":"1c97befc54bd7a8b65acf89f81d4d4adc565fa45","n":"0100000000000000000001f4c8f927aed3ca752257","h":"01","Gx":"4a96b5688ef573284664698968c38bb913cbfc82","Gy":"23a628553168947d59dcc912042351377ac5fb32"};
+var secp192k1 = {"p":"fffffffffffffffffffffffffffffffffffffffeffffee37","a":"00","b":"03","n":"fffffffffffffffffffffffe26f2fc170f69466a74defd8d","h":"01","Gx":"db4ff10ec057e9ae26b07d0280b7f4341da5d1b1eae06c7d","Gy":"9b2f2f6d9c5628a7844163d015be86344082aa88d95e2f9d"};
+var secp192r1 = {"p":"fffffffffffffffffffffffffffffffeffffffffffffffff","a":"fffffffffffffffffffffffffffffffefffffffffffffffc","b":"64210519e59c80e70fa7e9ab72243049feb8deecc146b9b1","n":"ffffffffffffffffffffffff99def836146bc9b1b4d22831","h":"01","Gx":"188da80eb03090f67cbf20eb43a18800f4ff0afd82ff1012","Gy":"07192b95ffc8da78631011ed6b24cdd573f977a11e794811"};
+var secp256k1$10 = {"p":"fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f","a":"00","b":"07","n":"fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141","h":"01","Gx":"79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798","Gy":"483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8"};
+var secp256r1 = {"p":"ffffffff00000001000000000000000000000000ffffffffffffffffffffffff","a":"ffffffff00000001000000000000000000000000fffffffffffffffffffffffc","b":"5ac635d8aa3a93e7b3ebbd55769886bc651d06b0cc53b0f63bce3c3e27d2604b","n":"ffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc632551","h":"01","Gx":"6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296","Gy":"4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5"};
+var curves = {
+	secp128r1: secp128r1,
+	secp160k1: secp160k1,
+	secp160r1: secp160r1,
+	secp192k1: secp192k1,
+	secp192r1: secp192r1,
+	secp256k1: secp256k1$10,
+	secp256r1: secp256r1
+};
+
+var curves$1 = Object.freeze({
+	secp128r1: secp128r1,
+	secp160k1: secp160k1,
+	secp160r1: secp160r1,
+	secp192k1: secp192k1,
+	secp192r1: secp192r1,
+	secp256k1: secp256k1$10,
+	secp256r1: secp256r1,
+	default: curves
+});
+
+var curves$2 = ( curves$1 && curves ) || curves$1;
+
+function getCurveByName (name) {
+  var curve = curves$2[name];
+  if (!curve) return null
+
+  var p = new lib$10(curve.p, 16);
+  var a = new lib$10(curve.a, 16);
+  var b = new lib$10(curve.b, 16);
+  var n = new lib$10(curve.n, 16);
+  var h = new lib$10(curve.h, 16);
+  var Gx = new lib$10(curve.Gx, 16);
+  var Gy = new lib$10(curve.Gy, 16);
+
+  return new curve$3(p, a, b, Gx, Gy, n, h)
+}
+
+var names = getCurveByName;
+
+var lib$8 = {
+  Curve: curve$3,
+  Point: point$2,
+  getCurveByName: names
+};
+
+'use strict';
+
+
+
+
+/** @namespace hash */
+
+/** @arg {string|Buffer} data
+    @arg {string} [resultEncoding = null] - 'hex', 'binary' or 'base64'
+    @return {string|Buffer} - Buffer when resultEncoding is null, or string
+*/
+function sha1$5(data, resultEncoding) {
+    return createHash('sha1').update(data).digest(resultEncoding);
+}
+
+/** @arg {string|Buffer} data
+    @arg {string} [resultEncoding = null] - 'hex', 'binary' or 'base64'
+    @return {string|Buffer} - Buffer when resultEncoding is null, or string
+*/
+function sha256$5(data, resultEncoding) {
+    return createHash('sha256').update(data).digest(resultEncoding);
+}
+
+/** @arg {string|Buffer} data
+    @arg {string} [resultEncoding = null] - 'hex', 'binary' or 'base64'
+    @return {string|Buffer} - Buffer when resultEncoding is null, or string
+*/
+function sha512$5(data, resultEncoding) {
+    return createHash('sha512').update(data).digest(resultEncoding);
+}
+
+function HmacSHA256(buffer$$1, secret) {
+    return createHmac('sha256', secret).update(buffer$$1).digest();
+}
+
+function ripemd160$5(data) {
+    return createHash('rmd160').update(data).digest();
+}
+
+// function hash160(buffer) {
+//   return ripemd160(sha256(buffer))
+// }
+//
+// function hash256(buffer) {
+//   return sha256(sha256(buffer))
+// }
+
+//
+// function HmacSHA512(buffer, secret) {
+//   return crypto.createHmac('sha512', secret).update(buffer).digest()
+// }
+
+var hash$3 = {
+    sha1: sha1$5,
+    sha256: sha256$5,
+    sha512: sha512$5,
+    HmacSHA256: HmacSHA256,
+    ripemd160: ripemd160$5
+    // hash160: hash160,
+    // hash256: hash256,
+    // HmacSHA512: HmacSHA512
+};
+
+'use strict';
+
+var _typeof$1 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+
+
+
+
+
+
+var key_utils = {
+    random32ByteBuffer: random32ByteBuffer,
+    addEntropy: addEntropy,
+    cpuEntropy: cpuEntropy,
+    entropyCount: function entropyCount() {
+        return _entropyCount;
+    },
+    checkDecode: checkDecode,
+    checkEncode: checkEncode
+};
+
+var entropyPos = 0;
+var _entropyCount = 0;
+
+var externalEntropyArray = randombytes(101);
+
+/**
+    Additional forms of entropy are used.  A week random number generator can run out of entropy.  This should ensure even the worst random number implementation will be reasonably safe.
+
+    @arg {number} [cpuEntropyBits = 0] generate entropy on the fly.  This is
+    not required, entropy can be added in advanced via addEntropy or initialize().
+
+    @arg {boolean} [safe = true] false for testing, otherwise this will be
+    true to ensure initialize() was called.
+
+    @return a random buffer obtained from the secure random number generator.  Additional entropy is used.
+*/
+function random32ByteBuffer() {
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        _ref$cpuEntropyBits = _ref.cpuEntropyBits,
+        cpuEntropyBits = _ref$cpuEntropyBits === undefined ? 0 : _ref$cpuEntropyBits,
+        _ref$safe = _ref.safe,
+        safe = _ref$safe === undefined ? true : _ref$safe;
+
+    assert.equal(typeof cpuEntropyBits === 'undefined' ? 'undefined' : _typeof$1(cpuEntropyBits), 'number', 'cpuEntropyBits');
+    assert.equal(typeof safe === 'undefined' ? 'undefined' : _typeof$1(safe), 'boolean', 'boolean');
+
+    if (safe) {
+        assert(_entropyCount >= 128, 'Call initialize() to add entropy');
+    }
+
+    // if(entropyCount > 0) {
+    //     console.log(`Additional private key entropy: ${entropyCount} events`)
+    // }
+
+    var hash_array = [];
+    hash_array.push(randombytes(32));
+    hash_array.push(Buffer.from(cpuEntropy(cpuEntropyBits)));
+    hash_array.push(externalEntropyArray);
+    hash_array.push(browserEntropy());
+    return hash$3.sha256(Buffer.concat(hash_array));
+}
+
+/**
+    Adds entropy.  This may be called many times while the amount of data saved
+    is accumulatively reduced to 101 integers.  Data is retained in RAM for the
+    life of this module.
+
+    @example React <code>
+    componentDidMount() {
+        this.refs.MyComponent.addEventListener("mousemove", this.onEntropyEvent, {capture: false, passive: true})
+    }
+    componentWillUnmount() {
+        this.refs.MyComponent.removeEventListener("mousemove", this.onEntropyEvent);
+    }
+    onEntropyEvent = (e) => {
+        if(e.type === 'mousemove')
+            key_utils.addEntropy(e.pageX, e.pageY, e.screenX, e.screenY)
+        else
+            console.log('onEntropyEvent Unknown', e.type, e)
+    }
+    </code>
+*/
+function addEntropy() {
+    assert.equal(externalEntropyArray.length, 101, 'externalEntropyArray');
+
+    for (var _len = arguments.length, ints = Array(_len), _key = 0; _key < _len; _key++) {
+        ints[_key] = arguments[_key];
+    }
+
+    _entropyCount += ints.length;
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+        for (var _iterator = ints[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var i = _step.value;
+
+            var pos = entropyPos++ % 101;
+            var i2 = externalEntropyArray[pos] += i;
+            if (i2 > 9007199254740991) externalEntropyArray[pos] = 0;
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+            }
+        } finally {
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+}
+
+/**
+    This runs in just under 1 second and ensures a minimum of cpuEntropyBits
+    bits of entropy are gathered.
+
+    Based on more-entropy. @see https://github.com/keybase/more-entropy/blob/master/src/generator.iced
+
+    @arg {number} [cpuEntropyBits = 128]
+    @return {array} counts gathered by measuring variations in the CPU speed during floating point operations.
+*/
+function cpuEntropy() {
+    var cpuEntropyBits = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 128;
+
+    var collected = [];
+    var lastCount = null;
+    var lowEntropySamples = 0;
+    while (collected.length < cpuEntropyBits) {
+        var count = floatingPointCount();
+        if (lastCount != null) {
+            var delta = count - lastCount;
+            if (Math.abs(delta) < 1) {
+                lowEntropySamples++;
+                continue;
+            }
+            // how many bits of entropy were in this sample
+            var bits = Math.floor(log2(Math.abs(delta)) + 1);
+            if (bits < 4) {
+                if (bits < 2) {
+                    lowEntropySamples++;
+                }
+                continue;
+            }
+            collected.push(delta);
+        }
+        lastCount = count;
+    }
+    if (lowEntropySamples > 10) {
+        var pct = Number(lowEntropySamples / cpuEntropyBits * 100).toFixed(2);
+        // Is this algorithm getting inefficient?
+        console.warn('WARN: ' + pct + '% low CPU entropy re-sampled');
+    }
+    return collected;
+}
+
+/**
+    @private
+    Count while performing floating point operations during a fixed time
+    (7 ms for example).  Using a fixed time makes this algorithm
+    predictable in runtime.
+*/
+function floatingPointCount() {
+    var workMinMs = 7;
+    var d = Date.now();
+    var i = 0,
+        x = 0;
+    while (Date.now() < d + workMinMs + 1) {
+        x = Math.sin(Math.sqrt(Math.log(++i + x)));
+    }
+    return i;
+}
+
+var log2 = function log2(x) {
+    return Math.log(x) / Math.LN2;
+};
+
+/**
+    @private
+    Attempt to gather and hash information from the browser's window, history, and supported mime types.  For non-browser environments this simply includes secure random data.  In any event, the information is re-hashed in a loop for 25 milliseconds seconds.
+
+    @return {Buffer} 32 bytes
+*/
+function browserEntropy() {
+    var entropyStr = Array(randombytes(101)).join();
+    try {
+        entropyStr += new Date().toString() + " " + window.screen.height + " " + window.screen.width + " " + window.screen.colorDepth + " " + " " + window.screen.availHeight + " " + window.screen.availWidth + " " + window.screen.pixelDepth + navigator.language + " " + window.location + " " + window.history.length;
+
+        for (var i = 0, mimeType; i < navigator.mimeTypes.length; i++) {
+            mimeType = navigator.mimeTypes[i];
+            entropyStr += mimeType.description + " " + mimeType.type + " " + mimeType.suffixes + " ";
+        }
+    } catch (error) {
+        //nodejs:ReferenceError: window is not defined
+        entropyStr += hash$3.sha256(new Date().toString());
+    }
+
+    var b = new Buffer(entropyStr);
+    entropyStr += b.toString('binary') + " " + new Date().toString();
+
+    var entropy = entropyStr;
+    var start_t = Date.now();
+    while (Date.now() - start_t < 25) {
+        entropy = hash$3.sha256(entropy);
+    }return entropy;
+}
+
+/**
+  @arg {Buffer} keyBuffer data
+  @arg {string} keyType = sha256x2, K1, etc
+  @return {string} checksum encoded base58 string
+*/
+function checkEncode(keyBuffer) {
+    var keyType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+    assert(Buffer.isBuffer(keyBuffer), 'expecting keyBuffer<Buffer>');
+    if (keyType === 'sha256x2') {
+        // legacy
+        var checksum = hash$3.sha256(hash$3.sha256(keyBuffer)).slice(0, 4);
+        return bs58.encode(Buffer.concat([keyBuffer, checksum]));
+    } else {
+        var check = [keyBuffer];
+        if (keyType) {
+            check.push(Buffer.from(keyType));
+        }
+        var _checksum = hash$3.ripemd160(Buffer.concat(check)).slice(0, 4);
+        return bs58.encode(Buffer.concat([keyBuffer, _checksum]));
+    }
+}
+
+/**
+  @arg {Buffer} keyString data
+  @arg {string} keyType = sha256x2, K1, etc
+  @return {string} checksum encoded base58 string
+*/
+function checkDecode(keyString) {
+    var keyType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+    assert(keyString != null, 'private key expected');
+    var buffer$$1 = new Buffer(bs58.decode(keyString));
+    var checksum = buffer$$1.slice(-4);
+    var key = buffer$$1.slice(0, -4);
+
+    var newCheck = void 0;
+    if (keyType === 'sha256x2') {
+        // legacy
+        newCheck = hash$3.sha256(hash$3.sha256(key)).slice(0, 4); // WIF (legacy)
+    } else {
+        var check = [key];
+        if (keyType) {
+            check.push(Buffer.from(keyType));
+        }
+        newCheck = hash$3.ripemd160(Buffer.concat(check)).slice(0, 4); //PVT
+    }
+
+    if (checksum.toString() !== newCheck.toString()) {
+        throw new Error('Invalid checksum, ' + (checksum.toString('hex') + ' != ' + newCheck.toString('hex')));
+    }
+
+    return key;
+}
+
+'use strict';
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+
+
+
+var secp256k1$9 = lib$8.getCurveByName('secp256k1');
+
+
+
+
+var G = secp256k1$9.G;
+var n = secp256k1$9.n;
+
+var key_public = PublicKey$3;
+
+/**
+  @param {string|Buffer|PublicKey|ecurve.Point} public key
+  @param {string} [pubkey_prefix = 'EOS']
+*/
+function PublicKey$3(Q) {
+    var pubkey_prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'EOS';
+
+    if (typeof Q === 'string') {
+        var publicKey = PublicKey$3.fromString(Q, pubkey_prefix);
+        assert(publicKey != null, 'Invalid public key');
+        return publicKey;
+    } else if (Buffer.isBuffer(Q)) {
+        return PublicKey$3.fromBuffer(Q);
+    } else if ((typeof Q === 'undefined' ? 'undefined' : _typeof(Q)) === 'object' && Q.Q) {
+        return PublicKey$3(Q.Q);
+    }
+
+    assert.equal(typeof Q === 'undefined' ? 'undefined' : _typeof(Q), 'object', 'Invalid public key');
+    assert.equal(_typeof(Q.compressed), 'boolean', 'Invalid public key');
+
+    function toBuffer() {
+        var compressed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Q.compressed;
+
+        return Q.getEncoded(compressed);
+    }
+
+    function toString() {
+        var pubkey_prefix = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'EOS';
+
+        return pubkey_prefix + key_utils.checkEncode(toBuffer());
+    }
+
+    function toUncompressed() {
+        var buf = Q.getEncoded(false);
+        var point = lib$8.Point.decodeFrom(secp256k1$9, buf);
+        return PublicKey$3.fromPoint(point);
+    }
+
+    /** @deprecated */
+    function child(offset) {
+        console.error('Deprecated warning: PublicKey.child');
+
+        assert(Buffer.isBuffer(offset), "Buffer required: offset");
+        assert.equal(offset.length, 32, "offset length");
+
+        offset = Buffer.concat([toBuffer(), offset]);
+        offset = hash$3.sha256(offset);
+
+        var c = lib$10.fromBuffer(offset);
+
+        if (c.compareTo(n) >= 0) throw new Error("Child offset went out of bounds, try again");
+
+        var cG = G.multiply(c);
+        var Qprime = Q.add(cG);
+
+        if (secp256k1$9.isInfinity(Qprime)) throw new Error("Child offset derived to an invalid key, try again");
+
+        return PublicKey$3.fromPoint(Qprime);
+    }
+
+    function toHex() {
+        return toBuffer().toString('hex');
+    }
+
+    return {
+        Q: Q,
+        toString: toString,
+        // toStringLegacy,
+        toUncompressed: toUncompressed,
+        toBuffer: toBuffer,
+        child: child,
+        toHex: toHex
+    };
+}
+
+/**
+  @param {string|Buffer|PublicKey|ecurve.Point} pubkey - public key
+  @param {string} [pubkey_prefix = 'EOS']
+*/
+PublicKey$3.isValid = function (pubkey) {
+    var pubkey_prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'EOS';
+
+    try {
+        PublicKey$3(pubkey, pubkey_prefix);
+        return true;
+    } catch (e) {
+        return false;
+    }
+};
+
+PublicKey$3.fromBinary = function (bin) {
+    return PublicKey$3.fromBuffer(new Buffer(bin, 'binary'));
+};
+
+PublicKey$3.fromBuffer = function (buffer$$1) {
+    return PublicKey$3(lib$8.Point.decodeFrom(secp256k1$9, buffer$$1));
+};
+
+PublicKey$3.fromPoint = function (point) {
+    return PublicKey$3(point);
+};
+
+/**
+    @arg {string} public_key - like PUB_K1_base58pubkey..
+    @arg {string} [pubkey_prefix = 'EOS'] - public key prefix
+    @return PublicKey or `null` (invalid)
+*/
+PublicKey$3.fromString = function (public_key) {
+    var pubkey_prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'EOS';
+
+    try {
+        return PublicKey$3.fromStringOrThrow(public_key, pubkey_prefix);
+    } catch (e) {
+        return null;
+    }
+};
+
+/**
+    @arg {string} public_key - like PUB_K1_base58pubkey..
+    @arg {string} [pubkey_prefix = 'EOS'] - public key prefix
+
+    @throws {Error} if public key is invalid
+
+    @return PublicKey
+*/
+PublicKey$3.fromStringOrThrow = function (public_key) {
+    var pubkey_prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'EOS';
+
+    assert.equal(typeof public_key === 'undefined' ? 'undefined' : _typeof(public_key), 'string', 'public_key');
+    var match = public_key.match(/^PUB_([A-Za-z0-9]+)_([A-Za-z0-9]+)$/);
+    if (match === null) {
+        // legacy
+        var prefix_match = new RegExp("^" + pubkey_prefix);
+        if (prefix_match.test(public_key)) {
+            public_key = public_key.substring(pubkey_prefix.length);
+        }
+        return PublicKey$3.fromBuffer(key_utils.checkDecode(public_key));
+    }
+    assert(match.length === 3, 'Expecting public key like: PUB_K1_base58pubkey..');
+
+    var _match = _slicedToArray(match, 3),
+        keyType = _match[1],
+        keyString = _match[2];
+
+    assert.equal(keyType, 'K1', 'K1 private key expected');
+    return PublicKey$3.fromBuffer(key_utils.checkDecode(keyString, keyType));
+};
+
+PublicKey$3.fromHex = function (hex) {
+    return PublicKey$3.fromBuffer(new Buffer(hex, 'hex'));
+};
+
+PublicKey$3.fromStringHex = function (hex) {
+    return PublicKey$3.fromString(new Buffer(hex, 'hex'));
+};
+
+"use strict";
+
+/**
+  Convert a synchronous function into a asynchronous one (via setTimeout)
+  wrapping it in a promise.  This does not expect the function to have a
+  callback paramter.
+
+  @arg {function} func - non-callback function
+
+  @example promiseAsync(myfunction)
+*/
+var promiseAsync = function (func) {
+  return function () {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        try {
+          resolve(func.apply(undefined, args));
+        } catch (err) {
+          reject(err);
+        }
+      });
+    });
+  };
+};
+
+'use strict';
+
+var _slicedToArray$1 = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _typeof$2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+
+var Point$13 = lib$8.Point;
+var secp256k1$11 = lib$8.getCurveByName('secp256k1');
+
+
+
+
+
+
+
+
+
+var key_private = PrivateKey$2;
+
+/**
+  @typedef {string} wif - https://en.bitcoin.it/wiki/Wallet_import_format
+  @typedef {string} pubkey - EOSKey..
+  @typedef {ecurve.Point} Point
+*/
+
+/**
+  @param {BigInteger} d
+*/
+function PrivateKey$2(d) {
+    if (typeof d === 'string') {
+        return PrivateKey$2.fromString(d);
+    } else if (Buffer.isBuffer(d)) {
+        return PrivateKey$2.fromBuffer(d);
+    } else if ((typeof d === 'undefined' ? 'undefined' : _typeof$2(d)) === 'object' && lib$10.isBigInteger(d.d)) {
+        return PrivateKey$2(d.d);
+    }
+
+    if (!lib$10.isBigInteger(d)) {
+        throw new TypeError('Invalid private key');
+    }
+
+    /** @return {string} private key like PVT_K1_base58privatekey.. */
+    function toString() {
+        // todo, use PVT_K1_
+        // return 'PVT_K1_' + keyUtils.checkEncode(toBuffer(), 'K1')
+        return toWif();
+    }
+
+    /**
+        @return  {wif}
+    */
+    function toWif() {
+        var private_key = toBuffer();
+        // checksum includes the version
+        private_key = Buffer.concat([new Buffer([0x80]), private_key]);
+        return key_utils.checkEncode(private_key, 'sha256x2');
+    }
+
+    var public_key = void 0;
+
+    /**
+        @return {Point}
+    */
+    function toPublic() {
+        if (public_key) {
+            // cache
+            // S L O W in the browser
+            return public_key;
+        }
+        var Q = secp256k1$11.G.multiply(d);
+        return public_key = key_public.fromPoint(Q);
+    }
+
+    function toBuffer() {
+        return d.toBuffer(32);
+    }
+
+    /**
+      ECIES
+      @arg {string|Object} pubkey wif, PublicKey object
+      @return {Buffer} 64 byte shared secret
+    */
+    function getSharedSecret(public_key) {
+        public_key = key_public(public_key);
+        var KB = public_key.toUncompressed().toBuffer();
+        var KBP = Point$13.fromAffine(secp256k1$11, lib$10.fromBuffer(KB.slice(1, 33)), // x
+        lib$10.fromBuffer(KB.slice(33, 65)) // y
+        );
+        var r = toBuffer();
+        var P = KBP.multiply(lib$10.fromBuffer(r));
+        var S = P.affineX.toBuffer({ size: 32 });
+        // SHA512 used in ECIES
+        return hash$3.sha512(S);
+    }
+
+    // /** ECIES TODO unit test
+    //   @arg {string|Object} pubkey wif, PublicKey object
+    //   @return {Buffer} 64 byte shared secret
+    // */
+    // function getSharedSecret(public_key) {
+    //     public_key = PublicKey(public_key).toUncompressed()
+    //     var P = public_key.Q.multiply( d );
+    //     var S = P.affineX.toBuffer({size: 32});
+    //     // ECIES, adds an extra sha512
+    //     return hash.sha512(S);
+    // }
+
+    /**
+      @arg {string} name - child key name.
+      @return {PrivateKey}
+       @example activePrivate = masterPrivate.getChildKey('owner').getChildKey('active')
+      @example activePrivate.getChildKey('mycontract').getChildKey('myperm')
+    */
+    function getChildKey(name) {
+        // console.error('WARNING: getChildKey untested against eosd'); // no eosd impl yet
+        var index = createHash('sha256').update(toBuffer()).update(name).digest();
+        return PrivateKey$2(index);
+    }
+
+    return {
+        d: d,
+        toWif: toWif,
+        toString: toString,
+        toPublic: toPublic,
+        toBuffer: toBuffer,
+        getSharedSecret: getSharedSecret,
+        getChildKey: getChildKey
+    };
+}
+
+/** @private */
+function parseKey(privateStr) {
+    assert.equal(typeof privateStr === 'undefined' ? 'undefined' : _typeof$2(privateStr), 'string', 'privateStr');
+    var match = privateStr.match(/^PVT_([A-Za-z0-9]+)_([A-Za-z0-9]+)$/);
+
+    if (match === null) {
+        // legacy WIF - checksum includes the version
+        var versionKey = key_utils.checkDecode(privateStr, 'sha256x2');
+        var version = versionKey.readUInt8(0);
+        assert.equal(0x80, version, 'Expected version ' + 0x80 + ', instead got ' + version);
+        var _privateKey = PrivateKey$2.fromBuffer(versionKey.slice(1));
+        var _keyType = 'K1';
+        var format = 'WIF';
+        return { privateKey: _privateKey, format: format, keyType: _keyType };
+    }
+
+    assert(match.length === 3, 'Expecting private key like: PVT_K1_base58privateKey..');
+
+    var _match = _slicedToArray$1(match, 3),
+        keyType = _match[1],
+        keyString = _match[2];
+
+    assert.equal(keyType, 'K1', 'K1 private key expected');
+    var privateKey = PrivateKey$2.fromBuffer(key_utils.checkDecode(keyString, keyType));
+    return { privateKey: privateKey, format: 'PVT', keyType: keyType };
+}
+
+PrivateKey$2.fromHex = function (hex) {
+    return PrivateKey$2.fromBuffer(new Buffer(hex, 'hex'));
+};
+
+PrivateKey$2.fromBuffer = function (buf) {
+    if (!Buffer.isBuffer(buf)) {
+        throw new Error("Expecting parameter to be a Buffer type");
+    }
+    if (buf.length === 33 && buf[32] === 1) {
+        // remove compression flag
+        buf = buf.slice(0, -1);
+    }
+    if (32 !== buf.length) {
+        throw new Error('Expecting 32 bytes, instead got ' + buf.length);
+    }
+    return PrivateKey$2(lib$10.fromBuffer(buf));
+};
+
+/**
+    @arg {string} seed - any length string.  This is private, the same seed
+    produces the same private key every time.
+
+    @return {PrivateKey}
+*/
+PrivateKey$2.fromSeed = function (seed) {
+    // generate_private_key
+    if (!(typeof seed === 'string')) {
+        throw new Error('seed must be of type string');
+    }
+    return PrivateKey$2.fromBuffer(hash$3.sha256(seed));
+};
+
+/**
+  @arg {wif} key
+  @return {boolean} true if key is in the Wallet Import Format
+*/
+PrivateKey$2.isWif = function (text) {
+    try {
+        assert(parseKey(text).format === 'WIF');
+        return true;
+    } catch (e) {
+        return false;
+    }
+};
+
+/**
+  @arg {wif|Buffer|PrivateKey} key
+  @return {boolean} true if key is convertable to a private key object.
+*/
+PrivateKey$2.isValid = function (key) {
+    try {
+        PrivateKey$2(key);
+        return true;
+    } catch (e) {
+        return false;
+    }
+};
+
+/** @deprecated */
+PrivateKey$2.fromWif = function (str) {
+    console.log('PrivateKey.fromWif is deprecated, please use PrivateKey.fromString');
+    return PrivateKey$2.fromString(str);
+};
+
+/**
+    @throws {AssertError|Error} parsing key
+    @arg {string} privateStr Eosio or Wallet Import Format (wif) -- a secret
+*/
+PrivateKey$2.fromString = function (privateStr) {
+    return parseKey(privateStr).privateKey;
+};
+
+/**
+  Create a new random private key.
+
+  Call initialize() first to run some self-checking code and gather some CPU
+  entropy.
+
+  @arg {number} [cpuEntropyBits = 0] - additional CPU entropy, this already
+  happens once so it should not be needed again.
+
+  @return {Promise<PrivateKey>} - random private key
+*/
+PrivateKey$2.randomKey = function () {
+    var cpuEntropyBits = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+    return PrivateKey$2.initialize().then(function () {
+        return PrivateKey$2.fromBuffer(key_utils.random32ByteBuffer({ cpuEntropyBits: cpuEntropyBits }));
+    });
+};
+
+/**
+  @return {Promise<PrivateKey>} for testing, does not require initialize().
+*/
+PrivateKey$2.unsafeRandomKey = function () {
+    return Promise.resolve(PrivateKey$2.fromBuffer(key_utils.random32ByteBuffer({ safe: false })));
+};
+
+var initialized = false;
+
+/**
+  Run self-checking code and gather CPU entropy.
+
+  Initialization happens once even if called multiple times.
+
+  @return {Promise}
+*/
+function initialize() {
+    if (initialized) {
+        return;
+    }
+
+    unitTest();
+    key_utils.addEntropy.apply(key_utils, _toConsumableArray(key_utils.cpuEntropy()));
+    assert(key_utils.entropyCount() >= 128, 'insufficient entropy');
+
+    initialized = true;
+}
+
+PrivateKey$2.initialize = promiseAsync(initialize);
+
+/**
+  Unit test basic private and public key functionality.
+
+  @throws {AssertError}
+*/
+function unitTest() {
+    var pvt = PrivateKey$2(hash$3.sha256(''));
+
+    var pvtError = 'key comparison test failed on a known private key';
+    assert.equal(pvt.toWif(), '5KYZdUEo39z3FPrtuX2QbbwGnNP5zTd7yyr2SC1j299sBCnWjss', pvtError);
+    assert.equal(pvt.toString(), '5KYZdUEo39z3FPrtuX2QbbwGnNP5zTd7yyr2SC1j299sBCnWjss', pvtError);
+    // assert.equal(pvt.toString(), 'PVT_K1_2jH3nnhxhR3zPUcsKaWWZC9ZmZAnKm3GAnFD1xynGJE1Znuvjd', pvtError)
+
+    var pub = pvt.toPublic();
+    var pubError = 'pubkey string comparison test failed on a known public key';
+    assert.equal(pub.toString(), 'EOS859gxfnXyUriMgUeThh1fWv3oqcpLFyHa3TfFYC4PK2HqhToVM', pubError);
+    // assert.equal(pub.toString(), 'PUB_K1_859gxfnXyUriMgUeThh1fWv3oqcpLFyHa3TfFYC4PK2Ht7beeX', pubError)
+    // assert.equal(pub.toStringLegacy(), 'EOS859gxfnXyUriMgUeThh1fWv3oqcpLFyHa3TfFYC4PK2HqhToVM', pubError)
+
+    doesNotThrow(function () {
+        return PrivateKey$2.fromString(pvt.toWif());
+    }, 'converting known wif from string');
+    doesNotThrow(function () {
+        return PrivateKey$2.fromString(pvt.toString());
+    }, 'converting known pvt from string');
+    doesNotThrow(function () {
+        return key_public.fromString(pub.toString());
+    }, 'converting known public key from string');
+    // doesNotThrow(() => PublicKey.fromString(pub.toStringLegacy()), 'converting known public key from string')
+
+    
+}
+
+/** @private */
+var doesNotThrow = function doesNotThrow(cb, msg) {
+    try {
+        cb();
+    } catch (error) {
+        error.message = msg + ' ==> ' + error.message;
+        throw error;
+    }
+};
+
+'use strict';
+
+
+
+
+
+
+
+
+
+var Long = bytebufferNode.Long;
+
+var aes$4 = {
+    encrypt: encrypt,
+    decrypt: decrypt
+
+    /**
+        Spec: http://localhost:3002/steem/@dantheman/how-to-encrypt-a-memo-when-transferring-steem
+    
+        @throws {Error|TypeError} - "Invalid Key, ..."
+    
+        @arg {PrivateKey} private_key - required and used for decryption
+        @arg {PublicKey} public_key - required and used to calcualte the shared secret
+        @arg {string} [nonce = uniqueNonce()] - assigned a random unique uint64
+    
+        @return {object}
+        @property {string} nonce - random or unique uint64, provides entropy when re-using the same private/public keys.
+        @property {Buffer} message - Plain text message
+        @property {number} checksum - shared secret checksum
+    */
+};function encrypt(private_key, public_key, message) {
+    var nonce = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : uniqueNonce();
+
+    return crypt(private_key, public_key, nonce, message);
+}
+
+/**
+    Spec: http://localhost:3002/steem/@dantheman/how-to-encrypt-a-memo-when-transferring-steem
+
+    @arg {PrivateKey} private_key - required and used for decryption
+    @arg {PublicKey} public_key - required and used to calcualte the shared secret
+    @arg {string} nonce - random or unique uint64, provides entropy when re-using the same private/public keys.
+    @arg {Buffer} message - Encrypted or plain text message
+    @arg {number} checksum - shared secret checksum
+
+    @throws {Error|TypeError} - "Invalid Key, ..."
+
+    @return {Buffer} - message
+*/
+function decrypt(private_key, public_key, nonce, message, checksum) {
+    return crypt(private_key, public_key, nonce, message, checksum).message;
+}
+
+/**
+    @arg {Buffer} message - Encrypted or plain text message (see checksum)
+    @arg {number} checksum - shared secret checksum (null to encrypt, non-null to decrypt)
+    @private
+*/
+function crypt(private_key, public_key, nonce, message, checksum) {
+    private_key = key_private(private_key);
+    if (!private_key) throw new TypeError('private_key is required');
+
+    public_key = key_public(public_key);
+    if (!public_key) throw new TypeError('public_key is required');
+
+    nonce = toLongObj(nonce);
+    if (!nonce) throw new TypeError('nonce is required');
+
+    if (!Buffer.isBuffer(message)) {
+        if (typeof message !== 'string') throw new TypeError('message should be buffer or string');
+        message = new Buffer(message, 'binary');
+    }
+    if (checksum && typeof checksum !== 'number') throw new TypeError('checksum should be a number');
+
+    var S = private_key.getSharedSecret(public_key);
+    var ebuf = new bytebufferNode(bytebufferNode.DEFAULT_CAPACITY, bytebufferNode.LITTLE_ENDIAN);
+    ebuf.writeUint64(nonce);
+    ebuf.append(S.toString('binary'), 'binary');
+    ebuf = new Buffer(ebuf.copy(0, ebuf.offset).toBinary(), 'binary');
+    var encryption_key = hash$3.sha512(ebuf);
+
+    // D E B U G
+    // console.log('crypt', {
+    //     priv_to_pub: private_key.toPublic().toString(),
+    //     pub: public_key.toString(),
+    //     nonce: nonce.toString(),
+    //     message: message.length,
+    //     checksum,
+    //     S: S.toString('hex'),
+    //     encryption_key: encryption_key.toString('hex'),
+    // })
+
+    var iv = encryption_key.slice(32, 48);
+    var key = encryption_key.slice(0, 32);
+
+    // check is first 64 bit of sha256 hash treated as uint64_t truncated to 32 bits.
+    var check = hash$3.sha256(encryption_key);
+    check = check.slice(0, 4);
+    var cbuf = bytebufferNode.fromBinary(check.toString('binary'), bytebufferNode.DEFAULT_CAPACITY, bytebufferNode.LITTLE_ENDIAN);
+    check = cbuf.readUint32();
+
+    if (checksum) {
+        if (check !== checksum) throw new Error('Invalid key');
+        message = cryptoJsDecrypt(message, key, iv);
+    } else {
+        message = cryptoJsEncrypt(message, key, iv);
+    }
+    return { nonce: nonce, message: message, checksum: check };
+}
+
+/** This method does not use a checksum, the returned data must be validated some other way.
+
+    @arg {string|Buffer} message - ciphertext binary format
+    @arg {string<utf8>|Buffer} key - 256bit
+    @arg {string<utf8>|Buffer} iv - 128bit
+
+    @return {Buffer}
+*/
+function cryptoJsDecrypt(message, key, iv) {
+    assert(message, "Missing cipher text");
+    message = toBinaryBuffer(message);
+    var decipher = browserifyAes.createDecipheriv('aes-256-cbc', key, iv);
+    // decipher.setAutoPadding(true)
+    message = Buffer.concat([decipher.update(message), decipher.final()]);
+    return message;
+}
+
+/** This method does not use a checksum, the returned data must be validated some other way.
+    @arg {string|Buffer} message - plaintext binary format
+    @arg {string<utf8>|Buffer} key - 256bit
+    @arg {string<utf8>|Buffer} iv - 128bit
+
+    @return {Buffer}
+*/
+function cryptoJsEncrypt(message, key, iv) {
+    assert(message, "Missing plain text");
+    message = toBinaryBuffer(message);
+    var cipher = browserifyAes.createCipheriv('aes-256-cbc', key, iv);
+    // cipher.setAutoPadding(true)
+    message = Buffer.concat([cipher.update(message), cipher.final()]);
+    return message;
+}
+
+/** @return {string} unique 64 bit unsigned number string.  Being time based, this is careful to never choose the same nonce twice.  This value could be recorded in the blockchain for a long time.
+*/
+function uniqueNonce() {
+    if (unique_nonce_entropy === null) {
+        var b = new Uint8Array(randombytes(2));
+        unique_nonce_entropy = parseInt(b[0] << 8 | b[1], 10);
+    }
+    var long = Long.fromNumber(Date.now());
+    var entropy = ++unique_nonce_entropy % 0xFFFF;
+    // console.log('uniqueNonce date\t', ByteBuffer.allocate(8).writeUint64(long).toHex(0))
+    // console.log('uniqueNonce entropy\t', ByteBuffer.allocate(8).writeUint64(Long.fromNumber(entropy)).toHex(0))
+    long = long.shiftLeft(16).or(Long.fromNumber(entropy));
+    // console.log('uniqueNonce final\t', ByteBuffer.allocate(8).writeUint64(long).toHex(0))
+    return long.toString();
+}
+var unique_nonce_entropy = null;
+// for(let i=1; i < 10; i++) key.uniqueNonce()
+
+var toLongObj = function toLongObj(o) {
+    return o ? Long.isLong(o) ? o : Long.fromString(o) : o;
+};
+var toBinaryBuffer = function toBinaryBuffer(o) {
+    return o ? Buffer.isBuffer(o) ? o : new Buffer(o, 'binary') : o;
+};
+
+'use strict';
+
+var enforce_types = function enforce(type, value) {
+  // Copied from https://github.com/bitcoinjs/bitcoinjs-lib
+  switch (type) {
+    case 'Array':
+      {
+        if (Array.isArray(value)) return;
+        break;
+      }
+
+    case 'Boolean':
+      {
+        if (typeof value === 'boolean') return;
+        break;
+      }
+
+    case 'Buffer':
+      {
+        if (Buffer.isBuffer(value)) return;
+        break;
+      }
+
+    case 'Number':
+      {
+        if (typeof value === 'number') return;
+        break;
+      }
+
+    case 'String':
+      {
+        if (typeof value === 'string') return;
+        break;
+      }
+
+    default:
+      {
+        if (getName(value.constructor) === getName(type)) return;
+      }
+  }
+
+  throw new TypeError('Expected ' + (getName(type) || type) + ', got ' + value);
+};
+
+function getName(fn) {
+  // Why not fn.name: https://kangax.github.io/compat-table/es6/#function_name_property
+  var match = fn.toString().match(/function (.*?)\(/);
+  return match ? match[1] : null;
+}
+
+'use strict';
+
+ // from https://github.com/bitcoinjs/bitcoinjs-lib
+
+
+
+
+function ECSignature(r, s) {
+  enforce_types(lib$10, r);
+  enforce_types(lib$10, s);
+
+  function toCompact(i, compressed) {
+    if (compressed) i += 4;
+    i += 27;
+
+    var buffer$$1 = new Buffer(65);
+    buffer$$1.writeUInt8(i, 0);
+
+    r.toBuffer(32).copy(buffer$$1, 1);
+    s.toBuffer(32).copy(buffer$$1, 33);
+
+    return buffer$$1;
+  }
+
+  function toDER() {
+    var rBa = r.toDERInteger();
+    var sBa = s.toDERInteger();
+
+    var sequence = [];
+
+    // INTEGER
+    sequence.push(0x02, rBa.length);
+    sequence = sequence.concat(rBa);
+
+    // INTEGER
+    sequence.push(0x02, sBa.length);
+    sequence = sequence.concat(sBa);
+
+    // SEQUENCE
+    sequence.unshift(0x30, sequence.length);
+
+    return new Buffer(sequence);
+  }
+
+  function toScriptSignature(hashType) {
+    var hashTypeBuffer = new Buffer(1);
+    hashTypeBuffer.writeUInt8(hashType, 0);
+
+    return Buffer.concat([toDER(), hashTypeBuffer]);
+  }
+
+  return { r: r, s: s, toCompact: toCompact, toDER: toDER, toScriptSignature: toScriptSignature };
+}
+
+// Import operations
+ECSignature.parseCompact = function (buffer$$1) {
+  assert.equal(buffer$$1.length, 65, 'Invalid signature length');
+  var i = buffer$$1.readUInt8(0) - 27;
+
+  // At most 3 bits
+  assert.equal(i, i & 7, 'Invalid signature parameter');
+  var compressed = !!(i & 4);
+
+  // Recovery param only
+  i = i & 3;
+
+  var r = lib$10.fromBuffer(buffer$$1.slice(1, 33));
+  var s = lib$10.fromBuffer(buffer$$1.slice(33));
+
+  return {
+    compressed: compressed,
+    i: i,
+    signature: ECSignature(r, s)
+  };
+};
+
+ECSignature.fromDER = function (buffer$$1) {
+  assert.equal(buffer$$1.readUInt8(0), 0x30, 'Not a DER sequence');
+  assert.equal(buffer$$1.readUInt8(1), buffer$$1.length - 2, 'Invalid sequence length');
+  assert.equal(buffer$$1.readUInt8(2), 0x02, 'Expected a DER integer');
+
+  var rLen = buffer$$1.readUInt8(3);
+  assert(rLen > 0, 'R length is zero');
+
+  var offset = 4 + rLen;
+  assert.equal(buffer$$1.readUInt8(offset), 0x02, 'Expected a DER integer (2)');
+
+  var sLen = buffer$$1.readUInt8(offset + 1);
+  assert(sLen > 0, 'S length is zero');
+
+  var rB = buffer$$1.slice(4, offset);
+  var sB = buffer$$1.slice(offset + 2);
+  offset += 2 + sLen;
+
+  if (rLen > 1 && rB.readUInt8(0) === 0x00) {
+    assert(rB.readUInt8(1) & 0x80, 'R value excessively padded');
+  }
+
+  if (sLen > 1 && sB.readUInt8(0) === 0x00) {
+    assert(sB.readUInt8(1) & 0x80, 'S value excessively padded');
+  }
+
+  assert.equal(offset, buffer$$1.length, 'Invalid DER encoding');
+  var r = lib$10.fromDERInteger(rB);
+  var s = lib$10.fromDERInteger(sB);
+
+  assert(r.signum() >= 0, 'R value is negative');
+  assert(s.signum() >= 0, 'S value is negative');
+
+  return ECSignature(r, s);
+};
+
+// FIXME: 0x00, 0x04, 0x80 are SIGHASH_* boundary constants, importing Transaction causes a circular dependency
+ECSignature.parseScriptSignature = function (buffer$$1) {
+  var hashType = buffer$$1.readUInt8(buffer$$1.length - 1);
+  var hashTypeMod = hashType & ~0x80;
+
+  assert(hashTypeMod > 0x00 && hashTypeMod < 0x04, 'Invalid hashType');
+
+  return {
+    signature: ECSignature.fromDER(buffer$$1.slice(0, -1)),
+    hashType: hashType
+  };
+};
+
+var ecsignature = ECSignature;
+
+'use strict';
+
+ // from github.com/bitcoinjs/bitcoinjs-lib from github.com/cryptocoinjs/ecdsa
+
+
+
+
+
+
+// https://tools.ietf.org/html/rfc6979#section-3.2
+function deterministicGenerateK(curve, hash, d, checkSig, nonce) {
+
+  enforce_types('Buffer', hash);
+  enforce_types(lib$10, d);
+
+  if (nonce) {
+    hash = hash$3.sha256(Buffer.concat([hash, new Buffer(nonce)]));
+  }
+
+  // sanity check
+  assert.equal(hash.length, 32, 'Hash must be 256 bit');
+
+  var x = d.toBuffer(32);
+  var k = new Buffer(32);
+  var v = new Buffer(32);
+
+  // Step B
+  v.fill(1);
+
+  // Step C
+  k.fill(0);
+
+  // Step D
+  k = hash$3.HmacSHA256(Buffer.concat([v, new Buffer([0]), x, hash]), k);
+
+  // Step E
+  v = hash$3.HmacSHA256(v, k);
+
+  // Step F
+  k = hash$3.HmacSHA256(Buffer.concat([v, new Buffer([1]), x, hash]), k);
+
+  // Step G
+  v = hash$3.HmacSHA256(v, k);
+
+  // Step H1/H2a, ignored as tlen === qlen (256 bit)
+  // Step H2b
+  v = hash$3.HmacSHA256(v, k);
+
+  var T = lib$10.fromBuffer(v);
+
+  // Step H3, repeat until T is within the interval [1, n - 1]
+  while (T.signum() <= 0 || T.compareTo(curve.n) >= 0 || !checkSig(T)) {
+    k = hash$3.HmacSHA256(Buffer.concat([v, new Buffer([0])]), k);
+    v = hash$3.HmacSHA256(v, k);
+
+    // Step H1/H2a, again, ignored as tlen === qlen (256 bit)
+    // Step H2b again
+    v = hash$3.HmacSHA256(v, k);
+
+    T = lib$10.fromBuffer(v);
+  }
+
+  return T;
+}
+
+function sign$1(curve, hash, d, nonce) {
+
+  var e = lib$10.fromBuffer(hash);
+  var n = curve.n;
+  var G = curve.G;
+
+  var r, s;
+  var k = deterministicGenerateK(curve, hash, d, function (k) {
+    // find canonically valid signature
+    var Q = G.multiply(k);
+
+    if (curve.isInfinity(Q)) return false;
+
+    r = Q.affineX.mod(n);
+    if (r.signum() === 0) return false;
+
+    s = k.modInverse(n).multiply(e.add(d.multiply(r))).mod(n);
+    if (s.signum() === 0) return false;
+
+    return true;
+  }, nonce);
+
+  var N_OVER_TWO = n.shiftRight(1);
+
+  // enforce low S values, see bip62: 'low s values in signatures'
+  if (s.compareTo(N_OVER_TWO) > 0) {
+    s = n.subtract(s);
+  }
+
+  return ecsignature(r, s);
+}
+
+function verifyRaw(curve, e, signature, Q) {
+  var n = curve.n;
+  var G = curve.G;
+
+  var r = signature.r;
+  var s = signature.s;
+
+  // 1.4.1 Enforce r and s are both integers in the interval [1, n − 1]
+  if (r.signum() <= 0 || r.compareTo(n) >= 0) return false;
+  if (s.signum() <= 0 || s.compareTo(n) >= 0) return false;
+
+  // c = s^-1 mod n
+  var c = s.modInverse(n);
+
+  // 1.4.4 Compute u1 = es^−1 mod n
+  //               u2 = rs^−1 mod n
+  var u1 = e.multiply(c).mod(n);
+  var u2 = r.multiply(c).mod(n);
+
+  // 1.4.5 Compute R = (xR, yR) = u1G + u2Q
+  var R = G.multiplyTwo(u1, Q, u2);
+
+  // 1.4.5 (cont.) Enforce R is not at infinity
+  if (curve.isInfinity(R)) return false;
+
+  // 1.4.6 Convert the field element R.x to an integer
+  var xR = R.affineX;
+
+  // 1.4.7 Set v = xR mod n
+  var v = xR.mod(n);
+
+  // 1.4.8 If v = r, output "valid", and if v != r, output "invalid"
+  return v.equals(r);
+}
+
+function verify$1(curve, hash, signature, Q) {
+  // 1.4.2 H = Hash(M), already done by the user
+  // 1.4.3 e = H
+  var e = lib$10.fromBuffer(hash);
+  return verifyRaw(curve, e, signature, Q);
+}
+
+/**
+  * Recover a public key from a signature.
+  *
+  * See SEC 1: Elliptic Curve Cryptography, section 4.1.6, "Public
+  * Key Recovery Operation".
+  *
+  * http://www.secg.org/download/aid-780/sec1-v2.pdf
+  */
+function recoverPubKey(curve, e, signature, i) {
+  assert.strictEqual(i & 3, i, 'Recovery param is more than two bits');
+
+  var n = curve.n;
+  var G = curve.G;
+
+  var r = signature.r;
+  var s = signature.s;
+
+  assert(r.signum() > 0 && r.compareTo(n) < 0, 'Invalid r value');
+  assert(s.signum() > 0 && s.compareTo(n) < 0, 'Invalid s value');
+
+  // A set LSB signifies that the y-coordinate is odd
+  var isYOdd = i & 1;
+
+  // The more significant bit specifies whether we should use the
+  // first or second candidate key.
+  var isSecondKey = i >> 1;
+
+  // 1.1 Let x = r + jn
+  var x = isSecondKey ? r.add(n) : r;
+  var R = curve.pointFromX(isYOdd, x);
+
+  // 1.4 Check that nR is at infinity
+  var nR = R.multiply(n);
+  assert(curve.isInfinity(nR), 'nR is not a valid curve point');
+
+  // Compute -e from e
+  var eNeg = e.negate().mod(n);
+
+  // 1.6.1 Compute Q = r^-1 (sR -  eG)
+  //               Q = r^-1 (sR + -eG)
+  var rInv = r.modInverse(n);
+
+  var Q = R.multiplyTwo(s, G, eNeg).multiply(rInv);
+  curve.validate(Q);
+
+  return Q;
+}
+
+/**
+  * Calculate pubkey extraction parameter.
+  *
+  * When extracting a pubkey from a signature, we have to
+  * distinguish four different cases. Rather than putting this
+  * burden on the verifier, Bitcoin includes a 2-bit value with the
+  * signature.
+  *
+  * This function simply tries all four cases and returns the value
+  * that resulted in a successful pubkey recovery.
+  */
+function calcPubKeyRecoveryParam(curve, e, signature, Q) {
+  for (var i = 0; i < 4; i++) {
+    var Qprime = recoverPubKey(curve, e, signature, i);
+
+    // 1.6.2 Verify Q
+    if (Qprime.equals(Q)) {
+      return i;
+    }
+  }
+
+  throw new Error('Unable to find valid recovery factor');
+}
+
+var ecdsa$2 = {
+  calcPubKeyRecoveryParam: calcPubKeyRecoveryParam,
+  deterministicGenerateK: deterministicGenerateK,
+  recoverPubKey: recoverPubKey,
+  sign: sign$1,
+  verify: verify$1,
+  verifyRaw: verifyRaw
+};
+
+'use strict';
+
+var _slicedToArray$2 = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _typeof$3 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+
+
+var curve$5 = lib$8.getCurveByName('secp256k1');
+
+
+
+
+
+
+var signature$14 = Signature$13;
+
+function Signature$13(r, s, i) {
+    assert.equal(r != null, true, 'Missing parameter');
+    assert.equal(s != null, true, 'Missing parameter');
+    assert.equal(i != null, true, 'Missing parameter');
+
+    /**
+        Verify signed data.
+         @arg {String|Buffer} data - full data
+        @arg {pubkey|PublicKey} pubkey - EOSKey..
+        @arg {String} [encoding = 'utf8'] - data encoding (if data is a string)
+         @return {boolean}
+    */
+    function verify(data, pubkey) {
+        var encoding = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'utf8';
+
+        if (typeof data === 'string') {
+            data = Buffer.from(data, encoding);
+        }
+        assert(Buffer.isBuffer(data), 'data is a required String or Buffer');
+        data = hash$3.sha256(data);
+        return verifyHash(data, pubkey);
+    }
+
+    /**
+        Verify a buffer of exactally 32 bytes in size (sha256(text))
+         @arg {String|Buffer} dataSha256 - 32 byte buffer or string
+        @arg {String|PublicKey} pubkey - EOSKey..
+        @arg {String} [encoding = 'hex'] - dataSha256 encoding (if string)
+         @return {boolean}
+    */
+    function verifyHash(dataSha256, pubkey) {
+        var encoding = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'hex';
+
+        if (typeof dataSha256 === 'string') {
+            dataSha256 = Buffer.from(dataSha256, encoding);
+        }
+        if (dataSha256.length !== 32 || !Buffer.isBuffer(dataSha256)) throw new Error("dataSha256: 32 bytes required");
+
+        var publicKey = key_public(pubkey);
+        assert(publicKey, 'pubkey required');
+
+        return ecdsa$2.verify(curve$5, dataSha256, { r: r, s: s }, publicKey.Q);
+    }
+
+    /** @deprecated
+         Verify hex data by converting to a buffer then hashing.
+         @return {boolean}
+    */
+    function verifyHex(hex, pubkey) {
+        console.log('Deprecated: use verify(data, pubkey, "hex")');
+
+        var buf = Buffer.from(hex, 'hex');
+        return verify(buf, pubkey);
+    }
+
+    /**
+        Recover the public key used to create this signature using full data.
+         @arg {String|Buffer} data - full data
+        @arg {String} [encoding = 'utf8'] - data encoding (if string)
+         @return {PublicKey}
+    */
+    function recover(data) {
+        var encoding = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'utf8';
+
+        if (typeof data === 'string') {
+            data = Buffer.from(data, encoding);
+        }
+        assert(Buffer.isBuffer(data), 'data is a required String or Buffer');
+        data = hash$3.sha256(data);
+
+        return recoverHash(data);
+    }
+
+    /**
+        @arg {String|Buffer} dataSha256 - sha256 hash 32 byte buffer or hex string
+        @arg {String} [encoding = 'hex'] - dataSha256 encoding (if string)
+         @return {PublicKey}
+    */
+    function recoverHash(dataSha256) {
+        var encoding = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'hex';
+
+        if (typeof dataSha256 === 'string') {
+            dataSha256 = Buffer.from(dataSha256, encoding);
+        }
+        if (dataSha256.length !== 32 || !Buffer.isBuffer(dataSha256)) {
+            throw new Error("dataSha256: 32 byte String or buffer requred");
+        }
+
+        var e = lib$10.fromBuffer(dataSha256);
+        var i2 = i;
+        i2 -= 27;
+        i2 = i2 & 3;
+        var Q = ecdsa$2.recoverPubKey(curve$5, e, { r: r, s: s, i: i }, i2);
+        return key_public.fromPoint(Q);
+    }
+
+    function toBuffer() {
+        var buf;
+        buf = new Buffer(65);
+        buf.writeUInt8(i, 0);
+        r.toBuffer(32).copy(buf, 1);
+        s.toBuffer(32).copy(buf, 33);
+        return buf;
+    }
+
+    function toHex() {
+        return toBuffer().toString("hex");
+    }
+
+    var signatureCache = void 0;
+
+    function toString() {
+        if (signatureCache) {
+            return signatureCache;
+        }
+        signatureCache = 'SIG_K1_' + key_utils.checkEncode(toBuffer(), 'K1');
+        return signatureCache;
+    }
+
+    return {
+        r: r, s: s, i: i,
+        toBuffer: toBuffer,
+        verify: verify,
+        verifyHash: verifyHash,
+        verifyHex: verifyHex, // deprecated
+        recover: recover,
+        recoverHash: recoverHash,
+        toHex: toHex,
+        toString: toString,
+
+        /** @deprecated use verify (same arguments and return) */
+        verifyBuffer: function verifyBuffer() {
+            console.log('Deprecated: use signature.verify instead (same arguments)');
+            return verify.apply(undefined, arguments);
+        },
+
+        /** @deprecated use recover (same arguments and return) */
+        recoverPublicKey: function recoverPublicKey() {
+            console.log('Deprecated: use signature.recover instead (same arguments)');
+            return recover.apply(undefined, arguments);
+        },
+
+        /** @deprecated use recoverHash (same arguments and return) */
+        recoverPublicKeyFromBuffer: function recoverPublicKeyFromBuffer() {
+            console.log('Deprecated: use signature.recoverHash instead (same arguments)');
+            return recoverHash.apply(undefined, arguments);
+        }
+    };
+}
+
+/**
+    Hash and sign arbitrary data.
+
+    @arg {string|Buffer} data - full data
+    @arg {wif|PrivateKey} privateKey
+    @arg {String} [encoding = 'utf8'] - data encoding (if string)
+
+    @return {Signature}
+*/
+Signature$13.sign = function (data, privateKey) {
+    var encoding = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'utf8';
+
+    if (typeof data === 'string') {
+        data = Buffer.from(data, encoding);
+    }
+    assert(Buffer.isBuffer(data), 'data is a required String or Buffer');
+    data = hash$3.sha256(data);
+    return Signature$13.signHash(data, privateKey);
+};
+
+/**
+    Sign a buffer of exactally 32 bytes in size (sha256(text))
+
+    @arg {string|Buffer} dataSha256 - 32 byte buffer or string
+    @arg {wif|PrivateKey} privateKey
+    @arg {String} [encoding = 'hex'] - dataSha256 encoding (if string)
+
+    @return {Signature}
+*/
+Signature$13.signHash = function (dataSha256, privateKey) {
+    var encoding = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'hex';
+
+    if (typeof dataSha256 === 'string') {
+        dataSha256 = Buffer.from(dataSha256, encoding);
+    }
+    if (dataSha256.length !== 32 || !Buffer.isBuffer(dataSha256)) throw new Error("dataSha256: 32 byte buffer requred");
+
+    privateKey = key_private(privateKey);
+    assert(privateKey, 'privateKey required');
+
+    var der, e, ecsignature, i, lenR, lenS, nonce;
+    i = null;
+    nonce = 0;
+    e = lib$10.fromBuffer(dataSha256);
+    while (true) {
+        ecsignature = ecdsa$2.sign(curve$5, dataSha256, privateKey.d, nonce++);
+        der = ecsignature.toDER();
+        lenR = der[3];
+        lenS = der[5 + lenR];
+        if (lenR === 32 && lenS === 32) {
+            i = ecdsa$2.calcPubKeyRecoveryParam(curve$5, e, ecsignature, privateKey.toPublic().Q);
+            i += 4; // compressed
+            i += 27; // compact  //  24 or 27 :( forcing odd-y 2nd key candidate)
+            break;
+        }
+        if (nonce % 10 === 0) {
+            console.log("WARN: " + nonce + " attempts to find canonical signature");
+        }
+    }
+    return Signature$13(ecsignature.r, ecsignature.s, i);
+};
+
+Signature$13.fromBuffer = function (buf) {
+    var i, r, s;
+    assert(Buffer.isBuffer(buf), 'Buffer is required');
+    assert.equal(buf.length, 65, 'Invalid signature length');
+    i = buf.readUInt8(0);
+    assert.equal(i - 27, i - 27 & 7, 'Invalid signature parameter');
+    r = lib$10.fromBuffer(buf.slice(1, 33));
+    s = lib$10.fromBuffer(buf.slice(33));
+    return Signature$13(r, s, i);
+};
+
+Signature$13.fromHex = function (hex) {
+    return Signature$13.fromBuffer(Buffer.from(hex, "hex"));
+};
+
+/**
+    @arg {string} signature - like SIG_K1_base58signature..
+    @return {Signature} or `null` (invalid)
+*/
+Signature$13.fromString = function (signature) {
+    try {
+        return Signature$13.fromStringOrThrow(signature);
+    } catch (e) {
+        return null;
+    }
+};
+
+/**
+    @arg {string} signature - like SIG_K1_base58signature..
+    @throws {Error} invalid
+    @return {Signature}
+*/
+Signature$13.fromStringOrThrow = function (signature) {
+    assert.equal(typeof signature === 'undefined' ? 'undefined' : _typeof$3(signature), 'string', 'signature');
+    var match = signature.match(/^SIG_([A-Za-z0-9]+)_([A-Za-z0-9]+)$/);
+    assert(match != null && match.length === 3, 'Expecting signature like: SIG_K1_base58signature..');
+
+    var _match = _slicedToArray$2(match, 3),
+        keyType = _match[1],
+        keyString = _match[2];
+
+    assert.equal(keyType, 'K1', 'K1 signature expected');
+    return Signature$13.fromBuffer(key_utils.checkDecode(keyString, keyType));
+};
+
+/**
+    @arg {String|Signature} o - hex string
+    @return {Signature}
+*/
+Signature$13.from = function (o) {
+    var signature = o ? o.r && o.s && o.i ? o : typeof o === 'string' && o.length === 130 ? Signature$13.fromHex(o) : typeof o === 'string' && o.length !== 130 ? Signature$13.fromStringOrThrow(o) : Buffer.isBuffer(o) ? Signature$13.fromBuffer(o) : null : o; /*null or undefined*/
+
+    if (!signature) {
+        throw new TypeError('signature should be a hex string or buffer');
+    }
+    return signature;
+};
+
+"use strict";
+
+
+
+
+
+
+
+
+/**
+    [Wallet Import Format](https://en.bitcoin.it/wiki/Wallet_import_format)
+    @typedef {string} wif
+*/
+/**
+    EOSKey..
+    @typedef {string} pubkey
+*/
+
+/** @namespace */
+var ecc$1 = {
+    /**
+      Initialize by running some self-checking code.  This should take a
+      second to gather additional CPU entropy used during private key
+      generation.
+       Initialization happens once even if called multiple times.
+       @return {Promise}
+    */
+    initialize: key_private.initialize,
+
+    /**
+      Does not pause to gather CPU entropy.
+      @return {Promise<PrivateKey>} test key
+    */
+    unsafeRandomKey: function unsafeRandomKey() {
+        return key_private.unsafeRandomKey().then(function (key) {
+            return key.toString();
+        });
+    },
+
+    /**
+        @arg {number} [cpuEntropyBits = 0] gather additional entropy
+        from a CPU mining algorithm.  This will already happen once by
+        default.
+         @return {Promise<wif>}
+         @example
+    ecc.randomKey().then(privateKey => {
+    console.log('Private Key:\t', privateKey) // wif
+    console.log('Public Key:\t', ecc.privateToPublic(privateKey)) // EOSkey...
+    })
+    */
+    randomKey: function randomKey(cpuEntropyBits) {
+        return key_private.randomKey(cpuEntropyBits).then(function (key) {
+            return key.toString();
+        });
+    },
+
+    /**
+         @arg {string} seed - any length string.  This is private.  The same
+        seed produces the same private key every time.  At least 128 random
+        bits should be used to produce a good private key.
+        @return {wif}
+         @example ecc.seedPrivate('secret') === wif
+    */
+    seedPrivate: function seedPrivate(seed) {
+        return key_private.fromSeed(seed).toString();
+    },
+
+    /**
+        @arg {wif} wif
+        @arg {string} [pubkey_prefix = 'EOS'] - public key prefix
+         @return {pubkey}
+         @example ecc.privateToPublic(wif) === pubkey
+    */
+    privateToPublic: function privateToPublic(wif) {
+        var pubkey_prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'EOS';
+        return key_private(wif).toPublic().toString(pubkey_prefix);
+    },
+
+    /**
+        @arg {pubkey} pubkey - like EOSKey..
+        @arg {string} [pubkey_prefix = 'EOS']
+         @return {boolean} valid
+         @example ecc.isValidPublic(pubkey) === true
+    */
+    isValidPublic: function isValidPublic(pubkey) {
+        var pubkey_prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'EOS';
+        return key_public.isValid(pubkey, pubkey_prefix);
+    },
+
+    /**
+        @arg {wif} wif
+        @return {boolean} valid
+         @example ecc.isValidPrivate(wif) === true
+    */
+    isValidPrivate: function isValidPrivate(wif) {
+        return key_private.isValid(wif);
+    },
+
+    /**
+        Create a signature using data or a hash.
+         @arg {string|Buffer} data
+        @arg {wif|PrivateKey} privateKey
+        @arg {String} [encoding = 'utf8'] - data encoding (if string)
+         @return {string} string signature
+         @example ecc.sign('I am alive', wif)
+    */
+    sign: function sign(data, privateKey) {
+        var encoding = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'utf8';
+
+        if (encoding === true) {
+            throw new TypeError('API changed, use signHash(..) instead');
+        } else {
+            if (encoding === false) {
+                console.log('Warning: ecc.sign hashData parameter was removed');
+            }
+        }
+        return signature$14.sign(data, privateKey, encoding).toString();
+    },
+
+    /**
+        @arg {String|Buffer} dataSha256 - sha256 hash 32 byte buffer or string
+        @arg {wif|PrivateKey} privateKey
+        @arg {String} [encoding = 'hex'] - dataSha256 encoding (if string)
+         @return {string} string signature
+    */
+    signHash: function signHash(dataSha256, privateKey) {
+        var encoding = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'hex';
+
+        return signature$14.signHash(dataSha256, privateKey, encoding).toString();
+    },
+
+    /**
+        Verify signed data.
+         @arg {string|Buffer} signature - buffer or hex string
+        @arg {string|Buffer} data
+        @arg {pubkey|PublicKey} pubkey
+        @arg {boolean} [hashData = true] - sha256 hash data before verify
+        @return {boolean}
+         @example ecc.verify(signature, 'I am alive', pubkey) === true
+    */
+    verify: function verify(signature, data, pubkey) {
+        var encoding = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'utf8';
+
+        if (encoding === true) {
+            throw new TypeError('API changed, use verifyHash(..) instead');
+        } else {
+            if (encoding === false) {
+                console.log('Warning: ecc.verify hashData parameter was removed');
+            }
+        }
+        signature = signature$14.from(signature);
+        return signature.verify(data, pubkey, encoding);
+    },
+
+    verifyHash: function verifyHash(signature, dataSha256, pubkey) {
+        var encoding = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'hex';
+
+        signature = signature$14.from(signature);
+        return signature.verifyHash(dataSha256, pubkey, encoding);
+    },
+
+
+    /**
+        Recover the public key used to create the signature.
+         @arg {String|Buffer} signature (EOSbase58sig.., Hex, Buffer)
+        @arg {String|Buffer} data - full data
+        @arg {String} [encoding = 'utf8'] - data encoding (if data is a string)
+         @return {pubkey}
+         @example ecc.recover(signature, 'I am alive') === pubkey
+    */
+    recover: function recover(signature, data) {
+        var encoding = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'utf8';
+
+        if (encoding === true) {
+            throw new TypeError('API changed, use recoverHash(signature, data) instead');
+        } else {
+            if (encoding === false) {
+                console.log('Warning: ecc.recover hashData parameter was removed');
+            }
+        }
+        signature = signature$14.from(signature);
+        return signature.recover(data, encoding).toString();
+    },
+
+    /**
+        @arg {String|Buffer} signature (EOSbase58sig.., Hex, Buffer)
+        @arg {String|Buffer} dataSha256 - sha256 hash 32 byte buffer or hex string
+        @arg {String} [encoding = 'hex'] - dataSha256 encoding (if dataSha256 is a string)
+         @return {PublicKey}
+    */
+    recoverHash: function recoverHash(signature, dataSha256) {
+        var encoding = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'hex';
+
+        signature = signature$14.from(signature);
+        return signature.recoverHash(dataSha256, encoding).toString();
+    },
+
+    /** @arg {string|Buffer} data - always binary, you may need Buffer.from(data, 'hex')
+        @arg {string} [encoding = 'hex'] - result encoding 'hex', 'binary' or 'base64'
+        @return {string|Buffer} - Buffer when encoding is null, or string
+         @example ecc.sha256('hashme') === '02208b..'
+        @example ecc.sha256(Buffer.from('02208b', 'hex')) === '29a23..'
+    */
+    sha256: function sha256(data) {
+        var resultEncoding = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'hex';
+        return hash$3.sha256(data, resultEncoding);
+    }
+};
+
+var api_common = ecc$1;
+
+"use strict";
+
+
+
+
+
+
+
+var api_object = {
+    Aes: aes$4, PrivateKey: key_private, PublicKey: key_public,
+    Signature: signature$14, key_utils: key_utils
+};
+
+'use strict';
+
+
+
+
+var ecc = Object.assign({}, api_common, api_object);
+
+var lib$6 = ecc;
+
 var src = {
   bitcore: bitcoreLib,
   bip39: bip39,
@@ -122630,7 +131811,10 @@ var src = {
   nxtCrypto: lib$4,
   IotaCore: src$6,
   IotaSigning: src$8,
-  IotaConverter: src$7
+  IotaConverter: src$7,
+  hdkey,
+  wif,
+  ecc: lib$6
 };
 
 var src_1 = src.bitcore;
@@ -122643,6 +131827,9 @@ var src_7 = src.nxtCrypto;
 var src_8 = src.IotaCore;
 var src_9 = src.IotaSigning;
 var src_10 = src.IotaConverter;
+var src_11 = src.hdkey;
+var src_12 = src.wif;
+var src_13 = src.ecc;
 
 exports['default'] = src;
 exports.bitcore = src_1;
@@ -122655,3 +131842,6 @@ exports.nxtCrypto = src_7;
 exports.IotaCore = src_8;
 exports.IotaSigning = src_9;
 exports.IotaConverter = src_10;
+exports.hdkey = src_11;
+exports.wif = src_12;
+exports.ecc = src_13;
