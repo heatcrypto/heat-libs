@@ -11,6 +11,7 @@ const IotaConverter       = require('@iota/converter')
 const hdkey               = require('hdkey')
 const wif                 = require('wif')
 const ecc                 = require('eosjs-ecc')
+const bnc                 = require('@binance-chain/javascript-sdk')
 
 module.exports = {
   bitcore: bitcore,
@@ -25,5 +26,6 @@ module.exports = {
   IotaConverter: IotaConverter,
   hdkey,
   wif,
-  ecc
+  ecc,
+  bnc
 }
