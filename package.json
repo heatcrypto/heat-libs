@@ -42,7 +42,6 @@
     "uglify-es": "^3.3.10"
   },
   "dependencies": {
-    "binance-coin-js-sdk": "file:./src/binance-coin-js-sdk",
     "@iota/core": "^1.0.0-beta.12",
     "bip39": "2.5.0",
     "bitcore-lib": "0.15.0",
