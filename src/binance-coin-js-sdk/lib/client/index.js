@@ -48,14 +48,13 @@ exports.api = api;
 var NETWORK_PREFIX_MAPPING = {
   "testnet": "tbnb",
   "mainnet": "bnb"
-  /**
-   * The default signing delegate which uses the local private key.
-   * @param  {Transaction} tx      the transaction
-   * @param  {Object}      signMsg the canonical sign bytes for the msg
-   * @return {Transaction}
-   */
-
 };
+/**
+ * The default signing delegate which uses the local private key.
+ * @param  {Transaction} tx      the transaction
+ * @param  {Object}      signMsg the canonical sign bytes for the msg
+ * @return {Transaction}
+ */
 
 var DefaultSigningDelegate =
 /*#__PURE__*/

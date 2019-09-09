@@ -11,6 +11,9 @@ const IotaConverter       = require('@iota/converter')
 const hdkey               = require('hdkey')
 const wif                 = require('wif')
 const ecc                 = require('eosjs-ecc')
+const safeBuffer          = require('safe-buffer')
+const eosjs               = require('eosjs')
+const JsSignatureProvider = require('eosjs/dist/eosjs-jssig'); // expect changes. Better remove when eos finalizes the eosjs.
 const bnb                 = require('./binance-coin-js-sdk/lib/index')
 
 module.exports = {
@@ -27,5 +30,8 @@ module.exports = {
   hdkey,
   wif,
   ecc,
+  safeBuffer,
+  eosjs,
+  JsSignatureProvider,
   bnb
 }

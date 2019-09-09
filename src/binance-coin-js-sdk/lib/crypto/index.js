@@ -32,7 +32,6 @@ var _utils = require("../utils");
 /**
  * @module crypto
  */
-// secp256k1 privkey is 32 bytes
 var PRIVKEY_LEN = 32;
 var MNEMONIC_LEN = 256;
 var DECODED_ADDRESS_LEN = 20;
