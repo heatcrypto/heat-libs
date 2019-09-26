@@ -16,6 +16,7 @@ const eosjs               = require('eosjs')
 const JsSignatureProvider = require('eosjs/dist/eosjs-jssig'); // expect changes. Better remove when eos finalizes the eosjs.
 const bnb                 = require('./binance-coin-js-sdk/lib/index')
 const bitgoUtxo           = require('bitgo-utxo-lib')
+const litecore            = require('litecore')
 
 module.exports = {
   bitcore: bitcore,
@@ -35,5 +36,6 @@ module.exports = {
   eosjs,
   JsSignatureProvider,
   bnb,
-  bitgoUtxo
+  bitgoUtxo,
+  litecore
 }
