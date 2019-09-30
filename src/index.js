@@ -17,6 +17,7 @@ const JsSignatureProvider = require('eosjs/dist/eosjs-jssig'); // expect changes
 const bnb                 = require('./binance-coin-js-sdk/lib/index')
 const bitgoUtxo           = require('bitgo-utxo-lib')
 const litecore            = require('litecore')
+const bitcoreCash         = require('bitcore-lib-cash')
 
 module.exports = {
   bitcore: bitcore,
@@ -37,5 +38,6 @@ module.exports = {
   JsSignatureProvider,
   bnb,
   bitgoUtxo,
-  litecore
+  litecore,
+  bitcoreCash
 }

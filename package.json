@@ -45,6 +45,7 @@
     "@iota/core": "^1.0.0-beta.12",
     "bip39": "2.5.0",
     "bitcore-lib": "0.15.0",
+    "bitcore-lib-cash": "^8.8.1",
     "bitgo-utxo-lib": "^1.6.0",
     "eosjs": "^20.0.0",
     "eosjs-ecc": "^4.0.4",
