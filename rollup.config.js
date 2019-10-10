@@ -63,7 +63,7 @@ export default [
       }),      
       globals(),      
       sourceMaps(),
-      // uglify({}, minify)
+      uglify({}, minify)
     ],
     sourcemap: false,
     output: [
