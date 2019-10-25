@@ -13,6 +13,8 @@ const wif                 = require('wif')
 const safeBuffer          = require('safe-buffer')
 const litecore            = require('litecore-lib')
 const bitcoreCash         = require('bitcore-lib-cash')
+const ethereumTx          = require('ethereumjs-tx')
+const ethereumjsUtil      = require('ethereumjs-util')
 
 module.exports = {
   bitcore: bitcore,
@@ -29,5 +31,7 @@ module.exports = {
   wif,
   safeBuffer,
   litecore,
-  bitcoreCash
+  bitcoreCash,
+  ethereumTx,
+  ethereumjsUtil
 }
