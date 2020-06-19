@@ -9,10 +9,10 @@
       // Test bitcore
       function testBitcore() {
         var itworks
-        try {          
+        try {
           var bitcore = window.heatlibs.bitcore
           var wif = 'Kxr9tQED9H44gCmp6HAdmemAzU3n84H3dGkuWTKvE23JgHMW8gct';
-          var address = new bitcore.PrivateKey(wif).toAddress();          
+          var address = new bitcore.PrivateKey(wif).toAddress();
           itworks = true
         }
         catch (e) {
@@ -23,17 +23,18 @@
       // test iota
       function testIota() {
         var itworks
-        try {          
+        try {
           var IotaCore = window.heatlibs.IotaCore
           var Converter = window.heatlibs.IotaConverter
           var Sign = window.heatlibs.IotaSigning
-          
+
           const seed = Converter.asciiToTrytes('pizza ladder design rebuild focus spider version simple syrup lend trumpet among')
           var subseed = Sign.subseed(Converter.trytesToTrits(seed), 0 /*index*/);
           var privateKey1 = Sign.key(subseed, 1 /*security level*/);
           var privateKey1Digests = Sign.digests(privateKey1);
           var privateKey1Address = Sign.address(privateKey1Digests);
-          IotaCore.generateAddress(seed, 0 /*index*/, 1 /*security level*/)
+          let address = IotaCore.generateAddress(seed, 0 /*index*/, 1 /*security level*/)
+          console.log(`IOTA generated address ${address}`)
           var a = IotaCore.composeAPI;
           itworks = true
         }
@@ -46,7 +47,7 @@
       // Test bip39
       function testBip39() {
         var itworks
-        try {          
+        try {
           var bip39 = window.heatlibs.bip39
           var mnemonic = bip39.generateMnemonic()
           bip39.mnemonicToSeedHex(mnemonic)
@@ -63,7 +64,7 @@
       // Test eth-lightwallet
       function testEthLightWallet() {
         var itworks
-        try {          
+        try {
           var lightwallet = window.heatlibs.lightwallet
           var seed = lightwallet.keystore.generateRandomSeed();
           itworks = lightwallet.keystore.isSeedValid(seed)
@@ -78,7 +79,7 @@
       // Test web3
       function testWeb3() {
         var itworks
-        try {          
+        try {
           var Web3 = window.heatlibs.Web3
           var w = new Web3()
           itworks = !!w
@@ -88,7 +89,7 @@
           itworks = false
         }
         works('web3-works',itworks)
-      }      
+      }
     </script>
   </head>
   <body>

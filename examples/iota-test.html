@@ -1,0 +1,197 @@
+<html>
+<head>
+    <script src="../dist/heat-libs.umd.js"></script>
+    <script type="text/javascript">
+        /*
+        useful docs: https://domschiener.gitbooks.io/iota-guide/content/chapter1/bundles.html
+        * */
+        let IotaCore = window.heatlibs.IotaCore
+        let Sign = window.heatlibs.IotaSigning
+        let iotaAPI = IotaCore.composeAPI({provider: "https://nodes.thetangle.org:443"})
+
+        function sendIota(seed, address, amount) {
+            const transfers = [
+                {
+                    address: address,
+                    value: amount
+                }
+            ]
+            console.log("prepare transfers")
+            iotaAPI.prepareTransfers(seed, transfers)
+                .then(trytes => {
+                    console.log("send trytes")
+                    return iotaAPI.sendTrytes(trytes, 3, 14)
+                })
+                .then(transactions => {
+                    console.log("transactions: ")
+                    console.log(transactions)
+                })
+                .catch(err => {
+                    console.error(err)
+                })
+        }
+
+        function listTransactions(seed) {
+            iotaAPI.getAccountData(seed, {start: 0, security: 2})
+                .then(accountData => {
+                    const {addresses, inputs, transactions, balance} = accountData
+                    console.log(accountData)
+                    //addresses.forEach(address => transactionsByAddress(address))
+                    // addresses.forEach(a => {
+                    //     getTransfers([a])
+                    // })
+                    getTransfers(addresses)
+                    return null // iotaAPI.getTransactionObjects(transactions)
+                })
+                /*.then(transactionObjects => {
+                    transactionObjects.forEach(t => {
+                        console.log(t)
+                        console.log(`${new Date(t.timestamp * 1000).toLocaleString()}  ${t.address}  ${t.value}`)
+                        iotaAPI.getBundle(t.branchTransaction)
+                            .then(bundle => {
+                                console.log("bundle +++++++")
+                                bundle.forEach(t => {
+                                    console.log(t)
+                                    console.log(`${new Date(t.timestamp * 1000).toLocaleString()}  ${t.address}  ${t.value}`)
+                                })
+                                console.log("bundle -------")
+                            })
+                            .catch(err => {
+                                console.error(err)
+                            })
+                    })
+                })*/
+                .catch(err => {
+                    console.error(err)
+                })
+        }
+
+        function transactionsByAddress(address) {
+            let result = {address: address, transactions: []}
+            iotaAPI.findTransactions({addresses: [address]})
+                .then(hashes => iotaAPI.getTransactionObjects(hashes))
+                .then(transactionObjects => {
+                    result.transactions = transactionObjects
+                    return result
+                })
+                .then(v => {
+                    if (result.transactions.length > 0) {
+                        console.log("transaction +++++++++++++++++++++++++++")
+                        result.transactions.forEach(t => {
+                            console.log(t)
+                            console.log(`${new Date(t.timestamp * 1000).toLocaleString()}  ${t.currentIndex}  ${t.address}  ${t.value}`)
+                        })
+                        console.log("transaction ---------------------------")
+                    }
+                })
+                .catch(err => {
+                    console.error(err)
+                })
+        }
+
+        /*
+        Typical bundle:
+        0: Output. Recipient of the transaction	>0 (as defined by user)
+        1: <0 (spending of input)
+        2: Second half of Alice's signature. =0
+        3: Output. Remainder.	(input - output) > 0
+         */
+        function getTransfers(addresses) {
+            iotaAPI.findTransactions({addresses: addresses})
+                .then(hashes => iotaAPI.getTransactionObjects(hashes))
+                .then(transactions => {
+                    let tailHashes = []
+                    for (const t of transactions) {
+                        if (!t.address.startsWith("999999999999999999999999999") && t.currentIndex === 0) {
+                            tailHashes.push(t.hash)
+                        }
+                    }
+                    return tailHashes
+                })
+                .then(tailHashes => {
+                    for (let j in tailHashes) {
+                        let tailHash = tailHashes[j]
+                        iotaAPI.getBundle(tailHash).then(bundle => {
+                            if (bundle.length === 4) {
+                                let transfer = {
+                                    timestamp: bundle[0].timestamp,
+                                    from: bundle[1].address,
+                                    to: bundle[0].address,
+                                    amount: bundle[0].value,
+                                    hash: bundle[0].hash,
+                                    trunkTransaction: bundle[bundle.length - 1].trunkTransaction,
+                                    branchTransaction: bundle[bundle.length - 1].branchTransaction
+                                }
+                                console.log(`transfer  ${new Date(transfer.timestamp * 1000).toLocaleString()}`)
+                                console.log(transfer)
+                                return transfer
+                            }
+                            return null;
+                        }).catch(reason => console.error(`Error on getting bundle: ${reason}`))
+                    }
+                })
+        }
+
+        function getBandles(tailTransactionHashes) {
+            iotaAPI.getTransactionObjects(tailTransactionHashes)
+                .then(transactions => {
+                    let tailHashes = []
+                    for (const t of transactions) {
+                        if (!t.address.startsWith("999999999999999999999999999") && t.currentIndex === 0) {
+                            tailHashes.push(t.hash)
+                        }
+                    }
+                    return tailHashes
+                })
+                .then(tailHashes => {
+                    for (let j in tailHashes) {
+                        let tailHash = tailHashes[j]
+                        iotaAPI.getBundle(tailHash).then(bundle => {
+                            if (bundle.length === 4) {
+                                let transfer = {
+                                    timestamp: bundle[0].timestamp,
+                                    from: bundle[1].address,
+                                    to: bundle[0].address,
+                                    amount: bundle[0].value,
+                                    hash: bundle[0].hash,
+                                    trunkTransaction: bundle[bundle.length - 1].trunkTransaction,
+                                    branchTransaction: bundle[bundle.length - 1].branchTransaction
+                                }
+                                console.log(`transfer  ${new Date(transfer.timestamp * 1000).toLocaleString()}`)
+                                console.log(transfer)
+                                return transfer
+                            }
+                            return null;
+                        }).catch(reason => console.error(`Error on getting bundle: ${reason}`))
+                    }
+                })
+        }
+
+        function testIota() {
+            let seed = "SKWUKJCTKDLYGDQBHYMDLCKBQVMVUFHDXSLYRNEQQZO9EPSWOCOUPDAZNLPPDVGFZJXVKXHSJDHLNTXTB"
+            //let seed = "DAHQU9FEOA9VB9LYFPYUUJHNTXHYBSPKKVCRQIS9FYCGJIJQCTMEGDKYAEMYD9JLDTSSEHOVSTQAYSCGN"
+            //let seed = "ILGAYFYECAZJZTWUEOU9APMUVWIGDUJSJOSQRAGGBPWRTXVFZGBVPGTVHPYWVIWOEHZ9YAEKW9UIGJUZI"
+            try {
+                // sendIota(seed, "NC9CGQSSHJLAVTGWMVQW9MCFUUMEQZACYDWCNKYXXYWDMIUPXZMHBJEQEMFNRQEPXSGTITBGVTURDNJJYKQWBXZPOZ", 3)
+
+                // getBandles([
+                //     "FEDMIOIZOPJRVEF9DWMHZKIRTDOWTMQSFZRPHWKTMHNEKWOTBKCIDZOJYO9QGFYUBKVTIMUWXKQU99999",
+                //     "GSSKIQGCJMIZPNXZCLRCPVFXKWPKGJHBWTQXDQYNTCQNHYNCDNPTFTMCOMNDLEAJKMALLWNCTMSB99999",
+                //     "9ZJDGWVKQBEQYJ9UYSKVOMULSUVAHDOOKKGTANOGQQFIWC9WJVFEAUXZ9HMXYYM9VQIMWXTDOLCQA9999"
+                // ])
+
+                listTransactions(seed)
+            } catch (e) {
+                console.error(e)
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Hello heat-libs</h1>
+<div id="iota-works"></div>
+</body>
+<script>
+    testIota()
+</script>
+</html>
