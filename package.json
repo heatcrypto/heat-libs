@@ -42,7 +42,7 @@
     "uglify-es": "^3.3.10"
   },
   "dependencies": {
-    "@iota/core": "^1.0.0-beta.12",
+    "@iota/core": "^1.0.0-beta.29",
     "bip39": "2.5.0",
     "bitcore-lib": "0.15.0",
     "bitcore-lib-cash": "^8.8.1",
